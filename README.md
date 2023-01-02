@@ -17,14 +17,17 @@ Scenario of lesson [Client/user view]
 
 Game Modes (levelController)
 1.	Farm Apples 
+
 Team based game (2-10 players per match). Basic score collecting game – players have to pick up spawned item and bring it to team box to collect it and increase a score of a team.
 
 Additional pickups: bonus speed, stealing mask (other ideas postponed till project reach decent state)
 
 Difficulties: 
 •	team assign - no spectator mode
+
 o	v1 – equal teams depending of amount of players
 2 – 2 teams, 3 – 3 teams – 4 – 2 teams, 5 – 5 teams, 6 – 2 teams , 7 – ughh 7 teams, 8 – 2 teams, 9 – 3 teams, 10 – 2 teams. (can be limited to 4, 6, 8, 9, 10 players to start)
+
 o	v2 asymmetrical 
 up to 1 more player with “equal opportunities” speed bonus) 
 To do: 
@@ -36,9 +39,11 @@ o	postprocessing
 o	polishing
 
 2.	Farmaggle 
+
 Card trading game, every player have 5 random cards (food types) and can trade with any other player to get a set that is required for a gameplay. (everyone can trade with everyone it’s not a turn based, strategy heavy game, more casual, focused on walking and asking others what they have or need)
 
 Difficulties:
+
 •	Card generation without repetition ( possibly reducing card types to make it easier)
 •	Avoiding random sets that may be impossible to get for more players
 To do:
@@ -47,6 +52,7 @@ o	Trade UI
 o	Emote UI
 
 3.	Farm helper
+
 Quiz based game, every player goes on their own after village to help NPCs, after picking right response player gets a reward. More as shared world experience, text chat may be useful for communication and looking for help from others. 
 
 Difficulties:
@@ -57,6 +63,7 @@ o	Inventory/Ojective UI
 o	Text chat
 
 4.	Farmaze
+
 2 player asymmetrical gameplay mode, one person goes through labyrinth, another one has a role of a navigator ( 1st person uses 3rd person controller, 2nd use top view camera and UI to send direction icon for 1st player ) 
 
 Difficulties:
@@ -67,5 +74,6 @@ o	Message system to send from P2 to P1
 o	Maps
 
 5.	Farmarathon
+
 Another team focused activity with different roles. (6,8,9 players)
 1 player carrying item that has to reach destination, others can help or disturb other carries.
