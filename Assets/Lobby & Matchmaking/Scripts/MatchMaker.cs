@@ -5,7 +5,6 @@ using System.Text;
 using Mirror;
 using MirrorBasics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [System.Serializable]
     public class Match {

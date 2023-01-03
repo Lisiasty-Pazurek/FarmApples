@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using Mirror;
 using Cinemachine;
 
 // This sets up the scene camera for the local player
