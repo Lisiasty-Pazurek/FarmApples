@@ -101,7 +101,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  rewardPrefab: {fileID: 1139254171913846, guid: 52f1c9ea06cfd154cb68ff9d1b66fc13,
+  rewardPrefab: {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d,
     type: 3}
   startLocation: {fileID: 4852321410060313859}
 --- !u!114 &7816444089051678070
