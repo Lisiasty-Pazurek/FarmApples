@@ -45,7 +45,6 @@ public class LevelController : NetworkBehaviour
         [SyncVar]
         public bool readyToStart;
 
-
         readonly public List<Match> levelmatches = new List<Match>();
         readonly public List<Team> teams = new List<Team>();
         readonly public List<Player> matchPlayers = new List<Player>();
@@ -74,8 +73,12 @@ public class LevelController : NetworkBehaviour
 
         public void Start() {  }
 
-        public override void OnStartAuthority() 
+        public override void OnStartClient() 
         {
+            UIGameplay uIGameplay = FindObjectOfType<UIGameplay>();
+            // if (!CompareMatchId()) {return;} // it will be necessary for multiple spawned levels on server
+            // else 
+            uIGameplay.levelController = this;
         }
 
     [Server]
@@ -110,6 +113,11 @@ public class LevelController : NetworkBehaviour
             i++;
         }
     }
+    public void CheckifLevelisReadyToStart(bool readyToStart)
+    {
+        if (readyToStart)  { InitiateLevel(levelMatchID);}
+        else return;
+    }
 
     public void CheckIfGamePlayersAreReady()
     {
@@ -124,14 +132,9 @@ public class LevelController : NetworkBehaviour
         PrepareLevel(levelMatchID);
     }
 
-    public void CheckifLevelisReadyToStart(bool readyToStart)
-    {
-        if (readyToStart)  { InitiateLevel(levelMatchID);}
-        else return;
-    }
 
     [Server]
-    public void PrepareLevel(string matchID)
+    public void PrepareLevel(string levelMatchID)
     {
         int playersAmount = matchPlayers.Count;
         Debug.Log("Players in game: " + playersAmount);
@@ -161,7 +164,7 @@ public class LevelController : NetworkBehaviour
    
 
     [Server]
-    public void SpawnPlayers (string _matchID) 
+    public void SpawnPlayers (string levelMatchID) 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
         for (int i = 0; i < matchMaker.matches.Count; i++) {       
@@ -170,7 +173,7 @@ public class LevelController : NetworkBehaviour
                 {   
 //                    Transform startPos = networkManager.GetStartPosition();
                     GameObject go = Instantiate(playerPrefab);
-                    go.GetComponent<PlayerController>().playerIndex = player.playerIndex; 
+                    go.GetComponent<PlayerController>().playerIndex = player.playerIndex; // not disabling for now, if this is causing problems still can get netid of player.connectiontoServer isntead 
                     NetworkServer.ReplacePlayerForConnection(player.connectionToClient, go, true);
                     gamePlayers.Add(go.GetComponent<PlayerController>());
                     NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
@@ -259,7 +262,6 @@ public class LevelController : NetworkBehaviour
         return value % 2 != 0;
     }
 
-
 // ## Have to be finished after figuring out how to pass transform of level 
     public void SetClientsReady()
     {
@@ -267,9 +269,9 @@ public class LevelController : NetworkBehaviour
         foreach (var playerController in gamePlayers)
         {
             gamePlayers[index].SetPlayerReady(false,true);
-            gamePlayers[index].gameObject.transform.SetPositionAndRotation(gamePlayers[index].transform.position, gamePlayers[index].transform.rotation);
+           // gamePlayers[index].gameObject.transform.SetPositionAndRotation(gamePlayers[index].transform.position, gamePlayers[index].transform.rotation);
             index++;
-//            NetworkServer.SetClientReady(playerController.connectionToClient);
+            NetworkServer.SetClientReady(playerController.connectionToClient);
         }
         Debug.Log("Clients set to ready from server");
     }
@@ -280,7 +282,15 @@ public class LevelController : NetworkBehaviour
         if (!gameEnded) {return;}
         SceneManager.UnloadSceneAsync("OnlineScene");
     }
+    public bool CompareMatchId ()
+    {
+        if (this.currentMatch.matchID == NetworkClient.connection.identity.GetComponent<Player>().matchID)
+        { return true;}
+        else return false;
+    }
 }
+
+
 }
 
 

@@ -106,8 +106,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   characterController: {fileID: 143011667059871024}
-  teamID: 0
-  playerIndex: 0
+  teamID: 1
+  playerIndex: 1
   moveSpeed: 5
   turnSensitivity: 70
   maxTurnSpeed: 110

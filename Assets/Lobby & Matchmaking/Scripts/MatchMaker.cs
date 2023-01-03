@@ -12,7 +12,7 @@ using UnityEngine;
         public bool publicMatch;
         public bool inMatch;
         public bool matchFull;
-        public List<Player> players = new List<Player> ();
+        public List<Player> players = new List<Player>();
 
         public Match (string matchID, Player player, bool publicMatch) {
             matchFull = false;
@@ -141,13 +141,11 @@ using UnityEngine;
             levelController.InitiateLevel(_matchID);
         }
 
+        // Checking if players in match are ready using level controller. It works until this point
         public void CheckIfMatchPlayersAreReady() 
         {
-             levelController.CheckIfGamePlayersAreReady();
-
-
+            levelController.CheckIfGamePlayersAreReady();
         }
-
 
 
         public static string GetRandomMatchID () {

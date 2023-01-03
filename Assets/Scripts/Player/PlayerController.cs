@@ -13,7 +13,7 @@ namespace MirrorBasics
     {
         public CharacterController characterController;
 
-        [SyncVar] public int teamID;
+        [SyncVar] public int teamID = 1;
         [SyncVar] public int playerIndex;
 
 
@@ -28,13 +28,13 @@ namespace MirrorBasics
         public float vertical;
         public float turn;
         public bool isGrounded = true;
-        public bool isFalling;
+        public bool isFalling = false;
         public Vector3 velocity;
         public float dashCooldown = 5f;
-        public bool isDashing;
+        public bool isDashing = false;
 
         [SyncVar]
-        public bool isReady;
+        public bool isReady = false;
 
         [Header("Animation")]
         [SerializeField]
@@ -65,7 +65,7 @@ namespace MirrorBasics
 
         public void SetPlayerReady (bool oldValue,bool newValue)
         {
-            Debug.Log("Checking if player "+ this.connectionToServer.connectionId + "is set to ready by server, is he ready? " + isReady);
+//            Debug.Log("Checking if player "+ this.connectionToServer.connectionId + "is set to ready by server, is he ready? " + isReady);
             isReady = true;
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
@@ -73,12 +73,12 @@ namespace MirrorBasics
             this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         }
 
-    public void SetClientActiveGameplayScene()
-    {
-            Scene currentScene = SceneManager.GetSceneByName("OnlineScene");
-            SceneManager.SetActiveScene(currentScene);
-            Debug.Log("make scene active ");    
-    }
+    // public void SetClientActiveGameplayScene()
+    // {
+    //         Scene currentScene = SceneManager.GetSceneByName("OnlineScene");
+    //         SceneManager.SetActiveScene(currentScene);
+    //         Debug.Log("make scene active ");    
+    // }
 
     
         void Update()

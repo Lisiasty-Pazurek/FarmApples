@@ -74,7 +74,7 @@ MonoBehaviour:
     players: []
   levelMatchID: 
   readyToStart: 0
-  playerPrefab: {fileID: 1093037038611221156, guid: a1fecb3557e080348b3de5906776f1bf,
+  playerPrefab: {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe,
     type: 3}
   prizePrefab: {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d,
     type: 3}

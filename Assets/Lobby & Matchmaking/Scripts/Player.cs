@@ -26,7 +26,7 @@ namespace MirrorBasics {
         public bool isReady;
 
         void Awake () {
-            networkMatch = GetComponent<NetworkMatch> ();
+            networkMatch = GetComponent<NetworkMatch> (); 
         }
 
         public override void OnStartServer () {
@@ -35,8 +35,12 @@ namespace MirrorBasics {
         }
 
         public override void OnStartClient () {
+
             if (isLocalPlayer) {
                 localPlayer = this;
+                UIGameplay uIGameplay = FindObjectOfType<UIGameplay>();
+                uIGameplay.lobbyPlayer= this;
+
             } else {
                 Debug.Log ($"Spawning other player UI Prefab");
                 playerLobbyUI = UILobby.instance.SpawnPlayerUIPrefab (this);
