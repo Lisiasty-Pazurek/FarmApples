@@ -1,9 +1,8 @@
-using System;
-using MirrorBasics;
+using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Mirror.Examples.NetworkRoom
+namespace MirrorBasics
 {
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]
