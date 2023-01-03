@@ -58,7 +58,6 @@ namespace Mirror.Examples.NetworkRoom
             NetworkClient.ready = true;
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<NetworkTransform>().clientAuthority = true;
             uiManager = GameObject.FindObjectOfType<UILobby>();
             uiManager.ToggleLobbyUI(false);
             pCamera = this.GetComponent<PlayerCamera>();
