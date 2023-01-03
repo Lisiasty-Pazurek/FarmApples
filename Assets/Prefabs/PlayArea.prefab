@@ -95,9 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4852321410060313867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bf5c082d04f7ea459fcd30e60b5bd70, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bcd97b6c2435564fb7db6556efc395c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
   rewardPrefab: {fileID: 1139254171913846, guid: 52f1c9ea06cfd154cb68ff9d1b66fc13,
@@ -116,9 +117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
+  _assetId: 1619627128
   serverOnly: 0
   visible: 0
-  m_AssetId: 03d3740edd31a9444b5cf572e261d027
   hasSpawned: 0
 --- !u!1001 &4852321409583861010
 PrefabInstance:
@@ -186,6 +187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneId
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708567069253077665, guid: e866e8ff59718bf4a830de9355ba04f0,
+        type: 3}
+      propertyPath: _assetId
+      value: 1619627128
       objectReference: {fileID: 0}
     - target: {fileID: 5708567069253077665, guid: e866e8ff59718bf4a830de9355ba04f0,
         type: 3}
