@@ -1078,14 +1078,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778308314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c81acc873d16a749ab07e699879f6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
-  PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 30
+  autoConnectClientBuild: 0
+  sendRate: 30
   offlineScene: Assets/Lobby & Matchmaking/Scenes/Offline.unity
   onlineScene: Assets/Lobby & Matchmaking/Scenes/Lobby.unity
   transport: {fileID: 1778308316}
@@ -1101,6 +1101,7 @@ MonoBehaviour:
   - {fileID: 7284221734329707013, guid: e866e8ff59718bf4a830de9355ba04f0, type: 3}
   - {fileID: 1480027675339556, guid: 21daf89214c6ee443ad6875b73083c60, type: 3}
   - {fileID: 1794876138388804044, guid: 84f8d32f126ca3646a05d479cf012e9d, type: 3}
+  timeInterpolationGui: 0
 --- !u!114 &1778308316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,10 +1120,12 @@ MonoBehaviour:
   Interval: 10
   Timeout: 3000
   FastResend: 2
-  CongestionWindow: 0
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
-  NonAlloc: 1
+  MaxRetransmit: 40
+  MaximizeSocketBuffers: 1
+  ReliableMaxMessageSize: 298449
+  UnreliableMaxMessageSize: 1199
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
