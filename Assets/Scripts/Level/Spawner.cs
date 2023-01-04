@@ -23,6 +23,7 @@ public class Spawner: NetworkBehaviour
 
         public override void OnStartServer() 
         {
+            SetLocation(startLocation);
             InitialSpawn();
         }
 

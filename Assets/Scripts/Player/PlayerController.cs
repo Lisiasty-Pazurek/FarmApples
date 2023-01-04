@@ -69,6 +69,7 @@ namespace MirrorBasics
 //            isReady = true;
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
+            
  //           this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true; // Hope that would work out of the box
         }
 
