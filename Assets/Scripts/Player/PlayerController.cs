@@ -60,17 +60,16 @@ namespace MirrorBasics
             uiManager = GameObject.FindObjectOfType<UILobby>();
             uiManager.ToggleLobbyUI(false);
             pCamera = this.GetComponent<PlayerCamera>();
-            
+            pCamera.SetupPlayerCamera();
         }
 
         public void SetPlayerReady (bool oldValue,bool newValue)
         {
 //            Debug.Log("Checking if player "+ this.connectionToServer.connectionId + "is set to ready by server, is he ready? " + isReady);
-            isReady = true;
+//            isReady = true;
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
-            pCamera.SetupPlayerCamera();
-            this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+ //           this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true; // Hope that would work out of the box
         }
 
     // public void SetClientActiveGameplayScene()
@@ -81,6 +80,8 @@ namespace MirrorBasics
     // }
 
     
+
+
         void Update()
         {
             if (!isLocalPlayer || characterController == null || !characterController.enabled)
