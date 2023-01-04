@@ -30,7 +30,7 @@ namespace MirrorBasics {
 public class LevelController : NetworkBehaviour
 {   
 
-        public static LevelController instance;
+//        public static LevelController instance;
 
         private MatchMaker matchMaker;
      
