@@ -243,8 +243,8 @@ namespace MirrorBasics {
 
         private void GetLevelController()
         {
-            if (levelController != null) {return;}
-            else {
+            
+            
                  foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
                 {
                     if (lvlController.levelMatchID == currentMatch.matchID)
@@ -252,13 +252,15 @@ namespace MirrorBasics {
                         levelController = lvlController;
                     }
                 }
-            }
+            
         }
 
+// Need fix for checking proper match - works on last spawned one !!
     [Command]
         public void CheckLevelReady()
         {
-            MatchMaker.instance.CheckIfMatchPlayersAreReady();
+            GetLevelController();
+            levelController.CheckIfGamePlayersAreReady();
         }
 
         // ### Important! How to send command to server to use level controller commands for current match without authority? 

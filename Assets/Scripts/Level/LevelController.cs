@@ -89,28 +89,24 @@ public class LevelController : NetworkBehaviour
         networkManager = GameObject.FindObjectOfType<NetworkManager>();
 
 
-        for (int i = 0; i < matchMaker.matches.Count;) {
+        for (int i = 0; i < matchMaker.matches.Count; i++) {
             if (matchMaker.matches[i].matchID == levelMatchID) 
             {
                 levelmatches.Add(matchMaker.matches[i]);
                 Debug.Log("Passing match list from matchmaker to levelcontroller");
-                i++;
+                
             }
         }
 
-        Debug.Log(levelmatches);
-
-
-        for (int i = 0; i < matchMaker.matches.Count;)
+        for (int i = 0; i < matchMaker.matches.Count;i++)
         {   
-            Debug.Log("Loop for setting up match, matchplayers and gameplayers for match ID:  " + levelmatches[i].matchID + 
-            " amount of matches = " + matchMaker.matches.Count);
             if (matchMaker.matches[i].matchID == levelMatchID) 
-            {currentMatch = matchMaker.matches[i];}
-            matchPlayers.AddRange(currentMatch.players);
-            Debug.Log("For levelMatch: " + levelMatchID +" currentMatch.matchID = " + currentMatch.matchID + " and : " 
-            + matchMaker.matches[i].matchID + " what is i: " + i + " Amount of players in this match:  "+ currentMatch.players.Count);
-            i++;
+            {
+                currentMatch = matchMaker.matches[i];
+                matchPlayers.AddRange(currentMatch.players);
+                Debug.Log("For levelMatch: " + levelMatchID +" currentMatch.matchID = " + currentMatch.matchID + " and : " + matchMaker.matches[i].matchID + " what is i: " + i + " Amount of players in this match:  "+ currentMatch.players.Count);
+            }
+            
         }
     }
     public void CheckifLevelisReadyToStart(bool readyToStart)
@@ -167,10 +163,12 @@ public class LevelController : NetworkBehaviour
     public void SpawnPlayers (string levelMatchID) 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
-        for (int i = 0; i < matchMaker.matches.Count; i++) {       
+        //  for (int i = 0; i < matchMaker.matches.Count; i++) {       
                 int t = 0;
                 foreach (var player in matchPlayers) 
                 {   
+                    if (player.matchID != levelMatchID) {return;} 
+                    
 //                    Transform startPos = networkManager.GetStartPosition();
                     GameObject go = Instantiate(playerPrefab);
                     go.GetComponent<PlayerController>().playerIndex = player.playerIndex; // not disabling for now, if this is causing problems still can get netid of player.connectiontoServer isntead 
@@ -182,9 +180,9 @@ public class LevelController : NetworkBehaviour
                     Debug.Log("SpawnPlayers function: moved player to gamePlayer list");
                     gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
                     t++;
-                }
+                 }
          
-        }
+        // }
         SpawnTeams();
     }
 
@@ -194,18 +192,20 @@ public class LevelController : NetworkBehaviour
         int playersAmount = gamePlayers.Count;
          if (playersAmount == 1 || playersAmount == 5 || playersAmount == 7)
          {
-            for ( int i = 0; i <playersAmount; )
+            for ( int i = 0; i <playersAmount; i++)
             {
                 Team team = new Team (i.ToString(), gamePlayers[i]);
                 team.teamID = i.ToString();
                 teams.Add(team);
-                i++;
+                
             }
          }
 
          if (playersAmount == 2 || playersAmount ==4 || playersAmount == 8)
          {
-            for ( int i = 0; i <playersAmount; )
+
+            // Faulty logic 
+            for ( int i = 0; i <playersAmount; i++)
             {
                 Team team = new Team (i.ToString(), gamePlayers[i]);
                 team.teamID = i.ToString();
@@ -215,7 +215,7 @@ public class LevelController : NetworkBehaviour
                 {
                     team.players.Add(gamePlayers[i]);
                 }
-                i++;
+                
             }
          }
         SpawnTeamboxes();

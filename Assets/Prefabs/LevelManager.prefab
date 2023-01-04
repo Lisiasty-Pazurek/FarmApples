@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1794876138388804033}
   - component: {fileID: 1794876138388804038}
   - component: {fileID: -5520429119407864680}
+  - component: {fileID: -7608061955400731669}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: StartLocation
@@ -96,3 +97,21 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+--- !u!114 &-7608061955400731669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794876138388804044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bcd97b6c2435564fb7db6556efc395c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  rewardPrefab: {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d,
+    type: 3}
+  startLocation: {fileID: 1794876138388804036}
