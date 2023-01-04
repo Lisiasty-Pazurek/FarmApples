@@ -174,9 +174,11 @@ public class LevelController : NetworkBehaviour
 //                    Transform startPos = networkManager.GetStartPosition();
                     GameObject go = Instantiate(playerPrefab);
                     go.GetComponent<PlayerController>().playerIndex = player.playerIndex; // not disabling for now, if this is causing problems still can get netid of player.connectiontoServer isntead 
+                    go.GetComponent<NetworkMatch>().matchId = player.GetComponent<NetworkMatch>().matchId;
                     NetworkServer.ReplacePlayerForConnection(player.connectionToClient, go, true);
                     gamePlayers.Add(go.GetComponent<PlayerController>());
                     NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
+
                     Debug.Log("SpawnPlayers function: moved player to gamePlayer list");
                     gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
                     t++;
