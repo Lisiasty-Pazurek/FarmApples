@@ -204,7 +204,7 @@ public class LevelController : NetworkBehaviour
          if (playersAmount == 2 || playersAmount ==4 || playersAmount == 8)
          {
 
-            // Faulty logic 
+            // Faulty logic, TODO: proper one lol
             for ( int i = 0; i <playersAmount; i++)
             {
                 Team team = new Team (i.ToString(), gamePlayers[i]);
@@ -215,7 +215,6 @@ public class LevelController : NetworkBehaviour
                 {
                     team.players.Add(gamePlayers[i]);
                 }
-                
             }
          }
         SpawnTeamboxes();
@@ -225,12 +224,15 @@ public class LevelController : NetworkBehaviour
     [Server]
     public void SpawnTeamboxes() 
     {
-        for (int i = 0; i < teams.Count;)
+        int t = 0;
+        for (int i = 0; i < teams.Count; i++)
         {
             Debug.Log("Spawn Teamboxes function: Spawning teamboxes for: " +teams.Count + " teams");
             GameObject go = Instantiate(teamboxPrefab);
+            go.GetComponent<NetworkMatch>().matchId = this.currentMatch.matchID.ToGuid();
+            go.GetComponent<TeamBox>().teamID = t+1;
             NetworkServer.Spawn(go);     
-            i++ ; 
+            t ++;
         }
 
         Debug.Log("PrepareLevel function: Preparing for making clients ready");

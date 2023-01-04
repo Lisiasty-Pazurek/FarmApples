@@ -21,6 +21,7 @@ public class TeamBox : NetworkBehaviour
     {
         Debug.Log("Teambox validated, setting up levelcontroller in it");
         levelController = GameObject.FindObjectOfType<LevelController>();
+        
     }
 
 

@@ -51,7 +51,7 @@ MonoBehaviour:
   sceneId: 0
   _assetId: 2029415652
   serverOnly: 0
-  visible: 2
+  visible: 0
   hasSpawned: 0
 --- !u!114 &114048121767222990
 MonoBehaviour:
