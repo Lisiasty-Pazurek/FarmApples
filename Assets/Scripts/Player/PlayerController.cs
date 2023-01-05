@@ -1,9 +1,8 @@
-using System;
-using MirrorBasics;
+using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Mirror.Examples.NetworkRoom
+namespace MirrorBasics
 {
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]
@@ -14,7 +13,7 @@ namespace Mirror.Examples.NetworkRoom
     {
         public CharacterController characterController;
 
-        [SyncVar] public int teamID;
+        [SyncVar] public int teamID = 1;
         [SyncVar] public int playerIndex;
 
 
@@ -29,13 +28,13 @@ namespace Mirror.Examples.NetworkRoom
         public float vertical;
         public float turn;
         public bool isGrounded = true;
-        public bool isFalling;
+        public bool isFalling = false;
         public Vector3 velocity;
         public float dashCooldown = 5f;
-        public bool isDashing;
+        public bool isDashing = false;
 
         [SyncVar]
-        public bool isReady;
+        public bool isReady = false;
 
         [Header("Animation")]
         [SerializeField]
@@ -58,31 +57,32 @@ namespace Mirror.Examples.NetworkRoom
             NetworkClient.ready = true;
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<NetworkTransform>().clientAuthority = true;
             uiManager = GameObject.FindObjectOfType<UILobby>();
             uiManager.ToggleLobbyUI(false);
             pCamera = this.GetComponent<PlayerCamera>();
-            
+            pCamera.SetupPlayerCamera();
         }
 
         public void SetPlayerReady (bool oldValue,bool newValue)
         {
-            Debug.Log("Checking if player "+ this.connectionToServer.connectionId + "is set to ready by server, is he ready? " + isReady);
-            isReady = true;
+//            Debug.Log("Checking if player "+ this.connectionToServer.connectionId + "is set to ready by server, is he ready? " + isReady);
+//            isReady = true;
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
-            pCamera.SetupPlayerCamera();
-            this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+            
+ //           this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true; // Hope that would work out of the box
         }
 
-    public void SetClientActiveGameplayScene()
-    {
-            Scene currentScene = SceneManager.GetSceneByName("OnlineScene");
-            SceneManager.SetActiveScene(currentScene);
-            Debug.Log("make scene active ");    
-    }
+    // public void SetClientActiveGameplayScene()
+    // {
+    //         Scene currentScene = SceneManager.GetSceneByName("OnlineScene");
+    //         SceneManager.SetActiveScene(currentScene);
+    //         Debug.Log("make scene active ");    
+    // }
 
     
+
+
         void Update()
         {
             if (!isLocalPlayer || characterController == null || !characterController.enabled)

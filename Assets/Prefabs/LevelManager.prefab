@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1794876138388804033}
   - component: {fileID: 1794876138388804038}
   - component: {fileID: -5520429119407864680}
+  - component: {fileID: -7608061955400731669}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: StartLocation
@@ -47,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
+  _assetId: 3278292454
   serverOnly: 0
-  visible: 2
-  m_AssetId: 84f8d32f126ca3646a05d479cf012e9d
+  visible: 0
   hasSpawned: 0
 --- !u!114 &1794876138388804038
 MonoBehaviour:
@@ -63,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d14031536cff443a4c402000870f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
   currentMatch:
@@ -73,9 +75,9 @@ MonoBehaviour:
     players: []
   levelMatchID: 
   readyToStart: 0
-  playerPrefab: {fileID: 1480027675339556, guid: 21daf89214c6ee443ad6875b73083c60,
+  playerPrefab: {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe,
     type: 3}
-  prizePrefab: {fileID: 1139254171913846, guid: 52f1c9ea06cfd154cb68ff9d1b66fc13,
+  prizePrefab: {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d,
     type: 3}
   teamboxPrefab: {fileID: 7284221734329707013, guid: e866e8ff59718bf4a830de9355ba04f0,
     type: 3}
@@ -92,5 +94,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d17e718851449a6879986e45c458fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+--- !u!114 &-7608061955400731669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794876138388804044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bcd97b6c2435564fb7db6556efc395c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  rewardPrefab: {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d,
+    type: 3}
+  startLocation: {fileID: 1794876138388804036}

@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
-using Mirror.Examples.NetworkRoom;
 
 
 namespace MirrorBasics{
@@ -22,33 +19,32 @@ public class UIGameplay : MonoBehaviour
     
     public void Start ()
     {
-        lobbyPlayer = NetworkClient.connection.identity.GetComponent<Player>();
-        uiLobby = GameObject.FindObjectOfType<UILobby>();
-        CheckReferences();
+        uiLobby = GameObject.FindObjectOfType<UILobby>();        
+        
+        // lobbyPlayer = NetworkClient.connection.identity.GetComponent<Player>();
+        // CheckReferences();
     }
 
+// Function logic can be moved to lobby player instead to get it only for callout here
     public void ImReady()
     {
-        CheckReferences();
-        lobbyPlayer = NetworkClient.connection.identity.GetComponent<Player>();
-        Debug.Log("Tried to get my lobbyPlayer of: " + lobbyPlayer);
+        // CheckReferences();
+        // lobbyPlayer = NetworkClient.connection.identity.GetComponent<Player>();
+        // Debug.Log("Tried to get my lobbyPlayer of: " + lobbyPlayer);
         lobbyPlayer.playerReady(false, true);
         uiLobby.lobbyUICanvas.enabled = false;
 //        CmdCheckIfLobbyPlayersAreReady();
     }
 
-
-
-
-    public void CmdCheckIfLobbyPlayersAreReady()
+// Unused now, should be moved to level manager instead, I'd rework it for some additional debug.log
+    public void CheckIfLobbyPlayersAreReady()
     {
         levelController.CheckIfGamePlayersAreReady();
+
     }
 
-   
 
-
-
+// Simple debugging command. I will keep it for now
     public void IsMyCLientActive()
     {
         Debug.Log(" Is my client active?" + NetworkClient.active);
@@ -57,7 +53,7 @@ public class UIGameplay : MonoBehaviour
 
     public void SetPlayerReady()
     {
-        CheckReferences();
+//        CheckReferences();
         if (player != null) {return;}
         else 
         {
@@ -66,9 +62,7 @@ public class UIGameplay : MonoBehaviour
         player.SetPlayerReady(false, true);
     }
 
-    public void FixedUpdate() {
-        //CheckReferences();
-    }
+    public void Update() {    }
 
     public void CheckReferences()
     {
@@ -85,15 +79,7 @@ public class UIGameplay : MonoBehaviour
             else {levelController = GameObject.FindObjectOfType<LevelController>();}
     }
 
-    public void QuitLevel()
-    {
-        SceneManager.UnloadSceneAsync("OnlineScene");
-    }
 
-    public void SetMyPlayerActiveScene ()
-    {
-        player.SetClientActiveGameplayScene();
-    }
 
     public void StartLevel()
     {
@@ -105,6 +91,16 @@ public class UIGameplay : MonoBehaviour
     {
         lobbyPlayer.CheckLevelReady();
     }
+    public void QuitLevel()
+    {
+        SceneManager.UnloadSceneAsync("OnlineScene");
+    }
+
+// not needed for now if ever at all
+    // public void SetMyPlayerActiveScene ()
+    // {
+    //     player.SetClientActiveGameplayScene();
+    // }
 
 }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,7 +26,7 @@ namespace MirrorBasics {
         public bool isReady;
 
         void Awake () {
-            networkMatch = GetComponent<NetworkMatch> ();
+            networkMatch = GetComponent<NetworkMatch> (); 
         }
 
         public override void OnStartServer () {
@@ -37,8 +35,12 @@ namespace MirrorBasics {
         }
 
         public override void OnStartClient () {
+
             if (isLocalPlayer) {
                 localPlayer = this;
+                UIGameplay uIGameplay = FindObjectOfType<UIGameplay>();
+                uIGameplay.lobbyPlayer= this;
+
             } else {
                 Debug.Log ($"Spawning other player UI Prefab");
                 playerLobbyUI = UILobby.instance.SpawnPlayerUIPrefab (this);
@@ -241,8 +243,8 @@ namespace MirrorBasics {
 
         private void GetLevelController()
         {
-            if (levelController != null) {return;}
-            else {
+            
+            
                  foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
                 {
                     if (lvlController.levelMatchID == currentMatch.matchID)
@@ -250,13 +252,15 @@ namespace MirrorBasics {
                         levelController = lvlController;
                     }
                 }
-            }
+            
         }
 
+// Need fix for checking proper match - works on last spawned one !!
     [Command]
         public void CheckLevelReady()
         {
-            MatchMaker.instance.CheckIfMatchPlayersAreReady();
+            GetLevelController();
+            levelController.CheckIfGamePlayersAreReady();
         }
 
         // ### Important! How to send command to server to use level controller commands for current match without authority? 

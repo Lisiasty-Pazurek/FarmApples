@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using Mirror;
 
-namespace Mirror.Examples.MultipleAdditiveScenes
+namespace MirrorBasics
 {
     public class PhysicsSimulator : MonoBehaviour
     {

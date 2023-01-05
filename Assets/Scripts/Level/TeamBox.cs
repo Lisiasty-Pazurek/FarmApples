@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Mirror;
-using Mirror.Examples.NetworkRoom;
 using UnityEngine;
 
 namespace MirrorBasics 
@@ -24,6 +21,7 @@ public class TeamBox : NetworkBehaviour
     {
         Debug.Log("Teambox validated, setting up levelcontroller in it");
         levelController = GameObject.FindObjectOfType<LevelController>();
+        
     }
 
 

@@ -5,7 +5,6 @@ using System.Text;
 using Mirror;
 using MirrorBasics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [System.Serializable]
     public class Match {
@@ -13,7 +12,7 @@ using UnityEngine.SceneManagement;
         public bool publicMatch;
         public bool inMatch;
         public bool matchFull;
-        public List<Player> players = new List<Player> ();
+        public List<Player> players = new List<Player>();
 
         public Match (string matchID, Player player, bool publicMatch) {
             matchFull = false;
@@ -142,13 +141,11 @@ using UnityEngine.SceneManagement;
             levelController.InitiateLevel(_matchID);
         }
 
-        public void CheckIfMatchPlayersAreReady() 
-        {
-             levelController.CheckIfGamePlayersAreReady();
-
-
-        }
-
+        // Checking if players in match are ready using level controller. It works until this point
+        // public void CheckIfMatchPlayersAreReady() 
+        // {
+        //     levelController.CheckIfGamePlayersAreReady();
+        // }
 
 
         public static string GetRandomMatchID () {
