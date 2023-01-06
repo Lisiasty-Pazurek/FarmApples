@@ -29,7 +29,7 @@ public class TeamBox : NetworkBehaviour
 [Server]
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == teamID)
+            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == teamID && this.GetComponent<NetworkMatch>().matchId == other.GetComponent<NetworkMatch>().matchId)
             {
                 if (other.gameObject.GetComponent<PlayerScore>().hasItem == false) {return;}
                 ClaimPrize(other.gameObject);               
