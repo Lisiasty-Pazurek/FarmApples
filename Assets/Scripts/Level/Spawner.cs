@@ -37,8 +37,9 @@ public class Spawner: NetworkBehaviour
             if (!NetworkServer.active) return;
 
             Vector3 spawnPosition = new Vector3(Random.Range(startLocation.position.x-30,startLocation.position.x +30), 1, Random.Range(startLocation.position.z-30,startLocation.position.z +30));
-            rewardPrefab.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;
+
             GameObject prize = Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);
+            prize.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
             NetworkServer.Spawn(prize);
             prize.GetComponentInChildren<MeshRenderer>().enabled = true;
             

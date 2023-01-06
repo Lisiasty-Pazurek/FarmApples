@@ -15,9 +15,9 @@ using Mirror;
         [ServerCallback]
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player") && this.GetComponent<NetworkMatch>().matchId == other.GetComponent<NetworkMatch>().matchId)
             {
-                 if (other.gameObject.GetComponent<PlayerScore>().hasItem == true) {return;}
+                if (other.gameObject.GetComponent<PlayerScore>().hasItem == true) {return;}
                 else
                 PickUpItem(other.gameObject);               
             }

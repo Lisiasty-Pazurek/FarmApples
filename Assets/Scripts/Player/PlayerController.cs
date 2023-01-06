@@ -13,7 +13,7 @@ namespace MirrorBasics
     {
         public CharacterController characterController;
 
-        [SyncVar] public int teamID = 1;
+        // [SyncVar] public int teamID = 1;
         [SyncVar] public int playerIndex;
 
 

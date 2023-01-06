@@ -128,6 +128,7 @@ using UnityEngine;
         public void SpawnLevel(string _matchID)
         {
             lvlManager = Instantiate(prefabLevelManager);
+            lvlManager.GetComponent<NetworkMatch>().matchId = _matchID.ToGuid();
             NetworkServer.Spawn(lvlManager, connectionToClient);
             Debug.Log("Spawning Level Manager for match: " + _matchID);
             StartInitiatingLevel(_matchID);

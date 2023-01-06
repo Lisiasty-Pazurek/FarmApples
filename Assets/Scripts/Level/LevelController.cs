@@ -53,6 +53,10 @@ public class LevelController : NetworkBehaviour
         [SerializeField]
         GameObject playerPrefab;
         [SerializeField]
+        GameObject playerPrefabSheep;
+        [SerializeField]
+        GameObject playerPrefabDonkey;
+        [SerializeField]
         GameObject prizePrefab;
         [SerializeField]
         GameObject teamboxPrefab;
@@ -145,7 +149,8 @@ public class LevelController : NetworkBehaviour
     // {
     //     GameObject[] spawnPoints;
     //     spawnPoints = GameObject.FindGameObjectsWithTag(spawnType);
-    //     foreach (GameObject spawnPoint in spawnPoints)  { playerSpawnPoints.Add(spawnPoint.transform);}
+    //     foreach (GameObject spawnPoint in spawnPoints)  
+    //     { playerSpawnPoints.Add(spawnPoint.transform);}
     //     Debug.Log("Ended getting PlayerSpawnPoints");
     // }
 
@@ -153,8 +158,8 @@ public class LevelController : NetworkBehaviour
     // {
     //     GameObject[] spawnPoints;
     //     spawnPoints = GameObject.FindGameObjectsWithTag(spawnType);
-
-    //     foreach (GameObject spawnPoint in spawnPoints)   { teamSpawnPoints.Add(spawnPoint.transform);   }
+    //     foreach (GameObject spawnPoint in spawnPoints)   
+    //     { teamSpawnPoints.Add(spawnPoint.transform);}
     //     Debug.Log("Ended getting TeanSpawnPoints");
     // }
    
@@ -165,14 +170,21 @@ public class LevelController : NetworkBehaviour
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
         //  for (int i = 0; i < matchMaker.matches.Count; i++) {       
                 int t = 0;
+                int t2 = 0; 
+                
                 foreach (var player in matchPlayers) 
                 {   
+
                     if (player.matchID != levelMatchID) {return;} 
-                    
-//                    Transform startPos = networkManager.GetStartPosition();
-                    GameObject go = Instantiate(playerPrefab);
-                    go.GetComponent<PlayerController>().playerIndex = player.playerIndex; // not disabling for now, if this is causing problems still can get netid of player.connectiontoServer isntead 
+                    if (IsOdd(t)) {playerPrefab = playerPrefabDonkey; t2 =45; } 
+                    else {playerPrefab = playerPrefabSheep; t2 =0;}
+                    Vector3 startPos = new Vector3(4 +t*2, 0, t2);
+                    GameObject go = Instantiate(playerPrefab, startPos, Quaternion.identity);
+                    if (!IsOdd(matchPlayers.Count)&&IsOdd(t)) {go.GetComponent<PlayerController>().moveSpeed=6;} 
+                    else {go.GetComponent<PlayerController>().moveSpeed=5;};
+                    go.GetComponent<PlayerController>().playerIndex = player.playerIndex; 
                     go.GetComponent<NetworkMatch>().matchId = player.GetComponent<NetworkMatch>().matchId;
+                    if (IsOdd(t)) {go.GetComponent<PlayerScore>().teamID = 2;}
                     NetworkServer.ReplacePlayerForConnection(player.connectionToClient, go, true);
                     gamePlayers.Add(go.GetComponent<PlayerController>());
                     NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
@@ -183,52 +195,49 @@ public class LevelController : NetworkBehaviour
                  }
          
         // }
-        SpawnTeams();
-    }
-
-    [Server]
-    public void SpawnTeams()
-    {
-        int playersAmount = gamePlayers.Count;
-         if (playersAmount == 1 || playersAmount == 5 || playersAmount == 7)
-         {
-            for ( int i = 0; i <playersAmount; i++)
-            {
-                Team team = new Team (i.ToString(), gamePlayers[i]);
-                team.teamID = i.ToString();
-                teams.Add(team);
-                
-            }
-         }
-
-         if (playersAmount == 2 || playersAmount ==4 || playersAmount == 8)
-         {
-
-            // Faulty logic, TODO: proper one lol
-            for ( int i = 0; i <playersAmount; i++)
-            {
-                Team team = new Team (i.ToString(), gamePlayers[i]);
-                team.teamID = i.ToString();
-                teams.Add(team);
-
-                foreach (var player in gamePlayers)
-                {
-                    team.players.Add(gamePlayers[i]);
-                }
-            }
-         }
         SpawnTeamboxes();
-        SetClientsReady();
     }
+
+    // [Server]
+    // public void SpawnTeams()
+    // {
+    //     int playersAmount = gamePlayers.Count;
+    //      if (playersAmount == 1 || playersAmount == 5 || playersAmount == 7)
+    //      {
+    //         for ( int i = 0; i <playersAmount; i++)
+    //         {
+    //             Team team = new Team (i.ToString(), gamePlayers[i]);
+    //             team.teamID = i.ToString();
+    //             teams.Add(team);
+                
+    //         }
+    //      }
+
+    //      if (playersAmount == 2 || playersAmount ==4 || playersAmount == 8)
+    //      {
+    //         // Faulty logic, TODO: proper one lol
+    //         for ( int i = 0; i <playersAmount; i++)
+    //         {
+    //             Team team = new Team (i.ToString(), gamePlayers[i]);
+    //             team.teamID = i.ToString();
+    //             teams.Add(team);
+    //             team.players.Add(gamePlayers[i]);
+
+    //         }
+    //      }
+    //     SpawnTeamboxes();
+    //     // SetClientsReady();
+    // }
 
     [Server]
     public void SpawnTeamboxes() 
     {
         int t = 0;
-        for (int i = 0; i < teams.Count; i++)
+        for (int i = 0; i < 2; i++)
         {
+            Vector3 spawnPosition = new Vector3( 0, 0, t*40);
             Debug.Log("Spawn Teamboxes function: Spawning teamboxes for: " +teams.Count + " teams");
-            GameObject go = Instantiate(teamboxPrefab);
+            GameObject go = Instantiate(teamboxPrefab, spawnPosition, Quaternion.identity);
             go.GetComponent<NetworkMatch>().matchId = this.currentMatch.matchID.ToGuid();
             go.GetComponent<TeamBox>().teamID = t+1;
             NetworkServer.Spawn(go);     
@@ -236,7 +245,7 @@ public class LevelController : NetworkBehaviour
         }
 
         Debug.Log("PrepareLevel function: Preparing for making clients ready");
-        MovePlayersToTeams();
+        // MovePlayersToTeams();
         
     }
 
@@ -244,22 +253,22 @@ public class LevelController : NetworkBehaviour
 // Variable assigned to player>>gameplayer of int teamid should be more than enough
 // Team assignement may be done in matchmaker by players on their own depending on a game mode.
 
-    [Server]
-    public void MovePlayersToTeams()
-    {
-        if (teams.Count == 2)
-        {
-            foreach (var player in gamePlayers)
-            {
-                for (int i = 0; i < gamePlayers.Count; )
-                {
-                    if (IsOdd(i))   { teams[0].players.Add(gamePlayers[i]);}
-                    if (!IsOdd(i))  { teams[1].players.Add(gamePlayers[i]);}
-                    i++;
-                }
-            }
-        }
-    }
+    // [Server]
+    // public void MovePlayersToTeams()
+    // {
+    //     if (teams.Count == 2)
+    //     {
+    //         foreach (var player in gamePlayers)
+    //         {
+    //             for (int i = 0; i < gamePlayers.Count; )
+    //             {
+    //                 if (IsOdd(i))   { teams[0].players.Add(gamePlayers[i]);}
+    //                 if (!IsOdd(i))  { teams[1].players.Add(gamePlayers[i]);}
+    //                 i++;
+    //             }
+    //         }
+    //     }
+    // }
 
     public static bool IsOdd(int value)
     {
