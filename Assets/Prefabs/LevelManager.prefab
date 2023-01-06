@@ -77,6 +77,10 @@ MonoBehaviour:
   readyToStart: 0
   playerPrefab: {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe,
     type: 3}
+  playerPrefabSheep: {fileID: 1480027675339556, guid: 2507baa446f945341bc2815bb81c19dd,
+    type: 3}
+  playerPrefabDonkey: {fileID: 1480027675339556, guid: 0790e6e2a0bd9264e84467f3b8c9e29f,
+    type: 3}
   prizePrefab: {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d,
     type: 3}
   teamboxPrefab: {fileID: 7284221734329707013, guid: e866e8ff59718bf4a830de9355ba04f0,
