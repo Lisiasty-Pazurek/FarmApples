@@ -245,8 +245,6 @@ namespace MirrorBasics {
 
         private void GetLevelController()
         {
-            
-            
                  foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
                 {
                     if (lvlController.levelMatchID == currentMatch.matchID)
