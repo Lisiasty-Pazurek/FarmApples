@@ -33,16 +33,19 @@ namespace MirrorBasics
         public float dashCooldown = 5f;
         public bool isDashing = false;
 
-        [SyncVar]
+        [SyncVar (hook=nameof(SetReadyState)) ]
         public bool isReady = false;
 
         [Header("Animation")]
         [SerializeField]
         private Animator characterAnimator;
-        private UILobby uiManager;
+        private UILobby uiLobby;
+        private UIGameplay uiGameplay;
 
         public PlayerCamera pCamera;
 
+        private Player localPlayer;
+        private LevelController levelManager;
 
     
         public override void OnStartLocalPlayer()
@@ -57,31 +60,33 @@ namespace MirrorBasics
             NetworkClient.ready = true;
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
-            uiManager = GameObject.FindObjectOfType<UILobby>();
-            uiManager.ToggleLobbyUI(false);
+            uiLobby = GameObject.FindObjectOfType<UILobby>();
+            uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
+            uiGameplay.player = this;
+            
+            levelManager = uiGameplay.levelController;
+            uiGameplay.ChangeUIState(1);
             pCamera = this.GetComponent<PlayerCamera>();
-            pCamera.SetupPlayerCamera();
         }
 
-        public void SetPlayerReady (bool oldValue,bool newValue)
+
+[Command (requiresAuthority = false)]
+    public void SetReadyState(bool oldValue,bool newValue)
+    {
+        this.isReady = newValue;
+        Debug.Log(" Setting up ready state for gameplayer to syncvar for server");
+    }
+
+
+[TargetRpc]
+        public void SetPlayerReady (bool oldValue, bool newValue)
         {
-//            Debug.Log("Checking if player "+ this.connectionToServer.connectionId + "is set to ready by server, is he ready? " + isReady);
-//            isReady = true;
+            Debug.Log("Finalize setting playercontroller ready for gamePlayer of id: " +this.netId );
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
-            
- //           this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true; // Hope that would work out of the box
+            this.pCamera.SetupPlayerCamera();
+            uiGameplay.ChangeUIState(2);    
         }
-
-    // public void SetClientActiveGameplayScene()
-    // {
-    //         Scene currentScene = SceneManager.GetSceneByName("OnlineScene");
-    //         SceneManager.SetActiveScene(currentScene);
-    //         Debug.Log("make scene active ");    
-    // }
-
-    
-
 
         void Update()
         {

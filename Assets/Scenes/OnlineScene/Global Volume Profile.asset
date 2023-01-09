@@ -202,9 +202,9 @@ MonoBehaviour:
   m_Name: Global Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 384081204001775561}
   - {fileID: -4423605220357442830}
---- !u!114 &384081204001775561
+  - {fileID: 8406293382453903246}
+--- !u!114 &8406293382453903246
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,22 +213,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
-  m_Name: ColorAdjustments
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
   active: 1
-  postExposure:
+  shadows:
+    m_OverrideState: 1
+    m_Value: {x: 0.9352888, y: 0.9426981, z: 1, w: 0}
+  midtones:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.8851298, z: 0.95077187, w: 0}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.9347161, z: 0.9429796, w: 0}
+  shadowsStart:
     m_OverrideState: 0
     m_Value: 0
-  contrast:
+  shadowsEnd:
     m_OverrideState: 0
-    m_Value: 0
-  colorFilter:
+    m_Value: 0.3
+  highlightsStart:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  hueShift:
+    m_Value: 0.55
+  highlightsEnd:
     m_OverrideState: 0
-    m_Value: 0
-  saturation:
-    m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
