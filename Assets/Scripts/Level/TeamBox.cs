@@ -26,7 +26,7 @@ public class TeamBox : NetworkBehaviour
 
 
 // Checking if player approaching teambox is a same team and if he has item, if true = run ClaimPrize to add personal and team points. 
-[Server]
+[ServerCallback]
         void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == teamID && this.GetComponent<NetworkMatch>().matchId == other.GetComponent<NetworkMatch>().matchId)

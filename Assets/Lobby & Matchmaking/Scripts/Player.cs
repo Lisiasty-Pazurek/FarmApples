@@ -236,27 +236,27 @@ namespace MirrorBasics {
             GetLevelController();
         }
 
-        [Command]
+   
         public void playerReady (bool oldState, bool newState)
         {   
             isReady = newState;
-//            CheckLevelReady();  // DISABLED FOR DEBUGGING 
+            CheckLevelReady();  
         }
 
         private void GetLevelController()
         {
-                 foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
+                foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
                 {
                     if (lvlController.levelMatchID == currentMatch.matchID)
                     {
                         levelController = lvlController;
                     }
                 }
-            
         }
 
 // Need fix for checking proper match - works on last spawned one !!
-    [Command]
+   
+[Command]
         public void CheckLevelReady()
         {
             GetLevelController();

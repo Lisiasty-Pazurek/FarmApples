@@ -45,6 +45,8 @@ public class LevelController : NetworkBehaviour
         [SyncVar]
         public bool readyToStart;
 
+        public bool readyToStartLevel;
+
         readonly public List<Match> levelmatches = new List<Match>();
         readonly public List<Team> teams = new List<Team>();
         readonly public List<Player> matchPlayers = new List<Player>();
@@ -85,6 +87,11 @@ public class LevelController : NetworkBehaviour
             uIGameplay.levelController = this;
         }
 
+        public override void OnStartServer()
+        {
+            levelHandler.instance.levelManagers.Add(this);
+        }
+
     [Server]
     public void InitiateLevel(string levelMatchID)
     {
@@ -92,13 +99,11 @@ public class LevelController : NetworkBehaviour
         matchMaker = GameObject.FindObjectOfType<MatchMaker>();
         networkManager = GameObject.FindObjectOfType<NetworkManager>();
 
-
         for (int i = 0; i < matchMaker.matches.Count; i++) {
             if (matchMaker.matches[i].matchID == levelMatchID) 
             {
                 levelmatches.Add(matchMaker.matches[i]);
                 Debug.Log("Passing match list from matchmaker to levelcontroller");
-                
             }
         }
 
@@ -112,14 +117,11 @@ public class LevelController : NetworkBehaviour
             }
             
         }
-    }
-    public void CheckifLevelisReadyToStart(bool readyToStart)
-    {
-        if (readyToStart)  { InitiateLevel(levelMatchID);}
-        else return;
+        CheckIfMatchPlayersAreReady();
     }
 
-    public void CheckIfGamePlayersAreReady()
+
+    public void CheckIfMatchPlayersAreReady()
     {
         int k = 0; 
         foreach (Player player in matchPlayers) 
@@ -128,9 +130,11 @@ public class LevelController : NetworkBehaviour
             {k++;}
         }
         if (k == matchPlayers.Count)  {readyToStart = true;}
-        //CheckifLevelisReadyToStart(readyToStart);
+        // CheckifLevelisReadyToStart(readyToStart);
         PrepareLevel(levelMatchID);
     }
+
+
 
 
     [Server]
@@ -168,7 +172,7 @@ public class LevelController : NetworkBehaviour
     public void SpawnPlayers (string levelMatchID) 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
-        //  for (int i = 0; i < matchMaker.matches.Count; i++) {       
+           
                 int t = 0;
                 int t2 = 0; 
                 
@@ -194,40 +198,10 @@ public class LevelController : NetworkBehaviour
                     t++;
                  }
          
-        // }
+        
         SpawnTeamboxes();
     }
 
-    // [Server]
-    // public void SpawnTeams()
-    // {
-    //     int playersAmount = gamePlayers.Count;
-    //      if (playersAmount == 1 || playersAmount == 5 || playersAmount == 7)
-    //      {
-    //         for ( int i = 0; i <playersAmount; i++)
-    //         {
-    //             Team team = new Team (i.ToString(), gamePlayers[i]);
-    //             team.teamID = i.ToString();
-    //             teams.Add(team);
-                
-    //         }
-    //      }
-
-    //      if (playersAmount == 2 || playersAmount ==4 || playersAmount == 8)
-    //      {
-    //         // Faulty logic, TODO: proper one lol
-    //         for ( int i = 0; i <playersAmount; i++)
-    //         {
-    //             Team team = new Team (i.ToString(), gamePlayers[i]);
-    //             team.teamID = i.ToString();
-    //             teams.Add(team);
-    //             team.players.Add(gamePlayers[i]);
-
-    //         }
-    //      }
-    //     SpawnTeamboxes();
-    //     // SetClientsReady();
-    // }
 
     [Server]
     public void SpawnTeamboxes() 
@@ -245,49 +219,50 @@ public class LevelController : NetworkBehaviour
         }
 
         Debug.Log("PrepareLevel function: Preparing for making clients ready");
-        // MovePlayersToTeams();
+//        SetClientsReady();
         
     }
-
-// ### Seems to be overcomplicated or not in right script. 
-// Variable assigned to player>>gameplayer of int teamid should be more than enough
-// Team assignement may be done in matchmaker by players on their own depending on a game mode.
-
-    // [Server]
-    // public void MovePlayersToTeams()
-    // {
-    //     if (teams.Count == 2)
-    //     {
-    //         foreach (var player in gamePlayers)
-    //         {
-    //             for (int i = 0; i < gamePlayers.Count; )
-    //             {
-    //                 if (IsOdd(i))   { teams[0].players.Add(gamePlayers[i]);}
-    //                 if (!IsOdd(i))  { teams[1].players.Add(gamePlayers[i]);}
-    //                 i++;
-    //             }
-    //         }
-    //     }
-    // }
 
     public static bool IsOdd(int value)
     {
         return value % 2 != 0;
     }
 
-// ## Have to be finished after figuring out how to pass transform of level 
-    public void SetClientsReady()
+[Command (requiresAuthority = false)]
+    public void CheckIfGamePlayersAreReady()
     {
-        int index = 0;
-        foreach (var playerController in gamePlayers)
+        int k = 0; 
+        foreach (PlayerController gamePlayer in gamePlayers) 
         {
-            gamePlayers[index].SetPlayerReady(false,true);
-           // gamePlayers[index].gameObject.transform.SetPositionAndRotation(gamePlayers[index].transform.position, gamePlayers[index].transform.rotation);
-            index++;
-            NetworkServer.SetClientReady(playerController.connectionToClient);
+            if (gamePlayer.isReady == true)
+            k++;
+            Debug.Log("checking if gameplayer ready: " + gamePlayer.netId + " is ready: " + gamePlayer.isReady);
         }
-        Debug.Log("Clients set to ready from server");
+
+        if (k == gamePlayers.Count)  {readyToStartLevel = true;}
+        Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
+
+
+        foreach (PlayerController gamePlayer in gamePlayers) 
+        {
+            gamePlayer.SetPlayerReady(false, true);
+            Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
+        }
     }
+
+// ## Have to be finished after figuring out how to pass transform of level 
+    // public void SetClientsReady()
+    // {
+    //     int index = 0;
+    //     foreach (var playerController in gamePlayers)
+    //     {
+    //         gamePlayers[index].SetPlayerReady(false,true);
+    //        // gamePlayers[index].gameObject.transform.SetPositionAndRotation(gamePlayers[index].transform.position, gamePlayers[index].transform.rotation);
+    //         index++;
+
+    //     }
+    //     Debug.Log("Clients set to ready from server");
+    // }
     
     [TargetRpc]
     public void EndLevel()

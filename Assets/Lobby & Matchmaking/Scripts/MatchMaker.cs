@@ -142,12 +142,6 @@ using UnityEngine;
             levelController.InitiateLevel(_matchID);
         }
 
-        // Checking if players in match are ready using level controller. It works until this point
-        // public void CheckIfMatchPlayersAreReady() 
-        // {
-        //     levelController.CheckIfGamePlayersAreReady();
-        // }
-
 
         public static string GetRandomMatchID () {
             string _id = string.Empty;
