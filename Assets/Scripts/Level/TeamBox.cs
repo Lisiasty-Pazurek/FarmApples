@@ -10,7 +10,7 @@ public class TeamBox : NetworkBehaviour
     [SyncVar]
     public int teamPoints;
     [SerializeField]
-    private int requiredScore = 10;
+    private int requiredScore = 5;
     [SerializeField]
 
 
@@ -21,12 +21,11 @@ public class TeamBox : NetworkBehaviour
     {
         Debug.Log("Teambox validated, setting up levelcontroller in it");
         levelController = GameObject.FindObjectOfType<LevelController>();
-        
     }
 
 
 // Checking if player approaching teambox is a same team and if he has item, if true = run ClaimPrize to add personal and team points. 
-[ServerCallback]
+    [ServerCallback]
         void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == teamID && this.GetComponent<NetworkMatch>().matchId == other.GetComponent<NetworkMatch>().matchId)
@@ -37,7 +36,7 @@ public class TeamBox : NetworkBehaviour
         }
 
 
-[Server]
+    [Server]
         public void ClaimPrize(GameObject player)
         {
             HandleScoreChange(player);
@@ -56,28 +55,21 @@ public class TeamBox : NetworkBehaviour
         }
 
 
-[Server]
-    public void ServerEndGame() 
-    {
-        levelController.EndLevel();
-    }
+    [Server]
+        public void ServerEndGame() 
+        {
+            levelController.EndLevel();
+        }
 
-[ClientRpc]
-    public void ClientSceneAfterEndGame() 
-    {
-        // NetworkClient.Ready();
-        // networkManager.showRoomGUI = true;
-    }
+    [Client]
+        public void HandleScoreChange(GameObject player)
+        {
+            // award the points via SyncVar on the PlayerController
+            player.GetComponent<PlayerScore>().score += 1;
 
-[Client]
-    public void HandleScoreChange(GameObject player)
-    {
-                // award the points via SyncVar on the PlayerController
-                player.GetComponent<PlayerScore>().score += 1;
-
-                // destroy this object
-                player.gameObject.GetComponent<PlayerScore>().hasItem = false;
-    }
+            // destroy this object
+            player.gameObject.GetComponent<PlayerScore>().hasItem = false;
+        }
 }
 
 }

@@ -11,6 +11,7 @@ using Mirror;
 
         }
 
+
 // Server check if player can pick up reward
         [ServerCallback]
         void OnTriggerEnter(Collider other)

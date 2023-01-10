@@ -12,7 +12,7 @@ namespace MirrorBasics {
     [SyncVar]
     public string teamID;
     [SyncVar]
-    public int teamPoints;
+//    public int teamPoints;
 //    private int requiredScore = 10;
 
     public List<PlayerController> players = new List<PlayerController> ();
@@ -242,33 +242,27 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStartLevel = true;}
         Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
 
-
-        foreach (PlayerController gamePlayer in gamePlayers) 
-        {
-            gamePlayer.SetPlayerReady(false, true);
-            Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
+        if (readyToStartLevel) {
+            foreach (PlayerController gamePlayer in gamePlayers) 
+            {
+                gamePlayer.SetPlayerReady(false, true);
+                Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
+            }
         }
     }
 
-// ## Have to be finished after figuring out how to pass transform of level 
-    // public void SetClientsReady()
-    // {
-    //     int index = 0;
-    //     foreach (var playerController in gamePlayers)
-    //     {
-    //         gamePlayers[index].SetPlayerReady(false,true);
-    //        // gamePlayers[index].gameObject.transform.SetPositionAndRotation(gamePlayers[index].transform.position, gamePlayers[index].transform.rotation);
-    //         index++;
-
-    //     }
-    //     Debug.Log("Clients set to ready from server");
-    // }
     
-    [TargetRpc]
     public void EndLevel()
     {
         if (!gameEnded) {return;}
-        SceneManager.UnloadSceneAsync("OnlineScene");
+        else 
+        foreach (Player player in matchPlayers)
+        {
+            player.UnloadClientScene("OnlineScene");
+            player.DisconnectGame();
+            Debug.Log("Endlevel for player" + player.name);
+            
+        }
     }
     public bool CompareMatchId ()
     {

@@ -18,7 +18,7 @@ public class Spawner: NetworkBehaviour
         {
             if (!NetworkServer.active) return;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             
                 SpawnReward();
 
@@ -36,7 +36,7 @@ public class Spawner: NetworkBehaviour
         {
             if (!NetworkServer.active) return;
 
-            Vector3 spawnPosition = new Vector3(Random.Range(startLocation.position.x-30,startLocation.position.x +30), 1, Random.Range(startLocation.position.z-30,startLocation.position.z +30));
+            Vector3 spawnPosition = new Vector3(Random.Range(startLocation.position.x-60,startLocation.position.x +60), 1, Random.Range(startLocation.position.z-30,startLocation.position.z +30));
 
             GameObject prize = Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);
             prize.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
