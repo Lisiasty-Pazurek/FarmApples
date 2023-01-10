@@ -168,6 +168,7 @@ using UnityEngine;
                         Debug.Log ($"No more players in Match. Terminating {_matchID}");
                         matches.RemoveAt (i);
                         matchIDs.Remove (_matchID);
+                        
                     } else {
                         matches[i].players[0].PlayerCountUpdated (matches[i].players.Count);
                     }

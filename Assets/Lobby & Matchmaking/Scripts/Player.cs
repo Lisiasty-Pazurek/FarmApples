@@ -23,6 +23,7 @@ namespace MirrorBasics {
         [SerializeField] GameObject playerLobbyUI;
 
         Guid netIDGuid;
+        private UIGameplay uIGameplay;
 
         [SyncVar (hook = nameof(playerReady))]
         public bool isReady;
@@ -40,7 +41,7 @@ namespace MirrorBasics {
 
             if (isLocalPlayer) {
                 localPlayer = this;
-                UIGameplay uIGameplay = FindObjectOfType<UIGameplay>();
+                uIGameplay = FindObjectOfType<UIGameplay>();
                 uIGameplay.lobbyPlayer= this;
 
             } else {
@@ -58,7 +59,6 @@ namespace MirrorBasics {
             Debug.Log ($"Client Stopped on Server");
             ServerDisconnect ();
         }
-
 
         /* 
             HOST MATCH
@@ -236,7 +236,6 @@ namespace MirrorBasics {
             GetLevelController();
         }
 
-   
         public void playerReady (bool oldState, bool newState)
         {   
             isReady = newState;
@@ -245,26 +244,32 @@ namespace MirrorBasics {
 
         private void GetLevelController()
         {
-                foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
+            foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
+            {
+                if (lvlController.levelMatchID == currentMatch.matchID)
                 {
-                    if (lvlController.levelMatchID == currentMatch.matchID)
-                    {
-                        levelController = lvlController;
-                    }
+                    levelController = lvlController;
                 }
+            }
         }
 
-// Need fix for checking proper match - works on last spawned one !!
+// Need too check if proper match - could work on last spawned one !!
    
-[Command]
-        public void CheckLevelReady()
-        {
-            GetLevelController();
-            levelController.CheckIfGamePlayersAreReady();
-        }
-
-        // ### Important! How to send command to server to use level controller commands for current match without authority? 
-        // Using event after checking if all players are ready to initiate level setup with replacing player gameobjects, setting their locations and teams ?
-
+    [Command]
+    public void CheckLevelReady()
+    {
+        GetLevelController();
+        levelController.CheckIfGamePlayersAreReady();
     }
+
+[ClientRpc]
+    public void UnloadClientScene(string sceneName)
+    {   
+        Scene scene = SceneManager.GetSceneByName(sceneName);
+        Debug.Log("Unloading scene: " +  sceneName + scene.name);
+        SceneManager.UnloadSceneAsync(scene); 
+        uIGameplay.ChangeUIState(3);
+    }
+    
+}
 }

@@ -73,7 +73,7 @@ MonoBehaviour:
   syncInterval: 0.1
   teamID: 1
   teamPoints: 0
-  requiredScore: 10
+  requiredScore: 2
   levelController: {fileID: 0}
 --- !u!135 &8012387751598039280
 SphereCollider:
