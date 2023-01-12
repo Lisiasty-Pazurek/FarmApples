@@ -1,16 +1,17 @@
 using UnityEngine;
 using Mirror;
 
+namespace MirrorBasics
+{
     public class PlayerScore : NetworkBehaviour
     {
         [SyncVar]
         public int index;
-
-        [SyncVar]
-        public uint score;
-
         [SyncVar]
         public int teamID = 1;
+
+        [SyncVar (hook = nameof(HandlePlayerScoreChange))]
+        public int score;
 
         [SyncVar (hook = nameof(HandleCarriedItemToggle))]
         public bool hasItem;
@@ -18,9 +19,17 @@ using Mirror;
         [SerializeField]
         public GameObject carriedItem = null;
 
+        UIScore uiScore;
+
         void HandleCarriedItemToggle(bool oldValue, bool newValue)
         {   
             carriedItem.SetActive(newValue);
+        }
+
+        void HandlePlayerScoreChange (int oldValue, int newValue)
+        {
+            score = newValue;
+   //        uiScore.SetPlayerScore(this);
         }
         // void OnGUI()
         // {
@@ -28,4 +37,4 @@ using Mirror;
         // }
 
     }
-
+}

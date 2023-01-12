@@ -1,16 +1,11 @@
 using UnityEngine;
 using Mirror;
 
- 
+namespace MirrorBasics
+{
     public class Reward : NetworkBehaviour
     {
         public bool available = true;
-
-        void OnValidate()
-        {
-
-        }
-
 
 // Server check if player can pick up reward
         [ServerCallback]
@@ -32,3 +27,4 @@ using Mirror;
               NetworkServer.Destroy(gameObject);
         }
     }
+}

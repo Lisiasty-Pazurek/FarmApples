@@ -16,7 +16,6 @@ namespace MirrorBasics
         // [SyncVar] public int teamID = 1;
         [SyncVar] public int playerIndex;
 
-
         [Header("Movement Settings")]
         public float moveSpeed = 5f;
         public float turnSensitivity = 70f;
@@ -45,6 +44,7 @@ namespace MirrorBasics
         public PlayerCamera pCamera;
 
         private Player localPlayer;
+        public static PlayerController localGamePlayer;
         private LevelController levelManager;
 
     

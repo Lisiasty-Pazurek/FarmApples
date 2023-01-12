@@ -66,7 +66,7 @@ public class TeamBox : NetworkBehaviour
         {
             // award the points via SyncVar on the PlayerController
             player.GetComponent<PlayerScore>().score += 1;
-
+            
             // destroy this object
             player.gameObject.GetComponent<PlayerScore>().hasItem = false;
         }

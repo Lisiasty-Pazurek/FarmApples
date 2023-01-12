@@ -7,9 +7,8 @@ namespace MirrorBasics{
 public class UIGameplay : MonoBehaviour
 {
     public static UIGameplay uiGameplay;
-    [SerializeField] public PlayerController player; 
+    public PlayerController player; 
     public Player lobbyPlayer;
-
     public LevelController levelController;
 
     [SerializeField] public Canvas uiLobby;
