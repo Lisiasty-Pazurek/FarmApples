@@ -7,8 +7,15 @@ public class Spawner: NetworkBehaviour
     {
         [SerializeField]
         GameObject rewardPrefab;
+        private LevelController lvlController;
 
         public Transform startLocation;  
+        public override void OnStartServer() 
+        {
+            lvlController = gameObject.GetComponentInParent<LevelController>();
+            SetLocation(startLocation);
+            InitialSpawn();
+        }
 
         public void SetLocation(Transform setLocation)
         {
@@ -20,17 +27,10 @@ public class Spawner: NetworkBehaviour
 
             for (int i = 0; i < 20; i++)
             
-                SpawnReward();
-
-            
+            SpawnReward();
         }
 
-        public override void OnStartServer() 
-        {
-            SetLocation(startLocation);
 
-            InitialSpawn();
-        }
 
         internal void SpawnReward()
         {
@@ -41,8 +41,8 @@ public class Spawner: NetworkBehaviour
             GameObject prize = Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);
             prize.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
             NetworkServer.Spawn(prize);
-            prize.GetComponentInChildren<MeshRenderer>().enabled = true;
-            
+            lvlController.spawnedItems.Add(prize);
+            prize.GetComponentInChildren<MeshRenderer>().enabled = true;       
         }
     }
 }

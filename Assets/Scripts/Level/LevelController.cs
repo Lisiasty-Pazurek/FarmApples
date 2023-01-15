@@ -47,6 +47,8 @@ public class LevelController : NetworkBehaviour
         readonly public List<Player> matchPlayers = new List<Player>();
         readonly public List<PlayerController> gamePlayers = new List<PlayerController>();
 
+        readonly public List<GameObject> spawnedItems = new List<GameObject>();
+
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject playerPrefabSheep;
         [SerializeField] GameObject playerPrefabDonkey;
@@ -192,6 +194,8 @@ public class LevelController : NetworkBehaviour
 
                     Debug.Log("SpawnPlayers function: moved player to gamePlayer list");
                     gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+
+                    spawnedItems.Add(go);
                     t++;
                  }
         SpawnTeamboxes();
@@ -209,7 +213,8 @@ public class LevelController : NetworkBehaviour
             GameObject go = Instantiate(teamboxPrefab, spawnPosition, Quaternion.identity);
             go.GetComponent<NetworkMatch>().matchId = this.currentMatch.matchID.ToGuid();
             go.GetComponent<TeamBox>().teamID = t+1;
-            NetworkServer.Spawn(go);     
+            NetworkServer.Spawn(go);
+            spawnedItems.Add(go);     
             t ++;
         }
         Debug.Log("PrepareLevel function: Preparing for making clients ready");       
@@ -243,10 +248,11 @@ public class LevelController : NetworkBehaviour
         }
     }
 
-[ClientRpc]
+    [ClientRpc]
     public void EndLevel()
     {
         ClientLeaveMatch();
+        CleanSpawnedObjects();
     }
 
     [Client]
@@ -254,6 +260,15 @@ public class LevelController : NetworkBehaviour
     {
         Player.localPlayer.UnloadClientScene("OnlineScene");
         Player.localPlayer.uIGameplay.ChangeUIState(0);        
+    }
+
+    [Server]
+    private void CleanSpawnedObjects()
+    {
+        foreach (GameObject item in spawnedItems)
+        {
+            Destroy(item);
+        }
     }
     
 //     public void EndLevel()

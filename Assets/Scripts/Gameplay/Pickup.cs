@@ -9,6 +9,11 @@ namespace MirrorBasics
 
         [SerializeField]  public string type;
 
+        public override void OnStartServer ()
+        {
+            
+        }
+
 // Server check if player can pick up reward
         [ServerCallback]
         void OnTriggerEnter(Collider other)
