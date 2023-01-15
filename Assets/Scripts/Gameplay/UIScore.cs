@@ -7,7 +7,10 @@ namespace MirrorBasics
 {
     public class UIScore : MonoBehaviour
     {
-        private UIGameplay uiGameplay;
+        public static UIScore uiScore;
+        public PlayerScore player;
+//        public TeamBox teambox;
+//        private UIGameplay uiGameplay;
         [SerializeField] private Text playerName;
         [SerializeField] private Text playerScore;        
         [SerializeField] private Text team1Score;
@@ -17,21 +20,24 @@ namespace MirrorBasics
 
         }
 
-        public void SetPlayerName (Player player) 
+        public void SetPlayerName () 
         {
 //            player = FindObjectOfType<Player>(); // at game level start = if (isClient) {UIScore.instance.SetPlayername(localPlayer);}
-            playerName.text = player.name;
+//            playerName.text = player.name;
+//            Debug.Log("Setting planer name for " + player.playerIndex);
         }
 
-        public void SetPlayerScore(PlayerScore player)
+        public void SetPlayerScore(int score)
         {
             // at score change if (isClient) UIScore.instance.SetPlayeScore();
-            playerScore.text = player.score.ToString(); 
+            playerScore.text = score.ToString(); 
         }
 
-        private void SetTeamScore()
+        public void SetTeamScore(int teamID, int teamPoints)
         {
-     //       team1Score
+            if (teamID ==1){team1Score.text = teamPoints.ToString(); }
+            if (teamID ==2){team2Score.text = teamPoints.ToString(); }
+            else return;
         }
 
         private void SetStatus()

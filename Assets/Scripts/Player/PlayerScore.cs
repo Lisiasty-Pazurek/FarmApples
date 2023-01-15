@@ -10,31 +10,39 @@ namespace MirrorBasics
         [SyncVar]
         public int teamID = 1;
 
-        [SyncVar (hook = nameof(HandlePlayerScoreChange))]
+        [SyncVar (hook = nameof(HandlePlayerScoreChange))]   
+//      [SyncVar]
         public int score;
 
-        [SyncVar (hook = nameof(HandleCarriedItemToggle))]
+        [SyncVar (hook = nameof(HandleCarriedItemToggle))]   
         public bool hasItem;
 
         [SerializeField]
-        public GameObject carriedItem = null;
+        public GameObject carriedItem;
 
-        UIScore uiScore;
+        [SerializeField]
+        public UIScore uiScore;
+
+        public override void OnStartLocalPlayer()
+        {
+            
+            uiScore = GameObject.FindObjectOfType<UIScore>();      
+            uiScore.player = this;
+//            uiScore.SetPlayerName(Player.localPlayer);
+        }
+
 
         void HandleCarriedItemToggle(bool oldValue, bool newValue)
         {   
             carriedItem.SetActive(newValue);
         }
 
+        [Client]
         void HandlePlayerScoreChange (int oldValue, int newValue)
         {
-            score = newValue;
-   //        uiScore.SetPlayerScore(this);
+            uiScore = GameObject.FindObjectOfType<UIScore>();   
+            uiScore.SetPlayerScore(score);
         }
-        // void OnGUI()
-        // {
-        //     GUI.Box(new Rect(10f + (index * 110), 10f, 100f, 25f), $"P{index}: {score:0000000}");
-        // }
 
     }
 }

@@ -23,7 +23,7 @@ namespace MirrorBasics {
         [SerializeField] GameObject playerLobbyUI;
 
         Guid netIDGuid;
-        private UIGameplay uIGameplay;
+        public UIGameplay uIGameplay;
 
         [SyncVar (hook = nameof(playerReady))]
         public bool isReady;
@@ -262,7 +262,7 @@ namespace MirrorBasics {
         levelController.CheckIfGamePlayersAreReady();
     }
 
-[ClientRpc]
+    [ClientRpc]
     public void UnloadClientScene(string sceneName)
     {   
         Scene scene = SceneManager.GetSceneByName(sceneName);

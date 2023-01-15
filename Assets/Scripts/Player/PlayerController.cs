@@ -40,7 +40,6 @@ namespace MirrorBasics
         private Animator characterAnimator;
         private UILobby uiLobby;
         private UIGameplay uiGameplay;
-
         public PlayerCamera pCamera;
 
         private Player localPlayer;
@@ -63,7 +62,7 @@ namespace MirrorBasics
             uiLobby = GameObject.FindObjectOfType<UILobby>();
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
             uiGameplay.player = this;
-            
+ 
             levelManager = uiGameplay.levelController;
             uiGameplay.ChangeUIState(1);
             pCamera = this.GetComponent<PlayerCamera>();
