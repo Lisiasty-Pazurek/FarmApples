@@ -7,9 +7,8 @@ namespace MirrorBasics{
 public class UIGameplay : MonoBehaviour
 {
     public static UIGameplay uiGameplay;
-    [SerializeField] public PlayerController player; 
+    public PlayerController player; 
     public Player lobbyPlayer;
-
     public LevelController levelController;
 
     [SerializeField] public Canvas uiLobby;
@@ -35,7 +34,6 @@ public class UIGameplay : MonoBehaviour
             if (uiState == i) {uiStates[i].enabled = true;}  
         }
         Debug.Log("Changing UI state to: " + i);
-
     }
 
 // Function logic can be moved to lobby player instead to get it only for callout here
@@ -43,7 +41,6 @@ public class UIGameplay : MonoBehaviour
     {
         lobbyPlayer.playerReady(false, true);
         ChangeUIState(1);
-        
     }
 
 // Simple debugging command. I will keep it for now
@@ -59,7 +56,6 @@ public class UIGameplay : MonoBehaviour
         ChangeUIState(2);
     }
 
-
     public void SetGameplayerStateReady()
     {
         player.SetReadyState(false, true);
@@ -68,23 +64,6 @@ public class UIGameplay : MonoBehaviour
     }
 
     public void Update() {    }
-
-    // public void CheckReferences()
-    // {
-    //         if (uiLobby != null) {return;}
-    //         else {uiLobby = GameObject.FindObjectOfType<UILobby>();}
-
-    //         if (player != null) {return;}
-    //         else {player = NetworkClient.connection.identity.GetComponent<PlayerController>(); }
-
-    //         if (lobbyPlayer != null) {return;}
-    //         else {lobbyPlayer = NetworkClient.connection.identity.GetComponent<Player>();}
-
-    //         if (levelController != null) {return;}
-    //         else {levelController = GameObject.FindObjectOfType<LevelController>();}
-    // }
-
-
 
     public void StartLevel()
     {
@@ -102,12 +81,6 @@ public class UIGameplay : MonoBehaviour
         SceneManager.UnloadSceneAsync("OnlineScene");
         levelController.currentMatch.players.Remove(NetworkClient.connection.identity.GetComponent<Player>());
     }
-
-// not needed for now if ever at all
-    // public void SetMyPlayerActiveScene ()
-    // {
-    //     player.SetClientActiveGameplayScene();
-    // }
 
 }
 }

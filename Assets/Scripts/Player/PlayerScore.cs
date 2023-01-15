@@ -1,31 +1,48 @@
 using UnityEngine;
 using Mirror;
 
+namespace MirrorBasics
+{
     public class PlayerScore : NetworkBehaviour
     {
         [SyncVar]
         public int index;
-
-        [SyncVar]
-        public uint score;
-
         [SyncVar]
         public int teamID = 1;
 
-        [SyncVar (hook = nameof(HandleCarriedItemToggle))]
+        [SyncVar (hook = nameof(HandlePlayerScoreChange))]   
+//      [SyncVar]
+        public int score;
+
+        [SyncVar (hook = nameof(HandleCarriedItemToggle))]   
         public bool hasItem;
 
         [SerializeField]
-        public GameObject carriedItem = null;
+        public GameObject carriedItem;
+
+        [SerializeField]
+        public UIScore uiScore;
+
+        public override void OnStartLocalPlayer()
+        {
+            
+            uiScore = GameObject.FindObjectOfType<UIScore>();      
+            uiScore.player = this;
+//            uiScore.SetPlayerName(Player.localPlayer);
+        }
+
 
         void HandleCarriedItemToggle(bool oldValue, bool newValue)
         {   
             carriedItem.SetActive(newValue);
         }
-        // void OnGUI()
-        // {
-        //     GUI.Box(new Rect(10f + (index * 110), 10f, 100f, 25f), $"P{index}: {score:0000000}");
-        // }
+
+        [Client]
+        void HandlePlayerScoreChange (int oldValue, int newValue)
+        {
+            uiScore = GameObject.FindObjectOfType<UIScore>();   
+            uiScore.SetPlayerScore(score);
+        }
 
     }
-
+}

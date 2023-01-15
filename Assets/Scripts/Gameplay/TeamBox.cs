@@ -5,22 +5,21 @@ namespace MirrorBasics
 {
 public class TeamBox : NetworkBehaviour
 {   
-    [SyncVar]
-    public int teamID ;
-    [SyncVar]
-    public int teamPoints;
-    [SerializeField]
-    private int requiredScore = 5;
-    [SerializeField]
-
-
-    private LevelController levelController;
-
+    [SyncVar] public int teamID ;
+    [SyncVar] public int teamPoints;
+    [SerializeField] private int requiredScore = 5;
+    [SerializeField] private LevelController levelController;
+    private UIScore uiScore;
 
     public override void OnStartServer() 
     {
         Debug.Log("Teambox validated, setting up levelcontroller in it");
         levelController = GameObject.FindObjectOfType<LevelController>();
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        uiScore = GameObject.FindObjectOfType<UIScore>();        
     }
 
 
@@ -39,11 +38,13 @@ public class TeamBox : NetworkBehaviour
     [Server]
         public void ClaimPrize(GameObject player)
         {
-            HandleScoreChange(player);
-
+        
                 // increase teamPoints score on teamBox object
-                teamPoints +=1;
+                teamPoints++;            
+                player.GetComponent<PlayerScore>().score ++;
+                player.GetComponent<PlayerScore>().hasItem = false; 
                 Debug.Log("Team " + teamID + " points: " + teamPoints);
+                RpcTeamScoreUpdate(player.GetComponent<PlayerScore>());
 
                 // check level requirements and start ending game
                 if (teamPoints > requiredScore)
@@ -54,22 +55,24 @@ public class TeamBox : NetworkBehaviour
                 }
         }
 
+        // public void HandleScoreChange(GameObject player)
+        // {
+        //     // award the points via SyncVar on the PlayerController
+
+        // }
+    
+    [ClientRpc]
+    public void RpcTeamScoreUpdate(PlayerScore player)
+    {
+        player.uiScore.SetTeamScore(teamID, teamPoints);
+    }
 
     [Server]
-        public void ServerEndGame() 
-        {
-            levelController.EndLevel();
-        }
+    public void ServerEndGame() 
+    {
+        levelController.EndLevel();
+    }
 
-    [Client]
-        public void HandleScoreChange(GameObject player)
-        {
-            // award the points via SyncVar on the PlayerController
-            player.GetComponent<PlayerScore>().score += 1;
-
-            // destroy this object
-            player.gameObject.GetComponent<PlayerScore>().hasItem = false;
-        }
 }
 
 }
