@@ -38,18 +38,18 @@ namespace MirrorBasics
         [Header("Animation")]
         [SerializeField]
         private Animator characterAnimator;
-        private UILobby uiLobby;
-        private UIGameplay uiGameplay;
+        public UIGameplay uiGameplay;
         public PlayerCamera pCamera;
 
-        private Player localPlayer;
-        public static PlayerController localGamePlayer;
+        // private UIScore uiScore;
+        // private UILobby uiLobby;
+        // private Player localPlayer;
+        // public static PlayerController localGamePlayer;
         private LevelController levelManager;
 
     
         public override void OnStartLocalPlayer()
         {
-            
             if (characterController == null)
                 characterController = GetComponent<CharacterController>();
 
@@ -59,12 +59,12 @@ namespace MirrorBasics
             NetworkClient.ready = true;
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
-            uiLobby = GameObject.FindObjectOfType<UILobby>();
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
             uiGameplay.player = this;
- 
-            levelManager = uiGameplay.levelController;
             uiGameplay.ChangeUIState(1);
+//            uiLobby = GameObject.FindObjectOfType<UILobby>(); 
+//            levelManager = uiGameplay.levelController;
+
             pCamera = this.GetComponent<PlayerCamera>();
         }
 

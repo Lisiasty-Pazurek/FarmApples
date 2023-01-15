@@ -9,12 +9,16 @@ namespace MirrorBasics
     {
         public static UIScore uiScore;
         public PlayerScore player;
+        public Player lobbyPlayer;
 //        public TeamBox teambox;
 //        private UIGameplay uiGameplay;
         [SerializeField] private Text playerName;
         [SerializeField] private Text playerScore;        
         [SerializeField] private Text team1Score;
         [SerializeField] private Text team2Score;
+
+        [SerializeField] private List<Image> statusImage = new List<Image>();
+        
         void Start() 
         {
 
@@ -22,8 +26,8 @@ namespace MirrorBasics
 
         public void SetPlayerName () 
         {
-//            player = FindObjectOfType<Player>(); // at game level start = if (isClient) {UIScore.instance.SetPlayername(localPlayer);}
-//            playerName.text = player.name;
+           lobbyPlayer = Player.localPlayer; // GameObject.FindObjectOfType<Player>(); // at game level start = if (isClient) {UIScore.instance.SetPlayername(localPlayer);}
+           playerName.text = lobbyPlayer.name;
 //            Debug.Log("Setting planer name for " + player.playerIndex);
         }
 
@@ -40,10 +44,12 @@ namespace MirrorBasics
             else return;
         }
 
-        private void SetStatus()
+        public void SetStatusIcon (string status, bool state)
         {
-
+            
         }
+
+
 
     }
 }

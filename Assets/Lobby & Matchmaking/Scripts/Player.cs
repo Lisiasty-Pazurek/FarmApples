@@ -262,7 +262,7 @@ namespace MirrorBasics {
         levelController.CheckIfGamePlayersAreReady();
     }
 
-    [ClientRpc]
+    [Client]
     public void UnloadClientScene(string sceneName)
     {   
         Scene scene = SceneManager.GetSceneByName(sceneName);

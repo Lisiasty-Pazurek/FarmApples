@@ -14,7 +14,6 @@ namespace MirrorBasics {
     [SyncVar]
 //    public int teamPoints;
 //    private int requiredScore = 10;
-
     public List<PlayerController> players = new List<PlayerController> ();
 
     public Team (string teamID, PlayerController playerCtrl)
@@ -24,7 +23,6 @@ namespace MirrorBasics {
     }
 
     public Team () {}
-
     }
 
 public class LevelController : NetworkBehaviour
@@ -36,14 +34,11 @@ public class LevelController : NetworkBehaviour
      
         private NetworkManager networkManager;
         
-        [SyncVar]
-        public Match currentMatch;
+        [SyncVar] public Match currentMatch;
 
-        [SyncVar]
-        public string levelMatchID;
+        [SyncVar] public string levelMatchID;
 
-        [SyncVar]
-        public bool readyToStart;
+        [SyncVar] public bool readyToStart;
 
         public bool readyToStartLevel;
 
@@ -52,23 +47,17 @@ public class LevelController : NetworkBehaviour
         readonly public List<Player> matchPlayers = new List<Player>();
         readonly public List<PlayerController> gamePlayers = new List<PlayerController>();
 
-        [SerializeField]
-        GameObject playerPrefab;
-        [SerializeField]
-        GameObject playerPrefabSheep;
-        [SerializeField]
-        GameObject playerPrefabDonkey;
-        [SerializeField]
-        GameObject prizePrefab;
-        [SerializeField]
-        GameObject teamboxPrefab;
+        [SerializeField] GameObject playerPrefab;
+        [SerializeField] GameObject playerPrefabSheep;
+        [SerializeField] GameObject playerPrefabDonkey;
+        [SerializeField] GameObject prizePrefab;
+        [SerializeField] GameObject teamboxPrefab;
 
         readonly public List<Transform> playerSpawnPoints = new List<Transform> ();
         private ArrayList spawnPoints;
 
         // [SerializeField]
         // public Transform teamSpawnPoint;
-
       
         readonly public List<Transform> teamSpawnPoints = new List<Transform> ();
 
@@ -85,6 +74,11 @@ public class LevelController : NetworkBehaviour
             // if (!CompareMatchId()) {return;} // it will be necessary for multiple spawned levels on server
             // else 
             uIGameplay.levelController = this;
+        }
+
+        public override void OnStartLocalPlayer()
+        {
+            
         }
 
         public override void OnStartServer()
@@ -182,13 +176,16 @@ public class LevelController : NetworkBehaviour
                     if (player.matchID != levelMatchID) {return;} 
                     if (IsOdd(t)) {playerPrefab = playerPrefabDonkey; t2 =45; } 
                     else {playerPrefab = playerPrefabSheep; t2 =0;}
+
                     Vector3 startPos = new Vector3(4 +t*2, 0, t2);
                     GameObject go = Instantiate(playerPrefab, startPos, Quaternion.identity);
                     if (!IsOdd(matchPlayers.Count)&&IsOdd(t)) {go.GetComponent<PlayerController>().moveSpeed=6;} 
                     else {go.GetComponent<PlayerController>().moveSpeed=5;};
+
                     go.GetComponent<PlayerController>().playerIndex = player.playerIndex; 
                     go.GetComponent<NetworkMatch>().matchId = player.GetComponent<NetworkMatch>().matchId;
                     if (IsOdd(t)) {go.GetComponent<PlayerScore>().teamID = 2;}
+
                     NetworkServer.ReplacePlayerForConnection(player.connectionToClient, go, true);
                     gamePlayers.Add(go.GetComponent<PlayerController>());
                     NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
@@ -197,8 +194,6 @@ public class LevelController : NetworkBehaviour
                     gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
                     t++;
                  }
-         
-        
         SpawnTeamboxes();
     }
 
@@ -217,10 +212,7 @@ public class LevelController : NetworkBehaviour
             NetworkServer.Spawn(go);     
             t ++;
         }
-
-        Debug.Log("PrepareLevel function: Preparing for making clients ready");
-//        SetClientsReady();
-        
+        Debug.Log("PrepareLevel function: Preparing for making clients ready");       
     }
 
     public static bool IsOdd(int value)
@@ -251,19 +243,32 @@ public class LevelController : NetworkBehaviour
         }
     }
 
-    
+[ClientRpc]
     public void EndLevel()
     {
-        if (!gameEnded) {return;}
-        else 
-        foreach (Player player in matchPlayers)
-        {
-            player.UnloadClientScene("OnlineScene");
-            player.DisconnectGame();
-            Debug.Log("Endlevel for player" + player.name);
-            
-        }
+        ClientLeaveMatch();
     }
+
+    [Client]
+    private void ClientLeaveMatch() 
+    {
+        Player.localPlayer.UnloadClientScene("OnlineScene");
+        Player.localPlayer.uIGameplay.ChangeUIState(0);        
+    }
+    
+//     public void EndLevel()
+//     {
+//         if (!gameEnded) {return;}
+//         else 
+//         foreach (Player player in matchPlayers)
+//         {
+//             player.UnloadClientScene("OnlineScene");
+// //            player.DisconnectGame();
+//             player.uIGameplay.ChangeUIState(0);
+//             Debug.Log("Endlevel for player" + player.name);
+            
+//         }
+//     }
     public bool CompareMatchId ()
     {
         if (this.currentMatch.matchID == NetworkClient.connection.identity.GetComponent<Player>().matchID)

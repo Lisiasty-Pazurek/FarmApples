@@ -3,9 +3,11 @@ using Mirror;
 
 namespace MirrorBasics
 {
-    public class Reward : NetworkBehaviour
+    public class Pickup : NetworkBehaviour
     {
         public bool available = true;
+
+        [SerializeField]  public string type;
 
 // Server check if player can pick up reward
         [ServerCallback]
