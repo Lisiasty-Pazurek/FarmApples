@@ -69,6 +69,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   available: 1
+  type: Reward
 --- !u!135 &135606878775227198
 SphereCollider:
   m_ObjectHideFlags: 0

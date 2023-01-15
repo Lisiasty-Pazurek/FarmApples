@@ -75,6 +75,7 @@ MonoBehaviour:
     players: []
   levelMatchID: 
   readyToStart: 0
+  readyToStartLevel: 0
   playerPrefab: {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe,
     type: 3}
   playerPrefabSheep: {fileID: 1480027675339556, guid: 2507baa446f945341bc2815bb81c19dd,
@@ -117,5 +118,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rewardPrefab: {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d,
+    type: 3}
+  stealingPrefab: {fileID: 1139254171913846, guid: 2e3b842b1773599459ef028a853d0f77,
     type: 3}
   startLocation: {fileID: 1794876138388804036}

@@ -17,12 +17,10 @@ namespace MirrorBasics
         [SerializeField] private Text team1Score;
         [SerializeField] private Text team2Score;
 
-        [SerializeField] private List<Image> statusImage = new List<Image>();
-        
-        void Start() 
-        {
+        [SerializeField] private List<GameObject> statusImage = new List<GameObject>();
 
-        }
+        void Start() 
+        {   }
 
         public void SetPlayerName () 
         {

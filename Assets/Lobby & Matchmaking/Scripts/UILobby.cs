@@ -129,15 +129,7 @@ namespace MirrorBasics {
                 yield return null;
             }
             searchCanvas.enabled = false;
-        }
-
-
-        public void ToggleLobbyUI(bool uistate) 
-        {
-            this.lobbyUICanvas.enabled = uistate;
-        }
-
-        
+        }     
 
     }
 }

@@ -78,10 +78,7 @@ public class LevelController : NetworkBehaviour
             uIGameplay.levelController = this;
         }
 
-        public override void OnStartLocalPlayer()
-        {
-            
-        }
+        public override void OnStartLocalPlayer()   {  }
 
         public override void OnStartServer()
         {
@@ -102,7 +99,6 @@ public class LevelController : NetworkBehaviour
                 Debug.Log("Passing match list from matchmaker to levelcontroller");
             }
         }
-
         for (int i = 0; i < matchMaker.matches.Count;i++)
         {   
             if (matchMaker.matches[i].matchID == levelMatchID) 
@@ -116,7 +112,6 @@ public class LevelController : NetworkBehaviour
         CheckIfMatchPlayersAreReady();
     }
 
-
     public void CheckIfMatchPlayersAreReady()
     {
         int k = 0; 
@@ -129,8 +124,6 @@ public class LevelController : NetworkBehaviour
         // CheckifLevelisReadyToStart(readyToStart);
         PrepareLevel(levelMatchID);
     }
-
-
 
 
     [Server]
@@ -271,19 +264,7 @@ public class LevelController : NetworkBehaviour
         }
     }
     
-//     public void EndLevel()
-//     {
-//         if (!gameEnded) {return;}
-//         else 
-//         foreach (Player player in matchPlayers)
-//         {
-//             player.UnloadClientScene("OnlineScene");
-// //            player.DisconnectGame();
-//             player.uIGameplay.ChangeUIState(0);
-//             Debug.Log("Endlevel for player" + player.name);
-            
-//         }
-//     }
+
     public bool CompareMatchId ()
     {
         if (this.currentMatch.matchID == NetworkClient.connection.identity.GetComponent<Player>().matchID)
