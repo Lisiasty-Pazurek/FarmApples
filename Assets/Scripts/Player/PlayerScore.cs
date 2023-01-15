@@ -37,12 +37,21 @@ namespace MirrorBasics
             carriedItem.SetActive(newValue);
         }
 
-        [Client]
+
         void HandlePlayerScoreChange (int oldValue, int newValue)
         {
+            if (!isLocalPlayer) return;
+            else
             uiScore = GameObject.FindObjectOfType<UIScore>();   
             uiScore.SetPlayerScore(score);
         }
+
+        // void HandleTeamScoreChange (int teamboxID, int teamPoints)
+        // {
+        //     if (!isLocalPlayer) return;
+        //     else
+        //     uiScore.SetTeamScore(teamboxID, teamPoints);
+        // }
 
     }
 }

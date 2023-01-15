@@ -44,7 +44,7 @@ public class TeamBox : NetworkBehaviour
                 player.GetComponent<PlayerScore>().score ++;
                 player.GetComponent<PlayerScore>().hasItem = false; 
                 Debug.Log("Team " + teamID + " points: " + teamPoints);
-                RpcTeamScoreUpdate(player.GetComponent<PlayerScore>());
+                RpcTeamScoreUpdate();
 
                 // check level requirements and start ending game
                 if (teamPoints > requiredScore)
@@ -62,9 +62,16 @@ public class TeamBox : NetworkBehaviour
         // }
     
     [ClientRpc]
-    public void RpcTeamScoreUpdate(PlayerScore player)
+    public void RpcTeamScoreUpdate()
     {
-        player.uiScore.SetTeamScore(teamID, teamPoints);
+        ClientUpdateTeamScore();
+    }
+
+    [Client]
+    public void ClientUpdateTeamScore ()
+    {
+        uiScore = GameObject.FindObjectOfType<UIScore>();
+        uiScore.SetTeamScore(teamID, teamPoints);
     }
 
     [Server]
