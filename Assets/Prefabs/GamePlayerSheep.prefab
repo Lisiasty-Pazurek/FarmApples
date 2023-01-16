@@ -167,8 +167,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 0.5
+  m_Radius: 0.4
+  m_Height: 0.6
   m_Direction: 1
   m_Center: {x: 0, y: -0.36, z: 0}
 --- !u!143 &143011667059871024
@@ -429,15 +429,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4947911569088426, guid: 29fda00182d9ced4286060c7ed82eae4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.08
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 4947911569088426, guid: 29fda00182d9ced4286060c7ed82eae4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.08000001
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 4947911569088426, guid: 29fda00182d9ced4286060c7ed82eae4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.08000001
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 4947911569088426, guid: 29fda00182d9ced4286060c7ed82eae4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -445,11 +445,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4947911569088426, guid: 29fda00182d9ced4286060c7ed82eae4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0050981753
+      value: -0.00608
       objectReference: {fileID: 0}
     - target: {fileID: 4947911569088426, guid: 29fda00182d9ced4286060c7ed82eae4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.01867707
+      value: 0.0148
       objectReference: {fileID: 0}
     - target: {fileID: 4947911569088426, guid: 29fda00182d9ced4286060c7ed82eae4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -479,6 +479,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 33821231268879702, guid: 29fda00182d9ced4286060c7ed82eae4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 58502ac7e6c9a654483dd5141159ef9e, type: 3}
     - target: {fileID: 64352687553243222, guid: 29fda00182d9ced4286060c7ed82eae4,
         type: 3}
       propertyPath: m_Enabled
