@@ -208,8 +208,9 @@ MonoBehaviour:
   team1Score: {fileID: 917203251}
   team2Score: {fileID: 161807151}
   statusImage:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1164778216}
+  - {fileID: 1274307689}
+  - {fileID: 54210275}
 --- !u!1 &54210275
 GameObject:
   m_ObjectHideFlags: 0

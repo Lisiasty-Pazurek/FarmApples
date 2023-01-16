@@ -44,7 +44,10 @@ namespace MirrorBasics
 
         public void SetStatusIcon (string status, bool state)
         {
-            
+            if (status == "rolling") statusImage[0].SetActive(state);
+            if (status == "apple") statusImage[1].SetActive(state);
+            if (status == "stealing") statusImage[2].SetActive(state);
+            else return;
         }
 
 
