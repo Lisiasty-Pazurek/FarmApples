@@ -78,12 +78,9 @@ public class LevelController : NetworkBehaviour
             uIGameplay.levelController = this;
         }
 
-        public override void OnStartLocalPlayer()   {  }
+        public override void OnStartLocalPlayer()   { }
 
-        public override void OnStartServer()
-        {
-            levelHandler.instance.levelManagers.Add(this);
-        }
+        public override void OnStartServer()  { }
 
     [Server]
     public void InitiateLevel(string levelMatchID)
