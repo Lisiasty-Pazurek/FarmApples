@@ -5,32 +5,30 @@ namespace MirrorBasics
 {
     public class PlayerScore : NetworkBehaviour
     {
-        [SyncVar]
-        public int index;
-        [SyncVar]
-        public int teamID = 1;
+        [SyncVar] public int index;
+        [SyncVar] public int teamID = 1;
 
         [SyncVar (hook = nameof(HandlePlayerScoreChange))]   
-//      [SyncVar]
         public int score;
 
         [SyncVar (hook = nameof(HandleCarriedItemToggle))]   
         public bool hasItem;
 
-        [SerializeField]
-        public GameObject carriedItem;
+        [SerializeField] public GameObject carriedItem;
+        [SyncVar] public bool canSteal = false;
+        [SerializeField] public UIScore uiScore;
 
-        [SerializeField]
-        public UIScore uiScore;
 
         public override void OnStartLocalPlayer()
         {
-            
             uiScore = GameObject.FindObjectOfType<UIScore>();      
             uiScore.player = this;
 //            uiScore.SetPlayerName(Player.localPlayer);
         }
+        public override void OnStartServer()
+        {
 
+        }
 
         void HandleCarriedItemToggle(bool oldValue, bool newValue)
         {   

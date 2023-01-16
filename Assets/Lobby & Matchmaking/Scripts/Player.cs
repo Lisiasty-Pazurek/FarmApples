@@ -11,7 +11,6 @@ namespace MirrorBasics {
         public static Player localPlayer;
         [SyncVar] public string matchID;
         [SyncVar] public int playerIndex;
-
         [SyncVar] public string playerName = "Gracz";
 
         NetworkMatch networkMatch;

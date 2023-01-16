@@ -39,6 +39,7 @@ namespace MirrorBasics
         [SerializeField]
         private Animator characterAnimator;
         public UIGameplay uiGameplay;
+        public PlayerScore pScore;
         public PlayerCamera pCamera;
 
         // private UIScore uiScore;
@@ -62,10 +63,17 @@ namespace MirrorBasics
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
             uiGameplay.player = this;
             uiGameplay.ChangeUIState(1);
+
+            pScore = gameObject.GetComponentInParent<PlayerScore>();
 //            uiLobby = GameObject.FindObjectOfType<UILobby>(); 
 //            levelManager = uiGameplay.levelController;
 
             pCamera = this.GetComponent<PlayerCamera>();
+        }
+
+        public override void OnStartServer()
+        {
+            pScore = gameObject.GetComponentInParent<PlayerScore>();            
         }
 
 
@@ -158,6 +166,24 @@ namespace MirrorBasics
 
             isGrounded = characterController.isGrounded;
             velocity = characterController.velocity;
+        }
+
+        [ServerCallback]
+        void OnTriggerEnter(Collider other)
+        {
+            // Stealing ability 
+            if (other.gameObject.CompareTag("Player") && this.GetComponent<NetworkMatch>().matchId == other.GetComponent<NetworkMatch>().matchId)
+            {
+                if (!this.pScore.canSteal){return;}
+                if (other.gameObject.GetComponent<PlayerScore>().hasItem && !this.pScore.hasItem) 
+                {                
+                    other.gameObject.GetComponent<PlayerScore>().hasItem = false;
+                    pScore.hasItem = true;
+                    pScore.canSteal = false;
+                }
+                else return;
+            }
+            
         }
     }
 }

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 9118952894041304543}
   - component: {fileID: 6740608712308461914}
   - component: {fileID: -147794168206276371}
+  - component: {fileID: -9080653033565639999}
   m_Layer: 0
   m_Name: GamePlayerSheep
   m_TagString: Player
@@ -119,6 +120,8 @@ MonoBehaviour:
   isDashing: 0
   isReady: 0
   characterAnimator: {fileID: 6740608712308461914}
+  uiGameplay: {fileID: 0}
+  pScore: {fileID: 0}
   pCamera: {fileID: 0}
 --- !u!114 &-6736841464767829722
 MonoBehaviour:
@@ -148,10 +151,12 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   index: 0
-  score: 0
   teamID: 1
+  score: 0
   hasItem: 0
   carriedItem: {fileID: 6711121226125818186}
+  canSteal: 0
+  uiScore: {fileID: 0}
 --- !u!136 &6799120071495980942
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -252,6 +257,20 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+--- !u!136 &-9080653033565639999
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480027675339556}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!1001 &5369508371606512244
 PrefabInstance:
   m_ObjectHideFlags: 0

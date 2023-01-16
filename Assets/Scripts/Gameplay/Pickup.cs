@@ -9,6 +9,11 @@ namespace MirrorBasics
 
         [SerializeField]  public string type;
 
+        public override void OnStartServer ()
+        {
+            
+        }
+
 // Server check if player can pick up reward
         [ServerCallback]
         void OnTriggerEnter(Collider other)
@@ -25,8 +30,15 @@ namespace MirrorBasics
         [ServerCallback]
         public void PickUpItem(GameObject player)
         {
-              player.GetComponent<PlayerScore>().hasItem = true;
-              NetworkServer.Destroy(gameObject);
+            if (type == "Reward")
+            player.GetComponent<PlayerScore>().hasItem = true;
+            NetworkServer.Destroy(gameObject);
+
+            if (type =="Stealing")
+            player.GetComponent<PlayerScore>().canSteal = true;
+            NetworkServer.Destroy(gameObject);
         }
+
+
     }
 }

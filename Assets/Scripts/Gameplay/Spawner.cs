@@ -5,10 +5,17 @@ using UnityEngine.SceneManagement;
 namespace MirrorBasics{
 public class Spawner: NetworkBehaviour
     {
-        [SerializeField]
-        GameObject rewardPrefab;
+        [SerializeField]  GameObject rewardPrefab;
+        [SerializeField]  GameObject stealingPrefab;
+        private LevelController lvlController;
 
         public Transform startLocation;  
+        public override void OnStartServer() 
+        {
+            lvlController = gameObject.GetComponentInParent<LevelController>();
+            SetLocation(startLocation);
+            InitialSpawn();
+        }
 
         public void SetLocation(Transform setLocation)
         {
@@ -19,30 +26,22 @@ public class Spawner: NetworkBehaviour
             if (!NetworkServer.active) return;
 
             for (int i = 0; i < 20; i++)
-            
-                SpawnReward();
+            SpawnPickup(rewardPrefab);
 
-            
+            for (int i = 0; i < 4; i++)
+            SpawnPickup(stealingPrefab);
         }
 
-        public override void OnStartServer() 
-        {
-            SetLocation(startLocation);
-
-            InitialSpawn();
-        }
-
-        internal void SpawnReward()
+        internal void SpawnPickup(GameObject spawnPrefab)
         {
             if (!NetworkServer.active) return;
-
             Vector3 spawnPosition = new Vector3(Random.Range(startLocation.position.x-60,startLocation.position.x +60), 1, Random.Range(startLocation.position.z-30,startLocation.position.z +30));
-
-            GameObject prize = Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);
-            prize.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
-            NetworkServer.Spawn(prize);
-            prize.GetComponentInChildren<MeshRenderer>().enabled = true;
-            
+            GameObject pickup = Instantiate(spawnPrefab, spawnPosition, Quaternion.identity);
+            pickup.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
+            NetworkServer.Spawn(pickup);
+            lvlController.spawnedItems.Add(pickup);
+            pickup.GetComponentInChildren<MeshRenderer>().enabled = true;       
         }
+
     }
 }
