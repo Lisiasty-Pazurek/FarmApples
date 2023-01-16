@@ -13,5 +13,10 @@ namespace MirrorBasics {
             text.text = "Gracz " + player.playerIndex.ToString ();
         }
 
+        public void SetName () 
+        {
+            player.playerName = text.text;
+        }
+
     }
 }
