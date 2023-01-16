@@ -15,7 +15,8 @@ namespace MirrorBasics
         public bool hasItem;
 
         [SerializeField] public GameObject carriedItem;
-        [SyncVar] public bool canSteal = false;
+        [SerializeField] public GameObject stealingItem;
+        [SyncVar (hook = nameof(HandleStealingToggle))] public bool canSteal = false;
         [SerializeField] public UIScore uiScore;
 
 
@@ -33,6 +34,11 @@ namespace MirrorBasics
         void HandleCarriedItemToggle(bool oldValue, bool newValue)
         {   
             carriedItem.SetActive(newValue);
+        }
+
+        void HandleStealingToggle(bool oldValue, bool newValue)
+        {   
+            stealingItem.SetActive(newValue);
         }
 
 
