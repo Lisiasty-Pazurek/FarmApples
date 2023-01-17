@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ba2e3fd583736b43ab8fe53f9765549
+guid: cc2e8e76301c9c643b7941c2a7aa260a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Rowdies
+  - Balsamiq Sans
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 67eb4b3dbee154b45848abde4985a925, type: 3}
+  - {fileID: 12800000, guid: 76bdb5704b34aa94cb63ba89541e8544, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
