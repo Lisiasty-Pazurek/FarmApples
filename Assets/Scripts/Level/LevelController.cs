@@ -245,15 +245,15 @@ public class LevelController : NetworkBehaviour
         CleanSpawnedObjects();
     }
 
-    [Client]
+   
     private void ClientLeaveMatch() 
     {
         Player.localPlayer.UnloadClientScene("OnlineScene");
         Player.localPlayer.uIGameplay.ChangeUIState(0);        
     }
 
-    [Server]
-    private void CleanSpawnedObjects()
+[Server]
+    public void CleanSpawnedObjects()
     {
         foreach (GameObject item in spawnedItems)
         {

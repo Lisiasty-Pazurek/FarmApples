@@ -7722,7 +7722,7 @@ GameObject:
   - component: {fileID: 1693032874}
   - component: {fileID: 1693032873}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Quitbutton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7795,7 +7795,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2091797237}
         m_TargetAssemblyTypeName: MirrorBasics.UILobby, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: DisconnectGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

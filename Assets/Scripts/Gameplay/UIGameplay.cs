@@ -81,6 +81,7 @@ public class UIGameplay : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync("OnlineScene");
         levelController.currentMatch.players.Remove(NetworkClient.connection.identity.GetComponent<Player>());
+        ChangeUIState(0);
     }
 
 }
