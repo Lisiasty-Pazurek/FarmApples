@@ -77,12 +77,12 @@ public class UIGameplay : MonoBehaviour
         lobbyPlayer.CheckLevelReady();
     }
 
-    public void QuitLevel()
-    {
-        SceneManager.UnloadSceneAsync("OnlineScene");
-        levelController.currentMatch.players.Remove(NetworkClient.connection.identity.GetComponent<Player>());
-        ChangeUIState(0);
-    }
+    // public void QuitLevel()
+    // {
+    //     SceneManager.UnloadSceneAsync("OnlineScene");
+    //     levelController.currentMatch.players.Remove(NetworkClient.connection.identity.GetComponent<Player>());
+    //     ChangeUIState(0);
+    // }
 
 }
 }

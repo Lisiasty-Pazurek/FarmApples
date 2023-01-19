@@ -50,7 +50,12 @@ namespace MirrorBasics
             else return;
         }
 
-
+        public void ResetValues()
+        {
+            SetPlayerScore(0);
+            SetTeamScore(1,0);
+            SetTeamScore(2,0);
+        }
 
     }
 }

@@ -23,6 +23,7 @@ namespace MirrorBasics {
 
         Guid netIDGuid;
         public UIGameplay uIGameplay;
+        public UIScore uIScore;
 
         [SyncVar (hook = nameof(playerReady))]
         public bool isReady;
@@ -42,6 +43,7 @@ namespace MirrorBasics {
                 localPlayer = this;
                 uIGameplay = FindObjectOfType<UIGameplay>();
                 uIGameplay.lobbyPlayer= this;
+                uIScore = FindObjectOfType<UIScore>();
 
             } else {
                 Debug.Log ($"Spawning other player UI Prefab");
@@ -267,7 +269,9 @@ namespace MirrorBasics {
         Scene scene = SceneManager.GetSceneByName(sceneName);
         Debug.Log("Unloading scene: " +  sceneName + scene.name);
         SceneManager.UnloadSceneAsync(scene); 
-        uIGameplay.ChangeUIState(3);
+        uIGameplay.ChangeUIState(3); // not used yet but it should work, it is overriden by previous function
+        uIScore.ResetValues();
+        levelController.currentMatch.players.Remove(this);
     }
     
 }

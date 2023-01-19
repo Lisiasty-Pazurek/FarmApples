@@ -29,6 +29,10 @@ namespace MirrorBasics {
             networkManager.StartClient ();
         }
 
+        public void JoinCustomServer () {
+            networkManager.StartClient ();
+        }
+
         public void StartServer()
         {
             networkManager.StartServer();
