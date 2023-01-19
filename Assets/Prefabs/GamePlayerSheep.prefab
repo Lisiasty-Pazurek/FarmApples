@@ -154,9 +154,9 @@ MonoBehaviour:
   teamID: 1
   score: 0
   hasItem: 0
+  canSteal: 0
   carriedItem: {fileID: 6711121226125818186}
   stealingItem: {fileID: 1034229312897348230}
-  canSteal: 0
   uiScore: {fileID: 0}
 --- !u!136 &6799120071495980942
 CapsuleCollider:
@@ -287,12 +287,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.13
+      value: 0.1289925
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.097705
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
@@ -302,27 +302,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.00007
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00791
+      value: 0.00814
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00533
+      value: -0.00505
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.77439266
+      value: 0.77703613
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.63270533
+      value: 0.629456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 78.5
+      value: 78.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18911930bc11804485efcfb92c3c972,
         type: 3}

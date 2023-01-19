@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 0
-  speedRot: 20
+  speedRot: 45
 --- !u!1001 &5831194524125520077
 PrefabInstance:
   m_ObjectHideFlags: 0

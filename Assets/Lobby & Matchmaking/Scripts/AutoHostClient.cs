@@ -1,10 +1,12 @@
 ﻿using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MirrorBasics {
     public class AutoHostClient : MonoBehaviour {
 
         [SerializeField] NetworkManager networkManager;
+        [SerializeField] InputField serverAddress;
 
         void Start () {
             if (!Application.isBatchMode) { //Headless build
@@ -14,6 +16,7 @@ namespace MirrorBasics {
                 Debug.Log ($"=== Server Build ===");
                 networkManager.StartServer();
             }
+
         }
 
         public void JoinLocal () {
@@ -28,8 +31,12 @@ namespace MirrorBasics {
 
         public void StartServer()
         {
-            networkManager.networkAddress = "89.78.252.220";
             networkManager.StartServer();
+        }
+
+        public void SetServerAddress()
+        {
+            networkManager.networkAddress = serverAddress.text.ToString();
         }
 
     }

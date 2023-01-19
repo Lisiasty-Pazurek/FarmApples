@@ -8,15 +8,14 @@ namespace MirrorBasics
         [SyncVar] public int index;
         [SyncVar] public int teamID = 1;
 
-        [SyncVar (hook = nameof(HandlePlayerScoreChange))]   
-        public int score;
+        [SyncVar (hook = nameof(HandlePlayerScoreChange))]  public int score;
 
-        [SyncVar (hook = nameof(HandleCarriedItemToggle))]   
-        public bool hasItem;
+        [SyncVar (hook = nameof(HandleCarriedItemToggle))] public bool hasItem;
+        [SyncVar (hook = nameof(HandleStealingToggle))] public bool canSteal = false;
 
         [SerializeField] public GameObject carriedItem;
         [SerializeField] public GameObject stealingItem;
-        [SyncVar (hook = nameof(HandleStealingToggle))] public bool canSteal = false;
+
         [SerializeField] public UIScore uiScore;
 
 
@@ -24,7 +23,7 @@ namespace MirrorBasics
         {
             uiScore = GameObject.FindObjectOfType<UIScore>();      
             uiScore.player = this;
-//            uiScore.SetPlayerName(Player.localPlayer);
+            uiScore.SetPlayerName();
         }
         public override void OnStartServer()
         {
@@ -34,11 +33,13 @@ namespace MirrorBasics
         void HandleCarriedItemToggle(bool oldValue, bool newValue)
         {   
             carriedItem.SetActive(newValue);
+            if (isLocalPlayer) {uiScore.SetStatusIcon("apple", newValue);}
         }
 
         void HandleStealingToggle(bool oldValue, bool newValue)
         {   
             stealingItem.SetActive(newValue);
+            if (isLocalPlayer) {uiScore.SetStatusIcon("stealing", newValue);}
         }
 
 

@@ -25,7 +25,7 @@ namespace MirrorBasics
         public void SetPlayerName () 
         {
            lobbyPlayer = Player.localPlayer; // GameObject.FindObjectOfType<Player>(); // at game level start = if (isClient) {UIScore.instance.SetPlayername(localPlayer);}
-           playerName.text = lobbyPlayer.name;
+           playerName.text = lobbyPlayer.playerName;
 //            Debug.Log("Setting planer name for " + player.playerIndex);
         }
 
@@ -44,7 +44,10 @@ namespace MirrorBasics
 
         public void SetStatusIcon (string status, bool state)
         {
-            
+            if (status == "rolling") statusImage[0].SetActive(state);
+            if (status == "apple") statusImage[1].SetActive(state);
+            if (status == "stealing") statusImage[2].SetActive(state);
+            else return;
         }
 
 
