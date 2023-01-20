@@ -19,15 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1454798557184
-    m_Localized: "Utw\xF3rz rozgrywk\u0119"
+    m_Localized: Uruchom serwer
     m_Metadata:
       m_Items: []
   - m_Id: 1627931037696
-    m_Localized: "Do\u0142\u0105cz do gry"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 25430199390208
-    m_Localized: "Nie uda\u0142o si\u0119 po\u0142\u0105czy\u0107 z serwerem."
+    m_Localized: "Do\u0142\u0105cz do serwera"
     m_Metadata:
       m_Items: []
   - m_Id: 30426932465664
