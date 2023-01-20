@@ -269,7 +269,7 @@ namespace MirrorBasics {
         Scene scene = SceneManager.GetSceneByName(sceneName);
         Debug.Log("Unloading scene: " +  sceneName + scene.name);
         SceneManager.UnloadSceneAsync(scene); 
-        uIGameplay.ChangeUIState(3); // not used yet but it should work, it is overriden by previous function
+        uIGameplay.ChangeUIState(3); // not used yet but it should work, it is overriden by next function too get back to lobby
         uIScore.ResetValues();
         levelController.currentMatch.players.Remove(this);
     }
