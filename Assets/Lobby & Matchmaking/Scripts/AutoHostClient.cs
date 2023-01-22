@@ -9,13 +9,13 @@ namespace MirrorBasics {
         [SerializeField] InputField serverAddress;
 
         void Start () {
-            if (!Application.isBatchMode) { //Headless build
-                Debug.Log ($"=== Client Build ===");
-                networkManager.StartClient ();
-            } else {
-                Debug.Log ($"=== Server Build ===");
-                networkManager.StartServer();
-            }
+            // if (!Application.isBatchMode) { //Headless build
+            //     Debug.Log ($"=== Client Build ===");
+            //     networkManager.StartClient ();
+            // } else {
+            //     Debug.Log ($"=== Server Build ===");
+            //     networkManager.StartServer();
+            // }
 
         }
 
