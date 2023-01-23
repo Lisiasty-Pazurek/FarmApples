@@ -160,7 +160,7 @@ namespace MirrorBasics
                 characterController.Move(direction * Time.fixedDeltaTime);
 
             if (isDashing == true)
-                characterController.Move(direction*1.4f * Time.fixedDeltaTime);
+                characterController.Move(direction*1.4f);
             else
                 characterController.SimpleMove(direction);
 
