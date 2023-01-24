@@ -264,7 +264,7 @@ public class LevelController : NetworkBehaviour
     private void ClientLeaveMatch() 
     {
         Player.localPlayer.UnloadClientScene("OnlineScene");
-        Player.localPlayer.uIGameplay.ChangeUIState(0);        
+        Player.localPlayer.uIGameplay.ChangeUIState(3);        
     }
 
 [Server]
