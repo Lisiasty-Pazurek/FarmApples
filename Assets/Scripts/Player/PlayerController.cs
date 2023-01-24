@@ -20,7 +20,8 @@ namespace MirrorBasics
         public float moveSpeed = 5f;
         public float turnSensitivity = 70f;
         public float maxTurnSpeed = 110f;
-        public float jumpSpeed = 5f;
+        public float jumpSpeed = 0f;
+        public float jumpPower = 6f;
 
         [Header("Diagnostics")]
         public float horizontal;
@@ -105,20 +106,18 @@ namespace MirrorBasics
 
             if (dashCooldown >0) {dashCooldown -= Time.deltaTime;}
 
-            
-            if (isGrounded)
-                isFalling = false;
+            if (isGrounded) isFalling = false;
 
-            if ((isGrounded || !isFalling) && jumpSpeed < 1f && Input.GetKey(KeyCode.Space))
+            if ((isGrounded || !isFalling) && !isDashing && jumpSpeed < 1f && Input.GetKey(KeyCode.Space))
             {
                 jumpSpeed = Mathf.Lerp(jumpSpeed, 1f, 0.5f);
             }
-            else if (!isGrounded)
+            else if (!isGrounded) 
             {
                 isFalling = true;
                 jumpSpeed = 0;
             }
-            if (isGrounded && Input.GetKey(KeyCode.LeftShift))
+            if (isGrounded && !isFalling && Input.GetKeyDown(KeyCode.LeftShift))
             {
                 if (dashCooldown >0 || isDashing == true) {return;} 
                 if (dashCooldown <= 0 && isDashing == false)
@@ -146,27 +145,36 @@ namespace MirrorBasics
                 return;
 
             if (dashCooldown <= 4) { isDashing = false; }
-
             Vector3 rotation = new Vector3 (0, horizontal, 0);
+
             characterController.transform.Rotate(rotation * turnSensitivity * Time.deltaTime);
 
-            Vector3 direction = new Vector3(0f, jumpSpeed*1.3f, vertical*1.0f);
-            direction = Vector3.ClampMagnitude(direction, 1.3f);
+            Vector3 direction = new Vector3(0f, jumpSpeed * 1.2f, vertical);
+            direction = Vector3.ClampMagnitude(direction, 1.2f);
             direction = transform.TransformDirection(direction);
             direction *= moveSpeed;
 
-
-            if (jumpSpeed > 0 )
-                characterController.Move(direction * Time.fixedDeltaTime);
-
-            if (isDashing == true)
-                characterController.Move(direction*1.4f);
-            else
-                characterController.SimpleMove(direction);
+            if (jumpSpeed > 0 ) characterController.Move(direction * 1.2f * Time.deltaTime );
+            if (isDashing == true) characterController.Move(direction * 2 * Time.fixedDeltaTime);
+            else characterController.SimpleMove(direction);
 
             isGrounded = characterController.isGrounded;
-            velocity = characterController.velocity;
+            velocity = characterController.velocity;            
         }
+
+        // [Command]
+        // public void MovePlayer(Vector3 direction)
+        // {
+
+        // }
+
+        // [TargetRpc]
+        // void PlayerMovement ()
+        // {
+
+        // }
+
+
 
         [ServerCallback]
         void OnTriggerEnter(Collider other)

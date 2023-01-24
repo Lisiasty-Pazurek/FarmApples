@@ -27,6 +27,34 @@ MonoBehaviour:
     m_Key: CouldNotConnectToServer
     m_Metadata:
       m_Items: []
+  - m_Id: 1401598567796736
+    m_Key: OnlineGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402622045081600
+    m_Key: LocalGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1403450910855168
+    m_Key: QuitGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1414896776400896
+    m_Key: JoinRandomGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1415289895931904
+    m_Key: HostPrivateMatch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1415468803969024
+    m_Key: HostPublicMatch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1474157858541568
+    m_Key: PlayerName
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

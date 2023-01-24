@@ -9,6 +9,11 @@ using Cinemachine;
  //       private GameObject gameCamera; // not needed for now
         private CinemachineVirtualCamera cineCam;
 
+        public void OnStartLocalPlayer ()
+        {
+            SetupPlayerCamera();
+        }
+
         public void SetupPlayerCamera()
         {
             Debug.Log("Setting up camera controllers");
@@ -18,7 +23,6 @@ using Cinemachine;
                 mainCam.orthographic = false;
                 cineCam.Follow = this.transform;
                 Debug.Log("cinemachine cam follow set up for local client");
-
         }
 
     }

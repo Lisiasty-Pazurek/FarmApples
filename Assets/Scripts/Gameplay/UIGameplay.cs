@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace MirrorBasics{
 public class UIGameplay : MonoBehaviour
@@ -16,6 +17,7 @@ public class UIGameplay : MonoBehaviour
     [SerializeField] public Canvas preGameUICanvas;   
     [SerializeField] public Canvas gameUICanvas;
     [SerializeField] public Canvas postGameUICanvas;
+    [SerializeField] public Text playerNameInput;
 
     [SerializeField]public List<Canvas> uiStates;
 
@@ -42,6 +44,12 @@ public class UIGameplay : MonoBehaviour
     {
         lobbyPlayer.playerReady(false, true);
         ChangeUIState(1);
+    }
+
+    public void SetLobbyPlayerName ()
+    {
+        name = playerNameInput.ToString();
+        lobbyPlayer.name = name;
     }
 
 // Simple debugging command. I will keep it for now

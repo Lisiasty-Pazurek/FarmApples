@@ -30,6 +30,34 @@ MonoBehaviour:
     m_Localized: "Nie uda\u0142o si\u0119 po\u0142\u0105czy\u0107 z serwerem."
     m_Metadata:
       m_Items: []
+  - m_Id: 1401598567796736
+    m_Localized: Gra online
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402622045081600
+    m_Localized: Gra lokalna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1403450910855168
+    m_Localized: "Opu\u015B\u0107 gr\u0119"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1414896776400896
+    m_Localized: "Do\u0142\u0105cz do losowej rozgrywki"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1415289895931904
+    m_Localized: Gra prywatna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1415468803969024
+    m_Localized: Gra publiczna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1474157858541568
+    m_Localized: Nazwa gracza
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

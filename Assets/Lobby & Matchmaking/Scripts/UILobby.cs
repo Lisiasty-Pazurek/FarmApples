@@ -23,6 +23,7 @@ namespace MirrorBasics {
         [SerializeField] GameObject UIPlayerPrefab;
         [SerializeField] Text matchIDText;
         [SerializeField] GameObject beginGameButton;
+        [SerializeField] GameObject mapPicker;
 
         GameObject localPlayerLobbyUI;
 
@@ -32,6 +33,7 @@ namespace MirrorBasics {
 
         public void SetStartButtonActive (bool active) {
             beginGameButton.SetActive (active);
+            mapPicker.SetActive (active);
         }
 
         public void HostPublic () {
