@@ -111,6 +111,7 @@ public class LevelController : NetworkBehaviour
 
     public void CheckIfMatchPlayersAreReady()
     {
+        if (readyToStart){return;}
         int k = 0; 
         foreach (Player player in matchPlayers) 
         {
@@ -120,6 +121,7 @@ public class LevelController : NetworkBehaviour
         if (k == matchPlayers.Count)  {readyToStart = true;}
         // CheckifLevelisReadyToStart(readyToStart);
         PrepareLevel(levelMatchID);
+        
     }
 
 
@@ -171,7 +173,7 @@ public class LevelController : NetworkBehaviour
 
                     Vector3 startPos = new Vector3(5 +t*2, 1, t2);
                     GameObject go = Instantiate(playerPrefab, startPos, Quaternion.identity);
-                    if (!IsOdd(matchPlayers.Count)&&IsOdd(t)) {go.GetComponent<PlayerController>().moveSpeed=7;} 
+                    if (IsOdd(matchPlayers.Count)&&IsOdd(t)) {go.GetComponent<PlayerController>().moveSpeed=8f;} 
                     else {go.GetComponent<PlayerController>().moveSpeed=5;};
 
                     go.GetComponent<PlayerController>().playerIndex = player.playerIndex; 
@@ -212,12 +214,13 @@ public class LevelController : NetworkBehaviour
         Debug.Log("PrepareLevel function: Preparing for making clients ready");       
     }
 
+    [Server]
     public void SetTeamBox(GameObject go)
     {
-            if (go.GetComponent<TeamBox>().teamID ==1) 
+        if (go.GetComponent<TeamBox>().teamID ==1) 
             { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
             rend.material.color = new Color(255,0,0) ; }
-            if (go.GetComponent<TeamBox>().teamID ==2) 
+        if (go.GetComponent<TeamBox>().teamID ==2) 
             { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
             rend.material.color = new Color(0,0,255) ; }
     }

@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1474157858541568
-    m_Localized: Nazwa gracza
+    m_Localized: "Imi\u0119 gracza"
     m_Metadata:
       m_Items: []
   references:

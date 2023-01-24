@@ -49,7 +49,7 @@ public class UIGameplay : MonoBehaviour
     public void SetLobbyPlayerName ()
     {
         name = playerNameInput.ToString();
-        lobbyPlayer.name = name;
+        lobbyPlayer.playerName = name;
     }
 
 // Simple debugging command. I will keep it for now
@@ -88,7 +88,7 @@ public class UIGameplay : MonoBehaviour
     public void QuitLevel()
     {
         SceneManager.UnloadSceneAsync("OnlineScene");
-        ChangeUIState(0);
+        ChangeUIState(3);
     }
 
 }

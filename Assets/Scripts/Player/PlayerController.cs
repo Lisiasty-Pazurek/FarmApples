@@ -17,7 +17,7 @@ namespace MirrorBasics
         [SyncVar] public int playerIndex;
 
         [Header("Movement Settings")]
-        public float moveSpeed = 5f;
+        [SyncVar]public float moveSpeed = 5f;
         public float turnSensitivity = 70f;
         public float maxTurnSpeed = 110f;
         public float jumpSpeed = 0f;
