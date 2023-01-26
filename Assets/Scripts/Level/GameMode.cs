@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMode : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string GameModeName;
+    public int minPlayers;
+    public int maxPlayers;
+    public int minTeams;
+    public int maxTeams;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Scene gameScene;
+    
+
+
 }
