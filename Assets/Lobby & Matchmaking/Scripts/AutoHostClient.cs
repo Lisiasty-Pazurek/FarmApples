@@ -9,13 +9,13 @@ namespace MirrorBasics {
         [SerializeField] InputField serverAddress;
 
         void Start () {
-            if (!Application.isBatchMode) { //Headless build
-                Debug.Log ($"=== Client Build ===");
-                networkManager.StartClient ();
-            } else {
-                Debug.Log ($"=== Server Build ===");
-                networkManager.StartServer();
-            }
+            // if (!Application.isBatchMode) { //Headless build
+            //     Debug.Log ($"=== Client Build ===");
+            //     networkManager.StartClient ();
+            // } else {
+            //     Debug.Log ($"=== Server Build ===");
+            //     networkManager.StartServer();
+            // }
 
         }
 
@@ -26,6 +26,10 @@ namespace MirrorBasics {
 
         public void JoinServer () {
             networkManager.networkAddress = "89.78.252.220";
+            networkManager.StartClient ();
+        }
+
+        public void JoinCustomServer () {
             networkManager.StartClient ();
         }
 

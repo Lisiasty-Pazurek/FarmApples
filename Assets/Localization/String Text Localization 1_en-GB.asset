@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: String Text Localization 1_en-GB
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-GB
+  m_SharedData: {fileID: 11400000, guid: d2228eecf80e93d499a2e260a4835cae, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1454798557184
+    m_Localized: Start server
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1627931037696
+    m_Localized: Join Server
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30426932465664
+    m_Localized: Couldn't connect to server
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1401598567796736
+    m_Localized: Online game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402622045081600
+    m_Localized: Local game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1403450910855168
+    m_Localized: Qiuit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1414896776400896
+    m_Localized: Join random game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1415289895931904
+    m_Localized: Host private match
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1415468803969024
+    m_Localized: Host private game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1474157858541568
+    m_Localized: Player name
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

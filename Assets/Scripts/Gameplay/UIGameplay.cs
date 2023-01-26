@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace MirrorBasics{
 public class UIGameplay : MonoBehaviour
@@ -16,6 +17,7 @@ public class UIGameplay : MonoBehaviour
     [SerializeField] public Canvas preGameUICanvas;   
     [SerializeField] public Canvas gameUICanvas;
     [SerializeField] public Canvas postGameUICanvas;
+    [SerializeField] public Text playerNameInput;
 
     [SerializeField]public List<Canvas> uiStates;
 
@@ -42,6 +44,11 @@ public class UIGameplay : MonoBehaviour
     {
         lobbyPlayer.playerReady(false, true);
         ChangeUIState(1);
+    }
+
+    public void SetLobbyPlayerName ()
+    {
+        lobbyPlayer.playerName = playerNameInput.text;
     }
 
 // Simple debugging command. I will keep it for now
@@ -80,8 +87,7 @@ public class UIGameplay : MonoBehaviour
     public void QuitLevel()
     {
         SceneManager.UnloadSceneAsync("OnlineScene");
-        levelController.currentMatch.players.Remove(NetworkClient.connection.identity.GetComponent<Player>());
-        ChangeUIState(0);
+        ChangeUIState(3);
     }
 
 }
