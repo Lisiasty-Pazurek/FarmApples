@@ -10,7 +10,7 @@ namespace MirrorBasics {
 
         public void SetPlayer (Player player) {
             this.player = player;
-            text.text =  player.playerName.ToString();
+            text.text =  player.playerName;
         }
 
         public void SetName () 

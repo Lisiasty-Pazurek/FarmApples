@@ -48,8 +48,7 @@ public class UIGameplay : MonoBehaviour
 
     public void SetLobbyPlayerName ()
     {
-        name = playerNameInput.ToString();
-        lobbyPlayer.playerName = name;
+        lobbyPlayer.playerName = playerNameInput.text;
     }
 
 // Simple debugging command. I will keep it for now
