@@ -4210,7 +4210,7 @@ MonoBehaviour:
   offlineScene: Assets/Lobby & Matchmaking/Scenes/Offline.unity
   onlineScene: Assets/Lobby & Matchmaking/Scenes/Lobby.unity
   transport: {fileID: 1778308322}
-  networkAddress: 89.78.252.220
+  networkAddress: 45.147.248.224
   maxConnections: 64
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1093037038611221156, guid: a1fecb3557e080348b3de5906776f1bf,
@@ -4293,7 +4293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   port: 7778
-  maxMessageSize: 16384
+  maxMessageSize: 24384
   handshakeMaxSize: 3000
   noDelay: 1
   sendTimeout: 5000

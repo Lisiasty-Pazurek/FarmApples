@@ -182,7 +182,7 @@ public class LevelController : NetworkBehaviour
 
                     NetworkServer.ReplacePlayerForConnection(player.connectionToClient, go, true);
                     gamePlayers.Add(go.GetComponent<PlayerController>());
-                    NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
+//                    NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
 
                     Debug.Log("SpawnPlayers function: moved player to gamePlayer list");
                     gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
