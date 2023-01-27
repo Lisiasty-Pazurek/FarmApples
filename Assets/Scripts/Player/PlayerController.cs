@@ -21,7 +21,7 @@ namespace MirrorBasics
         public float turnSensitivity = 70f;
         public float maxTurnSpeed = 110f;
         public float jumpSpeed = 0f;
-        public float jumpPower = 6f;
+        public float jumpPower = 4.5f;
 
         [Header("Diagnostics")]
         public float horizontal;
@@ -108,16 +108,16 @@ namespace MirrorBasics
 
             if (isGrounded) isFalling = false;
 
-            if ((isGrounded || !isFalling) && !isDashing && jumpSpeed < 1f && Input.GetKey(KeyCode.Space))
+            if (!isDashing && !isFalling && Input.GetKey(KeyCode.Space))
             {
-                jumpSpeed = Mathf.Lerp(jumpSpeed, 1f, 0.5f);
+                jumpSpeed = Mathf.Lerp(.3f, jumpPower, .6f);
             }
             else if (!isGrounded) 
             {
                 isFalling = true;
                 jumpSpeed = 0;
             }
-            if (isGrounded && !isFalling && Input.GetKeyDown(KeyCode.LeftShift))
+            if (isGrounded && !isFalling && !isDashing && Input.GetKeyDown(KeyCode.LeftShift))
             {
                 if (dashCooldown >0 || isDashing == true) {return;} 
                 if (dashCooldown <= 0 && isDashing == false)
@@ -130,14 +130,7 @@ namespace MirrorBasics
             Animate();
         }
 
-        private void Animate()
-        {
-            if (!isLocalPlayer || characterAnimator == null || !characterAnimator.enabled)
-            return;
-            characterAnimator.SetBool("Walking", velocity != Vector3.zero);
-            characterAnimator.SetBool("Idle", velocity == Vector3.zero);
-            characterAnimator.SetBool("Rolling", isDashing);
-        }
+
 
         void FixedUpdate()
         {
@@ -155,7 +148,7 @@ namespace MirrorBasics
             direction *= moveSpeed;
 
             if (jumpSpeed > 0 ) characterController.Move(direction * 1.2f * Time.deltaTime );
-            if (isDashing == true) characterController.Move(direction * 2 * Time.fixedDeltaTime);
+            if (isDashing == true) characterController.Move(direction * 2 * Time.deltaTime);
             else characterController.SimpleMove(direction);
 
             isGrounded = characterController.isGrounded;
@@ -165,16 +158,24 @@ namespace MirrorBasics
         // [Command]
         // public void MovePlayer(Vector3 direction)
         // {
-
+        //    
         // }
 
         // [TargetRpc]
         // void PlayerMovement ()
         // {
-
+        //    direction + Vector3.up;   
+        //    characterController.Move();
         // }
 
-
+        private void Animate()
+        {
+            if (!isLocalPlayer || characterAnimator == null || !characterAnimator.enabled)
+            return;
+            characterAnimator.SetBool("Walking", velocity != Vector3.zero);
+            characterAnimator.SetBool("Idle", velocity == Vector3.zero);
+            characterAnimator.SetBool("Rolling", isDashing);
+        }
 
         [ServerCallback]
         void OnTriggerEnter(Collider other)
@@ -190,8 +191,8 @@ namespace MirrorBasics
                     pScore.canSteal = false;
                 }
                 else return;
-            }
-            
+            }           
         }
+
     }
 }
