@@ -244,7 +244,8 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStartLevel = true;}
         Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
 
-        if (readyToStartLevel) {  SetGamePlayersReady();  }
+        if (!readyToStartLevel){ return;} 
+        else {  SetGamePlayersReady();  }
     }
 
     [Server]

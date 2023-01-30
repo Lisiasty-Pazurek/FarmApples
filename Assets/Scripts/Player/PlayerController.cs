@@ -99,7 +99,7 @@ namespace MirrorBasics
         void Update()
         {
             if (!isLocalPlayer || characterController == null || !characterController.enabled)
-                return;
+               { return;}
 
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");

@@ -4209,7 +4209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   runInBackground: 1
-  autoStartServerBuild: 1
+  autoStartServerBuild: 0
   autoConnectClientBuild: 0
   sendRate: 30
   offlineScene: Assets/Lobby & Matchmaking/Scenes/Offline.unity
@@ -4305,8 +4305,8 @@ MonoBehaviour:
   receiveTimeout: 20000
   serverMaxMessagesPerTick: 1000
   clientMaxMessagesPerTick: 1000
-  batchSend: 1
-  waitBeforeSend: 1
+  batchSend: 0
+  waitBeforeSend: 0
   clientUseWss: 0
   sslEnabled: 0
   sslCertJson: ./cert.json

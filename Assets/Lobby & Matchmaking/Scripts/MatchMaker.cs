@@ -169,7 +169,7 @@ using UnityEngine;
                         levelController.CleanSpawnedObjects();
                         Debug.Log ($"No more players in Match. Terminating {_matchID}");
                         matches.RemoveAt (i);
-                        matchIDs.Remove (_matchID);
+                        matchIDs.Remove(_matchID);
 
                         
                     } else {

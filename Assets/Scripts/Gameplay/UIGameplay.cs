@@ -58,18 +58,18 @@ public class UIGameplay : MonoBehaviour
         Debug.Log(" Is my server active?" + NetworkServer.active);
     }
 
-    public void SetPlayerReady()
-    {
-        player.SetPlayerReady(false, true);
-        ChangeUIState(2);
-    }
+    // public void SetPlayerReady()
+    // {
+    //     player.SetPlayerReady(false, true);
+    //     ChangeUIState(2);
+    // }
 
-    public void SetGameplayerStateReady()
-    {
-        player.SetReadyState(false, true);
-        levelController.CheckIfGamePlayersAreReady();
-        Debug.Log("My Gameplayer is setting up to be ready, passing info to the player controller to call it at level controller");
-    }
+    // public void SetGameplayerStateReady()
+    // {
+    //     player.SetReadyState(false, true);
+    //     levelController.CheckIfGamePlayersAreReady();
+    //     Debug.Log("My Gameplayer is setting up to be ready, passing info to the player controller to call it at level controller");
+    // }
 
     public void Update() {    }
 
