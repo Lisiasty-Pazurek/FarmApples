@@ -4247,7 +4247,7 @@ MonoBehaviour:
   DualMode: 1
   NoDelay: 1
   Interval: 10
-  Timeout: 6000
+  Timeout: 8000
   FastResend: 2
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
@@ -4255,7 +4255,7 @@ MonoBehaviour:
   MaximizeSocketBuffers: 1
   ReliableMaxMessageSize: 298449
   UnreliableMaxMessageSize: 1199
-  debugLog: 0
+  debugLog: 1
   statisticsGUI: 0
   statisticsLog: 0
 --- !u!4 &1778308317
@@ -4298,20 +4298,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   port: 7778
-  maxMessageSize: 24384
-  handshakeMaxSize: 3000
+  maxMessageSize: 36397
+  handshakeMaxSize: 4000
   noDelay: 1
-  sendTimeout: 5000
+  sendTimeout: 8000
   receiveTimeout: 20000
-  serverMaxMessagesPerTick: 10000
+  serverMaxMessagesPerTick: 1000
   clientMaxMessagesPerTick: 1000
   batchSend: 1
-  waitBeforeSend: 0
+  waitBeforeSend: 1
   clientUseWss: 0
   sslEnabled: 0
   sslCertJson: ./cert.json
   sslProtocols: 3072
-  _logLevels: 0
+  _logLevels: 1
 --- !u!114 &1778308323
 MonoBehaviour:
   m_ObjectHideFlags: 0

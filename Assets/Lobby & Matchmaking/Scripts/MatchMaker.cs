@@ -165,10 +165,12 @@ using UnityEngine;
                     Debug.Log ($"Player disconnected from match {_matchID} | {matches[i].players.Count} players remaining");
 
                     if (matches[i].players.Count == 0) {
+
                         levelController.CleanSpawnedObjects();
                         Debug.Log ($"No more players in Match. Terminating {_matchID}");
                         matches.RemoveAt (i);
                         matchIDs.Remove (_matchID);
+
                         
                     } else {
                         matches[i].players[0].PlayerCountUpdated (matches[i].players.Count);

@@ -22,7 +22,7 @@ namespace MirrorBasics {
         }
 
         public void JoinServer () {
-            networkManager.networkAddress = "89.78.252.220";
+            networkManager.networkAddress = "45.147.248.224";
             networkManager.StartClient ();
         }
 

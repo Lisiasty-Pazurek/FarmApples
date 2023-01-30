@@ -187,7 +187,7 @@ public class LevelController : NetworkBehaviour
                     Debug.Log("SpawnPlayers function: moved player to gamePlayer list");
                     gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
 
-                    spawnedItems.Add(go);
+                    
                     t++;
                  }
         SpawnTeamboxes();
@@ -244,13 +244,17 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStartLevel = true;}
         Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
 
-        if (readyToStartLevel) {
-            foreach (PlayerController gamePlayer in gamePlayers) 
+        if (readyToStartLevel) {  SetGamePlayersReady();  }
+    }
+
+    [Server]
+    private void SetGamePlayersReady ()
+    {
+        foreach (PlayerController gamePlayer in gamePlayers) 
             {
                 gamePlayer.SetPlayerReady(false, true);
                 Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
             }
-        }
     }
 
     [ClientRpc]
@@ -260,9 +264,10 @@ public class LevelController : NetworkBehaviour
         CleanSpawnedObjects();
     }
 
-   
+    [Client]
     private void ClientLeaveMatch() 
     {
+        Player.localPlayer.currentMatch = null;
         Player.localPlayer.UnloadClientScene("OnlineScene");
         Player.localPlayer.uIGameplay.ChangeUIState(3);        
     }
@@ -272,6 +277,7 @@ public class LevelController : NetworkBehaviour
     {
         foreach (GameObject item in spawnedItems)
         {
+            if (item != null) 
             Destroy(item);
         }
     }

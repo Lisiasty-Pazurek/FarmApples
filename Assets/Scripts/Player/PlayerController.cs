@@ -58,7 +58,7 @@ namespace MirrorBasics
             if (characterAnimator == null)
                 characterAnimator = GetComponent<Animator>();
 
-            NetworkClient.ready = true;
+            if (!NetworkClient.ready) {NetworkClient.ready = true;}
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
@@ -89,7 +89,7 @@ namespace MirrorBasics
 [TargetRpc]
         public void SetPlayerReady (bool oldValue, bool newValue)
         {
-            Debug.Log("Finalize setting playercontroller ready for gamePlayer of id: " +this.netId );
+            Debug.Log("Finalize setting playercontroller ready for gamePlayer of id: " + this.netId );
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
             this.pCamera.SetupPlayerCamera();
