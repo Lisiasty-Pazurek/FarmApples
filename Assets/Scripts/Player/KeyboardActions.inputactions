@@ -1,0 +1,34 @@
+{
+    "name": "KeyboardActions",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "fe5f9060-e747-49b2-8f45-e8d851305c22",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "441f190f-0e15-4614-b077-3f5ddd97c497",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bc35393b-0381-40de-ac5e-98bb86d91fce",
+                    "path": "<Keyboard>/#(A)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
