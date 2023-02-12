@@ -76,6 +76,7 @@ MonoBehaviour:
   levelMatchID: 
   readyToStart: 0
   readyToStartLevel: 0
+  countdownDuration: 1
   playerPrefab: {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe,
     type: 3}
   playerPrefabSheep: {fileID: 1480027675339556, guid: 2507baa446f945341bc2815bb81c19dd,

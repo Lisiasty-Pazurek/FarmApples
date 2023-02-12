@@ -41,6 +41,7 @@ public class LevelController : NetworkBehaviour
         [SyncVar] public bool readyToStart;
 
         public bool readyToStartLevel;
+        [SerializeField] private float countdownDuration = 3f;
 
         readonly public List<Match> levelmatches = new List<Match>();
         readonly public List<Team> teams = new List<Team>();
@@ -230,7 +231,7 @@ public class LevelController : NetworkBehaviour
         return value % 2 != 0;
     }
 
-[Command (requiresAuthority = false)]
+[Server]
     public void CheckIfGamePlayersAreReady()
     {
         int k = 0; 
@@ -245,12 +246,27 @@ public class LevelController : NetworkBehaviour
         Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
 
         if (!readyToStartLevel){ return;} 
-        else {  SetGamePlayersReady();  }
+        else { StartCoroutine(Countdown());  }
     }
 
     [Server]
-    private void SetGamePlayersReady ()
+    private IEnumerator Countdown()
     {
+        float timeLeft = countdownDuration;
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            Debug.Log(" Countdown for " + timeLeft);
+            yield return new WaitForSeconds(.1f);
+        }
+        Debug.Log("Ending Countdown for " + levelMatchID);
+        SetGamePlayersReady();
+    }
+
+    [Server]
+    private void SetGamePlayersReady()
+    {
+
         foreach (PlayerController gamePlayer in gamePlayers) 
             {
                 gamePlayer.SetPlayerReady(false, true);
@@ -261,6 +277,7 @@ public class LevelController : NetworkBehaviour
     [ClientRpc]
     public void EndLevel()
     {
+        Debug.Log("Ending level for match: " + levelMatchID);
         ClientLeaveMatch();
         CleanSpawnedObjects();
     }
@@ -273,7 +290,7 @@ public class LevelController : NetworkBehaviour
         Player.localPlayer.uIGameplay.ChangeUIState(3);        
     }
 
-[Server]
+    [Server]
     public void CleanSpawnedObjects()
     {
         foreach (GameObject item in spawnedItems)

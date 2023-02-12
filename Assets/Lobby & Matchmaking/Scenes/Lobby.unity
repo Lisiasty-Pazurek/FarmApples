@@ -2582,7 +2582,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 25178676}
         m_TargetAssemblyTypeName: MirrorBasics.UIGameplay, Assembly-CSharp
-        m_MethodName: QuitLevel
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

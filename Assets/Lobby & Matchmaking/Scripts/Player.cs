@@ -240,7 +240,7 @@ namespace MirrorBasics {
         public void playerReady (bool oldState, bool newState)
         {   
             isReady = newState;
-            CheckLevelReady();  
+            CmdCheckLevelReady();  
         }
 
         private void GetLevelController()
@@ -257,11 +257,12 @@ namespace MirrorBasics {
 // Need too check if proper match - could work on last spawned one !!
    
     [Command]
-    public void CheckLevelReady()
+    public void CmdCheckLevelReady()
     {
         GetLevelController();
         levelController.CheckIfGamePlayersAreReady();
     }
+
 
     [TargetRpc]
     public void UnloadClientScene(string sceneName)
@@ -272,6 +273,12 @@ namespace MirrorBasics {
         uIGameplay.ChangeUIState(3); // not used yet but it should work, it is overriden by next function too get back to lobby
         uIScore.ResetValues();
         levelController.currentMatch.players.Remove(this);
+    }
+
+    [ClientRpc]
+    public void SetLobbyPlayerName ()
+    {
+        playerName = uIGameplay.playerNameInput.text;
     }
     
 }

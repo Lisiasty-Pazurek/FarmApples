@@ -46,10 +46,7 @@ public class UIGameplay : MonoBehaviour
         ChangeUIState(1);
     }
 
-    public void SetLobbyPlayerName ()
-    {
-        lobbyPlayer.playerName = playerNameInput.text;
-    }
+
 
 // Simple debugging command. I will keep it for now
     public void IsMyCLientActive()
@@ -64,12 +61,15 @@ public class UIGameplay : MonoBehaviour
     //     ChangeUIState(2);
     // }
 
-    // public void SetGameplayerStateReady()
-    // {
-    //     player.SetReadyState(false, true);
-    //     levelController.CheckIfGamePlayersAreReady();
-    //     Debug.Log("My Gameplayer is setting up to be ready, passing info to the player controller to call it at level controller");
-    // }
+ 
+    public void SetGameplayerStateReady()
+    {
+        player.SetReadyState(false, true);
+        Debug.Log("My Gameplayer is setting up to be ready, passing info to the player controller to call it at level controller");
+        lobbyPlayer.CmdCheckLevelReady();
+    }
+
+
 
     public void Update() {    }
 
@@ -79,10 +79,6 @@ public class UIGameplay : MonoBehaviour
         levelController.InitiateLevel(matchID);
     }
 
-    public void CheckifLevelReady()
-    {
-        lobbyPlayer.CheckLevelReady();
-    }
 
     public void QuitLevel()
     {
