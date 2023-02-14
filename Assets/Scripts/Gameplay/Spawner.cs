@@ -7,18 +7,17 @@ public class Spawner: NetworkBehaviour
     {
         [SerializeField]  GameObject rewardPrefab;
         [SerializeField]  GameObject stealingPrefab;
+        [SerializeField]  GameObject teamPrefab;
+        private GameMode gameMode;
+
         private LevelController lvlController;
 
         public Transform startLocation;  
 
-        [SerializeField] public List<Transform> playerSpawnPoints;
-        [SerializeField] public List<Transform> rewardSpawnPoints;
-        [SerializeField] public List<Transform> teamSpawnPoints;
-        [SerializeField] public List<Transform> pickupSpawnPoints;  
-
         public override void OnStartServer() 
         {
             lvlController = gameObject.GetComponentInParent<LevelController>();
+            gameMode = this.GetComponent<GameMode>();
             SetLocation(startLocation);
             InitialSpawn();
         }
@@ -49,7 +48,7 @@ public class Spawner: NetworkBehaviour
             pickup.GetComponentInChildren<MeshRenderer>().enabled = true;       
         }
 
-        
+
 
     }
 }

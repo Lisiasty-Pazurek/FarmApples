@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMode : MonoBehaviour
 {
-    public string GameModeName;
+    public string gameModeName;
     public int minPlayers;
     public int maxPlayers;
     public int minTeams;
@@ -18,6 +18,6 @@ public class GameMode : MonoBehaviour
     [SerializeField] public List<Transform> pickupSpawnPoints;  
     public Scene gameScene;
     
-    
+
 
 }

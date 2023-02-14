@@ -12,36 +12,34 @@ namespace MirrorBasics {
     [SyncVar]
     public string teamID;
     [SyncVar]
-//    public int teamPoints;
-//    private int requiredScore = 10;
     public List<PlayerController> players = new List<PlayerController> ();
 
-    public Team (string teamID, PlayerController playerCtrl)
-    {
-        this.teamID = teamID;
-        players.Add(playerCtrl);
-    }
+    // public Team (string teamID, PlayerController playerCtrl)
+    // {
+    //     this.teamID = teamID;
+    //     players.Add(playerCtrl);
+    // }
 
-    public Team () {}
-    }
+    // public Team () {}
+     }
 
 public class LevelController : NetworkBehaviour
 {   
 
-//        public static LevelController instance;
-
-        private MatchMaker matchMaker;
-     
-        private NetworkManager networkManager;
+    private MatchMaker matchMaker;
+  
+    private NetworkManager networkManager;
         
-        [SyncVar] public Match currentMatch;
+    [SyncVar] public Match currentMatch;
 
-        [SyncVar] public string levelMatchID;
+    [SyncVar] public string levelMatchID;
 
-        [SyncVar] public bool readyToStart;
+    [SyncVar] public bool readyToStart;
 
-        public bool readyToStartLevel;
-        [SerializeField] private float countdownDuration = 3f;
+    private GameMode gameMode; 
+
+    public bool readyToStartLevel;
+    [SerializeField] private float countdownDuration = 3f;
 
         readonly public List<Match> levelmatches = new List<Match>();
         readonly public List<Team> teams = new List<Team>();
@@ -81,7 +79,10 @@ public class LevelController : NetworkBehaviour
 
         public override void OnStartLocalPlayer()   { }
 
-        public override void OnStartServer()  { }
+        public override void OnStartServer() 
+        {
+            gameMode = this.GetComponent<GameMode>();
+        }
 
     [Server]
     public void InitiateLevel(string levelMatchID)
