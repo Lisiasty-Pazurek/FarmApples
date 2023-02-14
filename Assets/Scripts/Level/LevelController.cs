@@ -220,10 +220,10 @@ public class LevelController : NetworkBehaviour
     {
         if (go.GetComponent<TeamBox>().teamID ==1) 
             { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.material.color = new Color(255,0,0) ; }
+            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightRed.mat"); }
         if (go.GetComponent<TeamBox>().teamID ==2) 
             { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.material.color = new Color(0,0,255) ; }
+            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightBlue.mat"); }
     }
 
     public static bool IsOdd(int value)

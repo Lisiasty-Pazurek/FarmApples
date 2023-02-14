@@ -1,6 +1,6 @@
 using UnityEngine;
 using Mirror;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace MirrorBasics{
 public class Spawner: NetworkBehaviour
@@ -10,6 +10,12 @@ public class Spawner: NetworkBehaviour
         private LevelController lvlController;
 
         public Transform startLocation;  
+
+        [SerializeField] public List<Transform> playerSpawnPoints;
+        [SerializeField] public List<Transform> rewardSpawnPoints;
+        [SerializeField] public List<Transform> teamSpawnPoints;
+        [SerializeField] public List<Transform> pickupSpawnPoints;  
+
         public override void OnStartServer() 
         {
             lvlController = gameObject.GetComponentInParent<LevelController>();
@@ -42,6 +48,8 @@ public class Spawner: NetworkBehaviour
             lvlController.spawnedItems.Add(pickup);
             pickup.GetComponentInChildren<MeshRenderer>().enabled = true;       
         }
+
+        
 
     }
 }

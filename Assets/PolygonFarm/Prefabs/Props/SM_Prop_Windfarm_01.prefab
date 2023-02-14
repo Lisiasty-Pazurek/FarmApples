@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 4333775770461812}
   - component: {fileID: 33498552120138182}
   - component: {fileID: 23000063244749594}
+  - component: {fileID: 5720625393708382644}
   m_Layer: 0
   m_Name: SM_Prop_Windfarm_Blades_01
   m_TagString: Untagged
@@ -182,3 +183,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!111 &5720625393708382644
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697111367775364}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d072ab45225ca6742bdc226fb7cf265d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d072ab45225ca6742bdc226fb7cf265d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1

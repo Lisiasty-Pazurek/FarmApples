@@ -10,9 +10,14 @@ public class GameMode : MonoBehaviour
     public int maxPlayers;
     public int minTeams;
     public int maxTeams;
+    public int maxScore;
 
+    [SerializeField] public List<Transform> playerSpawnPoints;
+    [SerializeField] public List<Transform> rewardSpawnPoints;
+    [SerializeField] public List<Transform> teamSpawnPoints;
+    [SerializeField] public List<Transform> pickupSpawnPoints;  
     public Scene gameScene;
     
-
+    
 
 }
