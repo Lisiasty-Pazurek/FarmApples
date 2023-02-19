@@ -1,8 +1,11 @@
-##Introduction
+Introduction
 
 Project is going to be used for educational purposes for a PhD thesis that focus on studying impact of multiplayer games in developing social skills. To make a safe environment for early school students, custom made game have to be developed.  Pre and posttest questionnaires will be used as a main research tools. Additional documentation may include video recording or logs. About 20 students will take part in research at time.
 
-##Scenario of lesson [Client/user view]
+Link:
+http://45.147.248.224:8080/
+
+Scenario of lesson [Client/user view]
 1.	Downloading and unpacking app
 2.	Running exe and connecting to server
 3.	Creating or joining lobby
@@ -15,8 +18,8 @@ Project is going to be used for educational purposes for a PhD thesis that focus
 9.	After reaching required score – ending match, displaying scoreboard, returning to lobby
 10.	Repeat with different map for about 3-4 attempts depending on how time consuming it will be.
 
-##Game Modes (levelController)
-####1.	Farm Apples 
+Game Modes (levelController)
+1.	Farm Apples 
 
 Team based game (2-10 players per match). Basic score collecting game – players have to pick up spawned item and bring it to team box to collect it and increase a score of a team.
 
@@ -38,7 +41,7 @@ o	sound
 o	postprocessing
 o	polishing
 
-####2.	Farmaggle 
+2.	Farmaggle 
 
 Card trading game, every player have 5 random cards (food types) and can trade with any other player to get a set that is required for a gameplay. (everyone can trade with everyone it’s not a turn based, strategy heavy game, more casual, focused on walking and asking others what they have or need)
 
@@ -51,7 +54,7 @@ o	Maps
 o	Trade UI
 o	Emote UI
 
-####3.	Farm helper
+3.	Farm helper
 
 Quiz based game, every player goes on their own after village to help NPCs, after picking right response player gets a reward. More as shared world experience, text chat may be useful for communication and looking for help from others. 
 
@@ -62,7 +65,7 @@ o	Dialogue UI
 o	Inventory/Ojective UI
 o	Text chat
 
-####4.	Farmaze
+4.	Farmaze
 
 2 player asymmetrical gameplay mode, one person goes through labyrinth, another one has a role of a navigator ( 1st person uses 3rd person controller, 2nd use top view camera and UI to send direction icon for 1st player ) 
 
@@ -73,7 +76,7 @@ o	UI for Navigator
 o	Message system to send from P2 to P1
 o	Maps
 
-####5.	Farmarathon
+5.	Farmarathon
 
 Another team focused activity with different roles. (6,8,9 players)
 1 player carrying item that has to reach destination, others can help or disturb other carries.
