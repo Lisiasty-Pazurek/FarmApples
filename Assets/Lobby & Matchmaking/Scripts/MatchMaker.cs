@@ -44,8 +44,8 @@ using UnityEngine;
         }
 
         public bool HostGame (string _matchID, Player _player, bool publicMatch, out int playerIndex) {
-            playerIndex = -1;
-//            playerIndex = 0;
+//            playerIndex = -1;
+            playerIndex = 0;
 
             if (!matchIDs.Contains (_matchID)) {
                 matchIDs.Add (_matchID);
@@ -54,6 +54,7 @@ using UnityEngine;
                 Debug.Log ($"Match generated");
                 _player.currentMatch = match;
                 playerIndex = 1;
+                SpawnLevel(_matchID);
                 return true;
             } else {
                 Debug.Log ($"Match ID already exists");
@@ -112,14 +113,12 @@ using UnityEngine;
         }
 
         public void BeginGame (string _matchID) {
-            SpawnLevel(_matchID);
-            
+
+            StartInitiatingLevel(_matchID);            
             for (int i = 0; i < matches.Count; i++) {
                 if (matches[i].matchID == _matchID) {
                     matches[i].inMatch = true;
-                    foreach (var player in matches[i].players) {
-                        player.StartGame ();
-                    }
+                    foreach (var player in matches[i].players) {player.StartGame (); }
                     break;
                 }
             } 
@@ -131,7 +130,14 @@ using UnityEngine;
             lvlManager.GetComponent<NetworkMatch>().matchId = _matchID.ToGuid();
             NetworkServer.Spawn(lvlManager, connectionToClient);
             Debug.Log("Spawning Level Manager for match: " + _matchID);
-            StartInitiatingLevel(_matchID);
+
+        }
+
+        public void DespawnLevel (string _matchID)
+        {
+            if (levelController.levelMatchID == _matchID )
+            NetworkServer.Destroy(lvlManager);
+            else return;
         }
             
         public void StartInitiatingLevel(string _matchID)
@@ -142,6 +148,19 @@ using UnityEngine;
             levelController.InitiateLevel(_matchID);
         }
 
+        public LevelController GetLevelController (string matchID) 
+        {
+            foreach (LevelController lvlController in GameObject.FindObjectsOfType<LevelController>())
+            {
+                if (lvlController.levelMatchID == matchID)
+                {
+                    levelController = lvlController;
+                }            
+                else return null;
+            }
+            return levelController;
+
+        }
 
         public static string GetRandomMatchID () {
             string _id = string.Empty;
@@ -165,10 +184,12 @@ using UnityEngine;
                     Debug.Log ($"Player disconnected from match {_matchID} | {matches[i].players.Count} players remaining");
 
                     if (matches[i].players.Count == 0) {
-                        levelController.CleanSpawnedObjects();
-                        Debug.Log ($"No more players in Match. Terminating {_matchID}");
+                        Debug.Log ($"No more players in Match. Terminating {_matchID}");                        
+                        GetLevelController(_matchID);
+                        if (levelController !=null){ Debug.Log("Destroying spawned objects");levelController.CleanSpawnedObjects(); DespawnLevel(_matchID);}
                         matches.RemoveAt (i);
-                        matchIDs.Remove (_matchID);
+                        matchIDs.Remove(_matchID);
+
                         
                     } else {
                         matches[i].players[0].PlayerCountUpdated (matches[i].players.Count);

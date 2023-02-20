@@ -17,7 +17,7 @@ namespace MirrorBasics {
 
         [SyncVar] public Match currentMatch;
 
-        private LevelController levelController;
+        [SerializeField] public LevelController levelController;
 
         [SerializeField] GameObject playerLobbyUI;
 
@@ -130,6 +130,8 @@ namespace MirrorBasics {
         */
 
         public void DisconnectGame () {
+            currentMatch = null;
+            matchID = null;
             CmdDisconnectGame ();
         }
 
@@ -233,17 +235,18 @@ namespace MirrorBasics {
         void TargetBeginGame () {
             Debug.Log ($"MatchID: {matchID} | Beginning");
             //Additively load game scene
-            SceneManager.LoadScene("OnlineScene", LoadSceneMode.Additive);
+
             GetLevelController();
+            SceneManager.LoadScene(levelController.gameMode.mapName , LoadSceneMode.Additive);
         }
 
         public void playerReady (bool oldState, bool newState)
         {   
             isReady = newState;
-            CheckLevelReady();  
+            CmdCheckLevelReady();  
         }
 
-        private void GetLevelController()
+        private LevelController GetLevelController()
         {
             foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
             {
@@ -252,18 +255,20 @@ namespace MirrorBasics {
                     levelController = lvlController;
                 }
             }
+            return levelController;
         }
 
 // Need too check if proper match - could work on last spawned one !!
    
     [Command]
-    public void CheckLevelReady()
+    public void CmdCheckLevelReady()
     {
         GetLevelController();
         levelController.CheckIfGamePlayersAreReady();
     }
 
-    
+
+    [TargetRpc]
     public void UnloadClientScene(string sceneName)
     {   
         Scene scene = SceneManager.GetSceneByName(sceneName);
@@ -272,6 +277,12 @@ namespace MirrorBasics {
         uIGameplay.ChangeUIState(3); // not used yet but it should work, it is overriden by next function too get back to lobby
         uIScore.ResetValues();
         levelController.currentMatch.players.Remove(this);
+    }
+
+    [ClientRpc]
+    public void SetLobbyPlayerName ()
+    {
+        playerName = uIGameplay.playerNameInput.text;
     }
     
 }

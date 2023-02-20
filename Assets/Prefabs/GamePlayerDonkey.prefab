@@ -110,6 +110,7 @@ MonoBehaviour:
   turnSensitivity: 70
   maxTurnSpeed: 110
   jumpSpeed: 5
+  jumpPower: 6
   horizontal: 0
   vertical: 0
   turn: 0
@@ -154,9 +155,9 @@ MonoBehaviour:
   teamID: 1
   score: 0
   hasItem: 0
+  canSteal: 0
   carriedItem: {fileID: 5496307659802967704}
   stealingItem: {fileID: 2210878680412765956}
-  canSteal: 0
   uiScore: {fileID: 0}
 --- !u!136 &6799120071495980942
 CapsuleCollider:
@@ -169,7 +170,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
-  m_Height: 1
+  m_Height: 0.6
   m_Direction: 1
   m_Center: {x: 0, y: -0.36, z: 0}
 --- !u!143 &143011667059871024

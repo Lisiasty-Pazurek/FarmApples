@@ -12,35 +12,34 @@ namespace MirrorBasics {
     [SyncVar]
     public string teamID;
     [SyncVar]
-//    public int teamPoints;
-//    private int requiredScore = 10;
     public List<PlayerController> players = new List<PlayerController> ();
 
-    public Team (string teamID, PlayerController playerCtrl)
-    {
-        this.teamID = teamID;
-        players.Add(playerCtrl);
-    }
+    // public Team (string teamID, PlayerController playerCtrl)
+    // {
+    //     this.teamID = teamID;
+    //     players.Add(playerCtrl);
+    // }
 
-    public Team () {}
-    }
-
+    // public Team () {}
+     }
+[RequireComponent (typeof (GameMode))]
 public class LevelController : NetworkBehaviour
 {   
 
-//        public static LevelController instance;
-
-        private MatchMaker matchMaker;
-     
-        private NetworkManager networkManager;
+    private MatchMaker matchMaker;
+  
+    private NetworkManager networkManager;
         
-        [SyncVar] public Match currentMatch;
+    [SyncVar] public Match currentMatch;
 
-        [SyncVar] public string levelMatchID;
+    [SyncVar] public string levelMatchID;
 
-        [SyncVar] public bool readyToStart;
+    [SyncVar] public bool readyToStart;
 
-        public bool readyToStartLevel;
+    public GameMode gameMode; 
+
+    public bool readyToStartLevel;
+    [SerializeField] private float countdownDuration = 1f;
 
         readonly public List<Match> levelmatches = new List<Match>();
         readonly public List<Team> teams = new List<Team>();
@@ -54,6 +53,7 @@ public class LevelController : NetworkBehaviour
         [SerializeField] GameObject playerPrefabDonkey;
         [SerializeField] GameObject prizePrefab;
         [SerializeField] GameObject teamboxPrefab;
+        [SerializeField] GameObject teamboxPrefab2;
 
         readonly public List<Transform> playerSpawnPoints = new List<Transform> ();
         private ArrayList spawnPoints;
@@ -76,11 +76,19 @@ public class LevelController : NetworkBehaviour
             // if (!CompareMatchId()) {return;} // it will be necessary for multiple spawned levels on server
             // else 
             uIGameplay.levelController = this;
+            Player.localPlayer.levelController = this;
+            gameMode = this.GetComponent<GameMode>();
         }
 
-        public override void OnStartLocalPlayer()   { }
+        public override void OnStartLocalPlayer()   
+        { 
 
-        public override void OnStartServer()  { }
+        }
+
+        public override void OnStartServer() 
+        {
+            gameMode = this.GetComponent<GameMode>();
+        }
 
     [Server]
     public void InitiateLevel(string levelMatchID)
@@ -182,12 +190,12 @@ public class LevelController : NetworkBehaviour
 
                     NetworkServer.ReplacePlayerForConnection(player.connectionToClient, go, true);
                     gamePlayers.Add(go.GetComponent<PlayerController>());
-                    NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
+//                    NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
 
                     Debug.Log("SpawnPlayers function: moved player to gamePlayer list");
                     gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
 
-                    spawnedItems.Add(go);
+                    
                     t++;
                  }
         SpawnTeamboxes();
@@ -219,10 +227,10 @@ public class LevelController : NetworkBehaviour
     {
         if (go.GetComponent<TeamBox>().teamID ==1) 
             { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.material.color = new Color(255,0,0) ; }
+            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightRed.mat"); }
         if (go.GetComponent<TeamBox>().teamID ==2) 
             { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.material.color = new Color(0,0,255) ; }
+            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightBlue.mat"); }
     }
 
     public static bool IsOdd(int value)
@@ -230,7 +238,7 @@ public class LevelController : NetworkBehaviour
         return value % 2 != 0;
     }
 
-[Command (requiresAuthority = false)]
+[Server]
     public void CheckIfGamePlayersAreReady()
     {
         int k = 0; 
@@ -244,34 +252,57 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStartLevel = true;}
         Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
 
-        if (readyToStartLevel) {
-            foreach (PlayerController gamePlayer in gamePlayers) 
+        if (!readyToStartLevel){ return;} 
+        else { StartCoroutine(Countdown());  }
+    }
+
+    [Server]
+    private IEnumerator Countdown()
+    {
+        float timeLeft = countdownDuration;
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            Debug.Log(" Countdown for " + timeLeft);
+            yield return new WaitForSeconds(.1f);
+        }
+        Debug.Log("Ending Countdown for " + levelMatchID);
+        SetGamePlayersReady();
+    }
+
+    [Server]
+    private void SetGamePlayersReady()
+    {
+
+        foreach (PlayerController gamePlayer in gamePlayers) 
             {
                 gamePlayer.SetPlayerReady(false, true);
                 Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
             }
-        }
     }
 
     [ClientRpc]
     public void EndLevel()
     {
+        Debug.Log("Ending level for match: " + levelMatchID);
         ClientLeaveMatch();
         CleanSpawnedObjects();
     }
 
-   
+    [Client]
     private void ClientLeaveMatch() 
     {
-        Player.localPlayer.UnloadClientScene("OnlineScene");
+        Player.localPlayer.currentMatch = null;
+        Player.localPlayer.UnloadClientScene(gameMode.mapName);
         Player.localPlayer.uIGameplay.ChangeUIState(3);        
     }
 
-[Server]
+    [Server]
     public void CleanSpawnedObjects()
     {
         foreach (GameObject item in spawnedItems)
         {
+            if (item != null) 
             Destroy(item);
         }
     }

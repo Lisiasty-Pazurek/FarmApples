@@ -1,18 +1,23 @@
 using UnityEngine;
 using Mirror;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace MirrorBasics{
 public class Spawner: NetworkBehaviour
     {
         [SerializeField]  GameObject rewardPrefab;
         [SerializeField]  GameObject stealingPrefab;
+        [SerializeField]  GameObject teamPrefab;
+        private GameMode gameMode;
+
         private LevelController lvlController;
 
         public Transform startLocation;  
+
         public override void OnStartServer() 
         {
             lvlController = gameObject.GetComponentInParent<LevelController>();
+            gameMode = this.GetComponent<GameMode>();
             SetLocation(startLocation);
             InitialSpawn();
         }
@@ -42,6 +47,8 @@ public class Spawner: NetworkBehaviour
             lvlController.spawnedItems.Add(pickup);
             pickup.GetComponentInChildren<MeshRenderer>().enabled = true;       
         }
+
+
 
     }
 }
