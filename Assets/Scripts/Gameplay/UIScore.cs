@@ -24,8 +24,8 @@ namespace MirrorBasics
 
         public void SetPlayerName () 
         {
-           lobbyPlayer = Player.localPlayer; // GameObject.FindObjectOfType<Player>(); // at game level start = if (isClient) {UIScore.instance.SetPlayername(localPlayer);}
-           playerName.text = lobbyPlayer.playerName;
+            lobbyPlayer = Player.localPlayer; // GameObject.FindObjectOfType<Player>(); // at game level start = if (isClient) {UIScore.instance.SetPlayername(localPlayer);}
+            lobbyPlayer.playerName = playerName.text;
 //            Debug.Log("Setting planer name for " + player.playerIndex);
         }
 

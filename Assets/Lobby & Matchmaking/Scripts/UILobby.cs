@@ -80,6 +80,7 @@ namespace MirrorBasics {
 
         public void DisconnectGame () {
             if (localPlayerLobbyUI != null) Destroy (localPlayerLobbyUI);
+            Player.localPlayer.currentMatch = null;
             Player.localPlayer.DisconnectGame ();
 
             lobbyCanvas.enabled = false;

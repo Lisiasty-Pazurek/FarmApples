@@ -82,7 +82,7 @@ public class UIGameplay : MonoBehaviour
 
     public void QuitLevel()
     {
-        SceneManager.UnloadSceneAsync("OnlineScene");
+        SceneManager.UnloadSceneAsync(levelController.gameMode.mapName );
         ChangeUIState(3);
     }
 

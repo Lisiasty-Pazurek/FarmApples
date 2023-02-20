@@ -22,7 +22,7 @@ namespace MirrorBasics {
 
     // public Team () {}
      }
-
+[RequireComponent (typeof (GameMode))]
 public class LevelController : NetworkBehaviour
 {   
 
@@ -36,10 +36,10 @@ public class LevelController : NetworkBehaviour
 
     [SyncVar] public bool readyToStart;
 
-    private GameMode gameMode; 
+    public GameMode gameMode; 
 
     public bool readyToStartLevel;
-    [SerializeField] private float countdownDuration = 3f;
+    [SerializeField] private float countdownDuration = 1f;
 
         readonly public List<Match> levelmatches = new List<Match>();
         readonly public List<Team> teams = new List<Team>();
@@ -53,6 +53,7 @@ public class LevelController : NetworkBehaviour
         [SerializeField] GameObject playerPrefabDonkey;
         [SerializeField] GameObject prizePrefab;
         [SerializeField] GameObject teamboxPrefab;
+        [SerializeField] GameObject teamboxPrefab2;
 
         readonly public List<Transform> playerSpawnPoints = new List<Transform> ();
         private ArrayList spawnPoints;
@@ -75,9 +76,14 @@ public class LevelController : NetworkBehaviour
             // if (!CompareMatchId()) {return;} // it will be necessary for multiple spawned levels on server
             // else 
             uIGameplay.levelController = this;
+            Player.localPlayer.levelController = this;
+            gameMode = this.GetComponent<GameMode>();
         }
 
-        public override void OnStartLocalPlayer()   { }
+        public override void OnStartLocalPlayer()   
+        { 
+
+        }
 
         public override void OnStartServer() 
         {
@@ -287,7 +293,7 @@ public class LevelController : NetworkBehaviour
     private void ClientLeaveMatch() 
     {
         Player.localPlayer.currentMatch = null;
-        Player.localPlayer.UnloadClientScene("OnlineScene");
+        Player.localPlayer.UnloadClientScene(gameMode.mapName);
         Player.localPlayer.uIGameplay.ChangeUIState(3);        
     }
 

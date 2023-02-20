@@ -17,7 +17,7 @@ namespace MirrorBasics {
 
         [SyncVar] public Match currentMatch;
 
-        private LevelController levelController;
+        [SerializeField] public LevelController levelController;
 
         [SerializeField] GameObject playerLobbyUI;
 
@@ -130,6 +130,8 @@ namespace MirrorBasics {
         */
 
         public void DisconnectGame () {
+            currentMatch = null;
+            matchID = null;
             CmdDisconnectGame ();
         }
 
@@ -233,8 +235,9 @@ namespace MirrorBasics {
         void TargetBeginGame () {
             Debug.Log ($"MatchID: {matchID} | Beginning");
             //Additively load game scene
-            SceneManager.LoadScene("OnlineScene", LoadSceneMode.Additive);
+
             GetLevelController();
+            SceneManager.LoadScene(levelController.gameMode.mapName , LoadSceneMode.Additive);
         }
 
         public void playerReady (bool oldState, bool newState)
@@ -243,7 +246,7 @@ namespace MirrorBasics {
             CmdCheckLevelReady();  
         }
 
-        private void GetLevelController()
+        private LevelController GetLevelController()
         {
             foreach (LevelController lvlController  in GameObject.FindObjectsOfType<LevelController>())
             {
@@ -252,6 +255,7 @@ namespace MirrorBasics {
                     levelController = lvlController;
                 }
             }
+            return levelController;
         }
 
 // Need too check if proper match - could work on last spawned one !!

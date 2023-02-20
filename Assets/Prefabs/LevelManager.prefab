@@ -123,11 +123,8 @@ MonoBehaviour:
     type: 3}
   stealingPrefab: {fileID: 1139254171913846, guid: 2e3b842b1773599459ef028a853d0f77,
     type: 3}
+  teamPrefab: {fileID: 0}
   startLocation: {fileID: 1794876138388804036}
-  playerSpawnPoints: []
-  rewardSpawnPoints: []
-  teamSpawnPoints: []
-  pickupSpawnPoints: []
 --- !u!114 &1059233189412776171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30aac4aa4246be249a6a24b92b0a5174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameModeName: 
+  gameModeName: Apples
+  mapName: 
   minPlayers: 0
   maxPlayers: 0
   minTeams: 0
