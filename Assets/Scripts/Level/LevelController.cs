@@ -39,6 +39,7 @@ public class LevelController : NetworkBehaviour
     public GameMode gameMode; 
 
     public bool readyToStartLevel;
+    public bool countdownStarted = false;
     [SerializeField] private float countdownDuration = 1f;
 
         readonly public List<Match> levelmatches = new List<Match>();
@@ -252,13 +253,14 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStartLevel = true;}
         Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
 
-        if (!readyToStartLevel){ return;} 
-        else { StartCoroutine(Countdown());  }
+        if (!readyToStartLevel || countdownStarted){ return;} 
+        else { StartCoroutine(Countdown()); }
     }
 
     [Server]
     private IEnumerator Countdown()
-    {
+    { 
+        countdownStarted = true;
         float timeLeft = countdownDuration;
         while (timeLeft > 0)
         {
