@@ -215,7 +215,7 @@ public class LevelController : NetworkBehaviour
             GameObject go = Instantiate(teamboxPrefab, spawnPosition, Quaternion.identity);
             go.GetComponent<NetworkMatch>().matchId = this.currentMatch.matchID.ToGuid();
             go.GetComponent<TeamBox>().teamID = t+1;
-            SetTeamBox(go);
+ //           SetTeamBox(go);
 
             NetworkServer.Spawn(go);
             spawnedItems.Add(go);     
@@ -224,13 +224,13 @@ public class LevelController : NetworkBehaviour
         Debug.Log("PrepareLevel function: Preparing for making clients ready");       
     }
 
-    [Server]
-    public void SetTeamBox(GameObject go)
-    {
-        if (go.GetComponent<TeamBox>().teamID == 1) {go.GetComponent<TeamBox>().beamRed.SetActive(true);} 
-        if (go.GetComponent<TeamBox>().teamID == 2) {go.GetComponent<TeamBox>().beamBlue.SetActive(true);} 
-        else return;
-    }
+    // [Server]
+    // public void SetTeamBox(GameObject go)
+    // {
+    //     if (go.GetComponent<TeamBox>().teamID == 1) {go.GetComponent<TeamBox>().beamRed.SetActive(true);} 
+    //     if (go.GetComponent<TeamBox>().teamID == 2) {go.GetComponent<TeamBox>().beamBlue.SetActive(true);} 
+    //     else return;
+    // }
 
     public static bool IsOdd(int value)
     {
