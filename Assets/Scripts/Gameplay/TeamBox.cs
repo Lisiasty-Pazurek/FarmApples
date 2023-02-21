@@ -22,11 +22,10 @@ public class TeamBox : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         uiScore = GameObject.FindObjectOfType<UIScore>();
-        SetRay();        
-        
     }
 
-    private void SetRay ()
+    [ClientRpc]
+    public void SetRay ()
     {
         if (teamID == 1) {beamRed.SetActive(true);} 
         if (teamID == 2) {beamBlue.SetActive(true);} 

@@ -215,9 +215,8 @@ public class LevelController : NetworkBehaviour
             GameObject go = Instantiate(teamboxPrefab, spawnPosition, Quaternion.identity);
             go.GetComponent<NetworkMatch>().matchId = this.currentMatch.matchID.ToGuid();
             go.GetComponent<TeamBox>().teamID = t+1;
- //           SetTeamBox(go);
-
-            NetworkServer.Spawn(go);
+            NetworkServer.Spawn(go);            
+            go.GetComponent<TeamBox>().SetRay();
             spawnedItems.Add(go);     
             t ++;
         }
@@ -227,7 +226,7 @@ public class LevelController : NetworkBehaviour
     // [Server]
     // public void SetTeamBox(GameObject go)
     // {
-    //     if (go.GetComponent<TeamBox>().teamID == 1) {go.GetComponent<TeamBox>().beamRed.SetActive(true);} 
+    //     if (go.GetCompone nt<TeamBox>().teamID == 1) {go.GetComponent<TeamBox>().beamRed.SetActive(true);} 
     //     if (go.GetComponent<TeamBox>().teamID == 2) {go.GetComponent<TeamBox>().beamBlue.SetActive(true);} 
     //     else return;
     // }
