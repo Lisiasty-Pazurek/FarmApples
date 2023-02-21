@@ -175,13 +175,14 @@ public class LevelController : NetworkBehaviour
                 
                 foreach (var player in matchPlayers) 
                 {   
-
+                    // Logic works for 2 teams, it has to be changed for multi team gamemode and new spawning method
                     if (player.matchID != levelMatchID) {return;} 
                     if (IsOdd(t)) {playerPrefab = playerPrefabDonkey; t2 =45; } 
                     else {playerPrefab = playerPrefabSheep; t2 =0;}
 
                     Vector3 startPos = new Vector3(5 +t*2, 1, t2);
                     GameObject go = Instantiate(playerPrefab, startPos, Quaternion.identity);
+                    // Movement speed boost for smaller team
                     if (IsOdd(matchPlayers.Count)&&IsOdd(t)) {go.GetComponent<PlayerController>().moveSpeed=8f;} 
                     else {go.GetComponent<PlayerController>().moveSpeed=5;};
 
@@ -207,10 +208,10 @@ public class LevelController : NetworkBehaviour
     public void SpawnTeamboxes() 
     {
         int t = 0;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < gameMode.maxTeams; i++)
         {
             Vector3 spawnPosition = new Vector3( 0, 0, t*40);
-            Debug.Log("Spawn Teamboxes function: Spawning teamboxes for: " +teams.Count + " teams");
+            Debug.Log("Spawn Teamboxes function: Spawning teamboxes for: " + gameMode.maxTeams + " teams");
             GameObject go = Instantiate(teamboxPrefab, spawnPosition, Quaternion.identity);
             go.GetComponent<NetworkMatch>().matchId = this.currentMatch.matchID.ToGuid();
             go.GetComponent<TeamBox>().teamID = t+1;
@@ -226,12 +227,9 @@ public class LevelController : NetworkBehaviour
     [Server]
     public void SetTeamBox(GameObject go)
     {
-        if (go.GetComponent<TeamBox>().teamID ==1) 
-            { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightRed.mat"); }
-        if (go.GetComponent<TeamBox>().teamID ==2) 
-            { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightBlue.mat"); }
+        if (go.GetComponent<TeamBox>().teamID == 1) {go.GetComponent<TeamBox>().beamRed.SetActive(true);} 
+        if (go.GetComponent<TeamBox>().teamID == 2) {go.GetComponent<TeamBox>().beamBlue.SetActive(true);} 
+        else return;
     }
 
     public static bool IsOdd(int value)

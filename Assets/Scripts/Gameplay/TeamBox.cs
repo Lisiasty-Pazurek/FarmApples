@@ -9,6 +9,8 @@ public class TeamBox : NetworkBehaviour
     [SyncVar] public int teamPoints;
     [SerializeField] private int requiredScore = 5;
     [SerializeField] private LevelController levelController;
+    [SerializeField] public GameObject beamRed;
+    [SerializeField] public GameObject beamBlue;
     private UIScore uiScore;
 
     public override void OnStartServer() 
