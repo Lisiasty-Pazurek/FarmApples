@@ -197,9 +197,13 @@ namespace Mirror
                         break;
                 }
 
-                if (!apply)
+                if (apply)
                 {
-                    // we just skipped this change
+                    Callback?.Invoke(operation, item);
+                }
+                // we just skipped this change
+                else
+                {
                     changesAhead--;
                 }
             }
