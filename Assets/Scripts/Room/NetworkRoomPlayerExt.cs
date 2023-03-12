@@ -1,13 +1,19 @@
 using UnityEngine;
+using Mirror;
 
-namespace Mirror.Examples.NetworkRoom
+namespace MirrorBasics
 {
     [AddComponentMenu("")]
     public class NetworkRoomPlayerExt : NetworkRoomPlayer
     {
+
+
+
+        public static NetworkRoomPlayerExt localPlayer;
         public override void OnStartClient()
         {
             //Debug.Log($"OnStartClient {gameObject}");
+            if (isLocalPlayer) { localPlayer = this;}
         }
 
         public override void OnClientEnterRoom()
