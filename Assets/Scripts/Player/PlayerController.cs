@@ -1,9 +1,9 @@
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MirrorBasics;
 
-namespace MirrorBasics
-{
+
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(NetworkTransform))]
@@ -11,6 +11,7 @@ namespace MirrorBasics
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : NetworkBehaviour
     {
+        public PlayerController localGamePlayer;
         public CharacterController characterController;
 
         // [SyncVar] public int teamID = 1;
@@ -39,19 +40,20 @@ namespace MirrorBasics
         [Header("Animation")]
         [SerializeField]
         private Animator characterAnimator;
-        public UIGameplay uiGameplay;
+        private UIGameplay uiGameplay;
         public PlayerScore pScore;
-        public PlayerCamera pCamera;
+        private PlayerCamera pCamera;
 
         // private UIScore uiScore;
         // private UILobby uiLobby;
         // private Player localPlayer;
-        // public static PlayerController localGamePlayer;
+
         private LevelController levelManager;
 
     
         public override void OnStartLocalPlayer()
         {
+            levelManager = FindObjectOfType<LevelController>();
             if (characterController == null)
                 characterController = GetComponent<CharacterController>();
 
@@ -59,6 +61,8 @@ namespace MirrorBasics
                 characterAnimator = GetComponent<Animator>();
 
             if (!NetworkClient.ready) {NetworkClient.ready = true;}
+
+            localGamePlayer = this;
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
@@ -66,15 +70,14 @@ namespace MirrorBasics
             uiGameplay.ChangeUIState(1);
 
             pScore = gameObject.GetComponentInParent<PlayerScore>();
-//            uiLobby = GameObject.FindObjectOfType<UILobby>(); 
-//            levelManager = uiGameplay.levelController;
-
             pCamera = this.GetComponent<PlayerCamera>();
         }
 
         public override void OnStartServer()
         {
-            pScore = gameObject.GetComponentInParent<PlayerScore>();            
+            levelManager = FindObjectOfType<LevelController>();
+            pScore = gameObject.GetComponentInParent<PlayerScore>();
+            levelManager.gamePlayers.Add(this);
         }
 
 
@@ -93,7 +96,7 @@ namespace MirrorBasics
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
             this.pCamera.SetupPlayerCamera();
-            uiGameplay.ChangeUIState(2);    
+            uiGameplay.ChangeUIState(1);    
         }
 
         void Update()
@@ -155,19 +158,6 @@ namespace MirrorBasics
             velocity = characterController.velocity;            
         }
 
-        // [Command]
-        // public void MovePlayer(Vector3 direction)
-        // {
-        //    
-        // }
-
-        // [TargetRpc]
-        // void PlayerMovement ()
-        // {
-        //    direction + Vector3.up;   
-        //    characterController.Move();
-        // }
-
         private void Animate()
         {
             if (!isLocalPlayer || characterAnimator == null || !characterAnimator.enabled)
@@ -195,4 +185,4 @@ namespace MirrorBasics
         }
 
     }
-}
+

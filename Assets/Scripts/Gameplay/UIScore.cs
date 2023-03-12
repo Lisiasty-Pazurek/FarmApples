@@ -10,7 +10,7 @@ namespace MirrorBasics
     {
         public static UIScore uiScore;
         public PlayerScore player;
-        public NetworkRoomPlayer lobbyPlayer;
+        public NetworkRoomPlayerExt lobbyPlayer;
 //        public TeamBox teambox;
 //        private UIGameplay uiGameplay;
         [SerializeField] private Text playerName;

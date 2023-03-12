@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace MirrorBasics {
    
@@ -14,14 +15,11 @@ namespace MirrorBasics {
     [SyncVar]
     public List<PlayerController> players = new List<PlayerController> ();
 
-     }
+    }
 
 public class LevelController : NetworkBehaviour
 {   
-
     private NetworkRoomManagerExt networkManager;
-        
-
     [SyncVar] public bool readyToStart;
 
     public GameMode gameMode; 
@@ -29,9 +27,8 @@ public class LevelController : NetworkBehaviour
     public bool readyToStartLevel;
     [SerializeField] private float countdownDuration = 1f;
 
-
-        readonly public List<NetworkRoomPlayer> matchPlayers = new List<NetworkRoomPlayer>();
-        readonly public List<PlayerController> gamePlayers = new List<PlayerController>();
+        public List<NetworkRoomPlayer> matchPlayers = new List<NetworkRoomPlayer>();
+        public List<PlayerController> gamePlayers = new List<PlayerController>();
 
         readonly public List<GameObject> spawnedItems = new List<GameObject>();
 
@@ -43,12 +40,8 @@ public class LevelController : NetworkBehaviour
         [SerializeField] GameObject teamboxPrefab2;
 
         readonly public List<Transform> playerSpawnPoints = new List<Transform> ();
-        private ArrayList spawnPoints;
-
-        // [SerializeField]
-        // public Transform teamSpawnPoint;
-      
-        readonly public List<Transform> teamSpawnPoints = new List<Transform> ();
+        readonly public List<Transform> teamSpawnPoints = new List<Transform> (); 
+        readonly public List<Transform> rewardSpawnPoints = new List<Transform> (); 
 
         public bool gameEnded = false;
 
@@ -64,6 +57,7 @@ public class LevelController : NetworkBehaviour
             // else 
             uIGameplay.levelController = this;
             gameMode = this.GetComponent<GameMode>();
+
         }
 
         public override void OnStartLocalPlayer()   
@@ -74,6 +68,9 @@ public class LevelController : NetworkBehaviour
         public override void OnStartServer() 
         {
             gameMode = this.GetComponent<GameMode>();
+            StartCoroutine(Countdown());
+
+
         }
 
     [Server]
@@ -166,10 +163,14 @@ public class LevelController : NetworkBehaviour
         SetGamePlayersReady();
     }
 
+    // [ClientRpc]
+    // private void SetGamePlayersReady()
+    // {
+    //     localGamePlayer.SetPlayerReady = true;
+    // }
     [Server]
     private void SetGamePlayersReady()
     {
-
         foreach (PlayerController gamePlayer in gamePlayers) 
             {
                 gamePlayer.SetPlayerReady(false, true);
@@ -183,11 +184,6 @@ public class LevelController : NetworkBehaviour
         Debug.Log("Ending level for match: " );
         
     }
-
-
-
-
-    
 
 }
 

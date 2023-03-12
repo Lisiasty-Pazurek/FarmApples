@@ -13,12 +13,9 @@ public class UIGameplay : MonoBehaviour
     public NetworkRoomPlayer lobbyPlayer;
     public LevelController levelController;
 
-    [SerializeField] public Canvas uiLobby;
     [SerializeField] public Canvas preGameUICanvas;   
     [SerializeField] public Canvas gameUICanvas;
     [SerializeField] public Canvas postGameUICanvas;
-    [SerializeField] public Text playerNameInput;
-
     [SerializeField]public List<Canvas> uiStates;
 
     public int uiState = 0;
