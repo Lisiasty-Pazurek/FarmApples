@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
-
+using MirrorBasics;
 public class LobbySystem : MonoBehaviour
 {
-    public SampleNeworkManager networkManager;
+    [SerializeField] public NetworkRoomManagerExt networkManager;
     public LightReflectiveMirror.LightReflectiveMirrorTransport LRMTransport;
 
     [Header("Lobby Settings")]
@@ -30,8 +30,8 @@ public class LobbySystem : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        roomNameInputField.text = "ROOM " + Random.Range(0, 999).ToString();
-        playerNameInputField.text = "Player " + Random.Range(0, 999).ToString();
+        roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
+        playerNameInputField.text = "Gracz " + Random.Range(0, 999).ToString();
         Application.targetFrameRate = 60;
     }
 
@@ -70,7 +70,7 @@ public class LobbySystem : MonoBehaviour
 
     public void CreateRoom()
     {
-        if(roomNameInputField.text.Length < 1) roomNameInputField.text = "ROOM " + Random.Range(0, 999).ToString();
+        if(roomNameInputField.text.Length < 1) roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
 
         PlayerPrefs.SetString("PlayerName", playerNameInputField.text);
 

@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68476a87f458d7949b402f49bb398450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 0}
+  networkManager: {fileID: 707881953}
   LRMTransport: {fileID: 707881950}
   autoRefeshServerList: 0
-  refreshServerListTimer: 3
+  refreshServerListTimer: 10
   LobbyMenuParent: {fileID: 2067985706}
   lobbyMenuText: {fileID: 721349458}
   joinRoomNameInputField: {fileID: 613034991}
@@ -330,7 +330,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Room Name
+  m_Text: Nazwa gry
 --- !u!222 &190045737
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -914,7 +914,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HOST
+  m_Text: "Utw\xF3rz gr\u0119"
 --- !u!222 &339570205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1801,7 +1801,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Room Name...
+  m_Text: Nazwa gry...
 --- !u!222 &679236198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1998,8 +1998,8 @@ MonoBehaviour:
   useLoadBalancer: 0
   loadBalancerPort: 7070
   loadBalancerAddress: 127.0.0.1
-  serverName: My awesome server!
-  extraServerData: Map 1
+  serverName: FarmServer
+  extraServerData: Map 2
   maxServerPlayers: 10
   isPublicServer: 1
   serverListUpdated:
@@ -2066,29 +2066,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   runInBackground: 1
-  autoStartServerBuild: 1
+  autoStartServerBuild: 0
   autoConnectClientBuild: 0
   sendRate: 30
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/Scenes/LobbySample.unity
+  onlineScene: Assets/Scenes/RoomScene.unity
   transport: {fileID: 707881950}
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe,
+    type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d, type: 3}
+  - {fileID: 1139254171913846, guid: 2e3b842b1773599459ef028a853d0f77, type: 3}
+  - {fileID: 7284221734329707013, guid: e866e8ff59718bf4a830de9355ba04f0, type: 3}
+  - {fileID: 5473695048384048278, guid: 01cbf03f7b5fc2745a449469d319ac8f, type: 3}
+  - {fileID: 1480027675339556, guid: 0790e6e2a0bd9264e84467f3b8c9e29f, type: 3}
+  - {fileID: 1480027675339556, guid: 2507baa446f945341bc2815bb81c19dd, type: 3}
   timeInterpolationGui: 0
   showRoomGUI: 1
   minPlayers: 1
-  roomPlayerPrefab: {fileID: 0}
+  roomPlayerPrefab: {fileID: 114033720796874720, guid: f0bdb12802bdfa24486b37e1f1b174a0,
+    type: 3}
   RoomScene: Assets/Scenes/RoomScene.unity
   GameplayScene: Assets/Scenes/Apples01.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
-  lobbySystem: {fileID: 0}
+  lobbySystem: {fileID: 19719523}
 --- !u!1 &721349456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2566,7 +2574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BACK
+  m_Text: Cofnij
 --- !u!222 &857228723
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4261,7 +4269,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CREATE A ROOM
+  m_Text: "Utw\xF3rz gr\u0119"
 --- !u!222 &1356699618
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4577,11 +4585,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: NetworkScene
+    - m_Text: RoomScene
       m_Image: {fileID: 0}
-    - m_Text: NetworkScene
+    - m_Text: RoomScene
       m_Image: {fileID: 0}
-    - m_Text: NetworkScene
+    - m_Text: RoomScene
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
