@@ -14,25 +14,13 @@ namespace MirrorBasics {
     [SyncVar]
     public List<PlayerController> players = new List<PlayerController> ();
 
-    // public Team (string teamID, PlayerController playerCtrl)
-    // {
-    //     this.teamID = teamID;
-    //     players.Add(playerCtrl);
-    // }
-
-    // public Team () {}
      }
-[RequireComponent (typeof (GameMode))]
+
 public class LevelController : NetworkBehaviour
 {   
 
-    private MatchMaker matchMaker;
-  
-    private NetworkManager networkManager;
+    private NetworkRoomManagerExt networkManager;
         
-    [SyncVar] public Match currentMatch;
-
-    [SyncVar] public string levelMatchID;
 
     [SyncVar] public bool readyToStart;
 
@@ -41,9 +29,8 @@ public class LevelController : NetworkBehaviour
     public bool readyToStartLevel;
     [SerializeField] private float countdownDuration = 1f;
 
-        readonly public List<Match> levelmatches = new List<Match>();
-        readonly public List<Team> teams = new List<Team>();
-        readonly public List<Player> matchPlayers = new List<Player>();
+
+        readonly public List<NetworkRoomPlayer> matchPlayers = new List<NetworkRoomPlayer>();
         readonly public List<PlayerController> gamePlayers = new List<PlayerController>();
 
         readonly public List<GameObject> spawnedItems = new List<GameObject>();
@@ -76,7 +63,6 @@ public class LevelController : NetworkBehaviour
             // if (!CompareMatchId()) {return;} // it will be necessary for multiple spawned levels on server
             // else 
             uIGameplay.levelController = this;
-            Player.localPlayer.levelController = this;
             gameMode = this.GetComponent<GameMode>();
         }
 
@@ -91,29 +77,8 @@ public class LevelController : NetworkBehaviour
         }
 
     [Server]
-    public void InitiateLevel(string levelMatchID)
+    public void InitiateLevel()
     {
-        Debug.Log("Level Controller starting for match: " + levelMatchID);
-        matchMaker = GameObject.FindObjectOfType<MatchMaker>();
-        networkManager = GameObject.FindObjectOfType<NetworkManager>();
-
-        for (int i = 0; i < matchMaker.matches.Count; i++) {
-            if (matchMaker.matches[i].matchID == levelMatchID) 
-            {
-                levelmatches.Add(matchMaker.matches[i]);
-                Debug.Log("Passing match list from matchmaker to levelcontroller");
-            }
-        }
-        for (int i = 0; i < matchMaker.matches.Count;i++)
-        {   
-            if (matchMaker.matches[i].matchID == levelMatchID) 
-            {
-                currentMatch = matchMaker.matches[i];
-                matchPlayers.AddRange(currentMatch.players);
-                Debug.Log("For levelMatch: " + levelMatchID +" currentMatch.matchID = " + currentMatch.matchID + " and : " + matchMaker.matches[i].matchID + " what is i: " + i + " Amount of players in this match:  "+ currentMatch.players.Count);
-            }
-            
-        }
         CheckIfMatchPlayersAreReady();
     }
 
@@ -121,83 +86,33 @@ public class LevelController : NetworkBehaviour
     {
         if (readyToStart){return;}
         int k = 0; 
-        foreach (Player player in matchPlayers) 
+        foreach (PlayerController player in gamePlayers) 
         {
             if (player.isReady == true)
             {k++;}
         }
-        if (k == matchPlayers.Count)  {readyToStart = true;}
-        // CheckifLevelisReadyToStart(readyToStart);
-        PrepareLevel(levelMatchID);
-        
+        if (k == gamePlayers.Count)  {readyToStart = true;}
+
+        PrepareLevel();
+       
     }
 
 
     [Server]
-    public void PrepareLevel(string levelMatchID)
+    public void PrepareLevel()
     {
         int playersAmount = matchPlayers.Count;
         Debug.Log("Players in game: " + playersAmount);
-        // GetPlayerSpawnPoints("PlayerSpawnPoint");
-        // GetTeamSpawnPoints("TeamSpawnPoint");
-        SpawnPlayers(levelMatchID);
+
+        SpawnPlayers();
     }
 
-// ### Disabled for debugging + setting up/moving to other script as a server doesnt have access to loaded level 
-
-    // private void GetPlayerSpawnPoints(string spawnType)
-    // {
-    //     GameObject[] spawnPoints;
-    //     spawnPoints = GameObject.FindGameObjectsWithTag(spawnType);
-    //     foreach (GameObject spawnPoint in spawnPoints)  
-    //     { playerSpawnPoints.Add(spawnPoint.transform);}
-    //     Debug.Log("Ended getting PlayerSpawnPoints");
-    // }
-
-    //     private void GetTeamSpawnPoints(string spawnType)
-    // {
-    //     GameObject[] spawnPoints;
-    //     spawnPoints = GameObject.FindGameObjectsWithTag(spawnType);
-    //     foreach (GameObject spawnPoint in spawnPoints)   
-    //     { teamSpawnPoints.Add(spawnPoint.transform);}
-    //     Debug.Log("Ended getting TeanSpawnPoints");
-    // }
    
 
     [Server]
-    public void SpawnPlayers (string levelMatchID) 
+    public void SpawnPlayers () 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
-           
-                int t = 0;
-                int t2 = 0; 
-                
-                foreach (var player in matchPlayers) 
-                {   
-
-                    if (player.matchID != levelMatchID) {return;} 
-                    if (IsOdd(t)) {playerPrefab = playerPrefabDonkey; t2 =45; } 
-                    else {playerPrefab = playerPrefabSheep; t2 =0;}
-
-                    Vector3 startPos = new Vector3(5 +t*2, 1, t2);
-                    GameObject go = Instantiate(playerPrefab, startPos, Quaternion.identity);
-                    if (IsOdd(matchPlayers.Count)&&IsOdd(t)) {go.GetComponent<PlayerController>().moveSpeed=8f;} 
-                    else {go.GetComponent<PlayerController>().moveSpeed=5;};
-
-                    go.GetComponent<PlayerController>().playerIndex = player.playerIndex; 
-                    go.GetComponent<NetworkMatch>().matchId = player.GetComponent<NetworkMatch>().matchId;
-                    if (IsOdd(t)) {go.GetComponent<PlayerScore>().teamID = 2;}
-
-                    NetworkServer.ReplacePlayerForConnection(player.connectionToClient, go, true);
-                    gamePlayers.Add(go.GetComponent<PlayerController>());
-//                    NetworkServer.SetClientReady(gamePlayers[t].connectionToClient);
-
-                    Debug.Log("SpawnPlayers function: moved player to gamePlayer list");
-                    gamePlayers[t].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-
-                    
-                    t++;
-                 }
         SpawnTeamboxes();
     }
 
@@ -205,32 +120,13 @@ public class LevelController : NetworkBehaviour
     [Server]
     public void SpawnTeamboxes() 
     {
-        int t = 0;
-        for (int i = 0; i < 2; i++)
-        {
-            Vector3 spawnPosition = new Vector3( 0, 0, t*40);
-            Debug.Log("Spawn Teamboxes function: Spawning teamboxes for: " +teams.Count + " teams");
-            GameObject go = Instantiate(teamboxPrefab, spawnPosition, Quaternion.identity);
-            go.GetComponent<NetworkMatch>().matchId = this.currentMatch.matchID.ToGuid();
-            go.GetComponent<TeamBox>().teamID = t+1;
-            SetTeamBox(go);
-
-            NetworkServer.Spawn(go);
-            spawnedItems.Add(go);     
-            t ++;
-        }
         Debug.Log("PrepareLevel function: Preparing for making clients ready");       
     }
 
     [Server]
     public void SetTeamBox(GameObject go)
     {
-        if (go.GetComponent<TeamBox>().teamID ==1) 
-            { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightRed.mat"); }
-        if (go.GetComponent<TeamBox>().teamID ==2) 
-            { ParticleSystemRenderer rend = go.GetComponentInChildren<ParticleSystemRenderer>();
-            rend.sharedMaterial = Resources.Load<Material>("Assets/Prefabs/VFX/mat/RayStraightBlue.mat"); }
+
     }
 
     public static bool IsOdd(int value)
@@ -266,7 +162,7 @@ public class LevelController : NetworkBehaviour
             Debug.Log(" Countdown for " + timeLeft);
             yield return new WaitForSeconds(.1f);
         }
-        Debug.Log("Ending Countdown for " + levelMatchID);
+        Debug.Log("Ending Countdown  " );
         SetGamePlayersReady();
     }
 
@@ -284,36 +180,15 @@ public class LevelController : NetworkBehaviour
     [ClientRpc]
     public void EndLevel()
     {
-        Debug.Log("Ending level for match: " + levelMatchID);
-        ClientLeaveMatch();
-        CleanSpawnedObjects();
+        Debug.Log("Ending level for match: " );
+        
     }
 
-    [Client]
-    private void ClientLeaveMatch() 
-    {
-        Player.localPlayer.currentMatch = null;
-        Player.localPlayer.UnloadClientScene(gameMode.mapName);
-        Player.localPlayer.uIGameplay.ChangeUIState(3);        
-    }
 
-    [Server]
-    public void CleanSpawnedObjects()
-    {
-        foreach (GameObject item in spawnedItems)
-        {
-            if (item != null) 
-            Destroy(item);
-        }
-    }
+
+
     
 
-    public bool CompareMatchId ()
-    {
-        if (this.currentMatch.matchID == NetworkClient.connection.identity.GetComponent<Player>().matchID)
-        { return true;}
-        else return false;
-    }
 }
 
 

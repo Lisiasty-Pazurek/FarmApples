@@ -2087,7 +2087,7 @@ MonoBehaviour:
   - {fileID: 1480027675339556, guid: 0790e6e2a0bd9264e84467f3b8c9e29f, type: 3}
   - {fileID: 1480027675339556, guid: 2507baa446f945341bc2815bb81c19dd, type: 3}
   timeInterpolationGui: 0
-  showRoomGUI: 1
+  showRoomGUI: 0
   minPlayers: 1
   roomPlayerPrefab: {fileID: 114033720796874720, guid: f0bdb12802bdfa24486b37e1f1b174a0,
     type: 3}

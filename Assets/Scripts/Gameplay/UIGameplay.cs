@@ -10,7 +10,7 @@ public class UIGameplay : MonoBehaviour
     public static UIGameplay uiGameplay;
     public UIScore uiScore;
     public PlayerController player; 
-    public Player lobbyPlayer;
+    public NetworkRoomPlayer lobbyPlayer;
     public LevelController levelController;
 
     [SerializeField] public Canvas uiLobby;
@@ -42,7 +42,7 @@ public class UIGameplay : MonoBehaviour
 // Function logic can be moved to lobby player instead to get it only for callout here
     public void ImReady()
     {
-        lobbyPlayer.playerReady(false, true);
+        lobbyPlayer.readyToBegin = true;
         ChangeUIState(1);
     }
 
@@ -66,7 +66,7 @@ public class UIGameplay : MonoBehaviour
     {
         player.SetReadyState(false, true);
         Debug.Log("My Gameplayer is setting up to be ready, passing info to the player controller to call it at level controller");
-        lobbyPlayer.CmdCheckLevelReady();
+        
     }
 
 
@@ -75,8 +75,7 @@ public class UIGameplay : MonoBehaviour
 
     public void StartLevel()
     {
-        string matchID = lobbyPlayer.currentMatch.matchID;
-        levelController.InitiateLevel(matchID);
+        levelController.InitiateLevel();
     }
 
 

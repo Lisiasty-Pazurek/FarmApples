@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
 namespace MirrorBasics 
 {
@@ -9,7 +10,7 @@ namespace MirrorBasics
     {
         public static UIScore uiScore;
         public PlayerScore player;
-        public Player lobbyPlayer;
+        public NetworkRoomPlayer lobbyPlayer;
 //        public TeamBox teambox;
 //        private UIGameplay uiGameplay;
         [SerializeField] private Text playerName;
@@ -24,9 +25,7 @@ namespace MirrorBasics
 
         public void SetPlayerName () 
         {
-            lobbyPlayer = Player.localPlayer; // GameObject.FindObjectOfType<Player>(); // at game level start = if (isClient) {UIScore.instance.SetPlayername(localPlayer);}
-            lobbyPlayer.playerName = playerName.text;
-//            Debug.Log("Setting planer name for " + player.playerIndex);
+
         }
 
         public void SetPlayerScore(int score)
