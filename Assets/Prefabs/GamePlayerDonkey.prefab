@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: -6233809968765690729}
   - component: {fileID: 9118952894041304543}
   - component: {fileID: 6740608712308461914}
-  - component: {fileID: -147794168206276371}
   - component: {fileID: -2585455183307374132}
   m_Layer: 0
   m_Name: GamePlayerDonkey
@@ -104,26 +103,26 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  localGamePlayer: {fileID: 0}
   characterController: {fileID: 143011667059871024}
+  characterModel: []
   playerIndex: 1
   moveSpeed: 5
   turnSensitivity: 70
   maxTurnSpeed: 110
   jumpSpeed: 5
   jumpPower: 6
+  isGrounded: 1
+  isFalling: 0
+  dashCooldown: 5
+  isDashing: 0
+  characterAnimator: {fileID: 6740608712308461914}
+  pScore: {fileID: 0}
   horizontal: 0
   vertical: 0
   turn: 0
-  isGrounded: 1
-  isFalling: 0
   velocity: {x: 0, y: 0, z: 0}
-  dashCooldown: 5
-  isDashing: 0
   isReady: 0
-  characterAnimator: {fileID: 6740608712308461914}
-  uiGameplay: {fileID: 0}
-  pScore: {fileID: 0}
-  pCamera: {fileID: 0}
 --- !u!114 &-6736841464767829722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,21 +243,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &-147794168206276371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480027675339556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d17e718851449a6879986e45c458fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!136 &-2585455183307374132
 CapsuleCollider:
   m_ObjectHideFlags: 0

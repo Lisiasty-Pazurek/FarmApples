@@ -17,10 +17,10 @@ public class GameMode : MonoBehaviour
     public int maxRewards;
     public int maxBonuses;
 
-    [SerializeField] public List<Transform> playerSpawnPoints;
-    [SerializeField] public List<Transform> rewardSpawnPoints;
-    [SerializeField] public List<Transform> teamSpawnPoints;
-    [SerializeField] public List<Transform> pickupSpawnPoints;  
+    // [SerializeField] public List<Transform> playerSpawnPoints;
+    // [SerializeField] public List<Transform> rewardSpawnPoints;
+    // [SerializeField] public List<Transform> teamSpawnPoints;
+    // [SerializeField] public List<Transform> pickupSpawnPoints;  
     public Scene gameScene;
     
     public void  Start() 
@@ -29,26 +29,26 @@ public class GameMode : MonoBehaviour
     }
     public void SetGameMode()
     {
-        if (gameModeName == "Apples")
-        {
-            minPlayers = 2;
-            maxPlayers = 10;
-            minTeams = 2;
-            maxTeams = 2;
-            maxScore = 10;
-            mapName = "Apples01";
-        }
-        if (gameModeName == "Quiz")
-        {
-            minPlayers = 1;
-            maxPlayers = 20;
-            minTeams = 1;
-            maxTeams = 1;
-            maxScore = 16;
-            mapName = "Quiz01";
-        }
+        // if (gameModeName == "Apples")
+        // {
+        //     minPlayers = 1;
+        //     maxPlayers = 10;
+        //     minTeams = 1;
+        //     maxTeams = 2;
+        //     maxScore = 10;
+        //     mapName = "Apples01";
+        // }
+        // if (gameModeName == "Quiz")
+        // {
+        //     minPlayers = 1;
+        //     maxPlayers = 20;
+        //     minTeams = 1;
+        //     maxTeams = 1;
+        //     maxScore = 16;
+        //     mapName = "Quiz01";
+        // }
 
-        else return;
+        
     }
 
 

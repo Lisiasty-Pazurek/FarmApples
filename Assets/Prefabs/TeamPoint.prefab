@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5708567069253077665}
   - component: {fileID: 398205061791930467}
   - component: {fileID: 8012387751598039280}
-  - component: {fileID: 1852226222006258459}
   m_Layer: 0
   m_Name: TeamPoint
   m_TagString: LevelObject
@@ -86,21 +85,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.6
   m_Center: {x: 0, y: 0.2, z: 0}
---- !u!114 &1852226222006258459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7284221734329707013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d17e718851449a6879986e45c458fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!1001 &806933989283029000
 PrefabInstance:
   m_ObjectHideFlags: 0

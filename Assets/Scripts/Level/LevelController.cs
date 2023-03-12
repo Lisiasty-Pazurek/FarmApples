@@ -20,6 +20,7 @@ public class LevelController : NetworkBehaviour
     [Header ("Attributes")]
     private NetworkRoomManagerExt networkManager;
     [SerializeField]public GameMode gameMode;     
+    [SerializeField]public Spawner spawner;    
     [SyncVar] public bool readyToStart;
     public bool readyToStartLevel;
     public bool gameEnded = false;    
@@ -31,8 +32,8 @@ public class LevelController : NetworkBehaviour
         [SerializeField] GameObject playerPrefabSheep;
         [SerializeField] GameObject playerPrefabDonkey;
         [SerializeField] GameObject prizePrefab;
-        [SerializeField] GameObject teamboxPrefab;
-        [SerializeField] GameObject teamboxPrefab2;
+        // [SerializeField] public GameObject teamboxPrefab;
+        // [SerializeField] public GameObject teamboxPrefab2;
         [SerializeField] private Text countdownText;
         private Scene onlineScene;
         private PlayerController pController;
@@ -57,6 +58,7 @@ public class LevelController : NetworkBehaviour
         public override void OnStartServer() 
         {
             gameMode = this.GetComponent<GameMode>();
+            InitiateLevel();
             StartCoroutine(Countdown());
         }
 
@@ -100,8 +102,19 @@ public class LevelController : NetworkBehaviour
     [Server]
     public void SpawnTeamboxes() 
     {
-        Debug.Log("PrepareLevel function: Preparing for making clients ready");
-
+        spawner.SpawnTeamboxes();
+        // for (int i = 0; i <= gameMode.maxTeams; i++)
+        //     { 
+        //         if (!IsOdd(i))
+        //         {
+        //             Debug.Log("sending spawnpoint: " + i);
+        //             spawner.SpawnTeambox(1, i);
+        //         }
+        //         else 
+        //         {
+        //             spawner.SpawnTeambox(2, i);
+        //         }
+        //     }
     }
 
     [Server]

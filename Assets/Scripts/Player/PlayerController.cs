@@ -31,6 +31,7 @@ using System.Collections.Generic;
 
         [Header("References")]
         [SerializeField]  private Animator characterAnimator;
+        [SerializeField] public NetworkAnimator networkAnimator;
         private UIGameplay uiGameplay;
         public PlayerScore pScore;
         private PlayerCamera pCamera;
@@ -72,8 +73,8 @@ using System.Collections.Generic;
 
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             pCamera = this.GetComponent<PlayerCamera>();
-            NetworkAnimator networkAnimator = GetComponent<NetworkAnimator>();
-            networkAnimator.animator = characterAnimator;
+            networkAnimator = GetComponent<NetworkAnimator>();
+//            networkAnimator.animator = characterAnimator;
         }
 
         public override void OnStartServer()
@@ -170,11 +171,19 @@ using System.Collections.Generic;
             characterAnimator.SetBool("Rolling", isDashing);
         }
 
+    [ClientRpc]
         public void SetModel(string modelName)
         {
             foreach (GameObject charModel in characterModel) 
             {
-                if (charModel.name != modelName)
+                if (charModel.name == modelName)
+                {
+                    charModel.SetActive(true);
+                    characterAnimator = charModel.GetComponent<Animator>();
+                    networkAnimator.animator = charModel.GetComponent<Animator>();
+                }
+
+                else 
                 {
                     charModel.SetActive(false);
                 }
@@ -185,7 +194,7 @@ using System.Collections.Generic;
         void OnTriggerEnter(Collider other)
         {
             // Stealing ability 
-            if (other.gameObject.CompareTag("Player") && this.GetComponent<NetworkMatch>().matchId == other.GetComponent<NetworkMatch>().matchId)
+            if (other.gameObject.CompareTag("Player") && pScore.teamID != other.GetComponent<PlayerScore>().teamID)
             {
                 if (!this.pScore.canSteal){return;}
                 if (other.gameObject.GetComponent<PlayerScore>().hasItem && !this.pScore.hasItem) 

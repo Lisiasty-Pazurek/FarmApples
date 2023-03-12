@@ -47,12 +47,18 @@ namespace MirrorBasics {
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
             PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
+            PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
             playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
             if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
             {
-                gamePlayer.GetComponent<PlayerController>().SetModel("Sheep");
+                playerGameController.SetModel("Sheep");
+                playerScore.teamID = 1;
             }
-            else gamePlayer.GetComponent<PlayerController>().SetModel("Donkey");
+            else 
+            {
+                playerGameController.SetModel("Donkey");
+                playerScore.teamID = 2;
+            }
             return true;
         }
 

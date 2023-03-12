@@ -7,8 +7,17 @@ public class Spawner: NetworkBehaviour
     {
         [SerializeField]  GameObject rewardPrefab;
         [SerializeField]  GameObject stealingPrefab;
-        [SerializeField]  GameObject teamPrefab;
-        private GameMode gameMode;
+
+        [SerializeField] public GameObject teampointPrefab;
+        [SerializeField] public GameObject teampointPrefab2;
+        private GameObject teamboxPrefab;
+
+    [SerializeField] public List<Transform> playerSpawnPoints;
+    [SerializeField] public List<Transform> rewardSpawnPoints;
+    [SerializeField] public List<Transform> teamSpawnPoints;
+    [SerializeField] public List<Transform> pickupSpawnPoints;  
+
+        public GameMode gameMode;
 
         private LevelController lvlController;
 
@@ -17,7 +26,7 @@ public class Spawner: NetworkBehaviour
         public override void OnStartServer() 
         {
             lvlController = gameObject.GetComponentInParent<LevelController>();
-            gameMode = this.GetComponent<GameMode>();
+            gameMode = gameObject.GetComponentInParent<GameMode>();
             SetLocation(startLocation);
             InitialSpawn();
         }
@@ -50,7 +59,39 @@ public class Spawner: NetworkBehaviour
             pickup.GetComponentInChildren<MeshRenderer>().enabled = true;       
         }
 
+    public void SpawnTeamboxes()
+    {
+        for (int i = 0; i < gameMode.maxTeams;)
+            { 
+                if (!IsOdd(i))
+                {
+                    Debug.Log("sending spawnpoint: " + i);
+                    SpawnTeambox(1, i);
+                }
+                else 
+                {
+                    SpawnTeambox(2, i);
+                }
+                i++;
+            }
+    }
+        [Server]
+        public void SpawnTeambox(int prefab, int spawnPosition)
+        {
+            if (prefab == 1) { teamboxPrefab = teampointPrefab;}
+            if (prefab == 2) { teamboxPrefab = teampointPrefab2;}
+            Debug.Log("Spawner got gameobject prefab of name: " + teamboxPrefab.name + "and spawnPosition index of: " + spawnPosition);
+            GameObject teambox = Instantiate(teamboxPrefab, teamSpawnPoints[spawnPosition]);
+            NetworkServer.Spawn(teambox);
+ //           lvlController.spawnedItems.Add(teambox);
+            
+        }
 
+        /// #### supporting function
+    public static bool IsOdd(int value)
+    {
+        return value % 2 != 0;
+    }
 
     }
 }
