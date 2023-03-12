@@ -51,12 +51,12 @@ namespace MirrorBasics {
             playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
             if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
             {
-                playerGameController.SetModel("Sheep");
+                playerGameController.modelName = "Sheep";
                 playerScore.teamID = 1;
             }
             else 
             {
-                playerGameController.SetModel("Donkey");
+                playerGameController.modelName = "Donkey";
                 playerScore.teamID = 2;
             }
             return true;
@@ -102,7 +102,7 @@ namespace MirrorBasics {
         {
             base.OnGUI();
 
-            if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START GAME"))
+            if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START"))
             {
                 // set to false to hide it in the game scene
                 showStartButton = false;

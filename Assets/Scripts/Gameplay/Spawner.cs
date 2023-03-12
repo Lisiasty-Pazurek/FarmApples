@@ -75,14 +75,16 @@ public class Spawner: NetworkBehaviour
                 i++;
             }
     }
-        [Server]
+
+    [Server]
         public void SpawnTeambox(int prefab, int spawnPosition)
         {
             if (prefab == 1) { teamboxPrefab = teampointPrefab;}
             if (prefab == 2) { teamboxPrefab = teampointPrefab2;}
             Debug.Log("Spawner got gameobject prefab of name: " + teamboxPrefab.name + "and spawnPosition index of: " + spawnPosition);
-            GameObject teambox = Instantiate(teamboxPrefab, teamSpawnPoints[spawnPosition]);
+            GameObject teambox = Instantiate(teamboxPrefab);
             NetworkServer.Spawn(teambox);
+            teambox.transform.position = teamSpawnPoints[spawnPosition].position;
  //           lvlController.spawnedItems.Add(teambox);
             
         }

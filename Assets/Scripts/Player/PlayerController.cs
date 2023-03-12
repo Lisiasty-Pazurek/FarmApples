@@ -27,7 +27,8 @@ using System.Collections.Generic;
         public bool isGrounded = true;
         public bool isFalling = false;
         public float dashCooldown = 5f;
-        public bool isDashing = false;       
+        public bool isDashing = false; 
+        [SyncVar] public string modelName;      
 
         [Header("References")]
         [SerializeField]  private Animator characterAnimator;
@@ -65,6 +66,7 @@ using System.Collections.Generic;
             if (!NetworkClient.ready) {NetworkClient.ready = true;}
 
             localGamePlayer = this;
+            levelManager.pController = localGamePlayer;
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
@@ -74,7 +76,6 @@ using System.Collections.Generic;
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             pCamera = this.GetComponent<PlayerCamera>();
             networkAnimator = GetComponent<NetworkAnimator>();
-//            networkAnimator.animator = characterAnimator;
         }
 
         public override void OnStartServer()
@@ -82,6 +83,11 @@ using System.Collections.Generic;
             levelManager = FindObjectOfType<LevelController>();
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             levelManager.gamePlayers.Add(this);
+            
+        }
+        public override void OnStartClient()
+        {
+            SetModel();
         }
 
 
@@ -170,25 +176,40 @@ using System.Collections.Generic;
             characterAnimator.SetBool("Idle", velocity == Vector3.zero);
             characterAnimator.SetBool("Rolling", isDashing);
         }
+       
+        [ClientRpc]
+        public void SetModel()
+        {
+//          (!isLocalPlayer) {return;}
+            RpcSetModel(modelName);
+        }
 
-    [ClientRpc]
-        public void SetModel(string modelName)
+        [ClientRpc]
+        public void RpcSetModel(string modelName)
         {
             foreach (GameObject charModel in characterModel) 
             {
+
                 if (charModel.name == modelName)
                 {
                     charModel.SetActive(true);
                     characterAnimator = charModel.GetComponent<Animator>();
                     networkAnimator.animator = charModel.GetComponent<Animator>();
+                    Debug.Log("Changed model to: " + charModel.name);
                 }
-
-                else 
+                if (charModel.name != modelName)
                 {
                     charModel.SetActive(false);
+                    Debug.Log("Disabling not needed models");
                 }
+
+                
             }
+
         }
+
+   
+
 
         [ServerCallback]
         void OnTriggerEnter(Collider other)

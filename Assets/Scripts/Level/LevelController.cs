@@ -36,7 +36,7 @@ public class LevelController : NetworkBehaviour
         // [SerializeField] public GameObject teamboxPrefab2;
         [SerializeField] private Text countdownText;
         private Scene onlineScene;
-        private PlayerController pController;
+        public PlayerController pController;
     [Header ("Lists")]
         public List<PlayerController> gamePlayers = new List<PlayerController>();
         public List<GameObject> spawnedItems = new List<GameObject>();
@@ -103,18 +103,6 @@ public class LevelController : NetworkBehaviour
     public void SpawnTeamboxes() 
     {
         spawner.SpawnTeamboxes();
-        // for (int i = 0; i <= gameMode.maxTeams; i++)
-        //     { 
-        //         if (!IsOdd(i))
-        //         {
-        //             Debug.Log("sending spawnpoint: " + i);
-        //             spawner.SpawnTeambox(1, i);
-        //         }
-        //         else 
-        //         {
-        //             spawner.SpawnTeambox(2, i);
-        //         }
-        //     }
     }
 
     [Server]
@@ -139,12 +127,18 @@ public class LevelController : NetworkBehaviour
             RpcUpdateCountdown(secondsLeft);
             Debug.Log(" Countdown for " + timeLeft);
             countdownTimer-= 1;
+            if (countdownTimer == 2)
+            {
+                SetPlayerModels();
+            }
         }
+
 
         if (countdownTimer < 0){
             Debug.Log("Ending Countdown  " );
             SetGamePlayersReady();
             RpcDisableCountdown();
+
         }
     }
 
@@ -158,12 +152,24 @@ public class LevelController : NetworkBehaviour
     {
         countdownText.enabled = false;
     }
-
-    // [ClientRpc]
-    // private void SetGamePlayersReady()
+    
+    // [Server]
+    // private void SetPlayerModels()
     // {
-    //     localGamePlayer.SetPlayerReady = true;
+    //     foreach (PlayerController gamePlayer in gamePlayers) 
+    //         {
+    //             gamePlayer.SetModel(gamePlayer.modelName);
+    //         }
     // }
+
+    [ClientRpc]
+    private void SetPlayerModels()
+    {
+
+        pController.SetModel();
+            
+    }
+
     [Server]
     private void SetGamePlayersReady()
     {
