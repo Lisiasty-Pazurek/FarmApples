@@ -42,7 +42,7 @@ public class Spawner: NetworkBehaviour
             if (!NetworkServer.active) return;
             Vector3 spawnPosition = new Vector3(Random.Range(startLocation.position.x-180,startLocation.position.x +180), 0, Random.Range(startLocation.position.z-10,startLocation.position.z +120));
             GameObject pickup = Instantiate(spawnPrefab, spawnPosition, Quaternion.identity);
-            pickup.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
+            // pickup.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
             NetworkServer.Spawn(pickup);
             lvlController.spawnedItems.Add(pickup);
             pickup.GetComponentInChildren<MeshRenderer>().enabled = true;       

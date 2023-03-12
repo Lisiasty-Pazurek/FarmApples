@@ -6,9 +6,6 @@ namespace MirrorBasics
     [AddComponentMenu("")]
     public class NetworkRoomPlayerExt : NetworkRoomPlayer
     {
-
-
-
         public static NetworkRoomPlayerExt localPlayer;
         public override void OnStartClient()
         {
