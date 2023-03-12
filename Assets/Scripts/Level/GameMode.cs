@@ -14,6 +14,9 @@ public class GameMode : MonoBehaviour
     public int maxTeams;
     public int maxScore;
 
+    public int maxRewards;
+    public int maxBonuses;
+
     [SerializeField] public List<Transform> playerSpawnPoints;
     [SerializeField] public List<Transform> rewardSpawnPoints;
     [SerializeField] public List<Transform> teamSpawnPoints;

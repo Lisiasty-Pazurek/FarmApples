@@ -22,21 +22,23 @@ public class Spawner: NetworkBehaviour
             InitialSpawn();
         }
 
+        [Server]
         public void SetLocation(Transform setLocation)
         {
             startLocation = setLocation;
         }
+        [Server]
         internal void InitialSpawn()
         {
             if (!NetworkServer.active) return;
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < gameMode.maxRewards; i++)
             SpawnPickup(rewardPrefab);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < gameMode.maxBonuses; i++)
             SpawnPickup(stealingPrefab);
         }
-
+        [Server]
         internal void SpawnPickup(GameObject spawnPrefab)
         {
             if (!NetworkServer.active) return;

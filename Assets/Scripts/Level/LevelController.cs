@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Linq;
 
 namespace MirrorBasics {
@@ -10,54 +11,42 @@ namespace MirrorBasics {
     [System.Serializable]
     public class Team 
     {
-    [SyncVar]
-    public string teamID;
-    [SyncVar]
-    public List<PlayerController> players = new List<PlayerController> ();
-
+        [SyncVar] public string teamID;
+        [SyncVar] public List<PlayerController> players = new List<PlayerController> ();
     }
 
 public class LevelController : NetworkBehaviour
 {   
+    [Header ("Attributes")]
     private NetworkRoomManagerExt networkManager;
+    [SerializeField]public GameMode gameMode;     
     [SyncVar] public bool readyToStart;
-
-    public GameMode gameMode; 
-
     public bool readyToStartLevel;
-    [SerializeField] private float countdownDuration = 1f;
+    public bool gameEnded = false;    
+    [SyncVar] public float countdownTimer;  
 
-        public List<NetworkRoomPlayer> matchPlayers = new List<NetworkRoomPlayer>();
-        public List<PlayerController> gamePlayers = new List<PlayerController>();
 
-        readonly public List<GameObject> spawnedItems = new List<GameObject>();
-
+    [Header ("References")]
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject playerPrefabSheep;
         [SerializeField] GameObject playerPrefabDonkey;
         [SerializeField] GameObject prizePrefab;
         [SerializeField] GameObject teamboxPrefab;
         [SerializeField] GameObject teamboxPrefab2;
-
-        readonly public List<Transform> playerSpawnPoints = new List<Transform> ();
-        readonly public List<Transform> teamSpawnPoints = new List<Transform> (); 
-        readonly public List<Transform> rewardSpawnPoints = new List<Transform> (); 
-
-        public bool gameEnded = false;
-
+        [SerializeField] private Text countdownText;
         private Scene onlineScene;
         private PlayerController pController;
+    [Header ("Lists")]
+        public List<PlayerController> gamePlayers = new List<PlayerController>();
+        public List<GameObject> spawnedItems = new List<GameObject>();
 
         public void Start() {  }
 
         public override void OnStartClient() 
         {
             UIGameplay uIGameplay = FindObjectOfType<UIGameplay>();
-            // if (!CompareMatchId()) {return;} // it will be necessary for multiple spawned levels on server
-            // else 
             uIGameplay.levelController = this;
             gameMode = this.GetComponent<GameMode>();
-
         }
 
         public override void OnStartLocalPlayer()   
@@ -69,8 +58,6 @@ public class LevelController : NetworkBehaviour
         {
             gameMode = this.GetComponent<GameMode>();
             StartCoroutine(Countdown());
-
-
         }
 
     [Server]
@@ -91,23 +78,19 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStart = true;}
 
         PrepareLevel();
-       
     }
 
 
     [Server]
     public void PrepareLevel()
     {
-        int playersAmount = matchPlayers.Count;
+        int playersAmount = gamePlayers.Count;
         Debug.Log("Players in game: " + playersAmount);
-
-        SpawnPlayers();
+        PreparePlayers();
     }
 
-   
-
     [Server]
-    public void SpawnPlayers () 
+    public void PreparePlayers () 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
         SpawnTeamboxes();
@@ -117,7 +100,8 @@ public class LevelController : NetworkBehaviour
     [Server]
     public void SpawnTeamboxes() 
     {
-        Debug.Log("PrepareLevel function: Preparing for making clients ready");       
+        Debug.Log("PrepareLevel function: Preparing for making clients ready");
+
     }
 
     [Server]
@@ -131,36 +115,35 @@ public class LevelController : NetworkBehaviour
         return value % 2 != 0;
     }
 
-[Server]
-    public void CheckIfGamePlayersAreReady()
-    {
-        int k = 0; 
-        foreach (PlayerController gamePlayer in gamePlayers) 
-        {
-            if (gamePlayer.isReady == true)
-            k++;
-            Debug.Log("checking if gameplayer ready: " + gamePlayer.netId + " is ready: " + gamePlayer.isReady);
-        }
-
-        if (k == gamePlayers.Count)  {readyToStartLevel = true;}
-        Debug.Log(" [2] gamePlayers amount: " + gamePlayers.Count + " loop of: " + k + " is game ready to start? " + readyToStartLevel);
-
-        if (!readyToStartLevel){ return;} 
-        else { StartCoroutine(Countdown());  }
-    }
-
     [Server]
     private IEnumerator Countdown()
     {
-        float timeLeft = countdownDuration;
-        while (timeLeft > 0)
+        float timeLeft = countdownTimer;
+        while (countdownTimer >= 0)
         {
-            timeLeft -= Time.deltaTime;
+            yield return new WaitForSecondsRealtime(1);
+            int secondsLeft = Mathf.CeilToInt(countdownTimer);
+            RpcUpdateCountdown(secondsLeft);
             Debug.Log(" Countdown for " + timeLeft);
-            yield return new WaitForSeconds(.1f);
+            countdownTimer-= 1;
         }
-        Debug.Log("Ending Countdown  " );
-        SetGamePlayersReady();
+
+        if (countdownTimer < 0){
+            Debug.Log("Ending Countdown  " );
+            SetGamePlayersReady();
+            RpcDisableCountdown();
+        }
+    }
+
+    [ClientRpc]
+    private void RpcUpdateCountdown(int secondsLeft)
+    {
+        countdownText.text = secondsLeft.ToString();
+    }
+    [ClientRpc]
+    private void RpcDisableCountdown()
+    {
+        countdownText.enabled = false;
     }
 
     // [ClientRpc]

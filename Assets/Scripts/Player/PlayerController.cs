@@ -2,9 +2,9 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using MirrorBasics;
+using System.Collections.Generic;
 
-
-    [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(NetworkTransform))]
     [RequireComponent(typeof(NetworkAnimator))]
@@ -13,6 +13,7 @@ using MirrorBasics;
     {
         public PlayerController localGamePlayer;
         public CharacterController characterController;
+        public List<GameObject> characterModel = new List<GameObject>();
 
         // [SyncVar] public int teamID = 1;
         [SyncVar] public int playerIndex;
@@ -23,26 +24,26 @@ using MirrorBasics;
         public float maxTurnSpeed = 110f;
         public float jumpSpeed = 0f;
         public float jumpPower = 4.5f;
+        public bool isGrounded = true;
+        public bool isFalling = false;
+        public float dashCooldown = 5f;
+        public bool isDashing = false;       
+
+        [Header("References")]
+        [SerializeField]  private Animator characterAnimator;
+        private UIGameplay uiGameplay;
+        public PlayerScore pScore;
+        private PlayerCamera pCamera;
 
         [Header("Diagnostics")]
         public float horizontal;
         public float vertical;
         public float turn;
-        public bool isGrounded = true;
-        public bool isFalling = false;
+
         public Vector3 velocity;
-        public float dashCooldown = 5f;
-        public bool isDashing = false;
 
         [SyncVar (hook=nameof(SetReadyState)) ]
         public bool isReady = false;
-
-        [Header("Animation")]
-        [SerializeField]
-        private Animator characterAnimator;
-        private UIGameplay uiGameplay;
-        public PlayerScore pScore;
-        private PlayerCamera pCamera;
 
         // private UIScore uiScore;
         // private UILobby uiLobby;
@@ -58,7 +59,7 @@ using MirrorBasics;
                 characterController = GetComponent<CharacterController>();
 
             if (characterAnimator == null)
-                characterAnimator = GetComponent<Animator>();
+                characterAnimator = GetComponentInChildren<Animator>();
 
             if (!NetworkClient.ready) {NetworkClient.ready = true;}
 
@@ -71,6 +72,8 @@ using MirrorBasics;
 
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             pCamera = this.GetComponent<PlayerCamera>();
+            NetworkAnimator networkAnimator = GetComponent<NetworkAnimator>();
+            networkAnimator.animator = characterAnimator;
         }
 
         public override void OnStartServer()
@@ -165,6 +168,17 @@ using MirrorBasics;
             characterAnimator.SetBool("Walking", velocity != Vector3.zero);
             characterAnimator.SetBool("Idle", velocity == Vector3.zero);
             characterAnimator.SetBool("Rolling", isDashing);
+        }
+
+        public void SetModel(string modelName)
+        {
+            foreach (GameObject charModel in characterModel) 
+            {
+                if (charModel.name != modelName)
+                {
+                    charModel.SetActive(false);
+                }
+            }
         }
 
         [ServerCallback]

@@ -48,6 +48,11 @@ namespace MirrorBasics {
         {
             PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
             playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+            if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
+            {
+                gamePlayer.GetComponent<PlayerController>().SetModel("Sheep");
+            }
+            else gamePlayer.GetComponent<PlayerController>().SetModel("Donkey");
             return true;
         }
 
@@ -59,6 +64,11 @@ namespace MirrorBasics {
         public override void OnRoomStopServer()
         {
             base.OnRoomStopServer();
+        }
+
+        public static bool IsOdd(int value)
+        {
+            return value % 2 != 0;
         }
 
         /*
