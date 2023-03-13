@@ -5,12 +5,16 @@ using Mirror;
 using UnityEngine.SceneManagement;
 using MirrorBasics;
 
-public class UI_Room : MonoBehaviour
+public class UI_Room : NetworkBehaviour
 {
     LobbySystem lobbySystem;
-    private void Start() 
+    public GameObject roomPlayer;
+    public NetworkRoomPlayerExt roomPlayerScript;
+    public override void OnStartClient() 
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
+        //roomPlayer = localPlayer.gameObject;
+        //Debug.Log("ree" + NetworkRoomPlayerExt.localPlayer.index);
     }
     
 
@@ -19,5 +23,24 @@ public class UI_Room : MonoBehaviour
         lobbySystem.OpenLobbyMenu();
     }
 
+    public void ChangeReadyState()
+    {
+
+        if (isClientOnly)
+        {
+            Debug.Log("ree " + NetworkClient.localPlayer.gameObject.GetComponent<NetworkRoomPlayerExt>().index);
+            NetworkClient.localPlayer.gameObject.GetComponent<NetworkRoomPlayerExt>().CmdChangeReadyState(true);
+        }
+
+        if (isServer)
+        {
+            roomPlayer = NetworkClient.localPlayer.gameObject;
+            roomPlayerScript = roomPlayer.GetComponent<NetworkRoomPlayerExt>();
+//            roomPlayerScript.CmdChangeReadyState(true);
+            //Debug.Log("ree " + roomPlayerScript.index);
+
+//            NetworkClient.connection.identity.gameObject.GetComponent<NetworkRoomPlayerExt>().CmdChangeReadyState(state);
+        }
+    }
 
 }
