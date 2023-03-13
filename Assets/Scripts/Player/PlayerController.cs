@@ -1,17 +1,19 @@
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MirrorBasics;
+using System.Collections.Generic;
 
-namespace MirrorBasics
-{
-    [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(NetworkTransform))]
     [RequireComponent(typeof(NetworkAnimator))]
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : NetworkBehaviour
     {
+        public PlayerController localGamePlayer;
         public CharacterController characterController;
+        public List<GameObject> characterModel = new List<GameObject>();
 
         // [SyncVar] public int teamID = 1;
         [SyncVar] public int playerIndex;
@@ -22,43 +24,49 @@ namespace MirrorBasics
         public float maxTurnSpeed = 110f;
         public float jumpSpeed = 0f;
         public float jumpPower = 4.5f;
+        public bool isGrounded = true;
+        public bool isFalling = false;
+        public float dashCooldown = 5f;
+        public bool isDashing = false; 
+        [SyncVar] public string modelName;      
+
+        [Header("References")]
+        [SerializeField]  private Animator characterAnimator;
+        [SerializeField] public NetworkAnimator networkAnimator;
+        private UIGameplay uiGameplay;
+        public PlayerScore pScore;
+        private PlayerCamera pCamera;
 
         [Header("Diagnostics")]
         public float horizontal;
         public float vertical;
         public float turn;
-        public bool isGrounded = true;
-        public bool isFalling = false;
+
         public Vector3 velocity;
-        public float dashCooldown = 5f;
-        public bool isDashing = false;
 
         [SyncVar (hook=nameof(SetReadyState)) ]
         public bool isReady = false;
 
-        [Header("Animation")]
-        [SerializeField]
-        private Animator characterAnimator;
-        public UIGameplay uiGameplay;
-        public PlayerScore pScore;
-        public PlayerCamera pCamera;
-
         // private UIScore uiScore;
         // private UILobby uiLobby;
         // private Player localPlayer;
-        // public static PlayerController localGamePlayer;
+
         private LevelController levelManager;
 
     
         public override void OnStartLocalPlayer()
         {
+            levelManager = FindObjectOfType<LevelController>();
             if (characterController == null)
                 characterController = GetComponent<CharacterController>();
 
             if (characterAnimator == null)
-                characterAnimator = GetComponent<Animator>();
+                characterAnimator = GetComponentInChildren<Animator>();
 
             if (!NetworkClient.ready) {NetworkClient.ready = true;}
+
+            localGamePlayer = this;
+            levelManager.pController = localGamePlayer;
             characterController.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
@@ -66,15 +74,20 @@ namespace MirrorBasics
             uiGameplay.ChangeUIState(1);
 
             pScore = gameObject.GetComponentInParent<PlayerScore>();
-//            uiLobby = GameObject.FindObjectOfType<UILobby>(); 
-//            levelManager = uiGameplay.levelController;
-
             pCamera = this.GetComponent<PlayerCamera>();
+            networkAnimator = GetComponent<NetworkAnimator>();
         }
 
         public override void OnStartServer()
         {
-            pScore = gameObject.GetComponentInParent<PlayerScore>();            
+            levelManager = FindObjectOfType<LevelController>();
+            pScore = gameObject.GetComponentInParent<PlayerScore>();
+            levelManager.gamePlayers.Add(this);
+            
+        }
+        public override void OnStartClient()
+        {
+            SetModel();
         }
 
 
@@ -93,7 +106,7 @@ namespace MirrorBasics
             characterController.enabled = newValue; 
             characterAnimator.enabled = newValue;
             this.pCamera.SetupPlayerCamera();
-            uiGameplay.ChangeUIState(2);    
+            uiGameplay.ChangeUIState(1);    
         }
 
         void Update()
@@ -155,19 +168,6 @@ namespace MirrorBasics
             velocity = characterController.velocity;            
         }
 
-        // [Command]
-        // public void MovePlayer(Vector3 direction)
-        // {
-        //    
-        // }
-
-        // [TargetRpc]
-        // void PlayerMovement ()
-        // {
-        //    direction + Vector3.up;   
-        //    characterController.Move();
-        // }
-
         private void Animate()
         {
             if (!isLocalPlayer || characterAnimator == null || !characterAnimator.enabled)
@@ -176,12 +176,46 @@ namespace MirrorBasics
             characterAnimator.SetBool("Idle", velocity == Vector3.zero);
             characterAnimator.SetBool("Rolling", isDashing);
         }
+       
+        [ClientRpc]
+        public void SetModel()
+        {
+//          (!isLocalPlayer) {return;}
+            RpcSetModel(modelName);
+        }
+
+        [ClientRpc]
+        public void RpcSetModel(string modelName)
+        {
+            foreach (GameObject charModel in characterModel) 
+            {
+
+                if (charModel.name == modelName)
+                {
+                    charModel.SetActive(true);
+                    characterAnimator = charModel.GetComponent<Animator>();
+                    networkAnimator.animator = charModel.GetComponent<Animator>();
+                    Debug.Log("Changed model to: " + charModel.name);
+                }
+                if (charModel.name != modelName)
+                {
+                    charModel.SetActive(false);
+                    Debug.Log("Disabling not needed models");
+                }
+
+                
+            }
+
+        }
+
+   
+
 
         [ServerCallback]
         void OnTriggerEnter(Collider other)
         {
             // Stealing ability 
-            if (other.gameObject.CompareTag("Player") && this.GetComponent<NetworkMatch>().matchId == other.GetComponent<NetworkMatch>().matchId)
+            if (other.gameObject.CompareTag("Player") && pScore.teamID != other.GetComponent<PlayerScore>().teamID)
             {
                 if (!this.pScore.canSteal){return;}
                 if (other.gameObject.GetComponent<PlayerScore>().hasItem && !this.pScore.hasItem) 
@@ -195,4 +229,4 @@ namespace MirrorBasics
         }
 
     }
-}
+

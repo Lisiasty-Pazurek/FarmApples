@@ -62,8 +62,8 @@ namespace Mirror
         // for example: main player & pets are owned. monsters & npcs aren't.
         public bool isOwned => netIdentity.isOwned;
 
-        // Deprecated 2022-10-13
-        [Obsolete(".hasAuthority was renamed to .isOwned. This is easier to understand and prepares for SyncDirection, where there is a difference betwen isOwned and authority.")]
+        /// <summary>True on client if that component has been assigned to the client. E.g. player, pets, henchmen.</summary>
+        [Obsolete(".hasAuthority was renamed to .isOwned. This is easier to understand and prepares for SyncDirection, where there is a difference betwen isOwned and authority.")] // 2022-10-13
         public bool hasAuthority => isOwned;
 
         /// <summary>authority is true if we are allowed to modify this component's state. On server, it's true if SyncDirection is ServerToClient. On client, it's true if SyncDirection is ClientToServer and(!) if this object is owned by the client.</summary>
@@ -229,35 +229,12 @@ namespace Mirror
             // InitSyncObject yet, which is called from the constructor.
             syncObject.IsWritable = () =>
             {
-                // carefully check each mode separately to ensure correct results.
-                // fixes: https://github.com/MirrorNetworking/Mirror/issues/3342
-
-                // normally we would check isServer / isClient here.
-                // users may add to SyncLists before the object was spawned.
-                // isServer / isClient would still be false.
-                // so we need to check NetworkServer/Client.active here instead.
-
-                // host mode: any ServerToClient and any local client owned
-                if (NetworkServer.active && NetworkClient.active)
-                    return syncDirection == SyncDirection.ServerToClient || isOwned;
-
-                // server only: any ServerToClient
-                if (NetworkServer.active)
-                    return syncDirection == SyncDirection.ServerToClient;
-
-                // client only: only ClientToServer and owned
-                if (NetworkClient.active)
-                {
-                    // spawned: only ClientToServer and owned
-                    if (netId != 0) return syncDirection == SyncDirection.ClientToServer && isOwned;
-
-                    // not spawned (character selection previews, etc.): always allow
-                    // fixes https://github.com/MirrorNetworking/Mirror/issues/3343
-                    return true;
-                }
-
+                // check isServer first.
+                // if we check isClient first, it wouldn't work in host mode.
+                if (isServer) return syncDirection == SyncDirection.ServerToClient;
+                if (isClient) return isOwned;
                 // undefined behaviour should throw to make it very obvious
-                throw new Exception("InitSyncObject: IsWritable: neither NetworkServer nor NetworkClient are active.");
+                throw new Exception("InitSyncObject: neither isServer nor isClient are true.");
             };
 
             // when do we record changes:
@@ -269,22 +246,12 @@ namespace Mirror
             //      because OnSerialize isn't called without observers.
             syncObject.IsRecording = () =>
             {
-                // carefully check each mode separately to ensure correct results.
-                // fixes: https://github.com/MirrorNetworking/Mirror/issues/3342
-
-                // host mode: only if observed
-                if (isServer && isClient) return netIdentity.observers.Count > 0;
-
-                // server only: only if observed
+                // check isServer first.
+                // if we check isClient first, it wouldn't work in host mode.
                 if (isServer) return netIdentity.observers.Count > 0;
-
-                // client only: only ClientToServer and owned
-                if (isClient) return syncDirection == SyncDirection.ClientToServer && isOwned;
-
-                // users may add to SyncLists before the object was spawned.
-                // isServer / isClient would still be false.
-                // in that case, allow modifying but don't record changes yet.
-                return false;
+                if (isClient) return isOwned;
+                // undefined behaviour should throw to make it very obvious
+                throw new Exception("InitSyncObject: neither isServer nor isClient are true.");
             };
         }
 
@@ -598,7 +565,7 @@ namespace Mirror
             uint newNetId = 0;
             if (newGameObject != null)
             {
-                if (newGameObject.TryGetComponent(out NetworkIdentity identity))
+                if (newGameObject.TryGetComponent<NetworkIdentity>(out NetworkIdentity identity))
                 {
                     newNetId = identity.netId;
                     if (newNetId == 0)
@@ -621,7 +588,7 @@ namespace Mirror
             uint newNetId = 0;
             if (newGameObject != null)
             {
-                if (newGameObject.TryGetComponent(out NetworkIdentity identity))
+                if (newGameObject.TryGetComponent<NetworkIdentity>(out NetworkIdentity identity))
                 {
                     newNetId = identity.netId;
                     if (newNetId == 0)

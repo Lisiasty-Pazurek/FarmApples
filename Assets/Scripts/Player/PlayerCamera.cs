@@ -6,10 +6,9 @@ using Cinemachine;
     public class PlayerCamera : MonoBehaviour
     {
         private Camera mainCam;
- //       private GameObject gameCamera; // not needed for now
         private CinemachineVirtualCamera cineCam;
 
-        public void OnStartLocalPlayer ()
+        public void Start ()
         {
             SetupPlayerCamera();
         }
@@ -19,7 +18,7 @@ using Cinemachine;
             Debug.Log("Setting up camera controllers");
             mainCam = Camera.main;
            
-            cineCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<CinemachineVirtualCamera>();
+            cineCam = mainCam.GetComponent<CinemachineVirtualCamera>();
                 mainCam.orthographic = false;
                 cineCam.Follow = this.transform;
                 Debug.Log("cinemachine cam follow set up for local client");
