@@ -32,11 +32,10 @@ public class LevelController : NetworkBehaviour
         [SerializeField] GameObject playerPrefabSheep;
         [SerializeField] GameObject playerPrefabDonkey;
         [SerializeField] GameObject prizePrefab;
-        // [SerializeField] public GameObject teamboxPrefab;
-        // [SerializeField] public GameObject teamboxPrefab2;
         [SerializeField] private Text countdownText;
-        private Scene onlineScene;
+        [SerializeField] private UIGameplay uIGameplay;
         public PlayerController pController;
+
     [Header ("Lists")]
         public List<PlayerController> gamePlayers = new List<PlayerController>();
         public List<GameObject> spawnedItems = new List<GameObject>();
@@ -184,7 +183,8 @@ public class LevelController : NetworkBehaviour
     public void EndLevel()
     {
         Debug.Log("Ending level for match: " );
-        
+        uIGameplay.ChangeUIState(2);
+        pController.characterController.GetComponent<CharacterController>().enabled = false;
     }
 
 }
