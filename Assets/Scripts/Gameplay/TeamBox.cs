@@ -7,7 +7,7 @@ public class TeamBox : NetworkBehaviour
 {   
     [SyncVar] public int teamID ;
     [SyncVar] public int teamPoints;
-    [SerializeField] private int requiredScore = 5;
+    [SerializeField][SyncVar] public int requiredScore = 5;
     [SerializeField] private LevelController levelController;
     private UIScore uiScore;
 
@@ -47,7 +47,7 @@ public class TeamBox : NetworkBehaviour
                 RpcTeamScoreUpdate();
 
                 // check level requirements and start ending game
-                if (teamPoints > requiredScore)
+                if (teamPoints >= requiredScore)
                 {
                     Debug.Log("Ending game");
                     levelController.gameEnded = true;

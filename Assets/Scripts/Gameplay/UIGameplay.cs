@@ -4,6 +4,7 @@ using Mirror;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+
 namespace MirrorBasics{
 public class UIGameplay : MonoBehaviour
 {
@@ -43,38 +44,21 @@ public class UIGameplay : MonoBehaviour
         ChangeUIState(1);
     }
 
-
-
-// Simple debugging command. I will keep it for now
-    public void IsMyCLientActive()
-    {
-        Debug.Log(" Is my client active?" + NetworkClient.active);
-        Debug.Log(" Is my server active?" + NetworkServer.active);
-    }
-
-    // public void SetPlayerReady()
-    // {
-    //     player.SetPlayerReady(false, true);
-    //     ChangeUIState(2);
-    // }
-
- 
     public void SetGameplayerStateReady()
     {
         player.SetReadyState(false, true);
         Debug.Log("My Gameplayer is setting up to be ready, passing info to the player controller to call it at level controller");
-        
     }
-
-
-
-    public void Update() {    }
 
     public void StartLevel()
     {
         levelController.InitiateLevel();
     }
 
+    public void LoadRoomScene()
+    {
+        SceneManager.LoadScene("RoomScene");
+    }
 
     public void QuitLevel()
     {

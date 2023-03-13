@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkManager: {fileID: 707881953}
   LRMTransport: {fileID: 707881950}
-  autoRefeshServerList: 0
-  refreshServerListTimer: 10
+  autoRefeshServerList: 1
+  refreshServerListTimer: 6
   LobbyMenuParent: {fileID: 2067985706}
   lobbyMenuText: {fileID: 721349458}
   joinRoomNameInputField: {fileID: 613034991}
@@ -1932,7 +1932,7 @@ MonoBehaviour:
   loadBalancerAddress: 127.0.0.1
   serverName: FarmServer
   extraServerData: Map 2
-  maxServerPlayers: 10
+  maxServerPlayers: 20
   isPublicServer: 1
   serverListUpdated:
     m_PersistentCalls:
@@ -3599,10 +3599,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 97141549}
   m_HandleRect: {fileID: 791467349}
   m_Direction: 0
-  m_MinValue: 2
-  m_MaxValue: 12
+  m_MinValue: 1
+  m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 8
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

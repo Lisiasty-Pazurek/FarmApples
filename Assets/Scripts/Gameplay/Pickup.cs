@@ -15,7 +15,7 @@ namespace MirrorBasics
         }
 
 // Server check if player can pick up reward
-        [ServerCallback]
+    [ServerCallback]
         void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
@@ -27,7 +27,7 @@ namespace MirrorBasics
         }
 
 // Server adds reward to a player and destroy pickup
-        [ServerCallback]
+    [ServerCallback]
         public void PickUpItem(GameObject player)
         {
             if (type == "Reward")
@@ -38,7 +38,5 @@ namespace MirrorBasics
             player.GetComponent<PlayerScore>().canSteal = true;
             NetworkServer.Destroy(gameObject);
         }
-
-
     }
 }

@@ -85,6 +85,7 @@ public class Spawner: NetworkBehaviour
             GameObject teambox = Instantiate(teamboxPrefab);
             NetworkServer.Spawn(teambox);
             teambox.transform.position = teamSpawnPoints[spawnPosition].position;
+            teambox.GetComponent<TeamBox>().requiredScore = gameMode.maxScore;
  //           lvlController.spawnedItems.Add(teambox);
             
         }
