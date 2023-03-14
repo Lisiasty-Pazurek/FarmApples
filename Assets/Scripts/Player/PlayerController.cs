@@ -83,11 +83,12 @@ using System.Collections.Generic;
             levelManager = FindObjectOfType<LevelController>();
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             levelManager.gamePlayers.Add(this);
-            
+            //SetModel();
         }
         public override void OnStartClient()
         {
-            SetModel();
+            pScore = gameObject.GetComponentInParent<PlayerScore>();
+            //SetModel();
         }
 
 

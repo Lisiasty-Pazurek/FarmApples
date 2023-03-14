@@ -135,6 +135,7 @@ public class LevelController : NetworkBehaviour
 
         if (countdownTimer < 0){
             Debug.Log("Ending Countdown  " );
+
             SetGamePlayersReady();
             RpcDisableCountdown();
 
@@ -152,25 +153,29 @@ public class LevelController : NetworkBehaviour
         countdownText.enabled = false;
     }
     
-    // [Server]
-    // private void SetPlayerModels()
+    // [ClientRpc]
+    // private void RpcSetPlayerModels()
     // {
-    //     foreach (PlayerController gamePlayer in gamePlayers) 
-    //         {
-    //             gamePlayer.SetModel(gamePlayer.modelName);
-    //         }
+    //     pController.SetModel();
     // }
 
-    [ClientRpc]
+    // [ClientRpc]
+    // public void RpcSetPlayersReady()
+    // {
+    //     pController.SetPlayerReady(false,true);
+    // }
+
+    [Server]
     private void SetPlayerModels()
     {
-
-        pController.SetModel();
-            
+        foreach (PlayerController gamePlayer in gamePlayers) 
+            {
+                gamePlayer.SetModel();
+            }
     }
 
     [Server]
-    private void SetGamePlayersReady()
+    public void SetGamePlayersReady()
     {
         foreach (PlayerController gamePlayer in gamePlayers) 
             {
@@ -178,6 +183,8 @@ public class LevelController : NetworkBehaviour
                 Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
             }
     }
+
+
 
     [ClientRpc]
     public void EndLevel()

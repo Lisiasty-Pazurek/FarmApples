@@ -6,6 +6,7 @@ using Mirror;
 using MirrorBasics;
 public class LobbySystem : MonoBehaviour
 {
+    public static LobbySystem singleton { get; private set; }
     [SerializeField] public NetworkRoomManagerExt networkManager;
     public LightReflectiveMirror.LightReflectiveMirrorTransport LRMTransport;
 
