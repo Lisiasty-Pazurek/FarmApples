@@ -48,7 +48,7 @@ public class LobbySystem : MonoBehaviour
             }
         }
 
-        maxPlayersText.text = "Maximum Players: " + maxPlayersSlider.value.ToString();
+        maxPlayersText.text = "Limit graczy: " + maxPlayersSlider.value.ToString();
     }
 
     public void OpenLobbyMenu()
@@ -118,7 +118,7 @@ public class LobbySystem : MonoBehaviour
             totalPlayers += LRMTransport.relayServerList[i].currentPlayers;
         }
 
-        lobbyMenuText.text = "LOBBY - " + totalPlayers.ToString() + " PLAYERS IN ROOMS";
+        lobbyMenuText.text = "Rozgrywki - " + totalPlayers.ToString() + " graczy online";
 
     }
 

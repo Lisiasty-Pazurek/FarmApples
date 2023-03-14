@@ -667,13 +667,13 @@ namespace Mirror
             {
                 GUILayout.BeginArea(new Rect(Screen.width - 100f, 20f, 100f, 30f));
                 
-                if (GUILayout.Button("Powrót do pokoju"))
+                if (GUILayout.Button("Powrót"))
                     ServerChangeScene(RoomScene);
                 GUILayout.EndArea();
             }
 
             if (Utils.IsSceneActive(RoomScene))
-            GUI.Box(new Rect(Screen.width/2 - 100f, 80f, 200f, 40f), "GRACZE:");
+            GUI.Box(new Rect(Screen.width/2 - 60f, 40f, 120f, 20f), "GRACZE:");
                 
         }
 

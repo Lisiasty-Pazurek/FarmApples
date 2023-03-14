@@ -195,6 +195,8 @@ using System.Collections.Generic;
                     charModel.SetActive(true);
                     characterAnimator = charModel.GetComponent<Animator>();
                     networkAnimator.animator = charModel.GetComponent<Animator>();
+                    pScore.carriedItem = charModel.GetComponent<PlayerModel>().prize;
+                    pScore.stealingItem = charModel.GetComponent<PlayerModel>().steal;
                     Debug.Log("Changed model to: " + charModel.name);
                 }
                 if (charModel.name != modelName)
