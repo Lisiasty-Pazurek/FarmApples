@@ -57,12 +57,14 @@ public class UIGameplay : MonoBehaviour
 
     public void LoadRoomScene()
     {
-        SceneManager.LoadScene("RoomScene");
+//        SceneManager.LoadScene("RoomScene");
+        NetworkRoomManagerExt.singleton.ServerChangeScene("RoomScene");
+        
     }
 
     public void QuitLevel()
     {
-        SceneManager.UnloadSceneAsync(levelController.gameMode.mapName );
+        
         ChangeUIState(3);
     }
 

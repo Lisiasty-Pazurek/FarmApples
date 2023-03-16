@@ -660,17 +660,21 @@ namespace Mirror
         {
             if (!showRoomGUI)
                 return;
+            GUI.backgroundColor = new Color(221, 186, 135, 255);
+            GUI.contentColor = new Color(0, 0, 0, 255);
 
             if (NetworkServer.active && Utils.IsSceneActive(GameplayScene))
             {
-                GUILayout.BeginArea(new Rect(Screen.width - 150f, 10f, 140f, 30f));
-                if (GUILayout.Button("Return to Room"))
+                GUILayout.BeginArea(new Rect(Screen.width - 100f, 20f, 100f, 30f));
+                
+                if (GUILayout.Button("Powrót"))
                     ServerChangeScene(RoomScene);
                 GUILayout.EndArea();
             }
 
             if (Utils.IsSceneActive(RoomScene))
-                GUI.Box(new Rect(10f, 180f, 520f, 150f), "PLAYERS");
+            GUI.Box(new Rect(Screen.width/2 - 60f, 40f, 120f, 20f), "GRACZE:");
+                
         }
 
         #endregion

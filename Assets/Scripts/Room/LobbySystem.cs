@@ -6,6 +6,7 @@ using Mirror;
 using MirrorBasics;
 public class LobbySystem : MonoBehaviour
 {
+    public static LobbySystem singleton { get; private set; }
     [SerializeField] public NetworkRoomManagerExt networkManager;
     public LightReflectiveMirror.LightReflectiveMirrorTransport LRMTransport;
 
@@ -48,7 +49,7 @@ public class LobbySystem : MonoBehaviour
             }
         }
 
-        maxPlayersText.text = "Maximum Players: " + maxPlayersSlider.value.ToString();
+        maxPlayersText.text = "Limit graczy: " + maxPlayersSlider.value.ToString();
     }
 
     public void OpenLobbyMenu()
@@ -78,8 +79,12 @@ public class LobbySystem : MonoBehaviour
         LRMTransport.maxServerPlayers = (int)maxPlayersSlider.value;
         LRMTransport.extraServerData = mapListDropdown.options[mapListDropdown.value].text;
         networkManager.StartHost();
+        /// ### BEGIN ### custom changes for room -> gammeplayscene changes
+        networkManager.GameplayScene = mapListDropdown.options[mapListDropdown.value].text;
+        Debug.Log("gameplay scene : " + mapListDropdown.options[mapListDropdown.value].text);
+        networkManager.ServerChangeScene("RoomScene");
 
-        networkManager.ServerChangeScene(mapListDropdown.options[mapListDropdown.value].text);
+        /// ### END ### custom changes for room -> gammeplayscene changes
     }
 
     public void JoinRoom()
@@ -118,7 +123,7 @@ public class LobbySystem : MonoBehaviour
             totalPlayers += LRMTransport.relayServerList[i].currentPlayers;
         }
 
-        lobbyMenuText.text = "LOBBY - " + totalPlayers.ToString() + " PLAYERS IN ROOMS";
+        lobbyMenuText.text = "Rozgrywki - " + totalPlayers.ToString() + " graczy online";
 
     }
 

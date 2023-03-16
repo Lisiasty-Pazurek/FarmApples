@@ -118,6 +118,7 @@ public class LevelController : NetworkBehaviour
     [Server]
     private IEnumerator Countdown()
     {
+
         float timeLeft = countdownTimer;
         while (countdownTimer >= 0)
         {
@@ -128,14 +129,17 @@ public class LevelController : NetworkBehaviour
             countdownTimer-= 1;
             if (countdownTimer == 2)
             {
-                SetPlayerModels();
+               SetPlayerModels();   
+                // RpcSetPlayersReady();
             }
         }
 
 
         if (countdownTimer < 0){
             Debug.Log("Ending Countdown  " );
-            SetGamePlayersReady();
+
+           SetGamePlayersReady();
+            // RpcSetPlayerModels();
             RpcDisableCountdown();
 
         }
@@ -152,32 +156,38 @@ public class LevelController : NetworkBehaviour
         countdownText.enabled = false;
     }
     
-    // [Server]
-    // private void SetPlayerModels()
+    // [ClientRpc]
+    // private void RpcSetPlayerModels()
     // {
-    //     foreach (PlayerController gamePlayer in gamePlayers) 
-    //         {
-    //             gamePlayer.SetModel(gamePlayer.modelName);
-    //         }
+    //     pController.SetModel();
     // }
 
-    [ClientRpc]
-    private void SetPlayerModels()
-    {
-
-        pController.SetModel();
-            
-    }
+    // [ClientRpc]
+    // public void RpcSetPlayersReady()
+    // {
+    //     pController.isReady = true;
+    // }
 
     [Server]
-    private void SetGamePlayersReady()
+    private void SetPlayerModels()
     {
         foreach (PlayerController gamePlayer in gamePlayers) 
             {
-                gamePlayer.SetPlayerReady(false, true);
+                gamePlayer.SetModel();
+            }
+    }
+
+    [Server]
+    public void SetGamePlayersReady()
+    {
+        foreach (PlayerController gamePlayer in gamePlayers) 
+            {
+                gamePlayer.SetPlayerReady(false,true);
                 Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
             }
     }
+
+
 
     [ClientRpc]
     public void EndLevel()

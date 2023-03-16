@@ -11,7 +11,7 @@ using System.Collections.Generic;
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : NetworkBehaviour
     {
-        public PlayerController localGamePlayer;
+        public static PlayerController localGamePlayer;
         public CharacterController characterController;
         public List<GameObject> characterModel = new List<GameObject>();
 
@@ -53,7 +53,6 @@ using System.Collections.Generic;
 
         private LevelController levelManager;
 
-    
         public override void OnStartLocalPlayer()
         {
             levelManager = FindObjectOfType<LevelController>();
@@ -76,18 +75,21 @@ using System.Collections.Generic;
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             pCamera = this.GetComponent<PlayerCamera>();
             networkAnimator = GetComponent<NetworkAnimator>();
+            pCamera.SetupPlayerCamera();
         }
 
         public override void OnStartServer()
         {
             levelManager = FindObjectOfType<LevelController>();
             pScore = gameObject.GetComponentInParent<PlayerScore>();
+            pCamera = this.GetComponent<PlayerCamera>();
             levelManager.gamePlayers.Add(this);
-            
+            //SetModel();
         }
         public override void OnStartClient()
         {
-            SetModel();
+            pScore = gameObject.GetComponentInParent<PlayerScore>();
+            //SetModel();
         }
 
 
@@ -99,7 +101,7 @@ using System.Collections.Generic;
     }
 
 
-[TargetRpc]
+        [TargetRpc]
         public void SetPlayerReady (bool oldValue, bool newValue)
         {
             Debug.Log("Finalize setting playercontroller ready for gamePlayer of id: " + this.netId );
@@ -177,10 +179,9 @@ using System.Collections.Generic;
             characterAnimator.SetBool("Rolling", isDashing);
         }
        
-        [ClientRpc]
+        [Server]
         public void SetModel()
         {
-//          (!isLocalPlayer) {return;}
             RpcSetModel(modelName);
         }
 
@@ -195,6 +196,8 @@ using System.Collections.Generic;
                     charModel.SetActive(true);
                     characterAnimator = charModel.GetComponent<Animator>();
                     networkAnimator.animator = charModel.GetComponent<Animator>();
+                    pScore.carriedItem = charModel.GetComponent<PlayerModel>().prize;
+                    pScore.stealingItem = charModel.GetComponent<PlayerModel>().steal;
                     Debug.Log("Changed model to: " + charModel.name);
                 }
                 if (charModel.name != modelName)

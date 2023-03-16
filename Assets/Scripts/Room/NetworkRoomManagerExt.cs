@@ -46,20 +46,24 @@ namespace MirrorBasics {
         /// <returns>true unless some code in here decides it needs to abort the replacement</returns>
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
-            PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
-            PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
-            playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
-            if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
+            if (SceneManager.GetActiveScene().name == "Apples01") 
             {
-                playerGameController.modelName = "Sheep";
-                playerScore.teamID = 1;
+                PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
+                PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
+                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
+                {
+                    playerGameController.modelName = "Sheep";
+                    playerScore.teamID = 1;
+                }
+                else 
+                {
+                    playerGameController.modelName = "Donkey";
+                    playerScore.teamID = 2;
+                }
+                return true;
             }
-            else 
-            {
-                playerGameController.modelName = "Donkey";
-                playerScore.teamID = 2;
-            }
-            return true;
+            else return false;
         }
 
         public override void OnRoomStopClient()
@@ -102,7 +106,7 @@ namespace MirrorBasics {
         {
             base.OnGUI();
 
-            if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START"))
+            if (allPlayersReady && showStartButton && GUI.Button(new Rect(Screen.width - 160, 300, 120, 20), "START"))
             {
                 // set to false to hide it in the game scene
                 showStartButton = false;
