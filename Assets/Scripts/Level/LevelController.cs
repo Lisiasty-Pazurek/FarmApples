@@ -118,6 +118,7 @@ public class LevelController : NetworkBehaviour
     [Server]
     private IEnumerator Countdown()
     {
+
         float timeLeft = countdownTimer;
         while (countdownTimer >= 0)
         {
@@ -128,7 +129,7 @@ public class LevelController : NetworkBehaviour
             countdownTimer-= 1;
             if (countdownTimer == 2)
             {
-                SetPlayerModels();
+                SetPlayerModels();                
             }
         }
 

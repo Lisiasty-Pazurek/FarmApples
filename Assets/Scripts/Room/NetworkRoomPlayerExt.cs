@@ -3,19 +3,26 @@ using Mirror;
 
 namespace MirrorBasics
 {
-    [AddComponentMenu("")]
+//    [AddComponentMenu("")]
     public class NetworkRoomPlayerExt : NetworkRoomPlayer
     {
         public static NetworkRoomPlayerExt localPlayer;
+        public UIRoom uiRoom;
+        
         public override void OnStartClient()
         {
             //Debug.Log($"OnStartClient {gameObject}");
-            if (isLocalPlayer) { localPlayer = this;}
+   //         if (isLocalPlayer) { localPlayer = this;}
+            uiRoom = FindObjectOfType<UIRoom>();
         }
 
         public override void OnClientEnterRoom()
         {
             //Debug.Log($"OnClientEnterRoom {SceneManager.GetActiveScene().path}");
+            if (isLocalPlayer)
+            {
+                uiRoom.roomPlayer = this;
+            }
         }
 
         public override void OnClientExitRoom()

@@ -2021,7 +2021,7 @@ MonoBehaviour:
   timeInterpolationGui: 0
   showRoomGUI: 1
   minPlayers: 1
-  roomPlayerPrefab: {fileID: 114033720796874720, guid: f0bdb12802bdfa24486b37e1f1b174a0,
+  roomPlayerPrefab: {fileID: -1454191670547899263, guid: f0bdb12802bdfa24486b37e1f1b174a0,
     type: 3}
   RoomScene: Assets/Scenes/RoomScene.unity
   GameplayScene: Assets/Scenes/Apples01.unity
