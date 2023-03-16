@@ -10,7 +10,7 @@ using Cinemachine;
 
         public void Start ()
         {
-            SetupPlayerCamera();
+           
         }
 
         public void SetupPlayerCamera()

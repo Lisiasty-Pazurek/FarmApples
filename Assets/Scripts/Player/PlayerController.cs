@@ -75,6 +75,7 @@ using System.Collections.Generic;
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             pCamera = this.GetComponent<PlayerCamera>();
             networkAnimator = GetComponent<NetworkAnimator>();
+            pCamera.SetupPlayerCamera();
         }
 
         public override void OnStartServer()
