@@ -129,7 +129,8 @@ public class LevelController : NetworkBehaviour
             countdownTimer-= 1;
             if (countdownTimer == 2)
             {
-                SetPlayerModels();                
+               SetPlayerModels();   
+                // RpcSetPlayersReady();
             }
         }
 
@@ -137,7 +138,8 @@ public class LevelController : NetworkBehaviour
         if (countdownTimer < 0){
             Debug.Log("Ending Countdown  " );
 
-            SetGamePlayersReady();
+           SetGamePlayersReady();
+            // RpcSetPlayerModels();
             RpcDisableCountdown();
 
         }
@@ -163,7 +165,7 @@ public class LevelController : NetworkBehaviour
     // [ClientRpc]
     // public void RpcSetPlayersReady()
     // {
-    //     pController.SetPlayerReady(false,true);
+    //     pController.isReady = true;
     // }
 
     [Server]
@@ -180,7 +182,7 @@ public class LevelController : NetworkBehaviour
     {
         foreach (PlayerController gamePlayer in gamePlayers) 
             {
-                gamePlayer.SetPlayerReady(false, true);
+                gamePlayer.SetPlayerReady(false,true);
                 Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
             }
     }
