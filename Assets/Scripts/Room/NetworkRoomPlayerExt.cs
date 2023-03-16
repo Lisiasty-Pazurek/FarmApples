@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 
 namespace MirrorBasics
 {
@@ -8,11 +9,14 @@ namespace MirrorBasics
     {
         public static NetworkRoomPlayerExt localPlayer;
         public UIRoom uiRoom;
+
+        public string playerName;
+        public string playerModel;
+        public string playerTeam;
         
         public override void OnStartClient()
         {
             //Debug.Log($"OnStartClient {gameObject}");
-   //         if (isLocalPlayer) { localPlayer = this;}
             uiRoom = FindObjectOfType<UIRoom>();
         }
 
@@ -23,6 +27,8 @@ namespace MirrorBasics
             {
                 uiRoom.roomPlayer = this;
             }
+            GameObject roomPlayerUI = Instantiate(uiRoom.roomPlayerUIprefab,uiRoom.location);
+            roomPlayerUI.GetComponent<Text>();
         }
 
         public override void OnClientExitRoom()

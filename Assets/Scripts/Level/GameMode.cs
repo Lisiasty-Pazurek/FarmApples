@@ -17,10 +17,6 @@ public class GameMode : MonoBehaviour
     public int maxRewards;
     public int maxBonuses;
 
-    // [SerializeField] public List<Transform> playerSpawnPoints;
-    // [SerializeField] public List<Transform> rewardSpawnPoints;
-    // [SerializeField] public List<Transform> teamSpawnPoints;
-    // [SerializeField] public List<Transform> pickupSpawnPoints;  
     public Scene gameScene;
     
     public void  Start() 

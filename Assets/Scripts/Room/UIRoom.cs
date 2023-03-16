@@ -44,9 +44,6 @@ public class UIRoom : NetworkBehaviour
 //            NetworkClient.connection.identity.gameObject.GetComponent<NetworkRoomPlayerExt>().CmdChangeReadyState(state);
         }
     }
-    public void OnClientEnterRoom()
-    {
-        Instantiate(roomPlayerUIprefab,location);
-    }
+
 
 }
