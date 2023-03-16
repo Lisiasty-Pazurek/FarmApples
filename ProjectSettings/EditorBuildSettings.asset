@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Apples01.unity
     guid: b7ceedfa10efa0c4ebb25e80930620ba
-  - enabled: 0
-    path: Assets/Scenes/OnlineScene.unity
-    guid: b2565f10680492b4fa2479abf729158b
+  - enabled: 1
+    path: Assets/Scenes/DialogueScene.unity
+    guid: fadd8748e9a3e71468b714233e906621
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 8056af8825e6ae44692e2820d675aead,
       type: 2}

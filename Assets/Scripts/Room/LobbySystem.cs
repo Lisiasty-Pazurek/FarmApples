@@ -79,8 +79,12 @@ public class LobbySystem : MonoBehaviour
         LRMTransport.maxServerPlayers = (int)maxPlayersSlider.value;
         LRMTransport.extraServerData = mapListDropdown.options[mapListDropdown.value].text;
         networkManager.StartHost();
+        /// ### BEGIN ### custom changes for room -> gammeplayscene changes
+        networkManager.GameplayScene = mapListDropdown.options[mapListDropdown.value].text;
+        Debug.Log("gameplay scene : " + mapListDropdown.options[mapListDropdown.value].text);
+        networkManager.ServerChangeScene("RoomScene");
 
-        networkManager.ServerChangeScene(mapListDropdown.options[mapListDropdown.value].text);
+        /// ### END ### custom changes for room -> gammeplayscene changes
     }
 
     public void JoinRoom()

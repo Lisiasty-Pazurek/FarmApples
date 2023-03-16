@@ -7,7 +7,7 @@ using MirrorBasics;
 
 public class UI_Room : NetworkBehaviour
 {
-    LobbySystem lobbySystem;
+    public LobbySystem lobbySystem;
     public GameObject roomPlayer;
     public NetworkRoomPlayerExt roomPlayerScript;
     public override void OnStartClient() 
@@ -15,6 +15,11 @@ public class UI_Room : NetworkBehaviour
         lobbySystem = FindObjectOfType<LobbySystem>();
         //roomPlayer = localPlayer.gameObject;
         //Debug.Log("ree" + NetworkRoomPlayerExt.localPlayer.index);
+    }
+
+    public override void OnStartServer ()
+    {
+        lobbySystem = FindObjectOfType<LobbySystem>();
     }
     
 
