@@ -45,6 +45,7 @@ public class UIRoom : MonoBehaviour
     public void ShowStartButton (bool state)
     {
         startbutton.SetActive(state);
+        
     }
 
  
