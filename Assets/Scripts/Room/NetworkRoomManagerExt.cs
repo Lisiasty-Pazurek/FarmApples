@@ -108,7 +108,7 @@ namespace MirrorBasics {
             base.OnRoomServerPlayersReady();
 #else
             showStartButton = true;
-            FindObjectOfType<UIRoom>().ShowStartButton(showStartButton);
+            
             Debug.Log("for server - all players ready");
 #endif
         }

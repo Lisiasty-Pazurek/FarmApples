@@ -60,6 +60,13 @@ namespace MirrorBasics
                 if (readyToBegin) { uiRoom.readybutton.text = "Gotowy"; }
                 else { uiRoom.readybutton.text = "Nie gotowy"; }
             }
+
+            //it's stupid but works
+            if (isServer)
+            {
+                uiRoom.ShowStartButton(!uiRoom.roomManager.allPlayersReady);
+                Debug.Log("Changed button visibility to: " + !uiRoom.roomManager.allPlayersReady);
+            }
         }
 
         public override void OnGUI()

@@ -28,6 +28,7 @@ public class UIRoom : MonoBehaviour
     public void BackToLobby()
     {
         lobbySystem.OpenLobbyMenu();
+        
     }
 
     public void ChangeReadyState()
