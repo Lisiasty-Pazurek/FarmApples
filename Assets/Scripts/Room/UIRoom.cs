@@ -5,33 +5,25 @@ using Mirror;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using MirrorBasics;
+using UnityEngine.EventSystems;
 
 public class UIRoom : MonoBehaviour
 {
     public LobbySystem lobbySystem;
-//    public GameObject roomPlayerObject;
     public NetworkRoomPlayerExt roomPlayer;
     public NetworkRoomManagerExt roomManager;
-    public Button startbutton;
+    public Text readybutton;
+    public GameObject startbutton;
+    
+
     [SerializeField] public Transform location;
 
-    public void  Start() 
+    public void Start() 
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
+        roomManager = FindObjectOfType<NetworkRoomManagerExt>();    
+
     }
-
-//     public override void OnStartClient () 
-//     {
-//         lobbySystem = FindObjectOfType<LobbySystem>();
-// //        roomPlayerObject = NetworkClient.localPlayer.gameObject;
-//         //Debug.Log("ree" + NetworkRoomPlayerExt.localPlayer.index);
-//     }
-
-//     public override void OnStartServer ()
-//     {
-//         lobbySystem = FindObjectOfType<LobbySystem>();
-//     }
-    
 
     public void BackToLobby()
     {
@@ -40,23 +32,25 @@ public class UIRoom : MonoBehaviour
 
     public void ChangeReadyState()
     {
+        roomPlayer.CmdChangeReadyState(!roomPlayer.readyToBegin);
+        if (roomPlayer.readyToBegin)
         {
-            roomPlayer.CmdChangeReadyState(true);
-            //Debug.Log("ree " + roomPlayerScript.index);
-
-//            NetworkClient.connection.identity.gameObject.GetComponent<NetworkRoomPlayerExt>().CmdChangeReadyState(state);
+            readybutton.text = "Gotowy";
         }
+        else
+            readybutton.text = "Nie gotowy";
+        
     }
 
     public void ShowStartButton (bool state)
     {
-        startbutton.enabled = state;
+        startbutton.SetActive(state);
     }
 
  
     public void StartGame ()
     {
-        roomManager.ServerChangeScene("GameplayScene");
+        roomManager.ServerChangeScene(roomManager.GameplayScene);
     }
 
 

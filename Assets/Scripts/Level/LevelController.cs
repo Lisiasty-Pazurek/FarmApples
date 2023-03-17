@@ -59,7 +59,7 @@ public class LevelController : NetworkBehaviour
         {
             gameMode = this.GetComponent<GameMode>();
             InitiateLevel();
-            StartCoroutine(Countdown());
+
         }
 
 
@@ -69,9 +69,9 @@ public class LevelController : NetworkBehaviour
         CheckIfMatchPlayersAreReady();
     }
 
-    public void CheckIfMatchPlayersAreReady()
+    public bool CheckIfMatchPlayersAreReady()
     {
-        if (readyToStart){return;}
+        
         int k = 0; 
         foreach (PlayerController player in gamePlayers) 
         {
@@ -81,6 +81,8 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStart = true;}
 
         PrepareLevel();
+        StartCoroutine(Countdown());        
+        return readyToStart;
     }
 
 

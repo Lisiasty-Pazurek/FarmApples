@@ -2,28 +2,48 @@
     "name": "KeyboardActions",
     "maps": [
         {
-            "name": "Movement",
+            "name": "PlayerMovement",
             "id": "fe5f9060-e747-49b2-8f45-e8d851305c22",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Value",
+                    "name": "Interact",
+                    "type": "Button",
                     "id": "441f190f-0e15-4614-b077-3f5ddd97c497",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "8923f38b-f36a-4d0c-99ae-b1e3e788ddc8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "bc35393b-0381-40de-ac5e-98bb86d91fce",
-                    "path": "<Keyboard>/#(A)",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28d40696-00ff-4689-b1c0-7b0ea5d61e2c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

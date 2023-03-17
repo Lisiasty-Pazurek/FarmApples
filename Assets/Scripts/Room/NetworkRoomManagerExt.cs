@@ -63,6 +63,15 @@ namespace MirrorBasics {
                 }
                 return true;
             }
+            else if (SceneManager.GetActiveScene().name == "DialogueScene") 
+            {
+                PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
+                PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
+                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                playerGameController.modelName = "Sheep";
+                return true;
+            }
+
             else return false;
         }
 
@@ -99,8 +108,13 @@ namespace MirrorBasics {
             base.OnRoomServerPlayersReady();
 #else
             showStartButton = true;
+            FindObjectOfType<UIRoom>().ShowStartButton(showStartButton);
+            Debug.Log("for server - all players ready");
 #endif
         }
+
+
+
 
         public override void OnGUI()
         {
@@ -138,5 +152,7 @@ namespace MirrorBasics {
         SceneManager.LoadScene("LobbySample");
         Destroy(this.gameObject);
     }
+
+
     }
 }
