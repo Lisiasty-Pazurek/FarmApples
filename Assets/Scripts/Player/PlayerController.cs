@@ -70,7 +70,6 @@ using System.Collections.Generic;
             GetComponent<Rigidbody>().isKinematic = true;
             uiGameplay = GameObject.FindObjectOfType<UIGameplay>();
             uiGameplay.player = this;
-            uiGameplay.ChangeUIState(1);
 
             pScore = gameObject.GetComponentInParent<PlayerScore>();
             pCamera = this.GetComponent<PlayerCamera>();

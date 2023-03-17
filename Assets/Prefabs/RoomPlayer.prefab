@@ -69,3 +69,8 @@ MonoBehaviour:
   readyToBegin: 0
   index: 0
   uiRoom: {fileID: 0}
+  playerName: 
+  playerModel: 
+  playerTeam: 
+  roomPlayerUIprefab: {fileID: 6630471258299682127, guid: e3f2e4c326d3acb46b3afe99368f1fd3,
+    type: 3}

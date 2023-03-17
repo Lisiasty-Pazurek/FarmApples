@@ -208,9 +208,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1798849067}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1798849073}
+        m_TargetAssemblyTypeName: UIRoom, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1835,8 +1835,10 @@ MonoBehaviour:
   lobbySystem: {fileID: 0}
   roomPlayerObject: {fileID: 0}
   roomPlayer: {fileID: 0}
+  roomManager: {fileID: 0}
   roomPlayerUIprefab: {fileID: 6630471258299682127, guid: e3f2e4c326d3acb46b3afe99368f1fd3,
     type: 3}
+  startbutton: {fileID: 55634905}
   location: {fileID: 485879624}
 --- !u!114 &1798849074
 MonoBehaviour:

@@ -33,6 +33,7 @@ public class LevelController : NetworkBehaviour
         [SerializeField] GameObject playerPrefabDonkey;
         [SerializeField] GameObject prizePrefab;
         [SerializeField] private Text countdownText;
+        [SerializeField] private Canvas rulesCanvas;
         [SerializeField] private UIGameplay uIGameplay;
         public PlayerController pController;
 
@@ -127,7 +128,7 @@ public class LevelController : NetworkBehaviour
             RpcUpdateCountdown(secondsLeft);
             Debug.Log(" Countdown for " + timeLeft);
             countdownTimer-= 1;
-            if (countdownTimer == 2)
+            if (countdownTimer == 3)
             {
                SetPlayerModels();   
                 // RpcSetPlayersReady();
@@ -138,7 +139,7 @@ public class LevelController : NetworkBehaviour
         if (countdownTimer < 0){
             Debug.Log("Ending Countdown  " );
 
-           SetGamePlayersReady();
+            SetGamePlayersReady();
             // RpcSetPlayerModels();
             RpcDisableCountdown();
 
@@ -153,7 +154,8 @@ public class LevelController : NetworkBehaviour
     [ClientRpc]
     private void RpcDisableCountdown()
     {
-        countdownText.enabled = false;
+        //countdownText.enabled = false;
+        rulesCanvas.enabled = false;
     }
     
     // [ClientRpc]

@@ -13,6 +13,7 @@ namespace MirrorBasics
         public string playerName;
         public string playerModel;
         public string playerTeam;
+        public GameObject roomPlayerUIprefab;
         
         public override void OnStartClient()
         {
@@ -23,11 +24,12 @@ namespace MirrorBasics
         public override void OnClientEnterRoom()
         {
             //Debug.Log($"OnClientEnterRoom {SceneManager.GetActiveScene().path}");
+            uiRoom = FindObjectOfType<UIRoom>();
             if (isLocalPlayer)
             {
                 uiRoom.roomPlayer = this;
             }
-            GameObject roomPlayerUI = Instantiate(uiRoom.roomPlayerUIprefab,uiRoom.location);
+            GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
             roomPlayerUI.GetComponent<Text>();
         }
 
