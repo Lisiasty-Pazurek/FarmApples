@@ -33,12 +33,12 @@ public class UIRoom : MonoBehaviour
     public void ChangeReadyState()
     {
         roomPlayer.CmdChangeReadyState(!roomPlayer.readyToBegin);
-        if (roomPlayer.readyToBegin)
-        {
-            readybutton.text = "Gotowy";
-        }
-        else
-            readybutton.text = "Nie gotowy";
+        // if (!roomPlayer.readyToBegin)
+        // {
+        //     readybutton.text = "Gotowy";
+        // }
+        // else
+        //     readybutton.text = "Nie gotowy";
         
     }
 

@@ -56,7 +56,10 @@ namespace MirrorBasics
         public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
         {
             //Debug.Log($"ReadyStateChanged {newReadyState}"); Important!
-            
+            if (isLocalPlayer){
+                if (readyToBegin) { uiRoom.readybutton.text = "Gotowy"; }
+                else { uiRoom.readybutton.text = "Nie gotowy"; }
+            }
         }
 
         public override void OnGUI()
