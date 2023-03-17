@@ -25,7 +25,7 @@ namespace MirrorBasics
 
         public void SetPlayerName () 
         {
-
+//            playerName.text = PlayerPrefs.GetString("PlayerName");
         }
 
         public void SetPlayerScore(int score)

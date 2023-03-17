@@ -62,6 +62,7 @@ public class LevelController : NetworkBehaviour
             StartCoroutine(Countdown());
         }
 
+
     [Server]
     public void InitiateLevel()
     {
@@ -128,7 +129,7 @@ public class LevelController : NetworkBehaviour
             RpcUpdateCountdown(secondsLeft);
             Debug.Log(" Countdown for " + timeLeft);
             countdownTimer-= 1;
-            if (countdownTimer == 3)
+            if (countdownTimer == 2)
             {
                SetPlayerModels();   
                 // RpcSetPlayersReady();

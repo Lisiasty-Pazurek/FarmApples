@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using MirrorBasics;
 
-public class UIRoom : NetworkBehaviour
+public class UIRoom : MonoBehaviour
 {
     public LobbySystem lobbySystem;
 //    public GameObject roomPlayerObject;
@@ -15,21 +15,22 @@ public class UIRoom : NetworkBehaviour
     public Button startbutton;
     [SerializeField] public Transform location;
 
-    public void  Start() {
-        
-    }
-
-    public override void OnStartLocalPlayer () 
-    {
-        lobbySystem = FindObjectOfType<LobbySystem>();
-//        roomPlayerObject = NetworkClient.localPlayer.gameObject;
-        //Debug.Log("ree" + NetworkRoomPlayerExt.localPlayer.index);
-    }
-
-    public override void OnStartServer ()
+    public void  Start() 
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
     }
+
+//     public override void OnStartClient () 
+//     {
+//         lobbySystem = FindObjectOfType<LobbySystem>();
+// //        roomPlayerObject = NetworkClient.localPlayer.gameObject;
+//         //Debug.Log("ree" + NetworkRoomPlayerExt.localPlayer.index);
+//     }
+
+//     public override void OnStartServer ()
+//     {
+//         lobbySystem = FindObjectOfType<LobbySystem>();
+//     }
     
 
     public void BackToLobby()

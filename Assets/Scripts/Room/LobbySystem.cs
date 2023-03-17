@@ -89,8 +89,9 @@ public class LobbySystem : MonoBehaviour
 
     public void JoinRoom()
     {
-        LRMTransport.RequestServerList();
 
+        PlayerPrefs.SetString("PlayerName", playerNameInputField.text);
+        LRMTransport.RequestServerList();
         for (int i = 0; i < LRMTransport.relayServerList.Count; i++)
         {
             if (LRMTransport.relayServerList[i].serverName.Normalize() == joinRoomNameInputField.text.Normalize())

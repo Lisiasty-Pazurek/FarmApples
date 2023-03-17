@@ -1708,7 +1708,6 @@ GameObject:
   - component: {fileID: 1798849068}
   - component: {fileID: 1798849069}
   - component: {fileID: 1798849073}
-  - component: {fileID: 1798849074}
   m_Layer: 5
   m_Name: RoomUI
   m_TagString: Untagged
@@ -1829,34 +1828,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b3a5bb782494c44b1a161c10f567b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
   lobbySystem: {fileID: 0}
-  roomPlayerObject: {fileID: 0}
   roomPlayer: {fileID: 0}
   roomManager: {fileID: 0}
-  roomPlayerUIprefab: {fileID: 6630471258299682127, guid: e3f2e4c326d3acb46b3afe99368f1fd3,
-    type: 3}
   startbutton: {fileID: 55634905}
   location: {fileID: 485879624}
---- !u!114 &1798849074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798849067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 1107641856
-  _assetId: 0
-  serverOnly: 0
-  visible: 0
-  hasSpawned: 0
 --- !u!1 &1981534279
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace MirrorBasics
         public static NetworkRoomPlayerExt localPlayer;
         public UIRoom uiRoom;
 
-        public string playerName;
+        [SyncVar] public string playerName;
         public string playerModel;
         public string playerTeam;
         public GameObject roomPlayerUIprefab;
@@ -19,6 +19,15 @@ namespace MirrorBasics
         {
             //Debug.Log($"OnStartClient {gameObject}");
             uiRoom = FindObjectOfType<UIRoom>();
+      
+        }
+
+        public override void OnStartServer()
+        {
+            base.OnStartServer();
+            
+            playerName = PlayerPrefs.GetString("PlayerName");
+            
         }
 
         public override void OnClientEnterRoom()
@@ -28,9 +37,10 @@ namespace MirrorBasics
             if (isLocalPlayer)
             {
                 uiRoom.roomPlayer = this;
-            }
+            }  
             GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
-            roomPlayerUI.GetComponent<Text>();
+
+            roomPlayerUI.GetComponent<RoomPlayerUI>().playerName.text= playerName;     
         }
 
         public override void OnClientExitRoom()
