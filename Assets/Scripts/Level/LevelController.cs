@@ -81,7 +81,7 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStart = true;}
 
         PrepareLevel();
-        StartCoroutine(Countdown());        
+           
         return readyToStart;
     }
 
@@ -92,6 +92,7 @@ public class LevelController : NetworkBehaviour
         int playersAmount = gamePlayers.Count;
         Debug.Log("Players in game: " + playersAmount);
         PreparePlayers();
+        StartCoroutine(Countdown());     
     }
 
     [Server]

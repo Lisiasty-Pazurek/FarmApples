@@ -55,7 +55,8 @@ namespace MirrorBasics
 
         public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
         {
-            //Debug.Log($"ReadyStateChanged {newReadyState}");
+            //Debug.Log($"ReadyStateChanged {newReadyState}"); Important!
+            
         }
 
         public override void OnGUI()

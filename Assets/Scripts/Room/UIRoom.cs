@@ -50,6 +50,7 @@ public class UIRoom : MonoBehaviour
  
     public void StartGame ()
     {
+        if (!roomManager.allPlayersReady) {return;}
         roomManager.ServerChangeScene(roomManager.GameplayScene);
     }
 

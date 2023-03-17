@@ -120,7 +120,7 @@ namespace MirrorBasics {
         {
             base.OnGUI();
 
-            if (allPlayersReady && showStartButton && GUI.Button(new Rect(Screen.width - 160, 300, 120, 20), "START"))
+            if (showRoomGUI && allPlayersReady && showStartButton && GUI.Button(new Rect(Screen.width - 160, 300, 120, 20), "START"))
             {
                 // set to false to hide it in the game scene
                 showStartButton = false;
