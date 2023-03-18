@@ -18,20 +18,17 @@ namespace MirrorBasics {
 public class LevelController : NetworkBehaviour
 {   
     [Header ("Attributes")]
-    private NetworkRoomManagerExt networkManager;
-    [SerializeField]public GameMode gameMode;     
-    [SerializeField]public Spawner spawner;    
-    [SyncVar] public bool readyToStart;
-    public bool readyToStartLevel;
-    public bool gameEnded = false;    
-    [SyncVar] public float countdownTimer;  
+        private NetworkRoomManagerExt networkManager;
+        [SerializeField]public GameMode gameMode;     
+        [SerializeField]public Spawner spawner;    
+        [SyncVar] public bool readyToStart;
+        public bool readyToStartLevel;
+        public bool gameEnded = false;    
+        [SyncVar] public float countdownTimer;  
 
 
     [Header ("References")]
         [SerializeField] GameObject playerPrefab;
-        [SerializeField] GameObject playerPrefabSheep;
-        [SerializeField] GameObject playerPrefabDonkey;
-        [SerializeField] GameObject prizePrefab;
         [SerializeField] private Text countdownText;
         [SerializeField] private Canvas rulesCanvas;
         [SerializeField] private UIGameplay uIGameplay;
@@ -59,7 +56,6 @@ public class LevelController : NetworkBehaviour
         {
             gameMode = this.GetComponent<GameMode>();
             InitiateLevel();
-
         }
 
 
@@ -135,18 +131,15 @@ public class LevelController : NetworkBehaviour
             if (countdownTimer == 2)
             {
                SetPlayerModels();   
-                // RpcSetPlayersReady();
             }
         }
 
 
-        if (countdownTimer < 0){
-            Debug.Log("Ending Countdown  " );
-
+        if (countdownTimer < 0)
+        {
+            Debug.Log("Ending Countdown  ");
             SetGamePlayersReady();
-            // RpcSetPlayerModels();
             RpcDisableCountdown();
-
         }
     }
 
@@ -161,36 +154,25 @@ public class LevelController : NetworkBehaviour
         //countdownText.enabled = false;
         rulesCanvas.enabled = false;
     }
-    
-    // [ClientRpc]
-    // private void RpcSetPlayerModels()
-    // {
-    //     pController.SetModel();
-    // }
 
-    // [ClientRpc]
-    // public void RpcSetPlayersReady()
-    // {
-    //     pController.isReady = true;
-    // }
 
     [Server]
     private void SetPlayerModels()
     {
         foreach (PlayerController gamePlayer in gamePlayers) 
-            {
-                gamePlayer.SetModel();
-            }
+        {
+            gamePlayer.SetModel();
+        }
     }
 
     [Server]
     public void SetGamePlayersReady()
     {
         foreach (PlayerController gamePlayer in gamePlayers) 
-            {
-                gamePlayer.SetPlayerReady(false,true);
-                Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
-            }
+        {
+            gamePlayer.SetPlayerReady(false,true);
+            Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
+        }
     }
 
 

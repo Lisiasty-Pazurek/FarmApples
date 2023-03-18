@@ -62,18 +62,18 @@ public class Spawner: NetworkBehaviour
     public void SpawnTeamboxes()
     {
         for (int i = 0; i < gameMode.maxTeams;)
-            { 
-                if (!IsOdd(i))
-                {
-                    Debug.Log("sending spawnpoint: " + i);
-                    SpawnTeambox(1, i);
-                }
-                else 
-                {
-                    SpawnTeambox(2, i);
-                }
-                i++;
+        { 
+            if (!IsOdd(i))
+            {
+                Debug.Log("sending spawnpoint: " + i);
+                SpawnTeambox(1, i);
             }
+            else 
+            {
+                SpawnTeambox(2, i);
+            }
+            i++;
+        }
     }
 
     [Server]
