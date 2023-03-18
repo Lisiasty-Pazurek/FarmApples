@@ -18,6 +18,7 @@ public class UIGameplay : MonoBehaviour
     [SerializeField] public Canvas gameUICanvas;
     [SerializeField] public Canvas postGameUICanvas;
     [SerializeField]public List<Canvas> uiStates;
+    public Image interactImage;
 
     public int uiState = 0;
 
