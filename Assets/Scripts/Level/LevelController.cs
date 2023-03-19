@@ -42,7 +42,7 @@ public class LevelController : NetworkBehaviour
 
         public override void OnStartClient() 
         {
-            UIGameplay uIGameplay = FindObjectOfType<UIGameplay>();
+            uIGameplay = FindObjectOfType<UIGameplay>();
             uIGameplay.levelController = this;
             gameMode = this.GetComponent<GameMode>();
         }
@@ -111,10 +111,7 @@ public class LevelController : NetworkBehaviour
 
     }
 
-    public static bool IsOdd(int value)
-    {
-        return value % 2 != 0;
-    }
+
 
     [Server]
     private IEnumerator Countdown()
@@ -133,8 +130,6 @@ public class LevelController : NetworkBehaviour
                SetPlayerModels();   
             }
         }
-
-
         if (countdownTimer < 0)
         {
             Debug.Log("Ending Countdown  ");
@@ -175,14 +170,27 @@ public class LevelController : NetworkBehaviour
         }
     }
 
-
-
     [ClientRpc]
     public void EndLevel()
     {
         Debug.Log("Ending level for match: " );
         uIGameplay.ChangeUIState(2);
         pController.characterController.GetComponent<CharacterController>().enabled = false;
+    }
+
+    public void QuitLevel()
+    {
+        if (isServer)
+        {
+            NetworkRoomManagerExt.singleton.ServerChangeScene(NetworkRoomManagerExt.singleton.RoomScene);
+        }
+
+        if (isClientOnly)
+        {
+            NetworkClient.Disconnect();
+            SceneManager.LoadSceneAsync("BasicScene");
+            LobbySystem.singleton.OpenLobbyMenu();
+        }
     }
 
 }

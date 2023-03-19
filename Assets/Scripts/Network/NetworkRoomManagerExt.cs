@@ -68,6 +68,7 @@ namespace MirrorBasics {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
                 playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                playerGameController.playerIndex = playerScore.index;
                 playerGameController.modelName = "Sheep";
                 playerGameController.GetComponent<PlayerInteractions>().canInteract = true;
 
@@ -88,7 +89,8 @@ namespace MirrorBasics {
                 else 
                 {
                     playerGameController.modelName = "Empty";
-                    gamePlayer.GetComponent<PlayerCamera>().SetNavigator(true);
+                    playerScore.isNavigator = true;
+                    
                 }
                 return true;
             }

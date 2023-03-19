@@ -56,18 +56,23 @@ namespace MirrorBasics
         public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
         {
             //Debug.Log($"ReadyStateChanged {newReadyState}"); Important!
-            if (isLocalPlayer){
+            if (isLocalPlayer)
+            {
                 if (readyToBegin) { uiRoom.readybutton.text = "Gotowy"; }
                 else { uiRoom.readybutton.text = "Nie gotowy"; }
             }
-
+        
             //it's stupid but works - need coroutine fix
             if (isServer)
             {
-                uiRoom.ShowStartButton(!uiRoom.roomManager.allPlayersReady);
-                Debug.Log("Changed button visibility to: " + !uiRoom.roomManager.allPlayersReady);
+                if (uiRoom != null) 
+                {
+                    uiRoom.ShowStartButton(!uiRoom.roomManager.allPlayersReady);
+                    Debug.Log("Changed button visibility to: " + !uiRoom.roomManager.allPlayersReady);
+                }
             }
         }
+
 
         public override void OnGUI()
         {

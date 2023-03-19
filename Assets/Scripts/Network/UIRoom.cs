@@ -22,31 +22,22 @@ public class UIRoom : MonoBehaviour
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
         roomManager = FindObjectOfType<NetworkRoomManagerExt>();    
-
     }
 
     public void BackToLobby()
     {
         lobbySystem.OpenLobbyMenu();
-        
     }
 
     public void ChangeReadyState()
     {
         roomPlayer.CmdChangeReadyState(!roomPlayer.readyToBegin);
-        // if (!roomPlayer.readyToBegin)
-        // {
-        //     readybutton.text = "Gotowy";
-        // }
-        // else
-        //     readybutton.text = "Nie gotowy";
-        
+
     }
 
     public void ShowStartButton (bool state)
     {
         startbutton.SetActive(state);
-        
     }
 
  
