@@ -5,10 +5,18 @@ using MirrorBasics;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    public bool canInteract = false;
+    public UIGameplay uiGameplay;
+
+    private void OnValidate() {
+
+        uiGameplay = FindObjectOfType<UIGameplay>();
+
+    }
 
      void OnTriggerStay(Collider other) 
     {
-        if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer) {return;}
+        if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}
         if (other.GetComponent<DialogueInteract>() !=null )
         {
             FindObjectOfType<UIGameplay>().interactImage.enabled = true;            
@@ -19,11 +27,14 @@ public class PlayerInteractions : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)     {    }
+    private void OnTriggerEnter(Collider other)     
+    { 
+        if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}   
+    }
     private void OnTriggerExit(Collider other) 
     {
-        if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer) {return;}
-        FindObjectOfType<UIGameplay>().interactImage.enabled = false;
+        if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}
+        if (FindObjectOfType<UIGameplay>().interactImage != null) {FindObjectOfType<UIGameplay>().interactImage.enabled = false;}
     }
     
 

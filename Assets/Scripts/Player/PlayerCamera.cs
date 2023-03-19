@@ -8,20 +8,32 @@ using Cinemachine;
         private Camera mainCam;
         private CinemachineVirtualCamera cineCam;
 
-        public void Start ()
-        {
-           
-        }
+        public bool isNavigator;
 
-        public void SetupPlayerCamera()
+         public void SetupPlayerCamera()
         {
-            Debug.Log("Setting up camera controllers");
             mainCam = Camera.main;
-           
-            cineCam = mainCam.GetComponent<CinemachineVirtualCamera>();
+            if (mainCam != null) 
+            {
+                if (isNavigator) {SetupNavigatorCamera(); return;} 
+                else
+                cineCam = mainCam.GetComponent<CinemachineVirtualCamera>();
                 mainCam.orthographic = false;
                 cineCam.Follow = this.transform;
                 Debug.Log("cinemachine cam follow set up for local client");
+            }
+        }
+
+        public void SetupNavigatorCamera()
+        {   
+            if (!isNavigator) {return;}
+            mainCam.enabled = false;
+            GameObject.FindGameObjectWithTag("NavigatorCamera").SetActive(true);
+        }
+
+        public void SetNavigator(bool state)
+        {
+            isNavigator = state;
         }
 
     }

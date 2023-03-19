@@ -63,12 +63,33 @@ namespace MirrorBasics {
                 }
                 return true;
             }
-            else if (SceneManager.GetActiveScene().name == "DialogueScene") 
+            else if (SceneManager.GetActiveScene().name == "DialogueScene")
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
                 playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 playerGameController.modelName = "Sheep";
+                playerGameController.GetComponent<PlayerInteractions>().canInteract = true;
+
+                return true;
+            }
+
+            else if (SceneManager.GetActiveScene().name == "Farmaze")
+            {
+                PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
+                PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
+                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                if (!IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
+                {
+                    playerGameController.modelName = "Sheep";
+                    playerGameController.jumpPower = 1;
+                    
+                }
+                else 
+                {
+                    playerGameController.modelName = "Empty";
+                    gamePlayer.GetComponent<PlayerCamera>().SetNavigator(true);
+                }
                 return true;
             }
 
