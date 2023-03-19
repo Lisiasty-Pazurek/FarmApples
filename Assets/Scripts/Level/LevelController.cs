@@ -18,21 +18,19 @@ namespace MirrorBasics {
 public class LevelController : NetworkBehaviour
 {   
     [Header ("Attributes")]
-    private NetworkRoomManagerExt networkManager;
-    [SerializeField]public GameMode gameMode;     
-    [SerializeField]public Spawner spawner;    
-    [SyncVar] public bool readyToStart;
-    public bool readyToStartLevel;
-    public bool gameEnded = false;    
-    [SyncVar] public float countdownTimer;  
+        private NetworkRoomManagerExt networkManager;
+        [SerializeField]public GameMode gameMode;     
+        [SerializeField]public Spawner spawner;    
+        [SyncVar] public bool readyToStart;
+        public bool readyToStartLevel;
+        public bool gameEnded = false;    
+        [SyncVar] public float countdownTimer;  
 
 
     [Header ("References")]
         [SerializeField] GameObject playerPrefab;
-        [SerializeField] GameObject playerPrefabSheep;
-        [SerializeField] GameObject playerPrefabDonkey;
-        [SerializeField] GameObject prizePrefab;
         [SerializeField] private Text countdownText;
+        [SerializeField] private Canvas rulesCanvas;
         [SerializeField] private UIGameplay uIGameplay;
         public PlayerController pController;
 
@@ -44,7 +42,7 @@ public class LevelController : NetworkBehaviour
 
         public override void OnStartClient() 
         {
-            UIGameplay uIGameplay = FindObjectOfType<UIGameplay>();
+            uIGameplay = FindObjectOfType<UIGameplay>();
             uIGameplay.levelController = this;
             gameMode = this.GetComponent<GameMode>();
         }
@@ -58,8 +56,8 @@ public class LevelController : NetworkBehaviour
         {
             gameMode = this.GetComponent<GameMode>();
             InitiateLevel();
-            StartCoroutine(Countdown());
         }
+
 
     [Server]
     public void InitiateLevel()
@@ -67,9 +65,9 @@ public class LevelController : NetworkBehaviour
         CheckIfMatchPlayersAreReady();
     }
 
-    public void CheckIfMatchPlayersAreReady()
+    public bool CheckIfMatchPlayersAreReady()
     {
-        if (readyToStart){return;}
+        
         int k = 0; 
         foreach (PlayerController player in gamePlayers) 
         {
@@ -79,6 +77,8 @@ public class LevelController : NetworkBehaviour
         if (k == gamePlayers.Count)  {readyToStart = true;}
 
         PrepareLevel();
+           
+        return readyToStart;
     }
 
 
@@ -88,6 +88,7 @@ public class LevelController : NetworkBehaviour
         int playersAmount = gamePlayers.Count;
         Debug.Log("Players in game: " + playersAmount);
         PreparePlayers();
+        StartCoroutine(Countdown());     
     }
 
     [Server]
@@ -110,10 +111,7 @@ public class LevelController : NetworkBehaviour
 
     }
 
-    public static bool IsOdd(int value)
-    {
-        return value % 2 != 0;
-    }
+
 
     [Server]
     private IEnumerator Countdown()
@@ -130,18 +128,13 @@ public class LevelController : NetworkBehaviour
             if (countdownTimer == 2)
             {
                SetPlayerModels();   
-                // RpcSetPlayersReady();
             }
         }
-
-
-        if (countdownTimer < 0){
-            Debug.Log("Ending Countdown  " );
-
-           SetGamePlayersReady();
-            // RpcSetPlayerModels();
+        if (countdownTimer < 0)
+        {
+            Debug.Log("Ending Countdown  ");
+            SetGamePlayersReady();
             RpcDisableCountdown();
-
         }
     }
 
@@ -153,41 +146,29 @@ public class LevelController : NetworkBehaviour
     [ClientRpc]
     private void RpcDisableCountdown()
     {
-        countdownText.enabled = false;
+        //countdownText.enabled = false;
+        rulesCanvas.enabled = false;
     }
-    
-    // [ClientRpc]
-    // private void RpcSetPlayerModels()
-    // {
-    //     pController.SetModel();
-    // }
 
-    // [ClientRpc]
-    // public void RpcSetPlayersReady()
-    // {
-    //     pController.isReady = true;
-    // }
 
     [Server]
     private void SetPlayerModels()
     {
         foreach (PlayerController gamePlayer in gamePlayers) 
-            {
-                gamePlayer.SetModel();
-            }
+        {
+            gamePlayer.SetModel();
+        }
     }
 
     [Server]
     public void SetGamePlayersReady()
     {
         foreach (PlayerController gamePlayer in gamePlayers) 
-            {
-                gamePlayer.SetPlayerReady(false,true);
-                Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
-            }
+        {
+            gamePlayer.SetPlayerReady(false,true);
+            Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
+        }
     }
-
-
 
     [ClientRpc]
     public void EndLevel()
@@ -195,6 +176,21 @@ public class LevelController : NetworkBehaviour
         Debug.Log("Ending level for match: " );
         uIGameplay.ChangeUIState(2);
         pController.characterController.GetComponent<CharacterController>().enabled = false;
+    }
+
+    public void QuitLevel()
+    {
+        if (isServer)
+        {
+            NetworkRoomManagerExt.singleton.ServerChangeScene(NetworkRoomManagerExt.singleton.RoomScene);
+        }
+
+        if (isClientOnly)
+        {
+            NetworkClient.Disconnect();
+            SceneManager.LoadSceneAsync("BasicScene");
+            LobbySystem.singleton.OpenLobbyMenu();
+        }
     }
 
 }

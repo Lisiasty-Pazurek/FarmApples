@@ -12,6 +12,7 @@ namespace MirrorBasics
 
         [SyncVar (hook = nameof(HandleCarriedItemToggle))] public bool hasItem;
         [SyncVar (hook = nameof(HandleStealingToggle))] public bool canSteal = false;
+        [SyncVar] public bool isNavigator;
 
         [SerializeField] public GameObject carriedItem;
         [SerializeField] public GameObject stealingItem;

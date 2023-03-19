@@ -10,6 +10,7 @@ TagManager:
   - GameCamera
   - PlayerSpawnPoint
   - TeamSpawnPoint
+  - NavigatorCamera
   layers:
   - Default
   - TransparentFX

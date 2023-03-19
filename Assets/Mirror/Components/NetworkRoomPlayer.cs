@@ -150,32 +150,12 @@ namespace Mirror
         void DrawPlayerReadyState()
         {   
             GUI.backgroundColor = new Color(221, 186, 135, 255);
-            if ( index <7) 
-            {
+
                 GUILayout.BeginArea(new Rect(40f + (index * 110), 200f, 90f, 130f));
                 
                 GUI.contentColor = new Color(0, 0, 0, 255);
 
                 GUILayout.Label($"Gracz {index + 1}");
-            }
-
-            if ( index >= 7  && index <14) 
-            {
-                GUILayout.BeginArea(new Rect(40f + ((index-7) * 110), 400f, 90f, 130f));
-                
-                GUI.contentColor = new Color(0, 0, 0, 255);
-
-                GUILayout.Label($"Gracz {index + 1}");
-            }
-
-            if ( index >= 14  && index <= 21) 
-            {
-                GUILayout.BeginArea(new Rect(40f + ((index-14) * 110), 600f, 90f, 130f));
-                
-                GUI.contentColor = new Color(0, 0, 0, 255);
-
-                GUILayout.Label($"Gracz {index + 1}");
-            }
 
             if (readyToBegin)
                 GUILayout.Label("Gotowy");

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: CowIntro
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Dzie\u0144 dobry, witam na moim straganie."
+    dialogueDisplayTime: 3
+    dialogueChoices: []
+  - dialogueText: "Niestety, kto\u015B podkrada moje jab\u0142ka."
+    dialogueDisplayTime: 3
+    dialogueChoices: []
+  - dialogueText: "Czy dasz rad\u0119 mi pom\xF3c i znale\u017A\u0107 z\u0142odziejaszka?"
+    dialogueDisplayTime: 3
+    dialogueChoices:
+    - dialogueChoice: "Ju\u017C id\u0119 poszuka\u0107."
+      followOnDialogue: {fileID: 11400000, guid: 02c2b5462f1f3ba48af077ce5b1d63a3,
+        type: 2}
+    - dialogueChoice: Nie mam teraz na to czasu!
+      followOnDialogue: {fileID: 11400000, guid: 4b2eeaa3feea8ba4485a0bde30ee6795,
+        type: 2}
