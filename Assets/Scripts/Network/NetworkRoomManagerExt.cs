@@ -46,6 +46,7 @@ namespace MirrorBasics {
         /// <returns>true unless some code in here decides it needs to abort the replacement</returns>
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
+            /// idditional class for changing player objects depending on game mode seems necessary for clarity
             if (SceneManager.GetActiveScene().name == "Apples01") 
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
@@ -122,7 +123,7 @@ namespace MirrorBasics {
             is set as DontDestroyOnLoad = true.
         */
 
-        bool showStartButton;
+        public bool showStartButton;
 
         public override void OnRoomServerPlayersReady()
         {
@@ -131,13 +132,10 @@ namespace MirrorBasics {
             base.OnRoomServerPlayersReady();
 #else
             showStartButton = true;
-            
+           
             Debug.Log("for server - all players ready");
 #endif
         }
-
-
-
 
         public override void OnGUI()
         {
@@ -147,11 +145,9 @@ namespace MirrorBasics {
             {
                 // set to false to hide it in the game scene
                 showStartButton = false;
-
                 ServerChangeScene(GameplayScene);
             }
         }
-
 
 
     public override void OnClientConnect()

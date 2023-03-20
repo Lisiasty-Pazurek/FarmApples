@@ -37,7 +37,9 @@ public class UIRoom : MonoBehaviour
 
     public void ShowStartButton (bool state)
     {
-        startbutton.SetActive(state);
+        // that's cheating but it changes state at same moment as it shows button
+        Debug.Log("changing button to:  " + state);
+        startbutton.SetActive(!state);
     }
 
  
