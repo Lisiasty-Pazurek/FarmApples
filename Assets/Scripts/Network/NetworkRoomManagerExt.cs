@@ -32,8 +32,11 @@ namespace MirrorBasics {
         public override void OnRoomServerSceneChanged(string sceneName)
         {
 
+        }
 
-            
+        public override void OnRoomClientEnter() 
+        {
+ //           NetworkClient.localPlayer.gameObject.GetComponent<NetworkRoomPlayerExt>().SpawnRoomUIPrefab();
         }
 
         /// <summary>
@@ -46,7 +49,7 @@ namespace MirrorBasics {
         /// <returns>true unless some code in here decides it needs to abort the replacement</returns>
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
-            /// idditional class for changing player objects depending on game mode seems necessary for clarity
+            /// additional class for changing player objects depending on game mode seems necessary for clarity
             if (SceneManager.GetActiveScene().name == "Apples01") 
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();

@@ -187,9 +187,9 @@ public class LevelController : NetworkBehaviour
 
         if (isClientOnly)
         {
-            NetworkClient.Disconnect();
-            SceneManager.LoadSceneAsync("BasicScene");
-            LobbySystem.singleton.OpenLobbyMenu();
+            //NetworkClient.Disconnect();
+            //SceneManager.LoadSceneAsync("LobbySample");
+            //LobbySystem.singleton.OpenLobbyMenu();
         }
     }
 

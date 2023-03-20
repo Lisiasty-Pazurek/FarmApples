@@ -1,7 +1,5 @@
 using UnityEngine;
 using Mirror;
-using UnityEngine.UI;
-
 namespace MirrorBasics
 {
 //    [AddComponentMenu("")]
@@ -20,13 +18,14 @@ namespace MirrorBasics
         {
             //Debug.Log($"OnStartClient {gameObject}");
             uiRoom = FindObjectOfType<UIRoom>();
-            playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;      
+            playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;     
         }
 
         public override void OnStartServer()
         {
             base.OnStartServer();
-            
+            uiRoom = FindObjectOfType<UIRoom>();
+            SpawnRoomUIPrefab();            
 
         }
 
@@ -37,16 +36,27 @@ namespace MirrorBasics
 
             if (isClient)
             {
-                GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
-                roomPlayerUI.GetComponent<RoomPlayerUI>().playerName.text = playerName; 
-                localRoomPlayerUi = roomPlayerUI;
                 if (isLocalPlayer)
                 {
                     uiRoom.roomPlayer = this;
-
-                }
+                }    
             }
 
+        }
+
+        
+        
+
+        [Server]
+        public void SpawnRoomUIPrefab ()
+        {
+            if (isServer) 
+            {
+                GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
+                roomPlayerUI.GetComponent<RoomPlayerUI>().thisPlayer = this;
+                NetworkServer.Spawn(roomPlayerUI);
+                localRoomPlayerUi = roomPlayerUI;
+            }
         }
 
         public override void OnClientExitRoom()
