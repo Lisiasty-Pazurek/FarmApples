@@ -1,18 +1,20 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeUi : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public MazeNavigator mazeNavigation;
+    int navigationState;
+
+    private void Start() 
     {
-        
+        mazeNavigation = GetComponent<MazeNavigator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SendNavigation()
     {
-        
+        mazeNavigation.CmdStateIcon(navigationState);
     }
+
 }

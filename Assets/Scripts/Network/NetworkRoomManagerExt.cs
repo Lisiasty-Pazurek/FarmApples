@@ -123,7 +123,7 @@ namespace MirrorBasics {
             is set as DontDestroyOnLoad = true.
         */
 
-        bool showStartButton;
+        public bool showStartButton;
 
         public override void OnRoomServerPlayersReady()
         {
@@ -132,7 +132,7 @@ namespace MirrorBasics {
             base.OnRoomServerPlayersReady();
 #else
             showStartButton = true;
-            
+           
             Debug.Log("for server - all players ready");
 #endif
         }
