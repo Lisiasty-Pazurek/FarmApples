@@ -86,7 +86,7 @@ namespace MirrorBasics {
                 playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 if (!IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
                 {
-                    playerGameController.modelName = "Sheep";
+                    playerGameController.modelName = "Dog";
                     playerGameController.jumpPower = 1;
                     
                 }

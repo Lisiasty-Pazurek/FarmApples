@@ -82,6 +82,11 @@ public class LobbySystem : MonoBehaviour
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;
         }
+        if (mapListDropdown.options[mapListDropdown.value].text == "DialogueScene")
+        {
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
+        }
     }
 
     public void CreateRoom()
