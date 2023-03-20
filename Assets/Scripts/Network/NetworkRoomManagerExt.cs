@@ -137,9 +137,6 @@ namespace MirrorBasics {
 #endif
         }
 
-
-
-
         public override void OnGUI()
         {
             base.OnGUI();
@@ -148,11 +145,9 @@ namespace MirrorBasics {
             {
                 // set to false to hide it in the game scene
                 showStartButton = false;
-
                 ServerChangeScene(GameplayScene);
             }
         }
-
 
 
     public override void OnClientConnect()
