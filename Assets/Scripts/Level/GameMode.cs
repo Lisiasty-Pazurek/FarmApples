@@ -18,6 +18,7 @@ public class GameMode : MonoBehaviour
     public int maxBonuses;
 
     public Scene gameScene;
+    public List<GameObject> levelPrefab = new List<GameObject>();
     
     public void  Start() 
     {
