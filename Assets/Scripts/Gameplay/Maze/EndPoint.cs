@@ -9,7 +9,6 @@ public class EndPoint : NetworkBehaviour
 
     public override void OnStartServer() 
     {
-        Debug.Log("Teambox validated, setting up levelcontroller in it");
         levelController = GameObject.FindObjectOfType<LevelController>();
     }
 

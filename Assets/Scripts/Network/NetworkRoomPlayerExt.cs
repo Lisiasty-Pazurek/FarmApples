@@ -71,6 +71,7 @@ namespace MirrorBasics
 
             if (isClient)
             {
+                if (localRoomPlayerUi != null)
                 localRoomPlayerUi.GetComponent<RoomPlayerUI>().pState = newReadyState;
                 //localRoomPlayerUi.GetComponent<RoomPlayerUI>();
             }

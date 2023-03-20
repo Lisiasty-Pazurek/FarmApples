@@ -17,15 +17,25 @@ public class MazeNavigator : NetworkBehaviour
     public List<Image> navigationImages;
 
 
-    public override void OnStartLocalPlayer()
+    public override void OnStartClient()
     {
-        base.OnStartLocalPlayer();
+        base.OnStartClient();
         mazeNavigation = this;
-
-        navigationCanvas.enabled = PlayerController.localGamePlayer.GetComponent<PlayerScore>().isNavigator;
-        Debug.Log(" is navigator? : " + PlayerController.localGamePlayer.GetComponent<PlayerScore>().isNavigator);
-
     }
+
+    private void Start() 
+    {
+        EnableNavigation();
+    }
+
+    void EnableNavigation()
+    {      
+        if (NetworkClient.localPlayer.gameObject.GetComponent<PlayerScore>().isNavigator) 
+        { 
+            navigationCanvas.enabled = true;
+        }
+    }
+
 
 
 

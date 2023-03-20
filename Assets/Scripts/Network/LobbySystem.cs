@@ -69,6 +69,21 @@ public class LobbySystem : MonoBehaviour
         LRMTransport.RequestServerList();
     }
 
+    public void RoomSet()
+    {
+        if (mapListDropdown.options[mapListDropdown.value].text == "Farmaze")
+        {
+            maxPlayersSlider.maxValue = 2;
+            maxPlayersSlider.value = 2;
+        }
+
+        if (mapListDropdown.options[mapListDropdown.value].text == "Apples01")
+        {
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
+        }
+    }
+
     public void CreateRoom()
     {
         if(roomNameInputField.text.Length < 1) roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
@@ -79,7 +94,8 @@ public class LobbySystem : MonoBehaviour
         LRMTransport.maxServerPlayers = (int)maxPlayersSlider.value;
         LRMTransport.extraServerData = mapListDropdown.options[mapListDropdown.value].text;
         networkManager.StartHost();
-        /// ### BEGIN ### custom changes for room -> gammeplayscene changes
+
+        /// ### BEGIN ### custom changes for room -> gameplayscene changes
         networkManager.GameplayScene = mapListDropdown.options[mapListDropdown.value].text;
         Debug.Log("gameplay scene : " + mapListDropdown.options[mapListDropdown.value].text);
         networkManager.ServerChangeScene("RoomScene");
