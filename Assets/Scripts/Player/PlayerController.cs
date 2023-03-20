@@ -32,7 +32,7 @@ public class PlayerController : NetworkBehaviour
     [Header("References")]
     [SerializeField] private Animator characterAnimator;
     [SerializeField] public NetworkAnimator networkAnimator;
-    private UIGameplay uiGameplay;
+    public UIGameplay uiGameplay;
     public PlayerScore pScore;
     public PlayerCamera pCamera;
 

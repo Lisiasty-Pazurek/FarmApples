@@ -6,6 +6,7 @@ using Mirror;
 
 public class MazeNavigator : NetworkBehaviour
 {
+    public static MazeNavigator mazeNavigation;
     public Image buttonImage;
     public Image navigationImage;
     public enum navigationState {forward,left,right,backward,stop,smile,alert,yes,no};
@@ -15,11 +16,14 @@ public class MazeNavigator : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
+        mazeNavigation = this;
  //       if (NetworkClient)
 
     }
 
-    [ClientRpc]
+
+
+    [Command]
     public void RPCStateIcon (int index)
     {
         index = GetComponent<PlayerController>().playerIndex - 1;
@@ -34,6 +38,8 @@ public class MazeNavigator : NetworkBehaviour
         navigationImage.sprite = buttonImage.sprite; 
         navigationImage.enabled = true;
     }
+
+
 
 
 }
