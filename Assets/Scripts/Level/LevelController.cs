@@ -88,8 +88,17 @@ public class LevelController : NetworkBehaviour
         int playersAmount = gamePlayers.Count;
         Debug.Log("Players in game: " + playersAmount);
         PreparePlayers();
+        if (SceneManager.GetActiveScene().name == "Farmaze")
+        {
+            int id = Random.Range(0, gameMode.levelPrefab.Count());
+            Debug.Log("setting prefab level pre rpc");
+            GameObject level = Instantiate(gameMode.levelPrefab[id]);
+            NetworkServer.Spawn(level);
+        }
         StartCoroutine(Countdown());     
     }
+
+
 
     [Server]
     public void PreparePlayers () 
@@ -187,9 +196,9 @@ public class LevelController : NetworkBehaviour
 
         if (isClientOnly)
         {
-            NetworkClient.Disconnect();
-            SceneManager.LoadSceneAsync("BasicScene");
-            LobbySystem.singleton.OpenLobbyMenu();
+            //NetworkClient.Disconnect();
+            //SceneManager.LoadSceneAsync("LobbySample");
+            //LobbySystem.singleton.OpenLobbyMenu();
         }
     }
 

@@ -1883,6 +1883,7 @@ GameObject:
   - component: {fileID: 707881950}
   - component: {fileID: 707881952}
   - component: {fileID: 707881953}
+  - component: {fileID: 707881954}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -2030,6 +2031,14 @@ MonoBehaviour:
   - {fileID: 1139254171913846, guid: 2e3b842b1773599459ef028a853d0f77, type: 3}
   - {fileID: 7284221734329707013, guid: e866e8ff59718bf4a830de9355ba04f0, type: 3}
   - {fileID: 5473695048384048278, guid: 01cbf03f7b5fc2745a449469d319ac8f, type: 3}
+  - {fileID: 6630471258299682127, guid: e3f2e4c326d3acb46b3afe99368f1fd3, type: 3}
+  - {fileID: 3417312707691736607, guid: 3e4269db690df3f4da8377ce267f5a12, type: 3}
+  - {fileID: 5863721528219136639, guid: f8ea1968c46401b42a4fc0074acb55e6, type: 3}
+  - {fileID: 838436360737822538, guid: c89555f7e33a67448944dbb607044b80, type: 3}
+  - {fileID: 838436360737822538, guid: 9b1a0aa57b51ae14f942a1b7044b1eac, type: 3}
+  - {fileID: 5863721528219136639, guid: c122c899ae966be47848936dae72c6d1, type: 3}
+  - {fileID: 3417312707691736607, guid: ac5d0956b33a8964b89f81db2fec287c, type: 3}
+  - {fileID: 3417312707691736607, guid: d32e026df3a78e14e824ce54551c21a4, type: 3}
   timeInterpolationGui: 0
   showRoomGUI: 0
   minPlayers: 1
@@ -2042,6 +2051,18 @@ MonoBehaviour:
   clientIndex: 0
   lobbySystem: {fileID: 19719523}
   showStartButton: 0
+--- !u!114 &707881954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707881948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c463be6ebb37249468a3b1bf8a5550ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &721349456
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,7 +3539,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 791467350}
   m_FillRect: {fileID: 97141549}
   m_HandleRect: {fileID: 791467349}
@@ -3526,7 +3547,7 @@ MonoBehaviour:
   m_MinValue: 1
   m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 20
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3827,7 +3848,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2057858884}
   m_HandleRect: {fileID: 2057858883}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4530,22 +4551,22 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: Farmaze
+      m_Image: {fileID: 0}
     - m_Text: Apples01
       m_Image: {fileID: 0}
     - m_Text: DialogueScene
       m_Image: {fileID: 0}
-    - m_Text: Farmaze
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 707881948}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 19719523}
+        m_TargetAssemblyTypeName: LobbySystem, Assembly-CSharp
+        m_MethodName: RoomSet
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

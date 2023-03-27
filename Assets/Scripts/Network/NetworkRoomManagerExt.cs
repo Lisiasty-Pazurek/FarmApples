@@ -31,9 +31,33 @@ namespace MirrorBasics {
         /// <param name="sceneName">Name of the new scene.</param>
         public override void OnRoomServerSceneChanged(string sceneName)
         {
+            if (sceneName == RoomScene)
+            { 
+                foreach (NetworkRoomPlayerExt player in roomSlots)
+                {
+                    player.uiRoom = FindObjectOfType<UIRoom>();
+                    player.localRoomPlayerUi.transform.SetParent(player.uiRoom.location.transform);
+                }
+            }
+        }
+
+        public override void ServerChangeScene(string newSceneName)
+        {
+            base.ServerChangeScene(newSceneName);
+            if (newSceneName == GameplayScene)
+            { 
+                foreach (NetworkRoomPlayerExt player in roomSlots)
+                {
+                    player.localRoomPlayerUi.transform.SetParent(NetworkRoomManagerExt.singleton.transform);
+                }
+            }
 
 
-            
+        }
+
+        public override void OnRoomClientEnter() 
+        {
+ //           NetworkClient.localPlayer.gameObject.GetComponent<NetworkRoomPlayerExt>().SpawnRoomUIPrefab();
         }
 
         /// <summary>
@@ -46,7 +70,7 @@ namespace MirrorBasics {
         /// <returns>true unless some code in here decides it needs to abort the replacement</returns>
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
-            /// idditional class for changing player objects depending on game mode seems necessary for clarity
+            /// additional class for changing player objects depending on game mode seems necessary for clarity
             if (SceneManager.GetActiveScene().name == "Apples01") 
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
@@ -83,7 +107,7 @@ namespace MirrorBasics {
                 playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 if (!IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
                 {
-                    playerGameController.modelName = "Sheep";
+                    playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
                     playerGameController.jumpPower = 1;
                     
                 }
@@ -129,10 +153,10 @@ namespace MirrorBasics {
         {
             // calling the base method calls ServerChangeScene as soon as all players are in Ready state.
 #if UNITY_SERVER
+            NetworkClient.localPlayer.uiRoom.ShowStartButton();
             base.OnRoomServerPlayersReady();
 #else
             showStartButton = true;
-           
             Debug.Log("for server - all players ready");
 #endif
         }

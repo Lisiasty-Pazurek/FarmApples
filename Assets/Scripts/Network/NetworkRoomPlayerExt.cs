@@ -1,7 +1,5 @@
 using UnityEngine;
 using Mirror;
-using UnityEngine.UI;
-
 namespace MirrorBasics
 {
 //    [AddComponentMenu("")]
@@ -20,14 +18,15 @@ namespace MirrorBasics
         {
             //Debug.Log($"OnStartClient {gameObject}");
             uiRoom = FindObjectOfType<UIRoom>();
-            playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;      
+            playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;     
+            playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
         }
 
         public override void OnStartServer()
         {
             base.OnStartServer();
-            
-
+            uiRoom = FindObjectOfType<UIRoom>();
+            SpawnRoomUIPrefab();            
         }
 
         public override void OnClientEnterRoom()
@@ -37,16 +36,29 @@ namespace MirrorBasics
 
             if (isClient)
             {
-                GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
-                roomPlayerUI.GetComponent<RoomPlayerUI>().playerName.text = playerName; 
-                localRoomPlayerUi = roomPlayerUI;
                 if (isLocalPlayer)
                 {
                     uiRoom.roomPlayer = this;
-
-                }
+                }    
             }
 
+        }
+
+        public void SetModelName(string modelName)
+        {
+            playerModel = modelName;
+        }        
+        
+        [Server]
+        public void SpawnRoomUIPrefab ()
+        {
+            if (isServer) 
+            {
+                GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
+                roomPlayerUI.GetComponent<RoomPlayerUI>().thisPlayer = this.gameObject;
+                NetworkServer.Spawn(roomPlayerUI);
+                localRoomPlayerUi = roomPlayerUI;
+            }
         }
 
         public override void OnClientExitRoom()
@@ -71,16 +83,17 @@ namespace MirrorBasics
 
             if (isClient)
             {
+                if (localRoomPlayerUi != null)
                 localRoomPlayerUi.GetComponent<RoomPlayerUI>().pState = newReadyState;
                 //localRoomPlayerUi.GetComponent<RoomPlayerUI>();
             }
         
-            // changing visibility of start button for host
+            //changing visibility of start button for host
             if (isServer)
             {
                 if (uiRoom != null) 
                 {
-                    uiRoom.ShowStartButton(NetworkRoomManagerExt.singleton.allPlayersReady);           
+                    uiRoom.startbutton.SetActive(newReadyState);           
                 }
             }
         }
