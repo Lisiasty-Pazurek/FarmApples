@@ -5,6 +5,7 @@ using MirrorBasics;
 
 public class UIRoom : MonoBehaviour
 {
+    public static UIRoom singleton {get; private set;}
     public LobbySystem lobbySystem;
     public NetworkRoomPlayerExt roomPlayer;
     public NetworkRoomManagerExt roomManager;
@@ -23,6 +24,7 @@ public class UIRoom : MonoBehaviour
 
     public void BackToLobby()
     {
+        lobbySystem.lobbyPanel.gameObject.SetActive(true);
         lobbySystem.OpenLobbyMenu();
     }
 
@@ -43,7 +45,7 @@ public class UIRoom : MonoBehaviour
         roomManager.ServerChangeScene(roomManager.GameplayScene);
     }
 
-        public void SetPlayerModel()
+    public void SetPlayerModel()
     {
         roomPlayer.SetModelName(modelName.options[modelName.value].text);
     }

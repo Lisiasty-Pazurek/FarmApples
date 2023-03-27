@@ -10,7 +10,7 @@ public class RoomPlayerUI : NetworkBehaviour
     public Text playerName;
     public Text playerState;
 
-    public NetworkRoomPlayerExt thisPlayer;
+    public GameObject thisPlayer;
 
     public Image playerStateImage;
     public Sprite[] stateImages;
@@ -18,12 +18,22 @@ public class RoomPlayerUI : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        this.transform.SetParent(FindObjectOfType<UIRoom>().location);
+        if (FindObjectOfType<UIRoom>() != null)
+        {
+            this.transform.SetParent(FindObjectOfType<UIRoom>().location);
+        }
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        GameObject thisPlayer = NetworkClient.localPlayer.gameObject;
+
     }
 
     public override void OnStartServer ()
     {
-        pName = thisPlayer.playerName;
+        pName = thisPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
     }
 
     public void HandleNameChange(string oldValue, string newValue)

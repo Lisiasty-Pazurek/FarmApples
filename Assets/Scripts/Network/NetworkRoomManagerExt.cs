@@ -31,6 +31,27 @@ namespace MirrorBasics {
         /// <param name="sceneName">Name of the new scene.</param>
         public override void OnRoomServerSceneChanged(string sceneName)
         {
+            if (sceneName == RoomScene)
+            { 
+                foreach (NetworkRoomPlayerExt player in roomSlots)
+                {
+                    player.uiRoom = FindObjectOfType<UIRoom>();
+                    player.localRoomPlayerUi.transform.SetParent(player.uiRoom.location.transform);
+                }
+            }
+        }
+
+        public override void ServerChangeScene(string newSceneName)
+        {
+            base.ServerChangeScene(newSceneName);
+            if (newSceneName == GameplayScene)
+            { 
+                foreach (NetworkRoomPlayerExt player in roomSlots)
+                {
+                    player.localRoomPlayerUi.transform.SetParent(NetworkRoomManagerExt.singleton.transform);
+                }
+            }
+
 
         }
 

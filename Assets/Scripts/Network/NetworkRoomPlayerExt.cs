@@ -55,7 +55,7 @@ namespace MirrorBasics
             if (isServer) 
             {
                 GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
-                roomPlayerUI.GetComponent<RoomPlayerUI>().thisPlayer = this;
+                roomPlayerUI.GetComponent<RoomPlayerUI>().thisPlayer = this.gameObject;
                 NetworkServer.Spawn(roomPlayerUI);
                 localRoomPlayerUi = roomPlayerUI;
             }
