@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using MirrorBasics;
+using Mirror;
 
 
 public class UIRoom : MonoBehaviour
@@ -11,6 +12,7 @@ public class UIRoom : MonoBehaviour
     public NetworkRoomManagerExt roomManager;
     public Text readybutton;
     public GameObject startbutton;
+    public GameObject switchRoleButton;
     public Dropdown modelName;
     
 
@@ -20,6 +22,8 @@ public class UIRoom : MonoBehaviour
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
         roomManager = FindObjectOfType<NetworkRoomManagerExt>();    
+        if (NetworkRoomManagerExt.singleton.GameplayScene == "Farmaze" && NetworkServer.activeHost )
+        {switchRoleButton.SetActive(true);}
     }
 
     public void BackToLobby()
@@ -48,6 +52,15 @@ public class UIRoom : MonoBehaviour
     public void SetPlayerModel()
     {
         roomPlayer.SetModelName(modelName.options[modelName.value].text);
+    }
+
+    public void ChangePlayerRoles()
+    {
+        foreach (NetworkRoomPlayerExt player  in NetworkRoomManagerExt.singleton.roomSlots )
+        {
+            if (player.index == 0) {player.index = 1;}
+            if (player.index == 1) {player.index = 0;}
+        }
     }
 
 
