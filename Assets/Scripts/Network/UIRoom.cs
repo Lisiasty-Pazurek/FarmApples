@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using MirrorBasics;
-using UnityEngine.EventSystems;
+
 
 public class UIRoom : MonoBehaviour
 {
@@ -14,6 +10,7 @@ public class UIRoom : MonoBehaviour
     public NetworkRoomManagerExt roomManager;
     public Text readybutton;
     public GameObject startbutton;
+    public Dropdown modelName;
     
 
     [SerializeField] public Transform location;
@@ -32,7 +29,6 @@ public class UIRoom : MonoBehaviour
     public void ChangeReadyState()
     {
         roomPlayer.CmdChangeReadyState(!roomPlayer.readyToBegin);
-
     }
 
     public void ShowStartButton (bool state)
@@ -41,12 +37,15 @@ public class UIRoom : MonoBehaviour
         Debug.Log("changing button to:  " + state);
         startbutton.SetActive(!state);
     }
-
- 
     public void StartGame ()
     {
         if (!roomManager.allPlayersReady) {return;}
         roomManager.ServerChangeScene(roomManager.GameplayScene);
+    }
+
+        public void SetPlayerModel()
+    {
+        roomPlayer.SetModelName(modelName.options[modelName.value].text);
     }
 
 

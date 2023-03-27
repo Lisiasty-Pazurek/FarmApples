@@ -19,6 +19,7 @@ namespace MirrorBasics
             //Debug.Log($"OnStartClient {gameObject}");
             uiRoom = FindObjectOfType<UIRoom>();
             playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;     
+            playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
         }
 
         public override void OnStartServer()
@@ -26,7 +27,6 @@ namespace MirrorBasics
             base.OnStartServer();
             uiRoom = FindObjectOfType<UIRoom>();
             SpawnRoomUIPrefab();            
-
         }
 
         public override void OnClientEnterRoom()
@@ -44,9 +44,11 @@ namespace MirrorBasics
 
         }
 
+        public void SetModelName(string modelName)
+        {
+            playerModel = modelName;
+        }        
         
-        
-
         [Server]
         public void SpawnRoomUIPrefab ()
         {
