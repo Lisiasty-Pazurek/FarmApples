@@ -22,8 +22,8 @@ public class UIRoom : MonoBehaviour
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
         roomManager = FindObjectOfType<NetworkRoomManagerExt>();    
-        if (NetworkRoomManagerExt.singleton.GameplayScene == "Farmaze" && NetworkServer.activeHost )
-        {switchRoleButton.SetActive(true);}
+        // if (NetworkRoomManagerExt.singleton.GameplayScene == "Farmaze" && NetworkServer.activeHost )
+        // {switchRoleButton.SetActive(true);}
     }
 
     public void BackToLobby()
@@ -37,11 +37,10 @@ public class UIRoom : MonoBehaviour
         roomPlayer.CmdChangeReadyState(!roomPlayer.readyToBegin);
     }
 
-    public void ShowStartButton (bool state)
+    public void ShowStartButton ()
     {
-        // that's cheating but it changes state at same moment as it shows button
-        Debug.Log("changing button to:  " + state);
-        startbutton.SetActive(!state);
+        Debug.Log("changing button to:  ");
+        startbutton.SetActive(NetworkRoomManagerExt.singleton.allPlayersReady);
     }
     public void StartGame ()
     {
@@ -54,14 +53,14 @@ public class UIRoom : MonoBehaviour
         roomPlayer.SetModelName(modelName.options[modelName.value].text);
     }
 
-    public void ChangePlayerRoles()
-    {
-        foreach (NetworkRoomPlayerExt player  in NetworkRoomManagerExt.singleton.roomSlots )
-        {
-            if (player.index == 0) {player.index = 1;}
-            if (player.index == 1) {player.index = 0;}
-        }
-    }
+    // public void ChangePlayerRoles()
+    // {
+    //     foreach (NetworkRoomPlayerExt player  in NetworkRoomManagerExt.singleton.roomSlots )
+    //     {
+    //         if (player.index == 0) {player.index = 1;}
+    //         if (player.index == 1) {player.index = 0;}
+    //     }
+    // }
 
 
 }

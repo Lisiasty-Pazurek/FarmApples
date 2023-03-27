@@ -153,10 +153,10 @@ namespace MirrorBasics {
         {
             // calling the base method calls ServerChangeScene as soon as all players are in Ready state.
 #if UNITY_SERVER
+            NetworkClient.localPlayer.uiRoom.ShowStartButton();
             base.OnRoomServerPlayersReady();
 #else
             showStartButton = true;
-           
             Debug.Log("for server - all players ready");
 #endif
         }

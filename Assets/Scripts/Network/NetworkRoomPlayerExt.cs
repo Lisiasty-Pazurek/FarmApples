@@ -88,12 +88,12 @@ namespace MirrorBasics
                 //localRoomPlayerUi.GetComponent<RoomPlayerUI>();
             }
         
-            // changing visibility of start button for host
+            //changing visibility of start button for host
             if (isServer)
             {
                 if (uiRoom != null) 
                 {
-                    uiRoom.ShowStartButton(NetworkRoomManagerExt.singleton.allPlayersReady);           
+                    uiRoom.startbutton.SetActive(newReadyState);           
                 }
             }
         }
