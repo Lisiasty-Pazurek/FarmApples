@@ -73,19 +73,19 @@ public class LobbySystem : MonoBehaviour
     {
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmaze")
         {
-            maxPlayersSlider.maxValue = 2;
-            maxPlayersSlider.value = 2;
+            maxPlayersSlider.maxValue = 1;
+            maxPlayersSlider.value = 1;
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Apples01")
         {
-            maxPlayersSlider.maxValue = 20;
-            maxPlayersSlider.value = 20;
+            maxPlayersSlider.maxValue = 19;
+            maxPlayersSlider.value = 19;
         }
         if (mapListDropdown.options[mapListDropdown.value].text == "DialogueScene")
         {
-            maxPlayersSlider.maxValue = 20;
-            maxPlayersSlider.value = 20;
+            maxPlayersSlider.maxValue = 19;
+            maxPlayersSlider.value = 19;
         }
     }
 
@@ -103,6 +103,7 @@ public class LobbySystem : MonoBehaviour
         /// ### BEGIN ### custom changes for room -> gameplayscene changes
         networkManager.GameplayScene = mapListDropdown.options[mapListDropdown.value].text;
         Debug.Log("gameplay scene : " + mapListDropdown.options[mapListDropdown.value].text);
+        networkManager.maxConnections = ((int)maxPlayersSlider.value);
         networkManager.ServerChangeScene("RoomScene");
 
         /// ### END ### custom changes for room -> gammeplayscene changes

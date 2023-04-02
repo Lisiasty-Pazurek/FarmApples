@@ -41,8 +41,6 @@ public class RoomPlayerUI : NetworkBehaviour
         playerName.text = pName;
     }
 
-    
-
 
     public void HandleStateChange(bool oldValue, bool newValue)
     {
@@ -51,6 +49,10 @@ public class RoomPlayerUI : NetworkBehaviour
         else {playerStateImage.sprite = stateImages[0];}
     }
 
-
+    [ClientRpc]
+    public void RpcMovePlayerPrefabToTeam(int team)
+    {
+        this.transform.SetParent(UIRoom.singleton.teamLocations[team].transform);
+    }
 
 }

@@ -11,7 +11,7 @@ namespace MirrorBasics
         [SyncVar] public string playerName;
         public GameObject localRoomPlayerUi;
         public string playerModel;
-        public string playerTeam;
+        [SyncVar] public int playerTeam;
         public GameObject roomPlayerUIprefab;
         
         public override void OnStartClient()

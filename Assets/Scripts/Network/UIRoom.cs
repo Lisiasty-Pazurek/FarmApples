@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using MirrorBasics;
 using Mirror;
-
+using System.Collections.Generic;
 
 public class UIRoom : MonoBehaviour
 {
@@ -15,8 +15,8 @@ public class UIRoom : MonoBehaviour
     public GameObject switchRoleButton;
     public Dropdown modelName;
     
-
-    [SerializeField] public Transform location;
+    public List<Transform> teamLocations;
+    public Transform location;
 
     public void Start() 
     {
@@ -51,6 +51,11 @@ public class UIRoom : MonoBehaviour
     public void SetPlayerModel()
     {
         roomPlayer.SetModelName(modelName.options[modelName.value].text);
+    }
+
+    public void JoinTeam(int team) 
+    {
+        roomPlayer.playerTeam = team;
     }
 
     // public void ChangePlayerRoles()
