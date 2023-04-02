@@ -82,11 +82,21 @@ public class LobbySystem : MonoBehaviour
             maxPlayersSlider.maxValue = 19;
             maxPlayersSlider.value = 19;
         }
+
+        if (mapListDropdown.options[mapListDropdown.value].text == "Farmarathon")
+        {
+            maxPlayersSlider.maxValue = 23;
+            maxPlayersSlider.value = 23;
+            networkManager.onlineScene = "RoomSceneTeams";
+            networkManager.RoomScene = "RoomSceneTeams";
+        }  
+
         if (mapListDropdown.options[mapListDropdown.value].text == "DialogueScene")
         {
             maxPlayersSlider.maxValue = 19;
             maxPlayersSlider.value = 19;
         }
+
     }
 
     public void CreateRoom()
@@ -104,7 +114,7 @@ public class LobbySystem : MonoBehaviour
         networkManager.GameplayScene = mapListDropdown.options[mapListDropdown.value].text;
         Debug.Log("gameplay scene : " + mapListDropdown.options[mapListDropdown.value].text);
         networkManager.maxConnections = ((int)maxPlayersSlider.value);
-        networkManager.ServerChangeScene("RoomScene");
+        //networkManager.ServerChangeScene(networkManager.RoomScene);
 
         /// ### END ### custom changes for room -> gammeplayscene changes
     }

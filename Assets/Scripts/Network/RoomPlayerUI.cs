@@ -7,10 +7,11 @@ public class RoomPlayerUI : NetworkBehaviour
 {
     [SyncVar (hook = nameof(HandleNameChange))] public string pName;
     [SyncVar (hook = nameof(HandleStateChange))] public bool pState;
+    [SyncVar] public int index;
     public Text playerName;
     public Text playerState;
 
-    public GameObject thisPlayer;
+    public GameObject roomPlayer;
 
     public Image playerStateImage;
     public Sprite[] stateImages;
@@ -18,6 +19,19 @@ public class RoomPlayerUI : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        Debug.Log(" before loopstart of  " + NetworkRoomManagerExt.singleton.roomSlots.Count);
+
+        foreach (NetworkRoomPlayer player in NetworkRoomManagerExt.singleton.roomSlots)
+        {
+            Debug.Log("start of loop for asigning room players in roomplayer ui ");
+            if (player.index == index) 
+            { 
+                roomPlayer = player.gameObject;
+                roomPlayer.GetComponent<NetworkRoomPlayerExt>().localRoomPlayerUi = this.gameObject;
+                Debug.Log("assigning room players in roomplayer ui for player of index: " + index);
+            }
+        }
+
         if (FindObjectOfType<UIRoom>() != null)
         {
             this.transform.SetParent(FindObjectOfType<UIRoom>().location);
@@ -27,13 +41,13 @@ public class RoomPlayerUI : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
-        GameObject thisPlayer = NetworkClient.localPlayer.gameObject;
-
+        roomPlayer.GetComponent<NetworkRoomPlayerExt>().localRoomPlayerUi = this.gameObject;
+        Debug.Log("assigning localplaeyr ui for assigned room player");
     }
 
     public override void OnStartServer ()
     {
-        pName = thisPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
+ //       pName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
     }
 
     public void HandleNameChange(string oldValue, string newValue)
@@ -49,10 +63,10 @@ public class RoomPlayerUI : NetworkBehaviour
         else {playerStateImage.sprite = stateImages[0];}
     }
 
-    [ClientRpc]
+
     public void RpcMovePlayerPrefabToTeam(int team)
     {
-        this.transform.SetParent(UIRoom.singleton.teamLocations[team].transform);
+        this.transform.SetParent(FindObjectOfType<UIRoom>().teamLocations[team].transform);
     }
 
 }

@@ -714,7 +714,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 237736865}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1798849073}
+        m_TargetAssemblyTypeName: UIRoom, Assembly-CSharp
+        m_MethodName: JoinTeam
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &237736865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1729,7 +1741,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 749464814}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1798849073}
+        m_TargetAssemblyTypeName: UIRoom, Assembly-CSharp
+        m_MethodName: JoinTeam
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &749464814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2359,7 +2383,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1055437327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1798849073}
+        m_TargetAssemblyTypeName: UIRoom, Assembly-CSharp
+        m_MethodName: JoinTeam
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1055437327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2706,15 +2742,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 7.5, y: 7}
+  m_CellSize: {x: 60, y: 60}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1394493410
@@ -3738,11 +3774,12 @@ MonoBehaviour:
   switchRoleButton: {fileID: 1790092227}
   modelName: {fileID: 1625405669}
   teamLocations:
+  - {fileID: 1357723954}
   - {fileID: 1427469183}
   - {fileID: 1350138709}
   - {fileID: 1528236769}
   - {fileID: 1642074132}
-  location: {fileID: 485879624}
+  location: {fileID: 1357723954}
 --- !u!114 &1798849074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3929,7 +3966,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882840977}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1798849073}
+        m_TargetAssemblyTypeName: UIRoom, Assembly-CSharp
+        m_MethodName: JoinTeam
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1882840977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4088,7 +4137,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1990928796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1798849073}
+        m_TargetAssemblyTypeName: UIRoom, Assembly-CSharp
+        m_MethodName: JoinTeam
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1990928796
 MonoBehaviour:
   m_ObjectHideFlags: 0

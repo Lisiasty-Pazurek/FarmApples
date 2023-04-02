@@ -1,17 +1,18 @@
 using UnityEngine;
 using Mirror;
+
 namespace MirrorBasics
 {
-//    [AddComponentMenu("")]
     public class NetworkRoomPlayerExt : NetworkRoomPlayer
     {
         public static NetworkRoomPlayerExt localPlayer;
         public UIRoom uiRoom;
 
         [SyncVar] public string playerName;
-        public GameObject localRoomPlayerUi;
-        public string playerModel;
+        [SyncVar] public string playerModel;
         [SyncVar] public int playerTeam;
+
+        public GameObject localRoomPlayerUi;        
         public GameObject roomPlayerUIprefab;
         
         public override void OnStartClient()
@@ -20,13 +21,21 @@ namespace MirrorBasics
             uiRoom = FindObjectOfType<UIRoom>();
             playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;     
             playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
+          
         }
+
+        public void AssignRoomPlayerObject()
+        {
+
+        }
+
 
         public override void OnStartServer()
         {
             base.OnStartServer();
             uiRoom = FindObjectOfType<UIRoom>();
-            SpawnRoomUIPrefab();            
+            SpawnRoomUIPrefab(this.index, this.gameObject);
+            Debug.Log("Spawning ui prefab for: " + index + " " + this.gameObject.name);   
         }
 
         public override void OnClientEnterRoom()
@@ -50,15 +59,24 @@ namespace MirrorBasics
         }        
         
         [Server]
-        public void SpawnRoomUIPrefab ()
+        public void SpawnRoomUIPrefab (int playerIndex, GameObject roomPlayerObject)
         {
-            if (isServer) 
-            {
-                GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
-                roomPlayerUI.GetComponent<RoomPlayerUI>().thisPlayer = this.gameObject;
-                NetworkServer.Spawn(roomPlayerUI);
-                localRoomPlayerUi = roomPlayerUI;
-            }
+            Debug.Log("Spawning room prefab for: "+ index + " " + this.gameObject.name + " re " + playerIndex + roomPlayerObject.name);
+            GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
+            NetworkServer.Spawn(roomPlayerUI);
+            roomPlayerUI.GetComponent<RoomPlayerUI>().index = playerIndex;
+            roomPlayerUI.GetComponent<RoomPlayerUI>().roomPlayer = roomPlayerObject;
+            RPCRoomPlayerUIPrefab(roomPlayerUI, playerIndex, roomPlayerObject);
+            localRoomPlayerUi = roomPlayerUI;
+        }
+
+        [ClientRpc]
+        public void RPCRoomPlayerUIPrefab (GameObject roomPlayeruiObject,int playerIndex, GameObject roomPlayerObject)
+        {
+            Debug.Log("Setting up room prefab for: "+ roomPlayeruiObject + "object " + playerIndex + " index" + roomPlayerObject.name);
+            roomPlayeruiObject.GetComponent<RoomPlayerUI>().index = playerIndex;
+            roomPlayeruiObject.GetComponent<RoomPlayerUI>().roomPlayer = roomPlayerObject;
+
         }
 
         public override void OnClientExitRoom()
@@ -85,7 +103,6 @@ namespace MirrorBasics
             {
                 if (localRoomPlayerUi != null)
                 localRoomPlayerUi.GetComponent<RoomPlayerUI>().pState = newReadyState;
-                //localRoomPlayerUi.GetComponent<RoomPlayerUI>();
             }
         
             //changing visibility of start button for host
@@ -93,7 +110,8 @@ namespace MirrorBasics
             {
                 if (uiRoom != null) 
                 {
-                    uiRoom.startbutton.SetActive(newReadyState);           
+//                    uiRoom.startbutton.SetActive(newReadyState);     
+                    uiRoom.ShowStartButton();      
                 }
             }
         }

@@ -4555,6 +4555,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Apples01
       m_Image: {fileID: 0}
+    - m_Text: Farmarathon
+      m_Image: {fileID: 0}
     - m_Text: DialogueScene
       m_Image: {fileID: 0}
   m_OnValueChanged:

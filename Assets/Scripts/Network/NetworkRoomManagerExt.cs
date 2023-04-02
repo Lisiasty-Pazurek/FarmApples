@@ -25,6 +25,12 @@ namespace MirrorBasics {
             singleton = this;
         }
 
+        public override void OnStartHost()
+        {
+            onlineScene = RoomScene;
+            base.OnStartHost();
+        }
+
         /// <summary>
         /// This is called on the server when a networked scene finishes loading.
         /// </summary>
@@ -120,6 +126,14 @@ namespace MirrorBasics {
                 return true;
             }
 
+            else if (SceneManager.GetActiveScene().name == "Farmarathon")
+            {
+                PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
+                PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
+                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
+                return true;
+            }
             else return false;
         }
 
@@ -156,7 +170,7 @@ namespace MirrorBasics {
             NetworkClient.localPlayer.uiRoom.ShowStartButton();
             base.OnRoomServerPlayersReady();
 #else
-            showStartButton = true;
+            //showStartButton = true;
             Debug.Log("for server - all players ready");
 #endif
         }

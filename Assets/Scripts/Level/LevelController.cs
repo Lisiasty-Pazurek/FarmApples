@@ -7,13 +7,6 @@ using UnityEngine.UI;
 using System.Linq;
 
 namespace MirrorBasics {
-   
-    [System.Serializable]
-    public class Team 
-    {
-        [SyncVar] public string teamID;
-        [SyncVar] public List<PlayerController> players = new List<PlayerController> ();
-    }
 
 public class LevelController : NetworkBehaviour
 {   

@@ -9,6 +9,7 @@ public class UIRoom : MonoBehaviour
     public static UIRoom singleton {get; private set;}
     public LobbySystem lobbySystem;
     public NetworkRoomPlayerExt roomPlayer;
+    public RoomPlayerUI roomPlayerUI;
     public NetworkRoomManagerExt roomManager;
     public Text readybutton;
     public GameObject startbutton;
@@ -39,8 +40,8 @@ public class UIRoom : MonoBehaviour
 
     public void ShowStartButton ()
     {
-        Debug.Log("changing button to:  ");
-        startbutton.SetActive(NetworkRoomManagerExt.singleton.allPlayersReady);
+        Debug.Log("changing start button to:  " + NetworkRoomManagerExt.singleton.allPlayersReady );
+        startbutton.SetActive(!NetworkRoomManagerExt.singleton.allPlayersReady); /// <--- derp
     }
     public void StartGame ()
     {
@@ -56,6 +57,7 @@ public class UIRoom : MonoBehaviour
     public void JoinTeam(int team) 
     {
         roomPlayer.playerTeam = team;
+        roomPlayer.localRoomPlayerUi.GetComponent<RoomPlayerUI>().RpcMovePlayerPrefabToTeam(team);
     }
 
     // public void ChangePlayerRoles()
