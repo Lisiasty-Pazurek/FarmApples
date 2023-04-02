@@ -144,8 +144,8 @@ MonoBehaviour:
   moveSpeed: 5
   turnSensitivity: 70
   maxTurnSpeed: 110
-  jumpSpeed: 5
-  jumpPower: 4.5
+  jumpSpeed: 4
+  jumpPower: 4
   isGrounded: 1
   isFalling: 0
   dashCooldown: 5
