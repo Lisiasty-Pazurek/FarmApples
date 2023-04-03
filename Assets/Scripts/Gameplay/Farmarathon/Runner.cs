@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 using MirrorBasics;
 
-public class Runner : MonoBehaviour
+public class Runner : NetworkBehaviour
 {
-    [SerializeField]public Dictionary <int, float>  visitedCheckpoints = new Dictionary<int, float>();
+    [SerializeField]public readonly SyncDictionary <int, float>  visitedCheckpoints = new SyncDictionary<int, float>();
 
     PlayerController pController;
     LevelController levelManager;
@@ -18,15 +19,25 @@ public class Runner : MonoBehaviour
         timeScoreLocation = FindObjectOfType<UIScore>().scoreRowLocation;
     }
 
+    [Server]
     public void VisitCheckpoint(int id, float time)
     {
         if (visitedCheckpoints.ContainsKey(id)){return;}
         else
         visitedCheckpoints.Add(id, time);
-        GameObject ScorePrefab = Instantiate(timeScorePrefab, timeScoreLocation);
-        ScorePrefab.GetComponent<TimeScore>().id.text = id.ToString();
-        ScorePrefab.GetComponent<TimeScore>().time.text = time.ToString();       
+        SpawnUIScore(id, (int)time);
         Debug.Log("Checkpoint reached at: " + visitedCheckpoints);
+    }
+
+    private void SpawnUIScore(int id, int time)
+    {
+        if (isLocalPlayer)
+        {
+            GameObject ScorePrefab = Instantiate(timeScorePrefab, timeScoreLocation);
+            ScorePrefab.GetComponent<TimeScore>().id.text = id.ToString();
+            ScorePrefab.GetComponent<TimeScore>().time.text = time.ToString();             
+        }
+
     }
 
 
