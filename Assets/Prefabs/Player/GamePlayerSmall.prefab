@@ -138,7 +138,7 @@ MonoBehaviour:
   - {fileID: 3687243119728466576}
   - {fileID: 7645279667633250307}
   - {fileID: 9135627466721122155}
-  - {fileID: 0}
+  - {fileID: 1443801692785253334}
   - {fileID: 6424830603632406619}
   - {fileID: 1078913285273303445}
   playerIndex: 1
@@ -270,6 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be45e8e1bcd653e4899ef3245b3474c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScorePrefab: {fileID: 7360704163669503644, guid: a024eef22e73a484d9a83e97b8c16060,
+    type: 3}
+  timeScoreLocation: {fileID: 0}
 --- !u!1 &1063061463656423827
 GameObject:
   m_ObjectHideFlags: 0

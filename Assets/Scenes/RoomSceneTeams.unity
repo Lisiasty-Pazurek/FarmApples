@@ -3282,21 +3282,21 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: Frog
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: SnappingTurtle
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: Quokka
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: Coyote
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
     - m_Text: SnowWeasel
       m_Image: {fileID: 21300000, guid: 8161618aa809f5549bf4e2e7bbc7fef9, type: 3}
     - m_Text: ArcticFox
       m_Image: {fileID: 21300000, guid: 0738a943a0a97d4469141d5d1c5b56bf, type: 3}
     - m_Text: Crow
       m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
-    - m_Text: Wolf
-      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
-    - m_Text: Crocodile
-      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
-    - m_Text: Frog
-      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
-    - m_Text: Quokka
-      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
-    - m_Text: Coyote
+    - m_Text: Raccoon
       m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4270,7 +4270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SnowWeasel
+  m_Text: Frog
 --- !u!222 &2075077681
 CanvasRenderer:
   m_ObjectHideFlags: 0
