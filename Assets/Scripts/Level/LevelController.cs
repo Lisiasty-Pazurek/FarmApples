@@ -18,6 +18,8 @@ public class LevelController : NetworkBehaviour
         public bool readyToStartLevel;
         public bool gameEnded = false;    
         [SyncVar] public float countdownTimer;  
+        [SyncVar] public float gameTimer;
+
 
 
     [Header ("References")]

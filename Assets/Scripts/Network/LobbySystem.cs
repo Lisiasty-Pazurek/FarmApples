@@ -89,6 +89,7 @@ public class LobbySystem : MonoBehaviour
             maxPlayersSlider.value = 23;
             networkManager.onlineScene = "RoomSceneTeams";
             networkManager.RoomScene = "RoomSceneTeams";
+            networkManager.playerPrefab = Resources.Load("Assets/Prefabs/Player/GamePlayerSmall") as GameObject;
         }  
 
         if (mapListDropdown.options[mapListDropdown.value].text == "DialogueScene")

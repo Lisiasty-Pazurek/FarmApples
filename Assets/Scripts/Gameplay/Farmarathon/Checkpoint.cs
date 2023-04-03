@@ -1,20 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MirrorBasics;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int id;
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -22,5 +13,12 @@ public class Checkpoint : MonoBehaviour
         {
             
         }
+        
+        if (other.GetComponent<Runner>() != null)
+        {
+            other.GetComponent<Runner>().visitedCheckpoints.Add(this, FindObjectOfType<LevelController>().gameTimer); 
+        }
+
+
     }
 }

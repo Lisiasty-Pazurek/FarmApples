@@ -21,7 +21,8 @@ public class Carrier : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) 
+    {
         if (other.GetComponent<PlayerScore>() != null && isCarrier)
         {
             if (other.GetComponent<PlayerScore>().hasItem)
