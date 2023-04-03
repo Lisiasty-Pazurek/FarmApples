@@ -57,8 +57,6 @@ namespace MirrorBasics {
                     player.localRoomPlayerUi.transform.SetParent(NetworkRoomManagerExt.singleton.transform);
                 }
             }
-
-
         }
 
         public override void OnRoomClientEnter() 

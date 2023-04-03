@@ -41,7 +41,7 @@ public class UIRoom : MonoBehaviour
     public void ShowStartButton ()
     {
         Debug.Log("changing start button to:  " + NetworkRoomManagerExt.singleton.allPlayersReady );
-        startbutton.SetActive(!NetworkRoomManagerExt.singleton.allPlayersReady); /// <--- derp
+        startbutton.SetActive(!NetworkRoomManagerExt.singleton.allPlayersReady); // <--- derp
     }
     public void StartGame ()
     {
@@ -51,12 +51,12 @@ public class UIRoom : MonoBehaviour
 
     public void SetPlayerModel()
     {
-        roomPlayer.SetModelName(modelName.options[modelName.value].text);
+        roomPlayer.CmdSetModelName(modelName.options[modelName.value].text);
     }
 
     public void JoinTeam(int team) 
     {
-        roomPlayer.playerTeam = team;
+        roomPlayer.CmdSetPlayerTeam(team);
         
     }
 
@@ -70,4 +70,4 @@ public class UIRoom : MonoBehaviour
     // }
 
 
-}
+    }

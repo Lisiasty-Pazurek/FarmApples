@@ -79,10 +79,24 @@ namespace MirrorBasics
 
         }
 
-        public void SetModelName(string modelName)
+        [Command]
+        public void CmdSetModelName(string modelName)
         {
             playerModel = modelName;
-        }        
+        }       
+
+        [Command]
+        public void CmdSetPlayerName (string pName)
+        {
+            playerName = pName;
+        }
+
+        [Command]
+        public void CmdSetPlayerTeam (int teamNumber)
+        {
+            playerTeam = teamNumber;
+        }
+
         
         [Server]
         public void SpawnRoomUIPrefab (int playerIndex, GameObject roomPlayerObject)
