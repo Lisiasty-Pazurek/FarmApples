@@ -53,6 +53,11 @@ public class LevelController : NetworkBehaviour
             InitiateLevel();
         }
 
+    [Server]
+    public void Update() 
+    {
+        gameTimer += Time.deltaTime;
+    }
 
     [Server]
     public void InitiateLevel()
@@ -75,6 +80,7 @@ public class LevelController : NetworkBehaviour
            
         return readyToStart;
     }
+
 
 
     [Server]
