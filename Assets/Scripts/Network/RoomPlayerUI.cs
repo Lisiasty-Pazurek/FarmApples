@@ -18,6 +18,10 @@ public class RoomPlayerUI : MonoBehaviour
     public Image playerModelImage;
     public Sprite[] stateImages;
 
+    private void Start() 
+    {
+        this.transform.SetParent(FindObjectOfType<UIRoom>().teamLocations[playerTeam].transform);
+    }
 
     public void OnPlayerIndexChanged()
     {
