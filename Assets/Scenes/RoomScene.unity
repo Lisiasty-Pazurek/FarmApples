@@ -1623,11 +1623,11 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: Pies
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 21300000, guid: 8161618aa809f5549bf4e2e7bbc7fef9, type: 3}
     - m_Text: Kot
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 21300000, guid: 0738a943a0a97d4469141d5d1c5b56bf, type: 3}
     - m_Text: Mysz
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

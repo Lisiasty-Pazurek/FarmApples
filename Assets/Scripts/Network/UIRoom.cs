@@ -2,21 +2,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using MirrorBasics;
 using Mirror;
-
+using System.Collections.Generic;
 
 public class UIRoom : MonoBehaviour
 {
     public static UIRoom singleton {get; private set;}
     public LobbySystem lobbySystem;
     public NetworkRoomPlayerExt roomPlayer;
+    public RoomPlayerUI roomPlayerUI;
     public NetworkRoomManagerExt roomManager;
     public Text readybutton;
     public GameObject startbutton;
     public GameObject switchRoleButton;
     public Dropdown modelName;
     
-
-    [SerializeField] public Transform location;
+    public List<Transform> teamLocations;
+    public Transform location;
 
     public void Start() 
     {
@@ -39,8 +40,8 @@ public class UIRoom : MonoBehaviour
 
     public void ShowStartButton ()
     {
-        Debug.Log("changing button to:  ");
-        startbutton.SetActive(NetworkRoomManagerExt.singleton.allPlayersReady);
+        Debug.Log("changing start button to:  " + NetworkRoomManagerExt.singleton.allPlayersReady );
+        startbutton.SetActive(!NetworkRoomManagerExt.singleton.allPlayersReady); // <--- derp
     }
     public void StartGame ()
     {
@@ -50,7 +51,13 @@ public class UIRoom : MonoBehaviour
 
     public void SetPlayerModel()
     {
-        roomPlayer.SetModelName(modelName.options[modelName.value].text);
+        roomPlayer.CmdSetModelName(modelName.options[modelName.value].text);
+    }
+
+    public void JoinTeam(int team) 
+    {
+        roomPlayer.CmdSetPlayerTeam(team);
+        
     }
 
     // public void ChangePlayerRoles()
@@ -63,4 +70,4 @@ public class UIRoom : MonoBehaviour
     // }
 
 
-}
+    }

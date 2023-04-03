@@ -17,6 +17,7 @@ namespace MirrorBasics
         [SerializeField] private Text playerScore;        
         [SerializeField] private Text team1Score;
         [SerializeField] private Text team2Score;
+        public Transform scoreRowLocation;
 
         [SerializeField] private List<GameObject> statusImage = new List<GameObject>();
 

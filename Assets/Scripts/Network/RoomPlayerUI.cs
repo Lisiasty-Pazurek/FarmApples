@@ -1,55 +1,52 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
-using MirrorBasics;
 
-public class RoomPlayerUI : NetworkBehaviour 
+
+public class RoomPlayerUI : MonoBehaviour 
 {
-    [SyncVar (hook = nameof(HandleNameChange))] public string pName;
-    [SyncVar (hook = nameof(HandleStateChange))] public bool pState;
-    public Text playerName;
-    public Text playerState;
 
-    public GameObject thisPlayer;
+    public int index;
+    public bool pState;
+    public Text playerName;
+    public string playerModel;
+    public Text playerState;
+    public int playerTeam;
+
+    public GameObject roomPlayer;
 
     public Image playerStateImage;
+    public Image playerModelImage;
     public Sprite[] stateImages;
 
-    public override void OnStartClient()
+    private void Start() 
     {
-        base.OnStartClient();
-        if (FindObjectOfType<UIRoom>() != null)
-        {
-            this.transform.SetParent(FindObjectOfType<UIRoom>().location);
-        }
+        this.transform.SetParent(FindObjectOfType<UIRoom>().teamLocations[playerTeam].transform);
     }
 
-    public override void OnStartLocalPlayer()
+    public void OnPlayerIndexChanged()
     {
-        base.OnStartLocalPlayer();
-        GameObject thisPlayer = NetworkClient.localPlayer.gameObject;
 
     }
-
-    public override void OnStartServer ()
+    public void OnPlayerStateChanged( bool newValue)
     {
-        pName = thisPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
-    }
-
-    public void HandleNameChange(string oldValue, string newValue)
-    {
-        playerName.text = pName;
-    }
-
-    
-
-
-    public void HandleStateChange(bool oldValue, bool newValue)
-    {
-        //playerState.text = pState.ToString();
+        pState = newValue;
         if (pState) {playerStateImage.sprite = stateImages[1];}
         else {playerStateImage.sprite = stateImages[0];}
     }
+    public void OnPlayerNameChanged(string newName)
+    {
+        playerName.text = newName;
+    }
+    public void OnPlayerModelChanged(string newModel)
+    {
+        playerModel = newModel;
+    }
+    public void OnPlayerTeamChanged(int newTeam)
+    {
+        playerTeam = newTeam;
+        this.transform.SetParent(FindObjectOfType<UIRoom>().teamLocations[newTeam].transform);
+    }
+        
 
 
 

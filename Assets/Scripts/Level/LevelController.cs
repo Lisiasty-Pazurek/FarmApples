@@ -7,13 +7,6 @@ using UnityEngine.UI;
 using System.Linq;
 
 namespace MirrorBasics {
-   
-    [System.Serializable]
-    public class Team 
-    {
-        [SyncVar] public string teamID;
-        [SyncVar] public List<PlayerController> players = new List<PlayerController> ();
-    }
 
 public class LevelController : NetworkBehaviour
 {   
@@ -25,6 +18,8 @@ public class LevelController : NetworkBehaviour
         public bool readyToStartLevel;
         public bool gameEnded = false;    
         [SyncVar] public float countdownTimer;  
+        [SyncVar] public float gameTimer;
+
 
 
     [Header ("References")]
@@ -58,6 +53,12 @@ public class LevelController : NetworkBehaviour
             InitiateLevel();
         }
 
+    [ServerCallback]
+    public void Update() 
+    {
+        
+        gameTimer += Time.deltaTime;
+    }
 
     [Server]
     public void InitiateLevel()
@@ -82,6 +83,7 @@ public class LevelController : NetworkBehaviour
     }
 
 
+
     [Server]
     public void PrepareLevel()
     {
@@ -104,7 +106,10 @@ public class LevelController : NetworkBehaviour
     public void PreparePlayers () 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
-        SpawnTeamboxes();
+        if (gameMode.gameModeName == "Farmapples")
+        {
+            SpawnTeamboxes();
+        }
     }
 
 
@@ -115,10 +120,7 @@ public class LevelController : NetworkBehaviour
     }
 
     [Server]
-    public void SetTeamBox(GameObject go)
-    {
-
-    }
+    public void SetTeamBox(GameObject go)   {  }
 
 
 
@@ -196,9 +198,10 @@ public class LevelController : NetworkBehaviour
 
         if (isClientOnly)
         {
-            //NetworkClient.Disconnect();
+            NetworkClient.Disconnect();
             //SceneManager.LoadSceneAsync("LobbySample");
-            //LobbySystem.singleton.OpenLobbyMenu();
+            
+            LobbySystem.singleton.OpenLobbyMenu();
         }
     }
 
