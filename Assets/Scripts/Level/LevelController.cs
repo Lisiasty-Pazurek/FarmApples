@@ -56,6 +56,7 @@ public class LevelController : NetworkBehaviour
     [Server]
     public void Update() 
     {
+        
         gameTimer += Time.deltaTime;
     }
 
