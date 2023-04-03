@@ -12,6 +12,8 @@ public class Runner : NetworkBehaviour
     public GameObject timeScorePrefab;
     public Transform timeScoreLocation;
 
+    private List<GameObject> timeScoreRows = new List<GameObject>();
+
     public override void OnStartServer ()
     {
         pController = GetComponent<PlayerController>();
@@ -24,25 +26,28 @@ public class Runner : NetworkBehaviour
         timeScoreLocation = FindObjectOfType<UIScore>().scoreRowLocation;
     }
 
-    [Server]
+    [ServerCallback]
     public void VisitCheckpoint(int id, float time)
     {
         if (visitedCheckpoints.ContainsKey(id)){return;}
         else
         visitedCheckpoints.Add(id, time);
         SpawnUIScore(id, (int)time);
-        Debug.Log("Checkpoint reached at: " + visitedCheckpoints);
+        Debug.Log("Checkpoint reached at: " + visitedCheckpoints[id]);
     }
 
     [TargetRpc]
     private void SpawnUIScore(int id, int time)
     {
-        Debug.Log("Client pre local player");
-
         GameObject ScorePrefab = Instantiate(timeScorePrefab, timeScoreLocation);
         ScorePrefab.GetComponent<TimeScore>().id.text = id.ToString();
-        ScorePrefab.GetComponent<TimeScore>().time.text = time.ToString();             
-        
+        ScorePrefab.GetComponent<TimeScore>().time.text = time.ToString();        
+        timeScoreRows.Add(ScorePrefab);
+        if (timeScoreRows.Count >=3)
+        {
+            Destroy(timeScoreRows[0]);
+            timeScoreRows.Remove(timeScoreRows[0]);
+        }
     }
 
 
