@@ -97,7 +97,10 @@ public class LevelController : NetworkBehaviour
     public void PreparePlayers () 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
-        SpawnTeamboxes();
+        if (gameMode.gameModeName == "Farmapples")
+        {
+            SpawnTeamboxes();
+        }
     }
 
 
@@ -108,10 +111,7 @@ public class LevelController : NetworkBehaviour
     }
 
     [Server]
-    public void SetTeamBox(GameObject go)
-    {
-
-    }
+    public void SetTeamBox(GameObject go)   {  }
 
 
 

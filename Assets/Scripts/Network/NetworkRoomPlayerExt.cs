@@ -18,7 +18,7 @@ namespace MirrorBasics
         [SyncVar (hook = nameof(PlayerModelChanged))] public string playerModel;
         [SyncVar (hook = nameof(PlayerTeamChanged))] public int playerTeam;
 
-        public GameObject localRoomPlayerUi;        
+        //public GameObject localRoomPlayerUi;        
         public GameObject roomPlayerUIprefab;
         public RoomPlayerUI roomPlayerUI;
         
@@ -60,7 +60,6 @@ namespace MirrorBasics
         {
             base.OnStartServer();
             uiRoom = FindObjectOfType<UIRoom>();
-//            SpawnRoomUIPrefab(this.index, this.gameObject);
             Debug.Log("Spawning ui prefab for: " + index + " " + this.gameObject.name);   
         }
 
@@ -98,17 +97,6 @@ namespace MirrorBasics
         }
 
         
-        [Server]
-        public void SpawnRoomUIPrefab (int playerIndex, GameObject roomPlayerObject)
-        {
-            Debug.Log("Spawning room prefab for: "+ index + " " + this.gameObject.name + " re " + playerIndex + roomPlayerObject.name);
-            GameObject roomPlayerUI = Instantiate(roomPlayerUIprefab,uiRoom.location);
-            NetworkServer.Spawn(roomPlayerUI);
-            roomPlayerUI.GetComponent<RoomPlayerUI>().index = playerIndex;
-            roomPlayerUI.GetComponent<RoomPlayerUI>().roomPlayer = roomPlayerObject;
-            RPCRoomPlayerUIPrefab(roomPlayerUI, playerIndex, roomPlayerObject);
-            localRoomPlayerUi = roomPlayerUI;
-        }
 
         [ClientRpc]
         public void RPCRoomPlayerUIPrefab (GameObject roomPlayeruiObject,int playerIndex, GameObject roomPlayerObject)

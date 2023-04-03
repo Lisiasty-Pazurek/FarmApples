@@ -42,7 +42,7 @@ namespace MirrorBasics {
                 foreach (NetworkRoomPlayerExt player in roomSlots)
                 {
                     player.uiRoom = FindObjectOfType<UIRoom>();
-                    player.localRoomPlayerUi.transform.SetParent(player.uiRoom.location.transform);
+                    player.roomPlayerUI.transform.SetParent(player.uiRoom.location.transform);
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace MirrorBasics {
             { 
                 foreach (NetworkRoomPlayerExt player in roomSlots)
                 {
-                    player.localRoomPlayerUi.transform.SetParent(NetworkRoomManagerExt.singleton.transform);
+                    player.roomPlayerUI.transform.SetParent(NetworkRoomManagerExt.singleton.transform);
                 }
             }
         }

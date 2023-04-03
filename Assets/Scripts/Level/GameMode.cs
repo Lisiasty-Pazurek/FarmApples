@@ -8,8 +8,6 @@ public class GameMode : MonoBehaviour
 {
     public string gameModeName;
     public string mapName;
-    public int minPlayers;
-    public int maxPlayers;
     public int minTeams;
     public int maxTeams;
     public int maxScore;
