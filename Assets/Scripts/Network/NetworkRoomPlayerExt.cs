@@ -43,16 +43,19 @@ namespace MirrorBasics
 
 
         void PlayerNameChanged(string oldName, string newName)
-        {
+        {   
+            if (roomPlayerUI != null)
             OnPlayerNameChanged?.Invoke(newName);
         }
         void PlayerModelChanged(string oldModel, string newModel)
         {
+            if (roomPlayerUI != null)
             OnPlayerModelChanged?.Invoke(newModel);
         }
 
         void PlayerTeamChanged(int oldTeam, int newTeam)
         {
+            if (roomPlayerUI != null)
             OnPlayerTeamChanged?.Invoke(newTeam);
         }
 

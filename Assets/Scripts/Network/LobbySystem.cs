@@ -123,7 +123,6 @@ public class LobbySystem : MonoBehaviour
     public void JoinRoom()
     {
 
-        PlayerPrefs.SetString("PlayerName", playerNameInputField.text);
         LRMTransport.RequestServerList();
         for (int i = 0; i < LRMTransport.relayServerList.Count; i++)
         {

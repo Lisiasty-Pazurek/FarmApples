@@ -53,7 +53,7 @@ public class LevelController : NetworkBehaviour
             InitiateLevel();
         }
 
-    [Server]
+    [ServerCallback]
     public void Update() 
     {
         
@@ -198,9 +198,10 @@ public class LevelController : NetworkBehaviour
 
         if (isClientOnly)
         {
-            //NetworkClient.Disconnect();
+            NetworkClient.Disconnect();
             //SceneManager.LoadSceneAsync("LobbySample");
-            //LobbySystem.singleton.OpenLobbyMenu();
+            
+            LobbySystem.singleton.OpenLobbyMenu();
         }
     }
 
