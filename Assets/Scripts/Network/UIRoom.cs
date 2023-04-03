@@ -57,7 +57,7 @@ public class UIRoom : MonoBehaviour
     public void JoinTeam(int team) 
     {
         roomPlayer.playerTeam = team;
-        roomPlayer.localRoomPlayerUi.GetComponent<RoomPlayerUI>().RpcMovePlayerPrefabToTeam(team);
+        
     }
 
     // public void ChangePlayerRoles()
