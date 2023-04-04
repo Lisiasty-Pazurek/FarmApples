@@ -192,6 +192,7 @@ public class LevelController : NetworkBehaviour
             int k = 0;
             if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(20))
             {
+                Debug.Log("Player visited last checkpoint " + k + "of: " + gamePlayers[i].gameObject);
                 k += 1;
             }
 

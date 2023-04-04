@@ -58,7 +58,7 @@ public class UIGameplay : MonoBehaviour
 
     public void LoadRoomScene()
     {
-        NetworkRoomManagerExt.singleton.ServerChangeScene("RoomScene");
+        NetworkRoomManagerExt.singleton.ServerChangeScene(NetworkRoomManagerExt.singleton.RoomScene);
     }
 
     public void QuitLevel()
