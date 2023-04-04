@@ -87,8 +87,8 @@ public class LobbySystem : MonoBehaviour
         {
             maxPlayersSlider.maxValue = 23;
             maxPlayersSlider.value = 23;
-            networkManager.onlineScene = "RoomSceneTeams";
-            networkManager.RoomScene = "RoomSceneTeams";
+            networkManager.onlineScene = "RoomSceneMarathon";
+            networkManager.RoomScene = "RoomSceneMarathon";
             networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[1];
         }  
 
@@ -103,8 +103,6 @@ public class LobbySystem : MonoBehaviour
     public void CreateRoom()
     {
         if(roomNameInputField.text.Length < 1) roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
-
-        PlayerPrefs.SetString("PlayerName", playerNameInputField.text);
 
         LRMTransport.serverName = roomNameInputField.text;
         LRMTransport.maxServerPlayers = (int)maxPlayersSlider.value;

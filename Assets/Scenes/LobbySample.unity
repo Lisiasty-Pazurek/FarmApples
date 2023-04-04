@@ -2066,9 +2066,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabs:
-  - {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe, type: 3}
-  - {fileID: 1480027675339556, guid: de6217c6e387e9a47aaf72c4ec86a004, type: 3}
   - {fileID: 1480027675339556, guid: 4f16210e77336e041afaaf3f40542055, type: 3}
+  - {fileID: 1480027675339556, guid: de6217c6e387e9a47aaf72c4ec86a004, type: 3}
   gameplayScenes: []
 --- !u!1 &721349456
 GameObject:
@@ -5547,7 +5546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2031072702
 RectTransform:
   m_ObjectHideFlags: 0

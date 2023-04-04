@@ -15,6 +15,7 @@ public class UIRoom : MonoBehaviour
     public GameObject startbutton;
     public GameObject switchRoleButton;
     public Dropdown modelName;
+    public Text playerNameInput;
     
     public List<Transform> teamLocations;
     public Transform location;
@@ -55,10 +56,19 @@ public class UIRoom : MonoBehaviour
         roomPlayer.CmdSetModelName(modelName.options[modelName.value].text);
     }
 
+    public void SetPlayerName()
+    {
+        roomPlayer.CmdSetPlayerName(playerNameInput.text);
+    }
+
     public void JoinTeam(int team) 
     {
         roomPlayer.CmdSetPlayerTeam(team);
-        
+    }
+
+    public void SetPlayerModel2(string animal )
+    {
+        roomPlayer.CmdSetModelName(animal);
     }
 
     // Script for Farmaze gamemode to let host and clinet swap their roles
