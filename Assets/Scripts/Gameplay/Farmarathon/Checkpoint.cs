@@ -20,6 +20,12 @@ public class Checkpoint : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(this.id - 1))
             other.gameObject.GetComponent<Runner>().VisitCheckpoint(id,levelController.gameTimer);
+
+            if (other.gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(19))
+            {
+                levelController.CheckifPlayersFinished();
+                Debug.Log("Player ended race, sending info to level controller to check if everyone finished it");
+            }
         }
 
         

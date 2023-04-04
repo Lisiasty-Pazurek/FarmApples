@@ -23,12 +23,13 @@ public class UIRoom : MonoBehaviour
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
         roomManager = FindObjectOfType<NetworkRoomManagerExt>();    
-        // if (NetworkRoomManagerExt.singleton.GameplayScene == "Farmaze" && NetworkServer.activeHost )
-        // {switchRoleButton.SetActive(true);}
+        roomPlayer = NetworkRoomPlayerExt.localPlayer;
     }
 
     public void BackToLobby()
     {
+        NetworkClient.Disconnect();
+        NetworkServer.Shutdown();
         lobbySystem.lobbyPanel.gameObject.SetActive(true);
         lobbySystem.OpenLobbyMenu();
     }
@@ -60,6 +61,7 @@ public class UIRoom : MonoBehaviour
         
     }
 
+    // Script for Farmaze gamemode to let host and clinet swap their roles
     // public void ChangePlayerRoles()
     // {
     //     foreach (NetworkRoomPlayerExt player  in NetworkRoomManagerExt.singleton.roomSlots )

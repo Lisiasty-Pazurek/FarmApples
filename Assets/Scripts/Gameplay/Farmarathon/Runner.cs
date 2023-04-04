@@ -10,7 +10,7 @@ public class Runner : NetworkBehaviour
     PlayerController pController;
     LevelController levelManager;
     public GameObject timeScorePrefab;
-    public Transform timeScoreLocation;
+    private Transform timeScoreLocation;
 
     private List<GameObject> timeScoreRows = new List<GameObject>();
 

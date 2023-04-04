@@ -38,7 +38,6 @@ public class UIGameplay : MonoBehaviour
         Debug.Log("Changing UI state to: " + i);
     }
 
-// Function logic can be moved to lobby player instead to get it only for callout here
     public void ImReady()
     {
         lobbyPlayer.readyToBegin = true;
@@ -64,6 +63,11 @@ public class UIGameplay : MonoBehaviour
     public void QuitLevel()
     {    
         levelController.QuitLevel();
+    }
+
+    public void ReturnToLobby()
+    {
+        NetworkClient.Disconnect();
     }
 
 }

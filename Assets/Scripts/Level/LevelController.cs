@@ -181,6 +181,27 @@ public class LevelController : NetworkBehaviour
         }
     }
 
+    [Server]
+    public void CheckifPlayersFinished()
+    {
+        for (int i = 0; i < gamePlayers.Count; i++)
+        {   
+            int k = 0;
+            if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(20))
+            {
+                k += 1;
+            }
+
+            if (k == gamePlayers.Count)
+            {
+                EndLevel();
+            }
+
+            Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
+
+        }
+    }
+
     [ClientRpc]
     public void EndLevel()
     {
