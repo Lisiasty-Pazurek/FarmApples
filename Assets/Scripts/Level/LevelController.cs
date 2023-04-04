@@ -28,10 +28,13 @@ public class LevelController : NetworkBehaviour
         [SerializeField] private Canvas rulesCanvas;
         [SerializeField] private UIGameplay uIGameplay;
         public PlayerController pController;
+        public GameObject FinalScoreboardRowPrefab;
 
     [Header ("Lists")]
         public List<PlayerController> gamePlayers = new List<PlayerController>();
         public List<GameObject> spawnedItems = new List<GameObject>();
+
+        public SyncDictionary<string, int> scoreboardDictionary = new SyncDictionary<string, int>();
 
         public void Start() {  }
 
@@ -192,9 +195,10 @@ public class LevelController : NetworkBehaviour
                 k += 1;
             }
 
-            if (k == gamePlayers.Count)
+            if (k > gamePlayers.Count -1 )
             {
                 EndLevel();
+                MakeScoreboardDictionary();
             }
 
             Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
@@ -202,12 +206,38 @@ public class LevelController : NetworkBehaviour
         }
     }
 
+    [Server]
+    public void MakeScoreboardDictionary()
+    {
+        foreach (PlayerController player in gamePlayers)
+        {
+            scoreboardDictionary.Add(player.playerName, (int)player.GetComponent<Runner>().visitedCheckpoints[20]);         
+        }
+
+        scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+
+    }
+
+
     [ClientRpc]
     public void EndLevel()
     {
         Debug.Log("Ending level for match: " );
         uIGameplay.ChangeUIState(2);
         pController.characterController.GetComponent<CharacterController>().enabled = false;
+        if (gameMode.gameModeName == "Farmarathon")
+        {
+            foreach (KeyValuePair<string,int> entry in scoreboardDictionary)
+            {
+                GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
+                finalScoreRowObject.GetComponent<FinalScoreRow>().playerName.text = entry.Key;
+                finalScoreRowObject.GetComponent<FinalScoreRow>().playerTime.text = entry.Value.ToString();
+                finalScoreRowObject.transform.SetParent(uIGameplay.ScoreboardTransform);
+
+            }
+
+        }
     }
 
     public void QuitLevel()
