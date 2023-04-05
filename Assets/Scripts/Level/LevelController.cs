@@ -184,12 +184,13 @@ public class LevelController : NetworkBehaviour
         }
     }
 
-    [Server]
+    
     public void CheckifPlayersFinished()
     {
+        int k = 0;        
         for (int i = 0; i < gamePlayers.Count; i++)
         {   
-            int k = 0;
+
             if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(20))
             {
                 Debug.Log("Player visited last checkpoint " + k + "of: " + gamePlayers[i].gameObject);
