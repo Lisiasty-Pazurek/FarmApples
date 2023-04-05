@@ -236,7 +236,7 @@ public class LevelController : NetworkBehaviour
                 finalScoreRowObject.GetComponent<FinalScoreRow>().playerName.text = entry.Key;
                 finalScoreRowObject.GetComponent<FinalScoreRow>().playerTime.text = entry.Value.ToString();
                 finalScoreRowObject.transform.SetParent(uIGameplay.ScoreboardTransform);
-
+                Debug.Log("Spawned score prefab for: " + entry);
             }
 
         }
