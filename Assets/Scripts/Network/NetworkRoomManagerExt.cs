@@ -61,7 +61,7 @@ namespace MirrorBasics {
 
         public override void OnRoomClientEnter() 
         {
- //           NetworkClient.localPlayer.gameObject.GetComponent<NetworkRoomPlayerExt>().SpawnRoomUIPrefab();
+            
         }
 
         /// <summary>
