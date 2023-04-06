@@ -18,6 +18,7 @@ public class Checkpoint : MonoBehaviour
         
         else if (other.gameObject.GetComponent<Runner>() != null)
         {
+            levelController.CheckifPlayersFinished();            
             if (other.gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(this.id - 1))
             other.gameObject.GetComponent<Runner>().VisitCheckpoint(id,levelController.gameTimer);
         }

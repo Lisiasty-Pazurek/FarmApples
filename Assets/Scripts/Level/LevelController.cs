@@ -20,18 +20,19 @@ public class LevelController : NetworkBehaviour
         [SyncVar] public float countdownTimer;  
         [SyncVar] public float gameTimer;
 
-
-
     [Header ("References")]
         [SerializeField] GameObject playerPrefab;
         [SerializeField] private Text countdownText;
         [SerializeField] private Canvas rulesCanvas;
         [SerializeField] private UIGameplay uIGameplay;
         public PlayerController pController;
+        public GameObject FinalScoreboardRowPrefab;
 
     [Header ("Lists")]
         public List<PlayerController> gamePlayers = new List<PlayerController>();
         public List<GameObject> spawnedItems = new List<GameObject>();
+
+        public SyncDictionary<string, int> scoreboardDictionary = new SyncDictionary<string, int>();
 
         public void Start() {  }
 
@@ -181,13 +182,63 @@ public class LevelController : NetworkBehaviour
         }
     }
 
+    
+    [Command  (requiresAuthority = false)]
+    public void CheckifPlayersFinished()
+    {
+        int k = 0;        
+        for (int i = 0; i < gamePlayers.Count; i++)
+        {   
+            if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(20))
+            {
+                Debug.Log("Player visited last checkpoint " + k + "of: " + gamePlayers[i].gameObject);
+                k += 1;
+            }
+            if (k > gamePlayers.Count -1 )
+            {
+                EndLevel();
+                MakeScoreboardDictionary();
+            }
+            Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
+        }
+    }
+
+    [Server]
+    public void MakeScoreboardDictionary()
+    {
+        foreach (PlayerController player in gamePlayers)
+        {
+            scoreboardDictionary.Add(player.playerName, (int)player.GetComponent<Runner>().visitedCheckpoints[20]);         
+        }
+        scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+    }
+
+
     [ClientRpc]
     public void EndLevel()
     {
         Debug.Log("Ending level for match: " );
         uIGameplay.ChangeUIState(2);
         pController.characterController.GetComponent<CharacterController>().enabled = false;
+        if (gameMode.gameModeName == "Farmarathon")
+        {
+            RPCScorePrefabs();
+            
+        }
     }
+    [ClientRpc]
+    public void RPCScorePrefabs()
+    {
+        foreach (KeyValuePair<string,int> entry in scoreboardDictionary)
+        {
+            GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
+            finalScoreRowObject.GetComponent<FinalScoreRow>().playerName.text = entry.Key;
+            finalScoreRowObject.GetComponent<FinalScoreRow>().playerTime.text = entry.Value.ToString();
+            finalScoreRowObject.transform.SetParent(uIGameplay.ScoreboardTransform);
+            Debug.Log("Spawned score prefab for: " + entry);  
+        }   
+    }
+
 
     public void QuitLevel()
     {
@@ -198,9 +249,7 @@ public class LevelController : NetworkBehaviour
 
         if (isClientOnly)
         {
-            NetworkClient.Disconnect();
-            //SceneManager.LoadSceneAsync("LobbySample");
-            
+            NetworkClient.Disconnect();         
             LobbySystem.singleton.OpenLobbyMenu();
         }
     }

@@ -17,7 +17,8 @@ public class UIGameplay : MonoBehaviour
     [SerializeField] public Canvas preGameUICanvas;   
     [SerializeField] public Canvas gameUICanvas;
     [SerializeField] public Canvas postGameUICanvas;
-    [SerializeField]public List<Canvas> uiStates;
+    [SerializeField] public List<Canvas> uiStates;
+    [SerializeField] public Transform ScoreboardTransform;
     public Image interactImage;
 
     public int uiState = 0;
@@ -38,7 +39,6 @@ public class UIGameplay : MonoBehaviour
         Debug.Log("Changing UI state to: " + i);
     }
 
-// Function logic can be moved to lobby player instead to get it only for callout here
     public void ImReady()
     {
         lobbyPlayer.readyToBegin = true;
@@ -58,12 +58,17 @@ public class UIGameplay : MonoBehaviour
 
     public void LoadRoomScene()
     {
-        NetworkRoomManagerExt.singleton.ServerChangeScene("RoomScene");
+        NetworkRoomManagerExt.singleton.ServerChangeScene(NetworkRoomManagerExt.singleton.RoomScene);
     }
 
     public void QuitLevel()
     {    
         levelController.QuitLevel();
+    }
+
+    public void ReturnToLobby()
+    {
+        NetworkClient.Disconnect();
     }
 
 }

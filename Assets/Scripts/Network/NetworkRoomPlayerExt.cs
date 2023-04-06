@@ -28,17 +28,22 @@ namespace MirrorBasics
             uiRoom = FindObjectOfType<UIRoom>();
             playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;     
             playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
-          
+
             // Instantiate the player UI as child of the Players Panel
             roomPlayerUIprefab = Instantiate(roomPlayerUIprefab, uiRoom.location);
-            roomPlayerUI = roomPlayerUIprefab.GetComponent<RoomPlayerUI>();
+            roomPlayerUI = roomPlayerUIprefab.GetComponent<RoomPlayerUI>();            
 
             // wire up all events to handlers in PlayerUI
             OnPlayerNameChanged = roomPlayerUI.OnPlayerNameChanged;
             OnPlayerModelChanged = roomPlayerUI.OnPlayerModelChanged;
             OnPlayerTeamChanged = roomPlayerUI.OnPlayerTeamChanged;
-            OnPlayerStateChanged = roomPlayerUI.OnPlayerStateChanged;
+            OnPlayerStateChanged = roomPlayerUI.OnPlayerStateChanged;  
 
+            // Load Initial prefab data
+            OnPlayerNameChanged?.Invoke(playerName);
+            OnPlayerModelChanged?.Invoke(playerModel);
+            OnPlayerTeamChanged?.Invoke(playerTeam);
+            OnPlayerStateChanged?.Invoke(readyToBegin);
         }
 
 

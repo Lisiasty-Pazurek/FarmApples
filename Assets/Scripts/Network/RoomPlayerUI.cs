@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class RoomPlayerUI : MonoBehaviour 
 {
@@ -9,13 +9,15 @@ public class RoomPlayerUI : MonoBehaviour
     public bool pState;
     public Text playerName;
     public string playerModel;
-    public Text playerState;
     public int playerTeam;
 
     public GameObject roomPlayer;
 
     public Image playerStateImage;
     public Image playerModelImage;
+    public Sprite modelImage;
+
+    public List<Sprite> modelImages;
     public Sprite[] stateImages;
 
     private void Start() 
@@ -40,6 +42,13 @@ public class RoomPlayerUI : MonoBehaviour
     public void OnPlayerModelChanged(string newModel)
     {
         playerModel = newModel;
+        foreach (Sprite sprite in modelImages)
+        {
+            if (sprite.name == newModel)
+            modelImage = sprite;
+        }
+
+        playerModelImage.sprite = modelImage;
     }
     public void OnPlayerTeamChanged(int newTeam)
     {
