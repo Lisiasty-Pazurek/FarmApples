@@ -222,13 +222,20 @@ public class LevelController : NetworkBehaviour
         pController.characterController.GetComponent<CharacterController>().enabled = false;
         if (gameMode.gameModeName == "Farmarathon")
         {
-            RPCScorePrefabs();
-            
+            DisplayScoreboardPrefabs();
         }
     }
+
+    [Server]
+    private void DisplayScoreboardPrefabs()
+    {
+        RPCScorePrefabs();
+    }
+
     [ClientRpc]
     public void RPCScorePrefabs()
     {
+
         foreach (KeyValuePair<string,int> entry in scoreboardDictionary)
         {
             GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
