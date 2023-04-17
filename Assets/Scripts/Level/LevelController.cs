@@ -17,6 +17,7 @@ public class LevelController : NetworkBehaviour
         [SyncVar] public bool readyToStart;
         public bool readyToStartLevel;
         public bool gameEnded = false;    
+        public int requiredScore;
         [SyncVar] public float countdownTimer;  
         [SyncVar] public float gameTimer;
 
@@ -189,7 +190,7 @@ public class LevelController : NetworkBehaviour
         int k = 0;        
         for (int i = 0; i < gamePlayers.Count; i++)
         {   
-            if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(20))
+            if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(requiredScore))
             {
                 Debug.Log("Player visited last checkpoint " + k + "of: " + gamePlayers[i].gameObject);
                 k += 1;
@@ -208,7 +209,7 @@ public class LevelController : NetworkBehaviour
     {
         foreach (PlayerController player in gamePlayers)
         {
-            scoreboardDictionary.Add(player.playerName, (int)player.GetComponent<Runner>().visitedCheckpoints[20]);         
+            scoreboardDictionary.Add(player.playerName, (int)player.GetComponent<Runner>().visitedCheckpoints[requiredScore]);         
         }
         scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
     }
