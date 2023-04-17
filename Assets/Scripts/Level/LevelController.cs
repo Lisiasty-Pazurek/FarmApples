@@ -33,7 +33,7 @@ public class LevelController : NetworkBehaviour
         public List<PlayerController> gamePlayers = new List<PlayerController>();
         public List<GameObject> spawnedItems = new List<GameObject>();
 
-        public SyncDictionary<string, int> scoreboardDictionary = new SyncDictionary<string, int>();
+        public SyncDictionary<string, float> scoreboardDictionary = new SyncDictionary<string, float>();
 
         public void Start() {  }
 
@@ -197,6 +197,7 @@ public class LevelController : NetworkBehaviour
             }
             if (k > gamePlayers.Count -1 )
             {
+                gameEnded = true;
                 EndLevel();
                 MakeScoreboardDictionary();
             }
@@ -209,7 +210,7 @@ public class LevelController : NetworkBehaviour
     {
         foreach (PlayerController player in gamePlayers)
         {
-            scoreboardDictionary.Add(player.playerName, (int)player.GetComponent<Runner>().visitedCheckpoints[requiredScore]);         
+            scoreboardDictionary[player.playerName] = player.GetComponent<Runner>().visitedCheckpoints[requiredScore];         
         }
         scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
     }
@@ -237,7 +238,7 @@ public class LevelController : NetworkBehaviour
     public void RPCScorePrefabs()
     {
 
-        foreach (KeyValuePair<string,int> entry in scoreboardDictionary)
+        foreach (KeyValuePair<string,float> entry in scoreboardDictionary)
         {
             GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
             finalScoreRowObject.GetComponent<FinalScoreRow>().playerName.text = entry.Key;
