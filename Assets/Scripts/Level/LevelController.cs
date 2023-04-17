@@ -198,10 +198,14 @@ public class LevelController : NetworkBehaviour
             if (k > gamePlayers.Count -1 )
             {
                 gameEnded = true;
-                EndLevel();
-                MakeScoreboardDictionary();
             }
             Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
+        }
+
+        if (gameEnded)
+        {
+            MakeScoreboardDictionary();    
+            EndLevel();        
         }
     }
 
