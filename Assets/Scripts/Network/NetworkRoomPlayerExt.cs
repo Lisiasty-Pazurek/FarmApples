@@ -20,6 +20,7 @@ namespace MirrorBasics
 
         //public GameObject localRoomPlayerUi;        
         public GameObject roomPlayerUIprefab;
+        public GameObject roomPlayerUIObject;
         public RoomPlayerUI roomPlayerUI;
         
         public override void OnStartClient()
@@ -29,9 +30,15 @@ namespace MirrorBasics
             playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;     
             playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
 
+            InstantiateRoomUIPrefab();
+
+        }
+
+        public void InstantiateRoomUIPrefab()
+        {
             // Instantiate the player UI as child of the Players Panel
-            roomPlayerUIprefab = Instantiate(roomPlayerUIprefab, uiRoom.location);
-            roomPlayerUI = roomPlayerUIprefab.GetComponent<RoomPlayerUI>();            
+            roomPlayerUIObject = Instantiate(roomPlayerUIprefab, uiRoom.location);
+            roomPlayerUI = roomPlayerUIObject.GetComponent<RoomPlayerUI>();            
 
             // wire up all events to handlers in PlayerUI
             OnPlayerNameChanged = roomPlayerUI.OnPlayerNameChanged;
@@ -45,7 +52,6 @@ namespace MirrorBasics
             OnPlayerTeamChanged?.Invoke(playerTeam);
             OnPlayerStateChanged?.Invoke(readyToBegin);
         }
-
 
         void PlayerNameChanged(string oldName, string newName)
         {   
