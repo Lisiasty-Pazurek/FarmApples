@@ -43,7 +43,7 @@ public class Runner : NetworkBehaviour
         ScorePrefab.GetComponent<TimeScore>().id.text = id.ToString();
         ScorePrefab.GetComponent<TimeScore>().time.text = time.ToString();        
         timeScoreRows.Add(ScorePrefab);
-        if (timeScoreRows.Count >=3)
+        if (timeScoreRows.Count >=2)
         {
             Destroy(timeScoreRows[0]);
             timeScoreRows.Remove(timeScoreRows[0]);

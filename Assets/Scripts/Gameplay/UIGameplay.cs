@@ -74,7 +74,7 @@ public class UIGameplay : MonoBehaviour
         lobbySystem.OpenLobbyMenu();
         NetworkClient.Disconnect();
         NetworkServer.Shutdown();   
-        SceneManager.LoadScene("LobbySample"); 
+        SceneManager.LoadScene("Empty"); 
     }
 
     public void BackToLobby()
