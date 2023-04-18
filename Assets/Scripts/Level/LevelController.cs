@@ -190,7 +190,7 @@ public class LevelController : NetworkBehaviour
     {   
         if (gameEnded && !gameFinished)
         {
-            MakeScoreboardDictionary();    
+
             EndLevel();        
             gameFinished = true;  
         }
@@ -206,6 +206,7 @@ public class LevelController : NetworkBehaviour
             if (k > gamePlayers.Count -1 && !gameEnded)
             {
                 gameEnded = true;
+                MakeScoreboardDictionary();                    
             }
             Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
         }
@@ -243,6 +244,7 @@ public class LevelController : NetworkBehaviour
     public void DisplayScoreboardPrefabs()
     {
         Debug.Log("Spawning scores " );
+
         foreach (KeyValuePair<string,float> entry in scoreboardDictionary)
         {
             GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
