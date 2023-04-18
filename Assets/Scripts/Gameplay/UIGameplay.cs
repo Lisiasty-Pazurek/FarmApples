@@ -12,6 +12,7 @@ public class UIGameplay : MonoBehaviour
     public UIScore uiScore;
     public PlayerController player; 
     public NetworkRoomPlayer lobbyPlayer;
+    private LobbySystem lobbySystem;
     public LevelController levelController;
 
     [SerializeField] public Canvas preGameUICanvas;   
@@ -25,6 +26,7 @@ public class UIGameplay : MonoBehaviour
 
     public void Start ()
     {
+        lobbySystem = FindObjectOfType<LobbySystem>();
         ChangeUIState(0);             
     }
 
@@ -69,6 +71,14 @@ public class UIGameplay : MonoBehaviour
     public void ReturnToLobby()
     {
         NetworkClient.Disconnect();
+        NetworkServer.Shutdown();
+        lobbySystem.lobbyPanel.gameObject.SetActive(true);
+        lobbySystem.OpenLobbyMenu();
+    }
+
+    public void DisplayScoreboardPrefabs()
+    {
+
     }
 
 }

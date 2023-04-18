@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 namespace MirrorBasics
 {
@@ -20,18 +21,24 @@ namespace MirrorBasics
 
         //public GameObject localRoomPlayerUi;        
         public GameObject roomPlayerUIprefab;
+        public GameObject roomPlayerUIObject;
         public RoomPlayerUI roomPlayerUI;
         
         public override void OnStartClient()
         {
             //Debug.Log($"OnStartClient {gameObject}");
-            uiRoom = FindObjectOfType<UIRoom>();
-            playerName = NetworkRoomManagerExt.singleton.lobbySystem.playerNameInputField.text;     
-            playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
+            uiRoom = FindObjectOfType<UIRoom>();    
+            //playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
 
+            InstantiateRoomUIPrefab();
+            base.OnStartClient();
+        }
+
+        public void InstantiateRoomUIPrefab()
+        {
             // Instantiate the player UI as child of the Players Panel
-            roomPlayerUIprefab = Instantiate(roomPlayerUIprefab, uiRoom.location);
-            roomPlayerUI = roomPlayerUIprefab.GetComponent<RoomPlayerUI>();            
+            roomPlayerUIObject = Instantiate(roomPlayerUIprefab, uiRoom.location);
+            roomPlayerUI = roomPlayerUIObject.GetComponent<RoomPlayerUI>();            
 
             // wire up all events to handlers in PlayerUI
             OnPlayerNameChanged = roomPlayerUI.OnPlayerNameChanged;
@@ -45,7 +52,6 @@ namespace MirrorBasics
             OnPlayerTeamChanged?.Invoke(playerTeam);
             OnPlayerStateChanged?.Invoke(readyToBegin);
         }
-
 
         void PlayerNameChanged(string oldName, string newName)
         {   
@@ -66,9 +72,16 @@ namespace MirrorBasics
 
         public override void OnStartServer()
         {
-            base.OnStartServer();
+            playerName = "Gracz " + Random.Range(0, 999).ToString();
             uiRoom = FindObjectOfType<UIRoom>();
+
+            if (SceneManager.GetActiveScene().name == "RoomSceneMarathon" )
+            {
+                playerModel = FindObjectOfType<CharacterPicker>().modelSprites[Random.Range(0, FindObjectOfType<CharacterPicker>().modelSprites.Count)].name;
+                Debug.Log("player model of : " + playerModel);
+            }            
             Debug.Log("Spawning ui prefab for: " + index + " " + this.gameObject.name);   
+            base.OnStartServer();            
         }
 
         public override void OnClientEnterRoom()
@@ -81,7 +94,12 @@ namespace MirrorBasics
                 if (isLocalPlayer)
                 {
                     uiRoom.roomPlayer = this;
-                }    
+
+                    if (roomPlayerUIObject == null)
+                    {
+                        InstantiateRoomUIPrefab();
+                    }    
+                }
             }
 
         }
@@ -105,19 +123,10 @@ namespace MirrorBasics
         }
 
         
-
-        [ClientRpc]
-        public void RPCRoomPlayerUIPrefab (GameObject roomPlayeruiObject,int playerIndex, GameObject roomPlayerObject)
-        {
-            Debug.Log("Setting up room prefab for: "+ roomPlayeruiObject + "object " + playerIndex + " index" + roomPlayerObject.name);
-            roomPlayeruiObject.GetComponent<RoomPlayerUI>().index = playerIndex;
-            roomPlayeruiObject.GetComponent<RoomPlayerUI>().roomPlayer = roomPlayerObject;
-
-        }
-
         public override void OnClientExitRoom()
         {
             //Debug.Log($"OnClientExitRoom {SceneManager.GetActiveScene().path}");
+            Destroy(roomPlayerUIObject);
         }
 
         public override void IndexChanged(int oldIndex, int newIndex)

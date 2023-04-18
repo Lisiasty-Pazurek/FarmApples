@@ -16,7 +16,9 @@ public class LevelController : NetworkBehaviour
         [SerializeField]public Spawner spawner;    
         [SyncVar] public bool readyToStart;
         public bool readyToStartLevel;
-        public bool gameEnded = false;    
+        [SyncVar] public bool gameEnded = false;    
+        public bool gameFinished = false;
+        public int requiredScore;
         [SyncVar] public float countdownTimer;  
         [SyncVar] public float gameTimer;
 
@@ -32,7 +34,7 @@ public class LevelController : NetworkBehaviour
         public List<PlayerController> gamePlayers = new List<PlayerController>();
         public List<GameObject> spawnedItems = new List<GameObject>();
 
-        public SyncDictionary<string, int> scoreboardDictionary = new SyncDictionary<string, int>();
+        public readonly SyncDictionary<string, float> scoreboardDictionary = new SyncDictionary<string, float>();
 
         public void Start() {  }
 
@@ -185,22 +187,31 @@ public class LevelController : NetworkBehaviour
     
     [Command  (requiresAuthority = false)]
     public void CheckifPlayersFinished()
-    {
+    {   
+        if (gameEnded && !gameFinished)
+        {
+
+            EndLevel();        
+            gameFinished = true;  
+        }
+
         int k = 0;        
         for (int i = 0; i < gamePlayers.Count; i++)
         {   
-            if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(20))
+            if (gamePlayers[i].gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(requiredScore))
             {
                 Debug.Log("Player visited last checkpoint " + k + "of: " + gamePlayers[i].gameObject);
                 k += 1;
             }
-            if (k > gamePlayers.Count -1 )
+            if (k > gamePlayers.Count -1 && !gameEnded)
             {
-                EndLevel();
-                MakeScoreboardDictionary();
+                gameEnded = true;
+                MakeScoreboardDictionary();                    
             }
             Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
         }
+
+
     }
 
     [Server]
@@ -208,7 +219,7 @@ public class LevelController : NetworkBehaviour
     {
         foreach (PlayerController player in gamePlayers)
         {
-            scoreboardDictionary.Add(player.playerName, (int)player.GetComponent<Runner>().visitedCheckpoints[20]);         
+            scoreboardDictionary[player.playerName] = player.GetComponent<Runner>().visitedCheckpoints[requiredScore];         
         }
         scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
     }
@@ -220,16 +231,21 @@ public class LevelController : NetworkBehaviour
         Debug.Log("Ending level for match: " );
         uIGameplay.ChangeUIState(2);
         pController.characterController.GetComponent<CharacterController>().enabled = false;
-        if (gameMode.gameModeName == "Farmarathon")
-        {
-            RPCScorePrefabs();
-            
+        if (gameMode.gameModeName == "Farmarathon" )
+        {   
+            DisplayScoreboardPrefabs();
         }
+        
     }
-    [ClientRpc]
-    public void RPCScorePrefabs()
+
+
+
+    [Client]
+    public void DisplayScoreboardPrefabs()
     {
-        foreach (KeyValuePair<string,int> entry in scoreboardDictionary)
+        Debug.Log("Spawning scores " );
+
+        foreach (KeyValuePair<string,float> entry in scoreboardDictionary)
         {
             GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
             finalScoreRowObject.GetComponent<FinalScoreRow>().playerName.text = entry.Key;
@@ -237,6 +253,7 @@ public class LevelController : NetworkBehaviour
             finalScoreRowObject.transform.SetParent(uIGameplay.ScoreboardTransform);
             Debug.Log("Spawned score prefab for: " + entry);  
         }   
+
     }
 
 
