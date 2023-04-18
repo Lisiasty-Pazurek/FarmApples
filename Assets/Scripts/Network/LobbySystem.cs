@@ -73,20 +73,20 @@ public class LobbySystem : MonoBehaviour
     {
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmaze")
         {
-            maxPlayersSlider.maxValue = 1;
-            maxPlayersSlider.value = 1;
+            maxPlayersSlider.maxValue = 2;
+            maxPlayersSlider.value = 2;
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Apples01")
         {
-            maxPlayersSlider.maxValue = 19;
-            maxPlayersSlider.value = 19;
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmarathon")
         {
-            maxPlayersSlider.maxValue = 23;
-            maxPlayersSlider.value = 23;
+            maxPlayersSlider.maxValue = 24;
+            maxPlayersSlider.value = 24;
             networkManager.onlineScene = "RoomSceneMarathon";
             networkManager.RoomScene = "RoomSceneMarathon";
             networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[1];
@@ -94,8 +94,8 @@ public class LobbySystem : MonoBehaviour
 
         if (mapListDropdown.options[mapListDropdown.value].text == "DialogueScene")
         {
-            maxPlayersSlider.maxValue = 19;
-            maxPlayersSlider.value = 19;
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
         }
 
     }
@@ -112,7 +112,7 @@ public class LobbySystem : MonoBehaviour
         /// ### BEGIN ### custom changes for room -> gameplayscene changes
         networkManager.GameplayScene = mapListDropdown.options[mapListDropdown.value].text;
         Debug.Log("gameplay scene : " + mapListDropdown.options[mapListDropdown.value].text);
-        networkManager.maxConnections = ((int)maxPlayersSlider.value);
+        networkManager.maxConnections = ((int)maxPlayersSlider.value-1);
         //networkManager.ServerChangeScene(networkManager.RoomScene);
 
         /// ### END ### custom changes for room -> gammeplayscene changes
@@ -155,6 +155,11 @@ public class LobbySystem : MonoBehaviour
         }
 
         lobbyMenuText.text = "Rozgrywki - " + totalPlayers.ToString() + " graczy online";
+
+    }
+
+    public void CheckRelayStatus()
+    {
 
     }
 
