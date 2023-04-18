@@ -190,8 +190,8 @@ public class LevelController : NetworkBehaviour
     {   
         if (gameEnded && !gameFinished)
         {
+            EndLevel();   
 
-            EndLevel();        
             gameFinished = true;  
         }
 
@@ -221,7 +221,7 @@ public class LevelController : NetworkBehaviour
         {
             scoreboardDictionary[player.playerName] = player.GetComponent<Runner>().visitedCheckpoints[requiredScore];         
         }
-        scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+        //scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
     }
 
 
