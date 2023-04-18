@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 namespace MirrorBasics
 {
@@ -27,7 +28,7 @@ namespace MirrorBasics
         {
             //Debug.Log($"OnStartClient {gameObject}");
             uiRoom = FindObjectOfType<UIRoom>();    
-            playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
+            //playerModel = uiRoom.modelName.options[uiRoom.modelName.value].text;
 
             InstantiateRoomUIPrefab();
             base.OnStartClient();
@@ -73,6 +74,12 @@ namespace MirrorBasics
         {
             playerName = "Gracz " + Random.Range(0, 999).ToString();
             uiRoom = FindObjectOfType<UIRoom>();
+
+            if (SceneManager.GetActiveScene().name == "RoomSceneMarathon" )
+            {
+                playerModel = FindObjectOfType<CharacterPicker>().modelSprites[Random.Range(0, FindObjectOfType<CharacterPicker>().modelSprites.Count)].name;
+                Debug.Log("player model of : " + playerModel);
+            }            
             Debug.Log("Spawning ui prefab for: " + index + " " + this.gameObject.name);   
             base.OnStartServer();            
         }
