@@ -70,10 +70,19 @@ public class UIGameplay : MonoBehaviour
 
     public void ReturnToLobby()
     {
-        NetworkClient.Disconnect();
-        NetworkServer.Shutdown();
         lobbySystem.lobbyPanel.gameObject.SetActive(true);
         lobbySystem.OpenLobbyMenu();
+        NetworkClient.Disconnect();
+        NetworkServer.Shutdown();   
+        SceneManager.LoadScene("LobbySample"); 
+    }
+
+    public void BackToLobby()
+    {
+        FindObjectOfType<LobbySystem>().gameObject.SetActive(true);
+        FindObjectOfType<LobbySystem>().OpenLobbyMenu();
+        NetworkClient.Disconnect();    
+
     }
 
     public void DisplayScoreboardPrefabs()
