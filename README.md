@@ -1,9 +1,9 @@
-#Introduction
+# Introduction
 
 The Project is going to be used for educational purposes for a PhD thesis that focuses on studying the impact of multiplayer games in developing social skills. To make a safe environment for early school students, custom-made game have to be developed.  Pre and post-test questionnaires will be used as the main research tool. Additional documentation may include video recordings or logs. About 20 students will take part in the research at a certain time.
 
 
-##Scenario of lesson [User case scenario]
+## Scenario of lesson [User case scenario]
 1.	Downloading and unpacking app
 2.	Running exe and connecting to server
 3.	Creating or joining a lobby
