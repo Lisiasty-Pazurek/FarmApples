@@ -42,7 +42,7 @@ namespace MirrorBasics {
                 foreach (NetworkRoomPlayerExt player in roomSlots)
                 {
                     player.uiRoom = FindObjectOfType<UIRoom>();
-                    player.localRoomPlayerUi.transform.SetParent(player.uiRoom.location.transform);
+                    player.roomPlayerUI.transform.SetParent(player.uiRoom.location.transform);
                 }
             }
         }
@@ -54,16 +54,14 @@ namespace MirrorBasics {
             { 
                 foreach (NetworkRoomPlayerExt player in roomSlots)
                 {
-                    player.localRoomPlayerUi.transform.SetParent(NetworkRoomManagerExt.singleton.transform);
+                    player.roomPlayerUI.transform.SetParent(NetworkRoomManagerExt.singleton.transform);
                 }
             }
-
-
         }
 
         public override void OnRoomClientEnter() 
         {
- //           NetworkClient.localPlayer.gameObject.GetComponent<NetworkRoomPlayerExt>().SpawnRoomUIPrefab();
+            
         }
 
         /// <summary>
@@ -94,7 +92,7 @@ namespace MirrorBasics {
                 }
                 return true;
             }
-            else if (SceneManager.GetActiveScene().name == "DialogueScene")
+            else if (SceneManager.GetActiveScene().name == "Farmhand")
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
@@ -131,6 +129,7 @@ namespace MirrorBasics {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
                 playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                playerGameController.playerName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
                 playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
                 return true;
             }

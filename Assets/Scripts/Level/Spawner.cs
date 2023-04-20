@@ -12,10 +12,10 @@ public class Spawner: NetworkBehaviour
         [SerializeField] public GameObject teampointPrefab2;
         private GameObject teamboxPrefab;
 
-    [SerializeField] public List<Transform> playerSpawnPoints;
-    [SerializeField] public List<Transform> rewardSpawnPoints;
-    [SerializeField] public List<Transform> teamSpawnPoints;
-    [SerializeField] public List<Transform> pickupSpawnPoints;  
+        [SerializeField] public List<Transform> playerSpawnPoints;
+        [SerializeField] public List<Transform> rewardSpawnPoints;
+        [SerializeField] public List<Transform> teamSpawnPoints;
+        [SerializeField] public List<Transform> pickupSpawnPoints;  
 
         public GameMode gameMode;
 

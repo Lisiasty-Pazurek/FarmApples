@@ -1185,7 +1185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &515676356
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1201,11 +1201,11 @@ RectTransform:
   m_Father: {fileID: 1798849072}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 61.3, y: 57}
-  m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5000002}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -20}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515676357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,18 +1263,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI_Room, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &515676358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,7 +1283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60dffbbe358f14046b1f4b4aaf7fa00d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8f92b521555f834cbb313fbf0aecad8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2681,15 +2669,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 7.5, y: 7}
+  m_CellSize: {x: 60, y: 60}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1357723953
@@ -2879,15 +2867,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 7.5, y: 7}
+  m_CellSize: {x: 60, y: 60}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1462258896
@@ -3100,15 +3088,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 7.5, y: 7}
+  m_CellSize: {x: 60, y: 60}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1609683464
@@ -3282,11 +3270,21 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Pies
+    - m_Text: Frog
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: SnappingTurtle
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: Quokka
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: Coyote
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: SnowWeasel
       m_Image: {fileID: 21300000, guid: 8161618aa809f5549bf4e2e7bbc7fef9, type: 3}
-    - m_Text: Kot
+    - m_Text: ArcticFox
       m_Image: {fileID: 21300000, guid: 0738a943a0a97d4469141d5d1c5b56bf, type: 3}
-    - m_Text: Mysz
+    - m_Text: Crow
+      m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
+    - m_Text: Raccoon
       m_Image: {fileID: 21300000, guid: e88583da6b85d6b48a1b59740e760774, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3392,15 +3390,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 7.5, y: 7}
+  m_CellSize: {x: 60, y: 60}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1742414350
@@ -3768,6 +3766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbySystem: {fileID: 0}
   roomPlayer: {fileID: 0}
+  roomPlayerUI: {fileID: 0}
   roomManager: {fileID: 0}
   readybutton: {fileID: 2112627364}
   startbutton: {fileID: 55634903}
@@ -4259,7 +4258,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pies
+  m_Text: Frog
 --- !u!222 &2075077681
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -12,18 +12,21 @@ public class UIGameplay : MonoBehaviour
     public UIScore uiScore;
     public PlayerController player; 
     public NetworkRoomPlayer lobbyPlayer;
+    private LobbySystem lobbySystem;
     public LevelController levelController;
 
     [SerializeField] public Canvas preGameUICanvas;   
     [SerializeField] public Canvas gameUICanvas;
     [SerializeField] public Canvas postGameUICanvas;
-    [SerializeField]public List<Canvas> uiStates;
+    [SerializeField] public List<Canvas> uiStates;
+    [SerializeField] public Transform ScoreboardTransform;
     public Image interactImage;
 
     public int uiState = 0;
 
     public void Start ()
     {
+        lobbySystem = FindObjectOfType<LobbySystem>();
         ChangeUIState(0);             
     }
 
@@ -38,7 +41,6 @@ public class UIGameplay : MonoBehaviour
         Debug.Log("Changing UI state to: " + i);
     }
 
-// Function logic can be moved to lobby player instead to get it only for callout here
     public void ImReady()
     {
         lobbyPlayer.readyToBegin = true;
@@ -58,12 +60,34 @@ public class UIGameplay : MonoBehaviour
 
     public void LoadRoomScene()
     {
-        NetworkRoomManagerExt.singleton.ServerChangeScene("RoomScene");
+        NetworkRoomManagerExt.singleton.ServerChangeScene(NetworkRoomManagerExt.singleton.RoomScene);
     }
 
     public void QuitLevel()
     {    
         levelController.QuitLevel();
+    }
+
+    public void ReturnToLobby()
+    {
+        lobbySystem.lobbyPanel.gameObject.SetActive(true);
+        lobbySystem.OpenLobbyMenu();
+        NetworkClient.Disconnect();
+        NetworkServer.Shutdown();   
+        SceneManager.LoadScene("Empty"); 
+    }
+
+    public void BackToLobby()
+    {
+        FindObjectOfType<LobbySystem>().gameObject.SetActive(true);
+        FindObjectOfType<LobbySystem>().OpenLobbyMenu();
+        NetworkClient.Disconnect();    
+
+    }
+
+    public void DisplayScoreboardPrefabs()
+    {
+
     }
 
 }

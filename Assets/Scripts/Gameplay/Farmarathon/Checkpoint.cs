@@ -1,24 +1,34 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
+using MirrorBasics;
+using UnityEngine.UI;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int id;
+    public Text idText;
+    public LevelController levelController;
 
-    // Update is called once per frame
-    void Update()
+    public void Start() 
     {
-        
+        idText.text = id.ToString();
     }
 
     private void OnTriggerEnter(Collider other) 
-    {
-        if (other.GetComponent<Carrier>() != null)
+    {    
+        if (other.gameObject.GetComponent<Runner>() == null) {return;}
+        
+        else if (other.gameObject.GetComponent<Runner>() != null)
+        {
+            if (other.gameObject.GetComponent<Runner>().visitedCheckpoints.ContainsKey(this.id - 1))
+            other.gameObject.GetComponent<Runner>().VisitCheckpoint(id,levelController.gameTimer);
+            levelController.CheckifPlayersFinished();               
+        }
+
+        
+
+        if (other.gameObject.GetComponent<Carrier>() != null)
         {
             
         }

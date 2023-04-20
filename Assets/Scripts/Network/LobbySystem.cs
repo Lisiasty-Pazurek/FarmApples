@@ -73,28 +73,32 @@ public class LobbySystem : MonoBehaviour
     {
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmaze")
         {
-            maxPlayersSlider.maxValue = 1;
-            maxPlayersSlider.value = 1;
+            maxPlayersSlider.maxValue = 2;
+            maxPlayersSlider.value = 2;
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Apples01")
         {
-            maxPlayersSlider.maxValue = 19;
-            maxPlayersSlider.value = 19;
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmarathon")
         {
-            maxPlayersSlider.maxValue = 23;
-            maxPlayersSlider.value = 23;
-            networkManager.onlineScene = "RoomSceneTeams";
-            networkManager.RoomScene = "RoomSceneTeams";
+            maxPlayersSlider.maxValue = 24;
+            maxPlayersSlider.value = 24;
+            networkManager.onlineScene = "RoomSceneMarathon";
+            networkManager.RoomScene = "RoomSceneMarathon";
+            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[1];
         }  
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "DialogueScene")
+        if (mapListDropdown.options[mapListDropdown.value].text == "Farmhand")
         {
-            maxPlayersSlider.maxValue = 19;
-            maxPlayersSlider.value = 19;
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
+            networkManager.onlineScene = "Farmhand";
+            networkManager.RoomScene = "Farmhand";
+
         }
 
     }
@@ -102,8 +106,6 @@ public class LobbySystem : MonoBehaviour
     public void CreateRoom()
     {
         if(roomNameInputField.text.Length < 1) roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
-
-        PlayerPrefs.SetString("PlayerName", playerNameInputField.text);
 
         LRMTransport.serverName = roomNameInputField.text;
         LRMTransport.maxServerPlayers = (int)maxPlayersSlider.value;
@@ -113,7 +115,7 @@ public class LobbySystem : MonoBehaviour
         /// ### BEGIN ### custom changes for room -> gameplayscene changes
         networkManager.GameplayScene = mapListDropdown.options[mapListDropdown.value].text;
         Debug.Log("gameplay scene : " + mapListDropdown.options[mapListDropdown.value].text);
-        networkManager.maxConnections = ((int)maxPlayersSlider.value);
+        networkManager.maxConnections = ((int)maxPlayersSlider.value-1);
         //networkManager.ServerChangeScene(networkManager.RoomScene);
 
         /// ### END ### custom changes for room -> gammeplayscene changes
@@ -122,7 +124,6 @@ public class LobbySystem : MonoBehaviour
     public void JoinRoom()
     {
 
-        PlayerPrefs.SetString("PlayerName", playerNameInputField.text);
         LRMTransport.RequestServerList();
         for (int i = 0; i < LRMTransport.relayServerList.Count; i++)
         {
@@ -157,6 +158,11 @@ public class LobbySystem : MonoBehaviour
         }
 
         lobbyMenuText.text = "Rozgrywki - " + totalPlayers.ToString() + " graczy online";
+
+    }
+
+    public void CheckRelayStatus()
+    {
 
     }
 

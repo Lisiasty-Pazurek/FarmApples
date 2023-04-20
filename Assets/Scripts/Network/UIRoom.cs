@@ -15,6 +15,7 @@ public class UIRoom : MonoBehaviour
     public GameObject startbutton;
     public GameObject switchRoleButton;
     public Dropdown modelName;
+    public Text playerNameInput;
     
     public List<Transform> teamLocations;
     public Transform location;
@@ -23,12 +24,13 @@ public class UIRoom : MonoBehaviour
     {
         lobbySystem = FindObjectOfType<LobbySystem>();
         roomManager = FindObjectOfType<NetworkRoomManagerExt>();    
-        // if (NetworkRoomManagerExt.singleton.GameplayScene == "Farmaze" && NetworkServer.activeHost )
-        // {switchRoleButton.SetActive(true);}
+        roomPlayer = NetworkRoomPlayerExt.localPlayer;
     }
 
     public void BackToLobby()
     {
+        NetworkClient.Disconnect();
+        NetworkServer.Shutdown();
         lobbySystem.lobbyPanel.gameObject.SetActive(true);
         lobbySystem.OpenLobbyMenu();
     }
@@ -41,7 +43,7 @@ public class UIRoom : MonoBehaviour
     public void ShowStartButton ()
     {
         Debug.Log("changing start button to:  " + NetworkRoomManagerExt.singleton.allPlayersReady );
-        startbutton.SetActive(!NetworkRoomManagerExt.singleton.allPlayersReady); /// <--- derp
+        startbutton.SetActive(!NetworkRoomManagerExt.singleton.allPlayersReady); // <--- derp
     }
     public void StartGame ()
     {
@@ -51,15 +53,25 @@ public class UIRoom : MonoBehaviour
 
     public void SetPlayerModel()
     {
-        roomPlayer.SetModelName(modelName.options[modelName.value].text);
+        roomPlayer.CmdSetModelName(modelName.options[modelName.value].text);
+    }
+
+    public void SetPlayerName()
+    {
+        roomPlayer.CmdSetPlayerName(playerNameInput.text);
     }
 
     public void JoinTeam(int team) 
     {
-        roomPlayer.playerTeam = team;
-        roomPlayer.localRoomPlayerUi.GetComponent<RoomPlayerUI>().RpcMovePlayerPrefabToTeam(team);
+        roomPlayer.CmdSetPlayerTeam(team);
     }
 
+    public void SetPlayerModel2(string animal )
+    {
+        roomPlayer.CmdSetModelName(animal);
+    }
+
+    // Script for Farmaze gamemode to let host and clinet swap their roles
     // public void ChangePlayerRoles()
     // {
     //     foreach (NetworkRoomPlayerExt player  in NetworkRoomManagerExt.singleton.roomSlots )
@@ -70,4 +82,4 @@ public class UIRoom : MonoBehaviour
     // }
 
 
-}
+    }
