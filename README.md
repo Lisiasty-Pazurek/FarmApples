@@ -1,11 +1,9 @@
-Introduction
+#Introduction
 
 Project is going to be used for educational purposes for a PhD thesis that focus on studying impact of multiplayer games in developing social skills. To make a safe environment for early school students, custom made game have to be developed.  Pre and posttest questionnaires will be used as a main research tools. Additional documentation may include video recording or logs. About 20 students will take part in research at time.
 
-Link:
-http://45.147.248.224:8080/
 
-Scenario of lesson [Client/user view]
+##Scenario of lesson [User case scenario]
 1.	Downloading and unpacking app
 2.	Running exe and connecting to server
 3.	Creating or joining lobby
@@ -18,7 +16,7 @@ Scenario of lesson [Client/user view]
 9.	After reaching required score – ending match, displaying scoreboard, returning to lobby
 10.	Repeat with different map for about 3-4 attempts depending on how time consuming it will be.
 
-Game Modes (levelController)
+##Game Modes (levelController)
 1.	Farm Apples 
 
 Team based game (2-10 players per match). Basic score collecting game – players have to pick up spawned item and bring it to team box to collect it and increase a score of a team.
