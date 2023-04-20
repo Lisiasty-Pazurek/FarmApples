@@ -92,7 +92,7 @@ public class LobbySystem : MonoBehaviour
             networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[1];
         }  
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "DialogueScene")
+        if (mapListDropdown.options[mapListDropdown.value].text == "Farmhand")
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;

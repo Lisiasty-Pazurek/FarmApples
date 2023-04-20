@@ -9,7 +9,7 @@ namespace MirrorBasics
         public static NetworkRoomPlayerExt localPlayer;
         public UIRoom uiRoom;
 
-        public event System.Action<int> OnPlayerIndexChanged;
+//        public event System.Action<int> OnPlayerIndexChanged;
         public event System.Action<bool> OnPlayerStateChanged;
         public event System.Action<string> OnPlayerNameChanged;
         public event System.Action<string> OnPlayerModelChanged;

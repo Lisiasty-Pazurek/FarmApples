@@ -92,7 +92,7 @@ namespace MirrorBasics {
                 }
                 return true;
             }
-            else if (SceneManager.GetActiveScene().name == "DialogueScene")
+            else if (SceneManager.GetActiveScene().name == "Farmhand")
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
