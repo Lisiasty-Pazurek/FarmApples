@@ -9,7 +9,7 @@ namespace MirrorBasics
         public static NetworkRoomPlayerExt localPlayer;
         public UIRoom uiRoom;
 
-        public event System.Action<int> OnPlayerIndexChanged;
+//        public event System.Action<int> OnPlayerIndexChanged;
         public event System.Action<bool> OnPlayerStateChanged;
         public event System.Action<string> OnPlayerNameChanged;
         public event System.Action<string> OnPlayerModelChanged;
@@ -37,20 +37,23 @@ namespace MirrorBasics
         public void InstantiateRoomUIPrefab()
         {
             // Instantiate the player UI as child of the Players Panel
-            roomPlayerUIObject = Instantiate(roomPlayerUIprefab, uiRoom.location);
-            roomPlayerUI = roomPlayerUIObject.GetComponent<RoomPlayerUI>();            
+            if (uiRoom != null)
+            {
+                roomPlayerUIObject = Instantiate(roomPlayerUIprefab, uiRoom.location);
+                roomPlayerUI = roomPlayerUIObject.GetComponent<RoomPlayerUI>();            
 
-            // wire up all events to handlers in PlayerUI
-            OnPlayerNameChanged = roomPlayerUI.OnPlayerNameChanged;
-            OnPlayerModelChanged = roomPlayerUI.OnPlayerModelChanged;
-            OnPlayerTeamChanged = roomPlayerUI.OnPlayerTeamChanged;
-            OnPlayerStateChanged = roomPlayerUI.OnPlayerStateChanged;  
+                // wire up all events to handlers in PlayerUI
+                OnPlayerNameChanged = roomPlayerUI.OnPlayerNameChanged;
+                OnPlayerModelChanged = roomPlayerUI.OnPlayerModelChanged;
+                OnPlayerTeamChanged = roomPlayerUI.OnPlayerTeamChanged;
+                OnPlayerStateChanged = roomPlayerUI.OnPlayerStateChanged;  
 
-            // Load Initial prefab data
-            OnPlayerNameChanged?.Invoke(playerName);
-            OnPlayerModelChanged?.Invoke(playerModel);
-            OnPlayerTeamChanged?.Invoke(playerTeam);
-            OnPlayerStateChanged?.Invoke(readyToBegin);
+                // Load Initial prefab data
+                OnPlayerNameChanged?.Invoke(playerName);
+                OnPlayerModelChanged?.Invoke(playerModel);
+                OnPlayerTeamChanged?.Invoke(playerTeam);
+                OnPlayerStateChanged?.Invoke(readyToBegin);
+            }
         }
 
         void PlayerNameChanged(string oldName, string newName)
@@ -93,12 +96,15 @@ namespace MirrorBasics
             {
                 if (isLocalPlayer)
                 {
-                    uiRoom.roomPlayer = this;
-
-                    if (roomPlayerUIObject == null)
+                    if (uiRoom != null) 
                     {
-                        InstantiateRoomUIPrefab();
-                    }    
+                        uiRoom.roomPlayer = this;
+
+                        if (roomPlayerUIObject == null)
+                        {
+                            InstantiateRoomUIPrefab();
+                        } 
+                    }   
                 }
             }
 
