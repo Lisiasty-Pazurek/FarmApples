@@ -96,6 +96,9 @@ public class LobbySystem : MonoBehaviour
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;
+            networkManager.onlineScene = "Farmhand";
+            networkManager.RoomScene = "Farmhand";
+
         }
 
     }

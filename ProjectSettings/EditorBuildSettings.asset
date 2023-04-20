@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Farmarathon.unity
     guid: a96f09e556e470c48a5198c7f6aa5979
   - enabled: 1
-    path: Assets/Scenes/DialogueScene.unity
+    path: Assets/Scenes/Farmhand.unity
     guid: fadd8748e9a3e71468b714233e906621
   - enabled: 1
     path: Assets/Scenes/Empty.unity
