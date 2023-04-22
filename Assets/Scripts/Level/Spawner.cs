@@ -22,6 +22,7 @@ public class Spawner: NetworkBehaviour
         private LevelController lvlController;
 
         public Transform startLocation;  
+        public Vector3 spawnPosition; 
 
         public override void OnStartServer() 
         {
@@ -51,8 +52,20 @@ public class Spawner: NetworkBehaviour
         internal void SpawnPickup(GameObject spawnPrefab)
         {
             if (!NetworkServer.active) return;
-            Vector3 spawnPosition = new Vector3(Random.Range(startLocation.position.x-180,startLocation.position.x +180), 0, Random.Range(startLocation.position.z-10,startLocation.position.z +120));
-            GameObject pickup = Instantiate(spawnPrefab, spawnPosition, Quaternion.identity);
+
+            if (rewardSpawnPoints == null)
+            {
+                spawnPosition = new Vector3(Random.Range(startLocation.position.x-180,startLocation.position.x +180), 0, Random.Range(startLocation.position.z-10,startLocation.position.z +120));                
+            }
+            if (rewardSpawnPoints != null)       
+            {
+                int x = Random.Range(0, rewardSpawnPoints.Count);
+                print(x);
+                spawnPosition = rewardSpawnPoints[x].position;
+                rewardSpawnPoints.Remove(rewardSpawnPoints[x]);
+            }
+            print(spawnPosition);
+            GameObject pickup = Instantiate(spawnPrefab, spawnPosition, Quaternion.identity );
             // pickup.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
             NetworkServer.Spawn(pickup);
             lvlController.spawnedItems.Add(pickup);
