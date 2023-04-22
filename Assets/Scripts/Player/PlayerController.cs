@@ -79,6 +79,10 @@ public class PlayerController : NetworkBehaviour
         pScore = gameObject.GetComponentInParent<PlayerScore>();
         pCook = gameObject.GetComponentInParent<Cook>();
         pCamera = this.GetComponent<PlayerCamera>();
+
+        if (characterAnimator == null)
+        characterAnimator = GetComponentInChildren<Animator>();
+        
         levelManager.gamePlayers.Add(this);
         SetModel();
     }

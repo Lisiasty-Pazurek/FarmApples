@@ -156,7 +156,7 @@ MonoBehaviour:
   networkAnimator: {fileID: 9118952894041304543}
   uiGameplay: {fileID: 0}
   pScore: {fileID: 115187108610643062}
-  pCook: {fileID: 0}
+  pCook: {fileID: 3804203332179345717}
   pCamera: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   isReady: 0
