@@ -7,7 +7,13 @@ public class Ingredient : NetworkBehaviour
 {
     public bool isCarried;
     public string ingredientName;
+    private Collider ingredientCollider;
+    public List<GameObject> ingredientType = new List<GameObject>();
 
+    public override void OnStartServer()
+    {
+        ingredientCollider = GetComponent<SphereCollider>();
+    }
 
 // Server check if player can pick up reward
     [ServerCallback]
@@ -28,6 +34,17 @@ public class Ingredient : NetworkBehaviour
         player.GetComponent<Cook>().carriedObject = this.gameObject;
         this.transform.SetParent(player.transform); 
         isCarried = true;
+        ingredientCollider.enabled = false;
     }
+
+    [ServerCallback]
+    public void DropItem(GameObject player)
+    {
+        player.GetComponent<Cook>().carriedObject = null;
+        this.transform.SetParent(null); 
+        isCarried = false;
+        ingredientCollider.enabled = true;
+    }
+
     
 }
