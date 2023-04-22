@@ -2039,9 +2039,6 @@ MonoBehaviour:
   - {fileID: 5863721528219136639, guid: c122c899ae966be47848936dae72c6d1, type: 3}
   - {fileID: 3417312707691736607, guid: ac5d0956b33a8964b89f81db2fec287c, type: 3}
   - {fileID: 3417312707691736607, guid: d32e026df3a78e14e824ce54551c21a4, type: 3}
-  - {fileID: 1480027675339556, guid: de6217c6e387e9a47aaf72c4ec86a004, type: 3}
-  - {fileID: 1480027675339556, guid: 4f16210e77336e041afaaf3f40542055, type: 3}
-  - {fileID: 1480027675339556, guid: fc2d88e40d4f7a245b74f95f6e1e73ff, type: 3}
   timeInterpolationGui: 0
   showRoomGUI: 0
   minPlayers: 1
