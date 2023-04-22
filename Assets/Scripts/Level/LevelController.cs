@@ -235,10 +235,7 @@ public class LevelController : NetworkBehaviour
         {   
             DisplayScoreboardPrefabs();
         }
-        
     }
-
-
 
     [Client]
     public void DisplayScoreboardPrefabs()

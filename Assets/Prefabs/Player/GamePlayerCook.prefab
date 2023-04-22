@@ -180,8 +180,8 @@ MonoBehaviour:
   hasItem: 0
   canSteal: 0
   isNavigator: 0
-  carriedItem: {fileID: 0}
-  stealingItem: {fileID: 0}
+  carriedItem: {fileID: 923235187907297950}
+  stealingItem: {fileID: 9169749729704650599}
   uiScore: {fileID: 0}
 --- !u!114 &-6736841464767829722
 MonoBehaviour:
@@ -579,6 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}
 --- !u!1001 &921714222530040290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -785,6 +786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 923235187907297950}
   steal: {fileID: 9169749729704650599}
+  rootTransform: {fileID: 0}
 --- !u!4 &8726617669565124953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8569067361324043285, guid: dce9c9e444374b944bbe648df744fbb4,
@@ -858,6 +860,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1033167635263110917, guid: fa50db19d0dce9b44876d7669360071e,
+        type: 3}
+      propertyPath: m_Size
+      value: 0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 1033167635263110918, guid: fa50db19d0dce9b44876d7669360071e,
         type: 3}
       propertyPath: m_Controller
@@ -901,6 +908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}
 --- !u!1001 &6359577456924483859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1005,6 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}
 --- !u!4 &3687243119728466577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7740133137895390082, guid: 4c97bf239e416a449a263fa82149a5e3,
@@ -1073,6 +1082,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5528603755101481346, guid: 8640f86cc1cb10448814047cfd71eec9,
+        type: 3}
+      propertyPath: m_Size
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5528603755101481347, guid: 8640f86cc1cb10448814047cfd71eec9,
         type: 3}
       propertyPath: m_Controller
@@ -1115,6 +1129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}
 --- !u!4 &3094350449426946319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5528603755101481345, guid: 8640f86cc1cb10448814047cfd71eec9,
@@ -1225,6 +1240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}
 --- !u!4 &7645279667633250318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 141701333925329671, guid: 2a74fc68781f4d24c9bf669049fb3e6b,
@@ -1238,6 +1254,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4822224316094678}
     m_Modifications:
+    - target: {fileID: 6986768233181138262, guid: 11e2575ed1c7ae44a875994f4f6f2ede,
+        type: 3}
+      propertyPath: m_Size
+      value: 1.09
+      objectReference: {fileID: 0}
     - target: {fileID: 6986768233181138264, guid: 11e2575ed1c7ae44a875994f4f6f2ede,
         type: 3}
       propertyPath: m_Controller
@@ -1341,6 +1362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}
 --- !u!1001 &8322677513197886006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1518,6 +1540,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a537e6e9695ecc4468519ec871dcdc7d, type: 2}
+    - target: {fileID: 512172159506703079, guid: 1509ee1f4d01f834383f795748d29108,
+        type: 3}
+      propertyPath: m_Size
+      value: 1.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1509ee1f4d01f834383f795748d29108, type: 3}
 --- !u!1 &9135627466721122155 stripped
@@ -1540,6 +1567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}
 --- !u!4 &9135627466721122158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 512172159506703072, guid: 1509ee1f4d01f834383f795748d29108,
@@ -1628,6 +1656,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2551892347925612391, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_Size
+      value: 0.83
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2d37b34e3e70a545afb6ca990777dd6, type: 3}
 --- !u!4 &6424830603632406616 stripped
@@ -1656,3 +1689,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
+  rootTransform: {fileID: 0}

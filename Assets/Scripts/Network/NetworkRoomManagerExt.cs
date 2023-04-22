@@ -139,6 +139,8 @@ namespace MirrorBasics {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
                 playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                playerGameController.playerName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
+                playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
                 if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
                 {
                     playerScore.teamID = 1;
