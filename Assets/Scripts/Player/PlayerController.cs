@@ -27,7 +27,7 @@ public class PlayerController : NetworkBehaviour
     public bool isFalling = false;
     public float dashCooldown = 5f;
     public bool isDashing = false; 
-    public string playerName;
+    public string playerName;   
     [SyncVar] public string modelName;      
 
     [Header("References")]
@@ -45,10 +45,6 @@ public class PlayerController : NetworkBehaviour
 
     [SyncVar (hook=nameof(SetReadyState)) ]
     public bool isReady = false;
-
-    // private UIScore uiScore;
-    // private UILobby uiLobby;
-    // private Player localPlayer;
 
     private LevelController levelManager;
 
@@ -71,9 +67,9 @@ public class PlayerController : NetworkBehaviour
         uiGameplay.player = this;
 
         pScore = gameObject.GetComponentInParent<PlayerScore>();
-        pCamera = this.GetComponent<PlayerCamera>();
+        pCamera = gameObject.GetComponent<PlayerCamera>();
         networkAnimator = GetComponent<NetworkAnimator>();
-        //pCamera.SetupPlayerCamera();
+        pCamera.SetupPlayerCamera();
     }
 
     public override void OnStartServer()
@@ -82,14 +78,13 @@ public class PlayerController : NetworkBehaviour
         pScore = gameObject.GetComponentInParent<PlayerScore>();
         pCamera = this.GetComponent<PlayerCamera>();
         levelManager.gamePlayers.Add(this);
-        //SetModel();
+        SetModel();
     }
     public override void OnStartClient()
     {
         pScore = gameObject.GetComponentInParent<PlayerScore>();
-        //SetModel();
+        SetModel();
     }
-
 
     [Command (requiresAuthority = false)]
     public void SetReadyState(bool oldValue,bool newValue)
@@ -97,7 +92,6 @@ public class PlayerController : NetworkBehaviour
         this.isReady = newValue;
         Debug.Log(" Setting up ready state for gameplayer to syncvar for server");
     }
-
 
     [TargetRpc]
     public void SetPlayerReady (bool oldValue, bool newValue)
@@ -203,22 +197,7 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    [ServerCallback]
-    void OnTriggerEnter(Collider other)
-    {
-        // Stealing ability 
-        if (other.gameObject.CompareTag("Player") && pScore.teamID != other.GetComponent<PlayerScore>().teamID)
-        {
-            if (!this.pScore.canSteal){return;}
-            if (other.gameObject.GetComponent<PlayerScore>().hasItem && !this.pScore.hasItem) 
-            {                
-                other.gameObject.GetComponent<PlayerScore>().hasItem = false;
-                pScore.hasItem = true;
-                pScore.canSteal = false;
-            }
-            else return;
-        }           
-    }
+
 
 }
 

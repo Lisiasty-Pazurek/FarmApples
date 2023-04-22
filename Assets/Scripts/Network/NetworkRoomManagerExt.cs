@@ -133,6 +133,22 @@ namespace MirrorBasics {
                 playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
                 return true;
             }
+
+            if (SceneManager.GetActiveScene().name == "Farmcook") 
+            {
+                PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
+                PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
+                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
+                {
+                    playerScore.teamID = 1;
+                }
+                else 
+                {
+                    playerScore.teamID = 2;
+                }
+                return true;
+            }
             else return false;
         }
 

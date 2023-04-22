@@ -15,7 +15,14 @@ using MirrorBasics;
         {
             mainCam = Camera.main;
             pScore = GetComponent<PlayerScore>();
-            if (mainCam != null) 
+
+            if (pScore == null && mainCam != null)
+            {
+                cineCam = mainCam.GetComponent<CinemachineVirtualCamera>();
+                mainCam.orthographic = false;
+                cineCam.Follow = this.transform;
+            }
+            if (pScore != null && mainCam != null) 
             {
                 if (pScore.isNavigator) {SetupNavigatorCamera(); return;} 
                 else
