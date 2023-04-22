@@ -210,8 +210,6 @@ public class LevelController : NetworkBehaviour
             }
             Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
         }
-
-
     }
 
     [Server]

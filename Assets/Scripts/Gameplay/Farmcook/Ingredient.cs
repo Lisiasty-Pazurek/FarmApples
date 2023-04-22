@@ -33,6 +33,7 @@ public class Ingredient : NetworkBehaviour
     {
         player.GetComponent<Cook>().carriedObject = this.gameObject;
         this.transform.SetParent(player.GetComponent<Cook>().rootTransform); 
+        this.transform.position = player.GetComponent<Cook>().rootTransform.position;
         isCarried = true;
         ingredientCollider.enabled = false;
     }

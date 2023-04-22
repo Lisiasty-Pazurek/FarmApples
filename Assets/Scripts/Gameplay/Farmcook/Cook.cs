@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System;
+using UnityEngine.UI;
 
 public class Cook : NetworkBehaviour
 {
     [SyncVar (hook =nameof(OnStaminaChange))]public float playerStamina;
     [SyncVar (hook =nameof(CarriedObjectChange))] public GameObject carriedObject;
     public Transform rootTransform;
-
-    
+    public Slider staminaSlider;
 
     public void OnStaminaChange(float oldValue, float newValue)
     {
@@ -19,7 +19,7 @@ public class Cook : NetworkBehaviour
 
     public void CarriedObjectChange(GameObject oldValue, GameObject newValue)
     {
-        
+        staminaSlider.value = playerStamina;
     }
 
     // Start is called before the first frame update
@@ -28,9 +28,16 @@ public class Cook : NetworkBehaviour
         
     }
 
-    // Update is called once per frame
+    [Server]
     void Update()
     {
-        
+        if (carriedObject != null)
+        {
+            playerStamina -= Time.deltaTime;
+        }
+        if (carriedObject == null && playerStamina <100)
+        {
+            playerStamina += Time.deltaTime/5;
+        }
     }
 }
