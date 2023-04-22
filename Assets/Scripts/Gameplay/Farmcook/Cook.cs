@@ -14,12 +14,12 @@ public class Cook : NetworkBehaviour
 
     public void OnStaminaChange(float oldValue, float newValue)
     {
-        
+        staminaSlider.value = playerStamina;        
     }
 
     public void CarriedObjectChange(GameObject oldValue, GameObject newValue)
     {
-        staminaSlider.value = playerStamina;
+
     }
 
     // Start is called before the first frame update
