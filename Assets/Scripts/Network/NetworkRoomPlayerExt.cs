@@ -146,13 +146,19 @@ namespace MirrorBasics
             // changing button text locally
             if (isLocalPlayer)
             {
-                if (readyToBegin) { uiRoom.readybutton.text = "Gotowy"; }
-                else { uiRoom.readybutton.text = "Nie gotowy"; }
+                if (uiRoom != null)
+                {
+                    if (readyToBegin) { uiRoom.readybutton.text = "Gotowy"; }
+                    else { uiRoom.readybutton.text = "Nie gotowy"; }
+                }
             }
 
             if (isClient)
             {
-                OnPlayerStateChanged?.Invoke(newReadyState);
+                if (uiRoom != null)
+                {
+                    OnPlayerStateChanged?.Invoke(newReadyState);
+                }
             }
         
             //changing visibility of start button for host
