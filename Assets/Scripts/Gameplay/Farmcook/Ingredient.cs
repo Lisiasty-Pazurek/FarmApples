@@ -5,7 +5,7 @@ using Mirror;
 
 public class Ingredient : NetworkBehaviour
 {
-    public bool isCarried;
+    [SyncVar] public bool isCarried;
     public string ingredientName;
     private Collider ingredientCollider;
 

@@ -14,6 +14,7 @@ public class Cook : NetworkBehaviour
     public Transform rootTransform;
     public Slider staminaSlider;
 
+
     public void OnStaminaChange(float oldValue, float newValue)
     {
         staminaSlider.value = playerStamina;        
@@ -40,6 +41,11 @@ public class Cook : NetworkBehaviour
         if (carriedObject == null && playerStamina <100)
         {
             playerStamina += Time.deltaTime/5;
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            carriedObject.GetComponent<Ingredient>().DropItem(this.gameObject);
         }
     }
 }
