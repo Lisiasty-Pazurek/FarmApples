@@ -20,7 +20,7 @@ public class Ingredient : NetworkBehaviour
     }
 
     [ServerCallback]
-    public void FixedUpdate ()
+    public void Update ()
     {
         if (isCarried)
         {
