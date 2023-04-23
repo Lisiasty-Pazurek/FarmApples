@@ -9,6 +9,8 @@ public class Cook : NetworkBehaviour
 {
     [SyncVar (hook =nameof(OnStaminaChange))]public float playerStamina;
     [SyncVar (hook =nameof(CarriedObjectChange))] public GameObject carriedObject;
+    [SyncVar] public int teamID;
+
     public Transform rootTransform;
     public Slider staminaSlider;
 

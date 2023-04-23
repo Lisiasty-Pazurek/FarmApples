@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class Recipe : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string recipeName;
+    public List<Ingredient> ingredientsList = new List<Ingredient>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
