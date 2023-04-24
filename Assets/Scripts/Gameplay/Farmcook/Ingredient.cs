@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class Ingredient : NetworkBehaviour
 {
-    [SyncVar] public bool isCarried;
+    [SyncVar(hook =nameof(OnCarryChange))] public bool isCarried;
+
     public string ingredientName;
     private Collider ingredientCollider;
 
@@ -51,13 +53,21 @@ public class Ingredient : NetworkBehaviour
         ingredientCollider.enabled = false;
     }
 
-    [ServerCallback]
+    [Command (requiresAuthority =false)]
     public void DropItem(GameObject player)
     {
         player.GetComponent<Cook>().carriedObject = null;
         carryingPlayer = null;
         isCarried = false;
         ingredientCollider.enabled = true;
+    }
+
+    public void OnCarryChange(bool oldValue, bool newValue)
+    {
+        if (!isCarried)
+        {
+            
+        }
     }
 
     

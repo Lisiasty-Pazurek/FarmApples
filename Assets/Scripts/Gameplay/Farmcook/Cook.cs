@@ -31,21 +31,31 @@ public class Cook : NetworkBehaviour
         
     }
 
-    [Server]
+ 
     void Update()
     {
-        if (carriedObject != null)
+        if (isServer)
         {
-            playerStamina -= Time.deltaTime;
-        }
-        if (carriedObject == null && playerStamina <100)
-        {
-            playerStamina += Time.deltaTime/5;
+            if (carriedObject != null)
+            {
+                playerStamina -= Time.deltaTime;
+            }
+            if (carriedObject == null && playerStamina <100)
+            {
+                playerStamina += Time.deltaTime/5;
+            }
         }
 
-        if (Input.GetKey(KeyCode.F))
+        if (isClient)
         {
-            carriedObject.GetComponent<Ingredient>().DropItem(this.gameObject);
+            if (Input.GetKey(KeyCode.F))
+            {
+                if (carriedObject != null)
+                {
+                    carriedObject.GetComponent<Ingredient>().DropItem(this.gameObject);                
+                }
+
+            }
         }
     }
 }
