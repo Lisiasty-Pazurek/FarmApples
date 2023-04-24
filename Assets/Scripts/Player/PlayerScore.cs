@@ -5,9 +5,8 @@ namespace MirrorBasics
 {
     public class PlayerScore : NetworkBehaviour
     {
-        [SyncVar] public int index;
+   
         [SyncVar] public int teamID = 1;
-
         [SyncVar (hook = nameof(HandlePlayerScoreChange))]  public int score;
         [SyncVar (hook = nameof(HandleCarriedItemToggle))] public bool hasItem;
         [SyncVar (hook = nameof(HandleStealingToggle))] public bool canSteal = false;

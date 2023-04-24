@@ -79,7 +79,6 @@ namespace MirrorBasics {
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
-                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
                 {
                     playerGameController.modelName = "Sheep";
@@ -96,8 +95,7 @@ namespace MirrorBasics {
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
-                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
-                playerGameController.playerIndex = playerScore.index;
+                playerGameController.playerIndex = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 playerGameController.modelName = "Sheep";
                 playerGameController.GetComponent<PlayerInteractions>().canInteract = true;
 
@@ -108,7 +106,6 @@ namespace MirrorBasics {
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
-                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 if (!IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
                 {
                     playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
@@ -128,7 +125,6 @@ namespace MirrorBasics {
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
-                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 playerGameController.playerName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
                 playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
                 return true;
@@ -138,7 +134,7 @@ namespace MirrorBasics {
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
-                playerScore.index = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
+                playerGameController.playerIndex = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
                 playerGameController.playerName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
                 playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
                 if (IsOdd(roomPlayer.GetComponent<NetworkRoomPlayer>().index))
