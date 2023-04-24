@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3994727253785416935}
   - component: {fileID: 1542838481251380392}
   m_Layer: 0
-  m_Name: Recipe
+  m_Name: Zupa pomidorowa 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c565b0058df634a9dd6c1c49811555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeName: 
-  ingredientsList: []
+  recipeName: Zupa pomidorowa
+  ingredientsList:
+  - pomidor
+  - pomidor
+  - pomidor
+  - papryka
+  - cebula
+  - marchewka
