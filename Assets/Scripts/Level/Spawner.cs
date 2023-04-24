@@ -74,7 +74,8 @@ public class Spawner: NetworkBehaviour
             // pickup.GetComponent<NetworkMatch>().matchId = this.GetComponent<NetworkMatch>().matchId;            
             NetworkServer.Spawn(pickup);
             lvlController.spawnedItems.Add(pickup);
-            pickup.GetComponentInChildren<MeshRenderer>().enabled = true;       
+            if (pickup.GetComponentInChildren<MeshRenderer>() != null){pickup.GetComponentInChildren<MeshRenderer>().enabled = true; }
+                  
         }
 
     public void SpawnTeamboxes()

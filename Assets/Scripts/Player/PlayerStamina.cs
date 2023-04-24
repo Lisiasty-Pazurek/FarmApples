@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 
+[RequireComponent (typeof(Carrier))]
 public class PlayerStamina : NetworkBehaviour
 {
     [SyncVar (hook =nameof(OnStaminaChange))]public float playerStamina;
@@ -13,7 +14,7 @@ public class PlayerStamina : NetworkBehaviour
 
     public void Start() 
     {
-        pCarry = GetComponent<Carrier>();
+        if (pCarry ==null) {pCarry = this.gameObject.GetComponent<Carrier>();}
     }
 
     public void OnStaminaChange(float oldValue, float newValue)
@@ -31,11 +32,11 @@ public class PlayerStamina : NetworkBehaviour
     {
         if (isServer)
         {
-            if (pCarry.carriedObject != null)
+            if (pCarry.carriedObject != "")
             {
                 playerStamina -= Time.deltaTime;
             }
-            if (pCarry.carriedObject == null && playerStamina <100)
+            if (pCarry.carriedObject == "" && playerStamina <100)
             {
                 playerStamina += Time.deltaTime/5;
             }

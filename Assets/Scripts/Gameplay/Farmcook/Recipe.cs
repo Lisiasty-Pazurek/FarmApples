@@ -6,6 +6,6 @@ using UnityEngine;
 public class Recipe : MonoBehaviour
 {
     public string recipeName;
-    public List<Ingredient> ingredientsList = new List<Ingredient>(); // link prefabs here, maybe it's gonna be better to change it to string list for names
+    public List<string> ingredientsList = new List<string>(); // link prefabs here, maybe it's gonna be better to change it to string list for names
 
 }

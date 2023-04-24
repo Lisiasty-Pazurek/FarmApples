@@ -37,6 +37,7 @@ public class PlayerController : NetworkBehaviour
     public PlayerScore pScore;
     public PlayerCamera pCamera;
     public PlayerStamina pStamina;
+    public Carrier pCarrier;
 
     [Header("Diagnostics")]
     private float horizontal;
@@ -192,9 +193,16 @@ public class PlayerController : NetworkBehaviour
                 charModel.SetActive(true);
                 characterAnimator = charModel.GetComponent<Animator>();
                 networkAnimator.animator = charModel.GetComponent<Animator>();
-                pScore.carriedItem = charModel.GetComponent<PlayerModel>().prize;
-                pScore.stealingItem = charModel.GetComponent<PlayerModel>().steal;
+                if (pScore != null)
+                {
+                    pScore.carriedItem = charModel.GetComponent<PlayerModel>().prize;
+                    pScore.stealingItem = charModel.GetComponent<PlayerModel>().steal;
+                }
+                if (pCarrier != null)
+                {
+                    pCarrier.carrySlot = charModel.GetComponent<PlayerModel>().rootTransform;
 
+                }
 
                 Debug.Log("Changed model to: " + charModel.name);
             }

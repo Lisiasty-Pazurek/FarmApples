@@ -8,7 +8,7 @@ public class Cauldron : NetworkBehaviour
 {
     public int teamID;
     public Recipe recipe;
-    public List<Recipe> recipeList = new List<Recipe>();
+    public List<string> recipeList = new List<string>();
 
     public void Update() 
     {
@@ -25,13 +25,13 @@ public class Cauldron : NetworkBehaviour
         {
             if (other.gameObject.GetComponent<Carrier>().carriedObject != null)
             {
-                foreach (Ingredient item in recipe.ingredientsList)
+                foreach (string item in recipe.ingredientsList)
                 {
-                    if (item.ingredientName == other.gameObject.GetComponent<Carrier>().carriedObject.GetComponent<Ingredient>().ingredientName)
+                    if (item == other.gameObject.GetComponent<Carrier>().carriedObject)
                     {
-                        recipe.ingredientsList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject.GetComponent<Ingredient>());
+                        recipe.ingredientsList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
                         other.gameObject.GetComponent<Carrier>().carriedObject = null;
-                        
+
                     }
                 }
             }

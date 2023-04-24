@@ -6,7 +6,7 @@ public class PlayerModel : MonoBehaviour
 {
     [SerializeField] public GameObject prize;
     [SerializeField] public GameObject steal; 
-    public Transform rootTransform;
-    public Transform hatTransform;
+    public GameObject rootTransform;
+    public GameObject hatTransform;
 
 }

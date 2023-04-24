@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 143011667059871024}
   - component: {fileID: -6233809968765690729}
   - component: {fileID: 3804203332179345717}
+  - component: {fileID: 8652789382619650390}
   m_Layer: 0
   m_Name: GamePlayerCook
   m_TagString: Player
@@ -169,8 +170,9 @@ MonoBehaviour:
   networkAnimator: {fileID: 9118952894041304543}
   uiGameplay: {fileID: 0}
   pScore: {fileID: 115187108610643062}
-  pCook: {fileID: 3804203332179345717}
-  pCamera: {fileID: 0}
+  pCamera: {fileID: -6736841464767829722}
+  pStamina: {fileID: 3804203332179345717}
+  pCarrier: {fileID: 8652789382619650390}
   velocity: {x: 0, y: 0, z: 0}
   isReady: 0
 --- !u!114 &115187108610643062
@@ -274,10 +276,40 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerStamina: 100
-  carriedObject: {fileID: 0}
-  teamID: 0
-  rootTransform: {fileID: 0}
+  pCarry: {fileID: 8652789382619650390}
+  rootTransform: {fileID: 4332436713056267839}
   staminaSlider: {fileID: 26265550864497414}
+--- !u!114 &8652789382619650390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480027675339556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59c3eb170967fb43809b879c3d3e624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  isCarrying: 0
+  itemsToCarry:
+  - pickup
+  - 
+  carriedItems:
+  - {fileID: 1321287161209054, guid: 7fb02b16b2da57643ad65e1ec570ff41, type: 3}
+  - {fileID: 1635757618814564, guid: 18fb2e5fe9bb5eb4b83986d6c252db20, type: 3}
+  - {fileID: 1501516182177894, guid: a0d69ec6c213b4b41aa53cc098c6d865, type: 3}
+  - {fileID: 1301151405176600, guid: 1c88b9f1f54894b4b8d5961f51104be3, type: 3}
+  - {fileID: 1635722172919852, guid: 9ae324ef437e10d48ac26d1c6889ad0e, type: 3}
+  - {fileID: 1710884706933740, guid: 750e273f86db4ac46a662354e59cc02e, type: 3}
+  - {fileID: 1648437061671814, guid: 9aac6035233fd4b4fbe2f26fd392ba0d, type: 3}
+  carrySlot: {fileID: 7257105083324108773}
+  carriedObject: 
+  pickupPrefab: {fileID: 6638484065982952912, guid: 31390098fae15b5429bf41bab939bcaf,
+    type: 3}
 --- !u!1 &17396797284357364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,8 +1902,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
-  rootTransform: {fileID: 1824508828442054778}
-  hatTransform: {fileID: 5180928604156368782}
+  rootTransform: {fileID: 7404645937548840557}
+  hatTransform: {fileID: 747519292893882895}
 --- !u!1001 &921714222530040290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2078,8 +2110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 923235187907297950}
   steal: {fileID: 9169749729704650599}
-  rootTransform: {fileID: 4332436713056267839}
-  hatTransform: {fileID: 1595567355157086935}
+  rootTransform: {fileID: 7257105083324108773}
+  hatTransform: {fileID: 2746453200589143364}
 --- !u!4 &8726617669565124953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8569067361324043285, guid: dce9c9e444374b944bbe648df744fbb4,
@@ -3094,8 +3126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
-  rootTransform: {fileID: 250356284115284095}
-  hatTransform: {fileID: 0}
+  rootTransform: {fileID: 4016079806371852266}
+  hatTransform: {fileID: 4188051895708648258}
 --- !u!4 &3687243119728466577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7740133137895390082, guid: 4c97bf239e416a449a263fa82149a5e3,
@@ -3211,8 +3243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
-  rootTransform: {fileID: 3999333192580649168}
-  hatTransform: {fileID: 0}
+  rootTransform: {fileID: 6863601230712225190}
+  hatTransform: {fileID: 1007261340023101375}
 --- !u!4 &3094350449426946319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5528603755101481345, guid: 8640f86cc1cb10448814047cfd71eec9,
@@ -3335,8 +3367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 0}
   steal: {fileID: 0}
-  rootTransform: {fileID: 2472926352284222147}
-  hatTransform: {fileID: 0}
+  rootTransform: {fileID: 4290731528534745313}
+  hatTransform: {fileID: 5896629755087357334}
 --- !u!4 &7645279667633250318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 141701333925329671, guid: 2a74fc68781f4d24c9bf669049fb3e6b,
