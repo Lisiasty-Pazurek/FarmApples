@@ -151,6 +151,8 @@ MonoBehaviour:
   - {fileID: 1443801692785253334}
   - {fileID: 6424830603632406619}
   - {fileID: 1078913285273303445}
+  - {fileID: 1597850052421490522}
+  - {fileID: 4696352305254531182}
   playerIndex: 1
   moveSpeed: 5
   turnSensitivity: 70
@@ -1869,6 +1871,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 1824508828442054778}
+  hatTransform: {fileID: 5180928604156368782}
 --- !u!1001 &921714222530040290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2076,6 +2079,7 @@ MonoBehaviour:
   prize: {fileID: 923235187907297950}
   steal: {fileID: 9169749729704650599}
   rootTransform: {fileID: 4332436713056267839}
+  hatTransform: {fileID: 1595567355157086935}
 --- !u!4 &8726617669565124953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8569067361324043285, guid: dce9c9e444374b944bbe648df744fbb4,
@@ -2198,6 +2202,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 6706302516413484042}
+  hatTransform: {fileID: 2392451838156388981}
 --- !u!4 &5363997538714838201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6603479168763741591, guid: 4af8ca94ca13ba547ab05ce364324a73,
@@ -2416,6 +2421,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 6417587891692833725}
+  hatTransform: {fileID: 0}
 --- !u!1001 &2095178131904246421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2506,6 +2512,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2095178131904246421}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4696352305254531182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6647131506220806907, guid: 27e82c8a2f2dc474a8d10d84ae09e664,
+    type: 3}
+  m_PrefabInstance: {fileID: 2095178131904246421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1463336465312211189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4696352305254531182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2c3742dd8900a4a9feb217e841ddab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prize: {fileID: 0}
+  steal: {fileID: 0}
+  rootTransform: {fileID: 0}
+  hatTransform: {fileID: 0}
 --- !u!1001 &2211527721839739450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3067,6 +3095,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 250356284115284095}
+  hatTransform: {fileID: 0}
 --- !u!4 &3687243119728466577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7740133137895390082, guid: 4c97bf239e416a449a263fa82149a5e3,
@@ -3183,6 +3212,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 3999333192580649168}
+  hatTransform: {fileID: 0}
 --- !u!4 &3094350449426946319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5528603755101481345, guid: 8640f86cc1cb10448814047cfd71eec9,
@@ -3306,6 +3336,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 2472926352284222147}
+  hatTransform: {fileID: 0}
 --- !u!4 &7645279667633250318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 141701333925329671, guid: 2a74fc68781f4d24c9bf669049fb3e6b,
@@ -3428,6 +3459,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 3022551953301479673}
+  hatTransform: {fileID: 4591926095753749561}
 --- !u!4 &4005178773578825106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6456382330499844445, guid: 11e2575ed1c7ae44a875994f4f6f2ede,
@@ -3735,6 +3767,7 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 8578632035230585085}
+  hatTransform: {fileID: 0}
 --- !u!4 &9135627466721122158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 512172159506703072, guid: 1509ee1f4d01f834383f795748d29108,
@@ -3863,3 +3896,4 @@ MonoBehaviour:
   prize: {fileID: 0}
   steal: {fileID: 0}
   rootTransform: {fileID: 8584667552451315904}
+  hatTransform: {fileID: 5396896374077017229}
