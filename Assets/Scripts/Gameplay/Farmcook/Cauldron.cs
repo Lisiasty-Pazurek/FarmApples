@@ -21,11 +21,19 @@ public class Cauldron : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        recipe = recipeList[Random.Range(0,recipeList.Count)];
+        int x = Random.Range(0,recipeList.Count);
+        RpcRecipe(x);
+        recipe = recipeList[x];
         ingredientList.AddRange(recipe.ingredientsList);
         base.OnStartServer();
-
     }
+    [ClientRpc]
+    void RpcRecipe(int sRecipe)
+    {
+        recipe = recipeList[sRecipe];
+    
+    }
+
 
     [ServerCallback]
     void OnTriggerEnter(Collider other)

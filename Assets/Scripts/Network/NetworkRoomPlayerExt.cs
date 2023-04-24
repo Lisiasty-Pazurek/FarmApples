@@ -9,12 +9,13 @@ namespace MirrorBasics
         public static NetworkRoomPlayerExt localPlayer;
         public UIRoom uiRoom;
 
-//        public event System.Action<int> OnPlayerIndexChanged;
+        public event System.Action<int> OnPlayerIndexChanged;
         public event System.Action<bool> OnPlayerStateChanged;
         public event System.Action<string> OnPlayerNameChanged;
         public event System.Action<string> OnPlayerModelChanged;
         public event System.Action<int> OnPlayerTeamChanged;
 
+        [SyncVar (hook = nameof(PlayerIndexChanged))] public int playerIndex;
         [SyncVar (hook = nameof(PlayerNameChanged))] public string playerName;
         [SyncVar (hook = nameof(PlayerModelChanged))] public string playerModel;
         [SyncVar (hook = nameof(PlayerTeamChanged))] public int playerTeam;
@@ -58,6 +59,12 @@ namespace MirrorBasics
             }
         }
 
+        void PlayerIndexChanged(int oldName, int newName)
+        {   
+            // if (roomPlayerUI != null)
+            // OnPlayerNameChanged?.Invoke(newName);
+        }
+
         void PlayerNameChanged(string oldName, string newName)
         {   
             if (roomPlayerUI != null)
@@ -77,8 +84,9 @@ namespace MirrorBasics
 
         public override void OnStartServer()
         {
+            base.OnStartServer();             
             playerName = "Gracz " + Random.Range(0, 999).ToString();
-            index +=1;
+            playerIndex = index + 1;
             uiRoom = FindObjectOfType<UIRoom>();
 
             if (SceneManager.GetActiveScene().name == "RoomSceneMarathon" )
@@ -92,7 +100,8 @@ namespace MirrorBasics
                 Debug.Log("player model of : " + playerModel);
             }       
             Debug.Log("Spawning ui prefab for: " + index + " " + this.gameObject.name);   
-            base.OnStartServer();            
+
+
         }
 
         public override void OnClientEnterRoom()

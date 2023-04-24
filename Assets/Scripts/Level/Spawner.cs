@@ -98,17 +98,29 @@ public class Spawner: NetworkBehaviour
     [Server]
         public void SpawnTeambox(int prefab, int spawnPosition)
         {
-            if (gameMode.gameModeName == "Farmapples"  && prefab == 1) { teamboxPrefab = teampointPrefab;}
-            if (gameMode.gameModeName == "Farmapples"  && prefab == 2) { teamboxPrefab = teampointPrefab2;}
-            if (gameMode.gameModeName == "Farmcook"  && prefab == 1) { teamboxPrefab = cauldronPrefab1;}
-            if (gameMode.gameModeName == "Farmcook"  && prefab == 2) { teamboxPrefab = cauldronPrefab2;}
-            Debug.Log("Spawner got gameobject prefab of name: " + teamboxPrefab.name + "and spawnPosition index of: " + spawnPosition);
-            GameObject teambox = Instantiate(teamboxPrefab);
-            NetworkServer.Spawn(teambox);
-            teambox.transform.position = teamSpawnPoints[spawnPosition].position;
-            teambox.GetComponent<TeamBox>().requiredScore = gameMode.maxScore;
- //           lvlController.spawnedItems.Add(teambox);
-            
+            if (gameMode.gameModeName == "Farmapples" ) 
+            {
+                if ( prefab == 1) { teamboxPrefab = teampointPrefab;}
+                if ( prefab == 2) { teamboxPrefab = teampointPrefab2;}
+
+                Debug.Log("Spawner got gameobject prefab of name: " + teamboxPrefab.name + "and spawnPosition index of: " + spawnPosition);
+                GameObject teambox = Instantiate(teamboxPrefab);
+                NetworkServer.Spawn(teambox);
+                teambox.transform.position = teamSpawnPoints[spawnPosition].position;
+                teambox.GetComponent<TeamBox>().requiredScore = gameMode.maxScore;                
+            }
+
+            if (gameMode.gameModeName == "Farmcook")
+            {
+                if(prefab == 1) { teamboxPrefab = cauldronPrefab1;}
+                if(prefab == 2) { teamboxPrefab = cauldronPrefab2;}       
+                Debug.Log("Spawner got gameobject prefab of name: " + teamboxPrefab.name + "and spawnPosition index of: " + spawnPosition);
+                GameObject teambox = Instantiate(teamboxPrefab);
+                NetworkServer.Spawn(teambox);
+                teambox.transform.position = teamSpawnPoints[spawnPosition].position;         
+            }
+
+ //           lvlController.spawnedItems.Add(teambox);           
         }
 
         /// #### supporting function
