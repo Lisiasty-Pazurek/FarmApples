@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using MirrorBasics;
 
 public class Cauldron : NetworkBehaviour
 {
@@ -20,15 +21,17 @@ public class Cauldron : NetworkBehaviour
     [ServerCallback]
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<Cook>().teamID == this.teamID )
+        if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == this.teamID )
         {
-            if (other.gameObject.GetComponent<Cook>().carriedObject != null)
+            if (other.gameObject.GetComponent<Carrier>().carriedObject != null)
             {
                 foreach (Ingredient item in recipe.ingredientsList)
                 {
-                    if (item.ingredientName == other.gameObject.GetComponent<Cook>().carriedObject.GetComponent<Ingredient>().ingredientName)
+                    if (item.ingredientName == other.gameObject.GetComponent<Carrier>().carriedObject.GetComponent<Ingredient>().ingredientName)
                     {
-                        recipe.ingredientsList.Remove(other.gameObject.GetComponent<Cook>().carriedObject.GetComponent<Ingredient>());
+                        recipe.ingredientsList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject.GetComponent<Ingredient>());
+                        other.gameObject.GetComponent<Carrier>().carriedObject = null;
+                        
                     }
                 }
             }

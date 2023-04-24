@@ -35,8 +35,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] public NetworkAnimator networkAnimator;
     public UIGameplay uiGameplay;
     public PlayerScore pScore;
-    public Cook pCook;
     public PlayerCamera pCamera;
+    public PlayerStamina pStamina;
 
     [Header("Diagnostics")]
     private float horizontal;
@@ -77,7 +77,7 @@ public class PlayerController : NetworkBehaviour
     {
         levelManager = FindObjectOfType<LevelController>();
         pScore = gameObject.GetComponentInParent<PlayerScore>();
-        pCook = gameObject.GetComponentInParent<Cook>();
+        pStamina = gameObject.GetComponentInParent<PlayerStamina>();
         pCamera = this.GetComponent<PlayerCamera>();
 
         if (characterAnimator == null)
@@ -88,6 +88,7 @@ public class PlayerController : NetworkBehaviour
     }
     public override void OnStartClient()
     {
+        pStamina = gameObject.GetComponentInParent<PlayerStamina>();
         pScore = gameObject.GetComponentInParent<PlayerScore>();
         SetModel();
     }
@@ -193,7 +194,7 @@ public class PlayerController : NetworkBehaviour
                 networkAnimator.animator = charModel.GetComponent<Animator>();
                 pScore.carriedItem = charModel.GetComponent<PlayerModel>().prize;
                 pScore.stealingItem = charModel.GetComponent<PlayerModel>().steal;
-                pCook.rootTransform = charModel.GetComponent<PlayerModel>().rootTransform;
+
 
                 Debug.Log("Changed model to: " + charModel.name);
             }

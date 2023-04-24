@@ -10,12 +10,17 @@ public class Spawner: NetworkBehaviour
 
         [SerializeField] public GameObject teampointPrefab;
         [SerializeField] public GameObject teampointPrefab2;
+
         private GameObject teamboxPrefab;
 
-        [SerializeField] public List<Transform> playerSpawnPoints;
-        [SerializeField] public List<Transform> rewardSpawnPoints;
-        [SerializeField] public List<Transform> teamSpawnPoints;
-        [SerializeField] public List<Transform> pickupSpawnPoints;  
+        [SerializeField] public GameObject cauldronPrefab1;
+        [SerializeField] public GameObject cauldronPrefab2;
+
+
+        [SerializeField] public List<Transform> playerSpawnPoints = new List<Transform>();
+        [SerializeField] public List<Transform> rewardSpawnPoints = new List<Transform>();
+        [SerializeField] public List<Transform> teamSpawnPoints = new List<Transform>();
+        [SerializeField] public List<Transform> pickupSpawnPoints = new List<Transform>();  
 
         public GameMode gameMode;
 
@@ -53,11 +58,11 @@ public class Spawner: NetworkBehaviour
         {
             if (!NetworkServer.active) return;
 
-            if (rewardSpawnPoints == null)
+            if (rewardSpawnPoints.Count == 0)
             {
                 spawnPosition = new Vector3(Random.Range(startLocation.position.x-180,startLocation.position.x +180), 0, Random.Range(startLocation.position.z-10,startLocation.position.z +120));                
             }
-            if (rewardSpawnPoints != null)       
+            if (rewardSpawnPoints.Count > 0)       
             {
                 int x = Random.Range(0, rewardSpawnPoints.Count);
                 print(x);
