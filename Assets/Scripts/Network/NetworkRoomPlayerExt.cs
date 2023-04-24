@@ -34,6 +34,8 @@ namespace MirrorBasics
             base.OnStartClient();
         }
 
+
+
         public void InstantiateRoomUIPrefab()
         {
             // Instantiate the player UI as child of the Players Panel
@@ -76,13 +78,19 @@ namespace MirrorBasics
         public override void OnStartServer()
         {
             playerName = "Gracz " + Random.Range(0, 999).ToString();
+            index +=1;
             uiRoom = FindObjectOfType<UIRoom>();
 
             if (SceneManager.GetActiveScene().name == "RoomSceneMarathon" )
             {
                 playerModel = FindObjectOfType<CharacterPicker>().modelSprites[Random.Range(0, FindObjectOfType<CharacterPicker>().modelSprites.Count)].name;
                 Debug.Log("player model of : " + playerModel);
-            }            
+            }       
+            if (SceneManager.GetActiveScene().name == "RoomSceneCook" )
+            {
+                playerModel = NetworkManager.singleton.playerPrefab.GetComponent<PlayerController>().characterModel[Random.Range(0, NetworkManager.singleton.playerPrefab.GetComponent<PlayerController>().characterModel.Count)].name;
+                Debug.Log("player model of : " + playerModel);
+            }       
             Debug.Log("Spawning ui prefab for: " + index + " " + this.gameObject.name);   
             base.OnStartServer();            
         }

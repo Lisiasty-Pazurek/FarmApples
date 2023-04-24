@@ -8,7 +8,8 @@ public class Cauldron : NetworkBehaviour
 {
     public int teamID;
     public Recipe recipe;
-    public List<string> recipeList = new List<string>();
+    public SyncList<string> ingredientList = new SyncList<string>();
+    public List<Recipe> recipeList = new List<Recipe>();
 
     public void Update() 
     {
@@ -16,6 +17,14 @@ public class Cauldron : NetworkBehaviour
         {
             // Objective done
         }
+    }
+
+    public override void OnStartServer()
+    {
+        recipe = recipeList[Random.Range(0,recipeList.Count)];
+        ingredientList.AddRange(recipe.ingredientsList);
+        base.OnStartServer();
+
     }
 
     [ServerCallback]
@@ -30,7 +39,7 @@ public class Cauldron : NetworkBehaviour
                     if (item == other.gameObject.GetComponent<Carrier>().carriedObject)
                     {
                         recipe.ingredientsList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
-                        other.gameObject.GetComponent<Carrier>().carriedObject = null;
+                        other.gameObject.GetComponent<Carrier>().carriedObject = "";
 
                     }
                 }

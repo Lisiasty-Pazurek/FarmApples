@@ -98,8 +98,10 @@ public class Spawner: NetworkBehaviour
     [Server]
         public void SpawnTeambox(int prefab, int spawnPosition)
         {
-            if (prefab == 1) { teamboxPrefab = teampointPrefab;}
-            if (prefab == 2) { teamboxPrefab = teampointPrefab2;}
+            if (gameMode.gameModeName == "Farmapples"  && prefab == 1) { teamboxPrefab = teampointPrefab;}
+            if (gameMode.gameModeName == "Farmapples"  && prefab == 2) { teamboxPrefab = teampointPrefab2;}
+            if (gameMode.gameModeName == "Farmcook"  && prefab == 1) { teamboxPrefab = cauldronPrefab1;}
+            if (gameMode.gameModeName == "Farmcook"  && prefab == 2) { teamboxPrefab = cauldronPrefab2;}
             Debug.Log("Spawner got gameobject prefab of name: " + teamboxPrefab.name + "and spawnPosition index of: " + spawnPosition);
             GameObject teambox = Instantiate(teamboxPrefab);
             NetworkServer.Spawn(teambox);

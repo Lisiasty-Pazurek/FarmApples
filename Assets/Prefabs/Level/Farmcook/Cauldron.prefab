@@ -84,12 +84,12 @@ MonoBehaviour:
   teamID: 0
   recipe: {fileID: 0}
   recipeList:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - {fileID: 1542838481251380392, guid: dec52c813113ae844b522b6af0386c01, type: 3}
+  - {fileID: 1542838481251380392, guid: 97ff31da6de982149a1b90ffcd096290, type: 3}
+  - {fileID: 1542838481251380392, guid: 6200a35a7b8859f4dac1854dccbca27f, type: 3}
+  - {fileID: 1542838481251380392, guid: acd0df7e3552fee4c9ffa82fbd10a661, type: 3}
+  - {fileID: 1542838481251380392, guid: aa2210001f460114a9c0f225dae13b49, type: 3}
+  - {fileID: 1542838481251380392, guid: e41b8f8627453624491af0f3b5561eca, type: 3}
 --- !u!1001 &806933989283029000
 PrefabInstance:
   m_ObjectHideFlags: 0
