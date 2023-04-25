@@ -133,9 +133,11 @@ public class Carrier : NetworkBehaviour
             spawnedObject.GetComponent<Pickup>().RpcPickupPosition(location);
             //spawnedObject.transform.SetParent(Scene);
             spawningItem = false;            
+            carriedObject = "";  
+            isCarrying = false;          
             return;
         }
-        carriedObject = "";
+
     }
 
 }
