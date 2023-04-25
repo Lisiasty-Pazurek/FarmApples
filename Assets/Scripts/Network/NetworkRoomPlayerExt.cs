@@ -86,7 +86,7 @@ namespace MirrorBasics
         {
             base.OnStartServer();             
             playerName = "Gracz " + Random.Range(0, 999).ToString();
-            playerIndex = index + 1;
+            
             uiRoom = FindObjectOfType<UIRoom>();
 
             if (SceneManager.GetActiveScene().name == "RoomSceneMarathon" )

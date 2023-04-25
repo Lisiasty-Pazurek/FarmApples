@@ -20,6 +20,7 @@ public class Pickup : NetworkBehaviour
         SetThisModel(pickupName);
     }
 
+    [Server]
     void HandlePickupNameChange(string oldValue, string newValue)
     {
         if (isServer)
@@ -27,10 +28,10 @@ public class Pickup : NetworkBehaviour
             RpcPickupModel(newValue);
         }
 
-        if (isClient)
-        {
-            SetThisModel(newValue);
-        }
+        // if (isClient)
+        // {
+        //     SetThisModel(newValue);
+        // }
 
     }
 
