@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MirrorBasics;
 using UnityEngine;
 using Mirror;
+using UnityEngine.Animations;
 
 public class Carrier : NetworkBehaviour
 {
@@ -37,6 +38,7 @@ public class Carrier : NetworkBehaviour
                 else return;
             }
         }
+        
         
     }
 
@@ -82,7 +84,10 @@ public class Carrier : NetworkBehaviour
                 if (carrySlot.transform.childCount == 0 && !spawningItem)
                 {
                     spawningItem = true;
-                    GameObject carriedItemInSlot = Instantiate(item,carrySlot.transform) ;
+                    GameObject carriedItemInSlot = Instantiate(item, carrySlot.transform.position, carrySlot.transform.rotation) ;
+                    ConstraintSource itemSlot = new ConstraintSource();
+                    itemSlot.sourceTransform = carrySlot.transform;
+                    carriedItemInSlot.GetComponent<ParentConstraint>().AddSource(itemSlot);
                 }      
                 spawningItem = false;
             }

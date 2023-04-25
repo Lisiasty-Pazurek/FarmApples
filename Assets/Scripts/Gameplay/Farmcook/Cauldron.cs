@@ -31,6 +31,13 @@ public class Cauldron : NetworkBehaviour
     
     }
 
+    [Server]
+    void AddItemToRecipe()
+    {
+        
+    }
+
+
 
     [ServerCallback]
     void OnTriggerEnter(Collider other)
@@ -50,4 +57,5 @@ public class Cauldron : NetworkBehaviour
             }
         }
     }
+
 }
