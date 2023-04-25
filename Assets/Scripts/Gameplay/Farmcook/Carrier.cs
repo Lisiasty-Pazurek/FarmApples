@@ -93,7 +93,7 @@ public class Carrier : NetworkBehaviour
     void CmdDropItem()
     {
         isCarrying = false;
-        carriedObject = "";
+
         RpcPlayerDropPrefab();
         if (!spawningItem) { SpawnDroppedItem();  } 
     }
@@ -104,8 +104,9 @@ public class Carrier : NetworkBehaviour
         Destroy(carrySlot.transform.GetChild(carrySlot.transform.childCount-1).gameObject);             
     }
     
+    [ClientRpc]
     public void HandleCarriedItemChange(string oldValue, string newValue)
-    {
+    {     
         foreach (GameObject item in carriedItems)
         {
             if (item.name == newValue)
@@ -126,6 +127,7 @@ public class Carrier : NetworkBehaviour
             NetworkServer.Spawn(spawnedObject);
             spawnedObject.transform.position = this.gameObject.transform.position;
             spawnedObject.GetComponent<Pickup>().beenCarriedBy = this.gameObject.GetComponent<PlayerController>().playerIndex;
+            spawnedObject.GetComponent<Pickup>().pickupName = carriedObject;
             spawnedObject.GetComponent<Ingredient>().ingredientName = carriedObject;
             Vector3 location = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y, this.gameObject.transform.position.z);
             spawnedObject.GetComponent<Pickup>().RpcPickupPosition(location);
@@ -133,6 +135,7 @@ public class Carrier : NetworkBehaviour
             spawningItem = false;            
             return;
         }
+        carriedObject = "";
     }
 
 }

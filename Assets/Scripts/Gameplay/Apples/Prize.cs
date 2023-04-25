@@ -3,7 +3,7 @@ using Mirror;
 
 namespace MirrorBasics
 {
-    public class Pickup : NetworkBehaviour
+    public class Prize : NetworkBehaviour
     {
         public bool available = true;
 

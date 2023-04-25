@@ -1,32 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
+
 public class Pickup : NetworkBehaviour
 {
-    public string pickupName;
+    [SyncVar (hook = nameof(HandlePickupNameChange))]public string pickupName;
     public int beenCarriedBy;
     public Ingredient ingredient;
 
-    public void Start()
+    public override void OnStartServer()
     {
-        SetPickupModel();
+        base.OnStartServer();
+        RpcPickupModel(pickupName);
     }
 
-    public void SetPickupModel()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+        SetThisModel(pickupName);
+    }
+
+    void HandlePickupNameChange(string oldValue, string newValue)
+    {
+        if (isServer)
+        {
+            RpcPickupModel(newValue);
+        }
+
+        if (isClient)
+        {
+            SetThisModel(newValue);
+        }
+
+    }
+
+
+    [ClientRpc]
+    public void RpcPickupModel(string ingName)
+    {   
+        SetThisModel(ingName);
+    }
+
+    public void SetThisModel(string ingName)
+    {
+        print("set: " + ingName);
         if (ingredient != null)
         {
             foreach (GameObject ingredient in ingredient.ingredientObjects)
             {
-                if (ingredient.name == pickupName)
+                if (ingredient.name == ingName)
                 {
                     ingredient.SetActive(true);
+                    print("set: " + ingName);
                 }
                 else ingredient.SetActive(false);
             }
-        }
+        }        
     }
 
     [ClientRpc]

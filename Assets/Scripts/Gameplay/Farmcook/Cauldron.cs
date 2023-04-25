@@ -6,17 +6,14 @@ using MirrorBasics;
 
 public class Cauldron : NetworkBehaviour
 {
-    public int teamID;
+    [SyncVar]public int teamID;
     public Recipe recipe;
-    public SyncList<string> ingredientList = new SyncList<string>();
+    public readonly SyncList<string> ingredientList = new SyncList<string>();
     public List<Recipe> recipeList = new List<Recipe>();
 
     public void Update() 
     {
-        if (recipe.ingredientsList.Count == 0)
-        {
-            // Objective done
-        }
+
     }
 
     public override void OnStartServer()
@@ -47,7 +44,6 @@ public class Cauldron : NetworkBehaviour
                     if (item == other.gameObject.GetComponent<Carrier>().carriedObject)
                     {
                         recipe.ingredientsList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
-                        other.gameObject.GetComponent<Carrier>().carriedObject = "";
 
                     }
                 }

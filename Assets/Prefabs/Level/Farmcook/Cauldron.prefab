@@ -81,7 +81,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  teamID: 0
+  teamID: 2
   recipe: {fileID: 0}
   recipeList:
   - {fileID: 1542838481251380392, guid: dec52c813113ae844b522b6af0386c01, type: 3}
