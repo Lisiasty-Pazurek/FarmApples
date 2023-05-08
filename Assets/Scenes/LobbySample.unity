@@ -2030,7 +2030,6 @@ MonoBehaviour:
   - {fileID: 1139254171913846, guid: 5b7eb2ab8a6787e4ba3da3999269cf3d, type: 3}
   - {fileID: 6638484065982952912, guid: 31390098fae15b5429bf41bab939bcaf, type: 3}
   - {fileID: 1139254171913846, guid: 2e3b842b1773599459ef028a853d0f77, type: 3}
-  - {fileID: 6630471258299682127, guid: e3f2e4c326d3acb46b3afe99368f1fd3, type: 3}
   - {fileID: 7284221734329707013, guid: e866e8ff59718bf4a830de9355ba04f0, type: 3}
   - {fileID: 5473695048384048278, guid: 01cbf03f7b5fc2745a449469d319ac8f, type: 3}
   - {fileID: 3417312707691736607, guid: 3e4269db690df3f4da8377ce267f5a12, type: 3}
@@ -2045,6 +2044,7 @@ MonoBehaviour:
   - {fileID: 1480027675339556, guid: fc2d88e40d4f7a245b74f95f6e1e73ff, type: 3}
   - {fileID: 7284221734329707013, guid: cf05c32ebe8eebc4bad3da9e9b91b0b8, type: 3}
   - {fileID: 7284221734329707013, guid: d97c79ddf38dbe340a8d6c1f223609eb, type: 3}
+  - {fileID: 6630471258299682127, guid: e3f2e4c326d3acb46b3afe99368f1fd3, type: 3}
   timeInterpolationGui: 0
   showRoomGUI: 0
   minPlayers: 1
@@ -3903,7 +3903,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 20, y: -20}
+  m_SizeDelta: {x: 20, y: -25}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1224356471
 MonoBehaviour:
@@ -4053,7 +4053,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.2285066, g: 0.40253797, b: 0.6132076, a: 1}
+    m_NormalColor: {r: 0.31156403, g: 0.6320754, b: 0.24150053, a: 1}
     m_HighlightedColor: {r: 0.375445, g: 0.4573978, b: 0.5566038, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
