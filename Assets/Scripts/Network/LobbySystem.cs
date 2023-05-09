@@ -127,7 +127,7 @@ public class LobbySystem : MonoBehaviour
         networkManager.maxConnections = ((int)maxPlayersSlider.value-1);
         //networkManager.ServerChangeScene(networkManager.RoomScene);
 
-        /// ### END ### custom changes for room -> gammeplayscene changes
+        /// ### END ### custom changes for room -> gameplayscene changes
     }
 
     public void JoinRoom()
