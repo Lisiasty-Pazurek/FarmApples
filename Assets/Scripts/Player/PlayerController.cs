@@ -27,7 +27,7 @@ public class PlayerController : NetworkBehaviour
     public bool isFalling = false;
     public float dashCooldown = 5f;
     public bool isDashing = false; 
-    public string playerName;
+    public string playerName;   
     [SyncVar] public string modelName;      
 
     [Header("References")]
@@ -36,6 +36,8 @@ public class PlayerController : NetworkBehaviour
     public UIGameplay uiGameplay;
     public PlayerScore pScore;
     public PlayerCamera pCamera;
+    public PlayerStamina pStamina;
+    public Carrier pCarrier;
 
     [Header("Diagnostics")]
     private float horizontal;
@@ -45,10 +47,6 @@ public class PlayerController : NetworkBehaviour
 
     [SyncVar (hook=nameof(SetReadyState)) ]
     public bool isReady = false;
-
-    // private UIScore uiScore;
-    // private UILobby uiLobby;
-    // private Player localPlayer;
 
     private LevelController levelManager;
 
@@ -71,25 +69,30 @@ public class PlayerController : NetworkBehaviour
         uiGameplay.player = this;
 
         pScore = gameObject.GetComponentInParent<PlayerScore>();
-        pCamera = this.GetComponent<PlayerCamera>();
+        pCamera = gameObject.GetComponent<PlayerCamera>();
         networkAnimator = GetComponent<NetworkAnimator>();
-        //pCamera.SetupPlayerCamera();
+        pCamera.SetupPlayerCamera();
     }
 
     public override void OnStartServer()
     {
         levelManager = FindObjectOfType<LevelController>();
         pScore = gameObject.GetComponentInParent<PlayerScore>();
+        pStamina = gameObject.GetComponentInParent<PlayerStamina>();
         pCamera = this.GetComponent<PlayerCamera>();
+
+        if (characterAnimator == null)
+        characterAnimator = GetComponentInChildren<Animator>();
+        
         levelManager.gamePlayers.Add(this);
-        //SetModel();
+        SetModel();
     }
     public override void OnStartClient()
     {
+        pStamina = gameObject.GetComponentInParent<PlayerStamina>();
         pScore = gameObject.GetComponentInParent<PlayerScore>();
-        //SetModel();
+        SetModel();
     }
-
 
     [Command (requiresAuthority = false)]
     public void SetReadyState(bool oldValue,bool newValue)
@@ -97,7 +100,6 @@ public class PlayerController : NetworkBehaviour
         this.isReady = newValue;
         Debug.Log(" Setting up ready state for gameplayer to syncvar for server");
     }
-
 
     [TargetRpc]
     public void SetPlayerReady (bool oldValue, bool newValue)
@@ -191,8 +193,17 @@ public class PlayerController : NetworkBehaviour
                 charModel.SetActive(true);
                 characterAnimator = charModel.GetComponent<Animator>();
                 networkAnimator.animator = charModel.GetComponent<Animator>();
-                pScore.carriedItem = charModel.GetComponent<PlayerModel>().prize;
-                pScore.stealingItem = charModel.GetComponent<PlayerModel>().steal;
+                if (pScore != null)
+                {
+                    pScore.carriedItem = charModel.GetComponent<PlayerModel>().prize;
+                    pScore.stealingItem = charModel.GetComponent<PlayerModel>().steal;
+                }
+                if (pCarrier != null)
+                {
+                    pCarrier.carrySlot = charModel.GetComponent<PlayerModel>().rootTransform;
+
+                }
+
                 Debug.Log("Changed model to: " + charModel.name);
             }
             if (charModel.name != modelName)
@@ -203,22 +214,7 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    [ServerCallback]
-    void OnTriggerEnter(Collider other)
-    {
-        // Stealing ability 
-        if (other.gameObject.CompareTag("Player") && pScore.teamID != other.GetComponent<PlayerScore>().teamID)
-        {
-            if (!this.pScore.canSteal){return;}
-            if (other.gameObject.GetComponent<PlayerScore>().hasItem && !this.pScore.hasItem) 
-            {                
-                other.gameObject.GetComponent<PlayerScore>().hasItem = false;
-                pScore.hasItem = true;
-                pScore.canSteal = false;
-            }
-            else return;
-        }           
-    }
+
 
 }
 

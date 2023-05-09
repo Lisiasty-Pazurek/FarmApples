@@ -48,7 +48,12 @@ public class RoomPlayerUI : MonoBehaviour
             modelImage = sprite;
         }
 
-        playerModelImage.sprite = modelImage;
+        if (newModel =="")
+        {   modelImage = modelImages[0];  }
+
+        playerModelImage.sprite = modelImage;  
+
+
     }
     public void OnPlayerTeamChanged(int newTeam)
     {

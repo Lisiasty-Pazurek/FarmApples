@@ -109,7 +109,7 @@ public class LevelController : NetworkBehaviour
     public void PreparePlayers () 
     {
         Debug.Log("SpawnPlayers function: Attempting to spawn players");
-        if (gameMode.gameModeName == "Farmapples")
+        if (gameMode.gameModeName == "Farmapples" || gameMode.gameModeName == "Farmcook")
         {
             SpawnTeamboxes();
         }
@@ -121,11 +121,6 @@ public class LevelController : NetworkBehaviour
     {
         spawner.SpawnTeamboxes();
     }
-
-    [Server]
-    public void SetTeamBox(GameObject go)   {  }
-
-
 
     [Server]
     private IEnumerator Countdown()
@@ -210,8 +205,6 @@ public class LevelController : NetworkBehaviour
             }
             Debug.Log("Ending Race?  " + k + "of: " + gamePlayers.Count);
         }
-
-
     }
 
     [Server]
@@ -235,10 +228,7 @@ public class LevelController : NetworkBehaviour
         {   
             DisplayScoreboardPrefabs();
         }
-        
     }
-
-
 
     [Client]
     public void DisplayScoreboardPrefabs()

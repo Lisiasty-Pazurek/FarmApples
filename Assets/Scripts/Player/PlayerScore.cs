@@ -5,11 +5,9 @@ namespace MirrorBasics
 {
     public class PlayerScore : NetworkBehaviour
     {
-        [SyncVar] public int index;
+   
         [SyncVar] public int teamID = 1;
-
         [SyncVar (hook = nameof(HandlePlayerScoreChange))]  public int score;
-
         [SyncVar (hook = nameof(HandleCarriedItemToggle))] public bool hasItem;
         [SyncVar (hook = nameof(HandleStealingToggle))] public bool canSteal = false;
         [SyncVar] public bool isNavigator;
@@ -52,12 +50,23 @@ namespace MirrorBasics
             uiScore.SetPlayerScore(score);
         }
 
-        // void HandleTeamScoreChange (int teamboxID, int teamPoints)
-        // {
-        //     if (!isLocalPlayer) return;
-        //     else
-        //     uiScore.SetTeamScore(teamboxID, teamPoints);
-        // }
+    [ServerCallback]
+    void OnTriggerEnter(Collider other)
+    {
+        // Stealing ability 
+        
+        if (other.gameObject.CompareTag("Player") && teamID != other.GetComponent<PlayerScore>().teamID)
+        {
+            if (!canSteal){return;}
+            if (other.gameObject.GetComponent<PlayerScore>().hasItem && !hasItem) 
+            {                
+                other.gameObject.GetComponent<PlayerScore>().hasItem = false;
+                hasItem = true;
+                canSteal = false;
+            }
+            else return;
+        }           
+    }
 
     }
 }

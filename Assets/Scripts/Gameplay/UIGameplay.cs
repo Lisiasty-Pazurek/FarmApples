@@ -15,6 +15,8 @@ public class UIGameplay : MonoBehaviour
     private LobbySystem lobbySystem;
     public LevelController levelController;
 
+    public Text playerName;
+
     [SerializeField] public Canvas preGameUICanvas;   
     [SerializeField] public Canvas gameUICanvas;
     [SerializeField] public Canvas postGameUICanvas;

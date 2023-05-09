@@ -98,8 +98,17 @@ public class LobbySystem : MonoBehaviour
             maxPlayersSlider.value = 20;
             networkManager.onlineScene = "Farmhand";
             networkManager.RoomScene = "Farmhand";
-
         }
+
+        if (mapListDropdown.options[mapListDropdown.value].text == "Farmcook")
+        {
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
+            networkManager.onlineScene = "RoomSceneCook";
+            networkManager.RoomScene = "RoomSceneCook";
+            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[2];
+        }
+
 
     }
 
@@ -118,7 +127,7 @@ public class LobbySystem : MonoBehaviour
         networkManager.maxConnections = ((int)maxPlayersSlider.value-1);
         //networkManager.ServerChangeScene(networkManager.RoomScene);
 
-        /// ### END ### custom changes for room -> gammeplayscene changes
+        /// ### END ### custom changes for room -> gameplayscene changes
     }
 
     public void JoinRoom()
