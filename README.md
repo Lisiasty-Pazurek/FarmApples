@@ -1,9 +1,8 @@
 # Introduction
 
-The Project is going to be used for educational purposes for a PhD thesis that focuses on studying the impact of multiplayer games in developing social skills. To make a safe environment for early school students, custom-made game have to be developed.  Pre and post-test questionnaires will be used as the main research tool. Additional documentation may include video recordings or logs. About 20 students will take part in the research at a certain time.
+The Project is going to be used for educational purposes for a PhD thesis that focuses on studying the impact of multiplayer games in developing social skills. To make a safe environment for early school students, custom-made game have to be developed. Pre and post-test questionnaires will be used as the main research tool. Additional documentation may include video recordings or logs. About 20 students will take part in the research at a certain time.
 
-
-## Scenario of lesson [User case scenario]
+## User case scenario
 1.	Downloading and unpacking app
 2.	Running exe and connecting to server
 3.	Creating or joining a lobby
@@ -17,64 +16,40 @@ The Project is going to be used for educational purposes for a PhD thesis that f
 10.	Repeat with a different map for about 3-4 attempts depending on how time-consuming it will be.
 
 ##Game Modes (levelController)
-1.	Farm Apples 
-
+**1.	Farm Apples **
 Team-based game (2-10 players per match). Basic score collecting game – players have to pick up a spawned item and bring it to the team box to collect it and increase a score of a team.
-
 Additional pickups: bonus speed, stealing mask (other ideas postponed till project reach decent state)
 
-Difficulties: 
-•	team assign - no spectator mode
+**2.	Farmaze**
+2 player asymmetrical gameplay mode, one person goes through the labyrinth, while another one has a role of a navigator (1st person uses 3rd person controller, 2nd use top view camera, and UI to send direction indicator icons for 1st player ) 
 
-o	v1 – equal teams depending of the number of players
-2 – 2 teams, 3 – 3 teams – 4 – 2 teams, 5 – 5 teams, 6 – 2 teams, 7 – ??? 7 teams, 8 – 2 teams, 9 – 3 teams, 10 – 2 teams. (can be limited to 4, 6, 8, 9, 10 players to start)
+Todo:
+•	random maze generation
 
-o	v2 asymmetrical 
-up to 1 more player with “equal opportunities” speed bonus) 
-To do: 
-o	match cleanup
-o	additional UI canvas for rules and scoreboard
-o	additional maps
-o	sound
-o	postprocessing
-o	polishing
+**3.	Farmarathon 1**
+Competetive race/kart styled game mode. Every player runs through checkpoints to meta.
 
-2.	Farmaggle 
+**4.     Farmcook**
+Cooperativve team based gameplay focusing on searching ingredients necessary to fill a recipe list. Each payer have stamina and can't carry items for long time so other players have to swap him after a while.
 
-Card trading game, every player has 5 random cards (food types) and can trade with any other player to get a set that is required for gameplay. (everyone can trade with everyone it’s not a turn-based, strategy-heavy game, more casual, focused on walking and asking others what they have or need)
+Todo:
+o Stamina system 
+o Random recipe list
 
-Difficulties:
+**5.	Farmhand**
+Quiz-based game, every player goes on their own after the village to help NPCs, after picking the right response player gets a reward. More a shared world experience, text chat may be useful for communication and looking for help from others. 
 
-•	Card generation without repetition ( possibly reducing card types to make it easier)
-•	Avoiding random sets that may be impossible to get for more players
+To do:
+o	Map
+o	Dialogue UI
+o	Inventory/Ojective UI
+
+**?.	Farmerchant**
+Trading game, every player has 5 random cards (food types) and can trade with any other player to get a set that is required for gameplay. (everyone can trade with everyone it’s not a turn-based, strategy-heavy game, more casual, focused on walking and asking others what they have or need)
+
 To do:
 o	Maps
 o	Trade UI
 o	Emote UI
 
-3.	Farm helper
 
-Quiz-based game, every player goes on their own after the village to help NPCs, after picking the right response player gets a reward. More a shared world experience, text chat may be useful for communication and looking for help from others. 
-
-Difficulties:
-To do:
-o	Map
-o	Dialogue UI
-o	Inventory/Ojective UI
-o	Text chat
-
-4.	Farmaze
-
-2 player asymmetrical gameplay mode, one person goes through the labyrinth, while another one has a role of a navigator (1st person uses 3rd person controller, 2nd use top view camera, and UI to send direction indicator icons for 1st player ) 
-
-Difficulties:
-•	random maze generation (may not be really necessary if at least 10 handmade mazes)
-To do:
-o	UI for Navigator
-o	Message system to send from P2 to P1
-o	Maps
-
-5.	Farmarathon
-
-Another team-focused activity with different roles. (6,8,9 players)
-1 player carrying an item that has to reach the destination, others can help or disturb other carries.
