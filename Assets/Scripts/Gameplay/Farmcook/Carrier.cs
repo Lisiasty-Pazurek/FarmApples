@@ -104,7 +104,7 @@ public class Carrier : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcPlayerDropPrefab()
+    public void RpcPlayerDropPrefab()
     {
         Destroy(carrySlot.transform.GetChild(carrySlot.transform.childCount-1).gameObject);             
     }

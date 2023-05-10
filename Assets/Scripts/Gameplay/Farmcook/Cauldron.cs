@@ -45,16 +45,21 @@ public class Cauldron : NetworkBehaviour
     [ServerCallback]
     void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == this.teamID )
         {
+       
             if (other.gameObject.GetComponent<Carrier>().carriedObject != null)
             {
+                print(other.gameObject.name + " collided and carry: " + other.gameObject.GetComponent<Carrier>().carriedObject);                     
                 foreach (string item in currentIngredientList)
                 {
                     if (item == other.gameObject.GetComponent<Carrier>().carriedObject)
                     {
                         currentIngredientList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
-
+                        other.gameObject.GetComponent<Carrier>().carriedObject = null; // delet dis < and make proper method
+                        other.gameObject.GetComponent<Carrier>().isCarrying = false;
+                        other.gameObject.GetComponent<Carrier>().RpcPlayerDropPrefab();
                     }
                 }
             }
