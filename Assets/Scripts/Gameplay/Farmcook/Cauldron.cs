@@ -6,9 +6,10 @@ using MirrorBasics;
 
 public class Cauldron : NetworkBehaviour
 {
-    [SyncVar]public int teamID;
+    [SyncVar][SerializeField]private int teamID;
     public Recipe recipe;
     public readonly SyncList<string> ingredientList = new SyncList<string>();
+    public SyncList<string> currentIngredientList = new SyncList<string>();
     public List<Recipe> recipeList = new List<Recipe>();
 
     public void Update() 
@@ -22,8 +23,10 @@ public class Cauldron : NetworkBehaviour
         RpcRecipe(x);
         recipe = recipeList[x];
         ingredientList.AddRange(recipe.ingredientsList);
+        currentIngredientList = ingredientList;
         base.OnStartServer();
     }
+
     [ClientRpc]
     void RpcRecipe(int sRecipe)
     {
@@ -46,11 +49,11 @@ public class Cauldron : NetworkBehaviour
         {
             if (other.gameObject.GetComponent<Carrier>().carriedObject != null)
             {
-                foreach (string item in recipe.ingredientsList)
+                foreach (string item in currentIngredientList)
                 {
                     if (item == other.gameObject.GetComponent<Carrier>().carriedObject)
                     {
-                        recipe.ingredientsList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
+                        currentIngredientList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
 
                     }
                 }
