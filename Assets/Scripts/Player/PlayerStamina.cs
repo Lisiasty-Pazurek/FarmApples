@@ -4,13 +4,13 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 
-[RequireComponent (typeof(Carrier))]
+
 public class PlayerStamina : NetworkBehaviour
 {
     [SyncVar (hook =nameof(OnStaminaChange))]public float playerStamina;
     public Carrier pCarry;
     public Transform rootTransform;
-    public Slider staminaSlider;
+    [SerializeField] private Slider staminaSlider;
 
     public void Start() 
     {
@@ -20,11 +20,6 @@ public class PlayerStamina : NetworkBehaviour
     public void OnStaminaChange(float oldValue, float newValue)
     {
         staminaSlider.value = playerStamina;        
-    }
-
-    public void CarriedObjectChange(GameObject oldValue, GameObject newValue)
-    {
-
     }
 
  
@@ -42,5 +37,10 @@ public class PlayerStamina : NetworkBehaviour
             }
         }
 
+    }
+
+    void ReduceStamina()
+    {
+        
     }
 }

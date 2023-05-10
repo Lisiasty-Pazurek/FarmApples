@@ -39,7 +39,6 @@ public class Carrier : NetworkBehaviour
             }
         }
         
-        
     }
 
 [ServerCallback]
@@ -120,6 +119,14 @@ public class Carrier : NetworkBehaviour
                 print("spawned prefab on player");
             }
         }    
+    }
+
+    [ClientRpc]
+    public void RpcRemoveItem ()
+    {
+        carriedObject = ""; 
+        isCarrying = false;
+        RpcPlayerDropPrefab();
     }
 
     [Server]
