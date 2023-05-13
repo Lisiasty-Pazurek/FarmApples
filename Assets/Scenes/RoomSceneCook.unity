@@ -4616,7 +4616,7 @@ MonoBehaviour:
   modelName: {fileID: 0}
   playerNameInput: {fileID: 797164123}
   teamLocations:
-  - {fileID: 2033986704}
+  - {fileID: 485879624}
   location: {fileID: 485879624}
 --- !u!1 &1836125501
 GameObject:
