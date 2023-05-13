@@ -24,13 +24,11 @@ public class UICook : MonoBehaviour
 
     private void  Start() 
     {
-        SetCauldron();
         pController = uIGameplay.player;
     }
 
     public void SetCauldron()
-    {
-        print("assigned cauldron of name for player: " + PlayerController.localGamePlayer.name);     
+    { 
         foreach ( Cauldron cldr in cauldronList)
         {
             if (uIGameplay.player.GetComponent<PlayerScore>().teamID == cldr.teamID)
@@ -40,6 +38,7 @@ public class UICook : MonoBehaviour
                 cauldron.OnRecipeChange += SpawnRecipe;
             }
         }
+        SpawnRecipe();
     }
     
 
