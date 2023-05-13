@@ -11,7 +11,7 @@ public class Cauldron : NetworkBehaviour
     [SyncVar][SerializeField]public int teamID ;
     public Recipe recipe;
     public readonly List<string> ingredientList = new List<string>();
-    public List<string> currentIngredientList = new List<string>();
+    public SyncList<string> currentIngredientList = new SyncList<string>();
     public List<Recipe> recipeList = new List<Recipe>();
 
     public void Update() 
@@ -29,7 +29,7 @@ public class Cauldron : NetworkBehaviour
         RpcRecipe(x);
         recipe = recipeList[x];
         ingredientList.AddRange(recipe.ingredientsList);
-        currentIngredientList = ingredientList;
+        currentIngredientList.AddRange(ingredientList);
         RpcCurrentRecipeToTeam();
         base.OnStartServer();
     }
