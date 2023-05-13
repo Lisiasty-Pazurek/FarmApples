@@ -282,6 +282,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerStamina: 100
+  maxStamina: 100
   pCarry: {fileID: 8652789382619650390}
   rootTransform: {fileID: 4332436713056267839}
   staminaSlider: {fileID: 26265550864497414}
