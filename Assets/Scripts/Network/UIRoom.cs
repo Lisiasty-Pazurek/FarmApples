@@ -6,20 +6,23 @@ using System.Collections.Generic;
 
 public class UIRoom : MonoBehaviour
 {
-    public static UIRoom singleton {get; private set;}
+    public static UIRoom instance {get; private set;}
     public LobbySystem lobbySystem;
     public NetworkRoomPlayerExt roomPlayer;
     public RoomPlayerUI roomPlayerUI;
     public NetworkRoomManagerExt roomManager;
     public Text readybutton;
     public GameObject startbutton;
-    public GameObject switchRoleButton;
     public Dropdown modelName;
     public Text playerNameInput;
     
     public List<Transform> teamLocations;
     public Transform location;
 
+    private void Awake() 
+    {
+        instance = this;
+    }
     public void Start() 
     {
         lobbySystem = FindObjectOfType<LobbySystem>();

@@ -4613,11 +4613,10 @@ MonoBehaviour:
   roomManager: {fileID: 0}
   readybutton: {fileID: 2112627364}
   startbutton: {fileID: 55634903}
-  switchRoleButton: {fileID: 0}
   modelName: {fileID: 0}
-  playerNameInput: {fileID: 0}
+  playerNameInput: {fileID: 797164123}
   teamLocations:
-  - {fileID: 485879624}
+  - {fileID: 2033986704}
   location: {fileID: 485879624}
 --- !u!1 &1836125501
 GameObject:

@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class PlayerStamina : NetworkBehaviour
 {
     [SyncVar (hook =nameof(OnStaminaChange))]public float playerStamina;
+
+    [SerializeField] private float maxStamina;
     public Carrier pCarry;
     public Transform rootTransform;
     [SerializeField] private Slider staminaSlider;
@@ -35,12 +37,22 @@ public class PlayerStamina : NetworkBehaviour
             {
                 playerStamina += Time.deltaTime/5;
             }
+
+            if (playerStamina >= maxStamina)
+            {
+                // Invoke max stamina event
+            }
+
+            if (playerStamina <= 0)
+            {
+                // Invoke empty stamina event                    
+            }
         }
 
     }
 
-    void ReduceStamina()
+    void ChangeStamina(float value)
     {
-        
+        playerStamina -= value;
     }
 }

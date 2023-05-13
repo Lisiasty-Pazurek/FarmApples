@@ -23,6 +23,7 @@ public class LevelController : NetworkBehaviour
         [SyncVar] public float gameTimer;
 
     [Header ("References")]
+        public static LevelController singleton;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] private Text countdownText;
         [SerializeField] private Canvas rulesCanvas;
@@ -36,7 +37,7 @@ public class LevelController : NetworkBehaviour
 
         public readonly SyncDictionary<string, float> scoreboardDictionary = new SyncDictionary<string, float>();
 
-        public void Start() {  }
+        public void Start() { singleton = this;  }
 
         public override void OnStartClient() 
         {
@@ -177,6 +178,16 @@ public class LevelController : NetworkBehaviour
             gamePlayer.SetPlayerReady(false,true);
             Debug.Log("Final setting levelcontroller to ready gamePlayerof id: " +gamePlayer.netId );
         }
+        if (UICook.instance != null)
+        {
+            RpcCauldron();
+        }
+    }
+
+    [ClientRpc]
+    public void RpcCauldron()
+    {
+        UICook.instance.SetCauldron();
     }
 
     

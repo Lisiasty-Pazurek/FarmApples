@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using MirrorBasics;
+using UnityEngine.Events;
 
 public class Cauldron : NetworkBehaviour
 {
-    [SyncVar][SerializeField]private int teamID;
+    public UnityAction OnRecipeChange;
+    [SyncVar][SerializeField]public int teamID ;
     public Recipe recipe;
-    public readonly SyncList<string> ingredientList = new SyncList<string>();
-    public SyncList<string> currentIngredientList = new SyncList<string>();
+    public readonly List<string> ingredientList = new List<string>();
+    public List<string> currentIngredientList = new List<string>();
     public List<Recipe> recipeList = new List<Recipe>();
 
     public void Update() 
@@ -17,6 +19,10 @@ public class Cauldron : NetworkBehaviour
 
     }
 
+    private void Start() 
+    {
+        UICook.instance.cauldronList.Add(this);
+    }
     public override void OnStartServer()
     {
         int x = Random.Range(0,recipeList.Count);
@@ -24,22 +30,38 @@ public class Cauldron : NetworkBehaviour
         recipe = recipeList[x];
         ingredientList.AddRange(recipe.ingredientsList);
         currentIngredientList = ingredientList;
+        RpcCurrentRecipeToTeam();
         base.OnStartServer();
+    }
+
+    public override void OnStartClient()
+    {
+        print ("setting stuff for local player on cauldron ####");
+        // FindAnyObjectByType<UICook>().SetCauldron(this);            
+        UICook.instance.SetCauldron();
     }
 
     [ClientRpc]
     void RpcRecipe(int sRecipe)
     {
         recipe = recipeList[sRecipe];
-    
     }
 
-    [Server]
-    void AddItemToRecipe()
+    [ClientRpc]
+    void RpcCurrentRecipeToTeam()
     {
-        
+        if (LevelController.singleton.pController.GetComponent<PlayerScore>().teamID == teamID)
+        {
+            OnRecipeChangeEvent();
+        }
     }
 
+  
+    void OnRecipeChangeEvent ()
+    {
+        OnRecipeChange?.Invoke();        
+        print("invoking event");
+    }
 
 
     [ServerCallback]
@@ -55,6 +77,7 @@ public class Cauldron : NetworkBehaviour
                     {
                         currentIngredientList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
                         other.gameObject.GetComponent<Carrier>().RpcRemoveItem();
+                        RpcCurrentRecipeToTeam();
                     }
                 }
             }
