@@ -196,7 +196,7 @@ public class LevelController : NetworkBehaviour
     {   
         if (gameEnded && !gameFinished)
         {
-            EndLevel();   
+            EndLevel(0);   
 
             gameFinished = true;  
         }
@@ -230,12 +230,12 @@ public class LevelController : NetworkBehaviour
 
 
     [ClientRpc]
-    public void EndLevel()
+    public void EndLevel(int winTeam)
     {
         Debug.Log("Ending level" );
         uIGameplay.ChangeUIState(2);
         pController.characterController.GetComponent<CharacterController>().enabled = false;
-        DisplayScoreboardPrefabs();
+        DisplayScoreboardPrefabs(winTeam);
 
     }
 
