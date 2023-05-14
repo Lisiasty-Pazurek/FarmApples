@@ -23,7 +23,7 @@ public class UICook : MonoBehaviour
         
     }
 
-    private void  Start() 
+    private void Start() 
     {
         pController = uIGameplay.player;
     }

@@ -5,11 +5,13 @@ using Mirror;
 using MirrorBasics;
 using UnityEngine.Events;
 
+
 public class Cauldron : NetworkBehaviour
 {
     public UnityAction OnRecipeChange;
     [SyncVar][SerializeField]public int teamID ;
     public Recipe recipe;
+    [SyncVar] public string recipeName;
     public readonly List<string> ingredientList = new List<string>();
     public SyncList<string> currentIngredientList = new SyncList<string>();
     public List<Recipe> recipeList = new List<Recipe>();
@@ -26,8 +28,8 @@ public class Cauldron : NetworkBehaviour
     public override void OnStartServer()
     {
         int x = Random.Range(0,recipeList.Count);
-        RpcRecipe(x);
         recipe = recipeList[x];
+        recipeName = recipe.name;       
         ingredientList.AddRange(recipe.ingredientsList);
         currentIngredientList.AddRange(ingredientList);
         RpcCurrentRecipeToTeam();
@@ -37,6 +39,15 @@ public class Cauldron : NetworkBehaviour
     public override void OnStartClient()
     {
         print ("setting stuff for local player on cauldron ####");
+       
+        foreach (Recipe item in recipeList)
+        {
+            if (item.name == recipeName)
+            {
+                recipe = item;
+            }
+
+        }
         // FindAnyObjectByType<UICook>().SetCauldron(this);            
         UICook.instance.SetCauldron();
     }

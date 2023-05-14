@@ -27,7 +27,7 @@ public class PlayerController : NetworkBehaviour
     public bool isFalling = false;
     public float dashCooldown = 5f;
     public bool isDashing = false; 
-    public string playerName;   
+    [SyncVar] public string playerName;   
     [SyncVar] public string modelName;      
 
     [Header("References")]

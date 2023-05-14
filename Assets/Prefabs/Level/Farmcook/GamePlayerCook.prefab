@@ -282,6 +282,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerStamina: 100
+  staminaRegen: 1
+  staminaMod: 0
   maxStamina: 100
   pCarry: {fileID: 8652789382619650390}
   rootTransform: {fileID: 4332436713056267839}
@@ -302,6 +304,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   isCarrying: 0
+  weight: 0
   carriedItems:
   - {fileID: 1321287161209054, guid: 7fb02b16b2da57643ad65e1ec570ff41, type: 3}
   - {fileID: 1635757618814564, guid: 18fb2e5fe9bb5eb4b83986d6c252db20, type: 3}

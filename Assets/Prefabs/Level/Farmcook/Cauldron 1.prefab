@@ -600,12 +600,12 @@ PrefabInstance:
     - target: {fileID: -4784390898719274480, guid: 3a5744fc01fbbba40adc981079295288,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.083
+      value: 0.018
       objectReference: {fileID: 0}
     - target: {fileID: -4784390898719274480, guid: 3a5744fc01fbbba40adc981079295288,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.016140208
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: -4161650170649976757, guid: 3a5744fc01fbbba40adc981079295288,
         type: 3}
@@ -630,18 +630,28 @@ PrefabInstance:
     - target: {fileID: 655033731306874967, guid: 3a5744fc01fbbba40adc981079295288,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.107
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 655033731306874967, guid: 3a5744fc01fbbba40adc981079295288,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.768
       objectReference: {fileID: 0}
     - target: {fileID: 655033731306874967, guid: 3a5744fc01fbbba40adc981079295288,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.307
+      value: 0.303
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a5744fc01fbbba40adc981079295288,
         type: 3}
       propertyPath: m_Name
       value: cauldron
       objectReference: {fileID: 0}
+    - target: {fileID: 7548410099354498407, guid: 3a5744fc01fbbba40adc981079295288,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3445894b37bf1794cb824b1cc88d908e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a5744fc01fbbba40adc981079295288, type: 3}
 --- !u!1 &6994200715009410536 stripped
