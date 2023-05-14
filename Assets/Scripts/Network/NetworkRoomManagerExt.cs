@@ -63,7 +63,8 @@ namespace MirrorBasics {
 
         public override void OnRoomClientEnter() 
         {
-            
+            if (NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom == null  )
+            { NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom = UIRoom.instance ;}
         }
 
         /// <summary>

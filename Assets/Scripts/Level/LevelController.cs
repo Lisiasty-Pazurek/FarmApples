@@ -255,7 +255,7 @@ public class LevelController : NetworkBehaviour
         }
         if (gameMode.gameModeName == "Farmcook" )
         {
-            uIGameplay.ScoreboardTransform.GetComponentInChildren<Text>().text = "Drużyna "+ teamID + " przygotowała składniki w " + Mathf.RoundToInt(gameTimer/60) + " minuty i " + Mathf.RoundToInt(gameTimer % 60) + " sekund.";
+            uIGameplay.ScoreboardTransform.GetComponentInChildren<Text>().text = "Drużyna "+ teamID + " przygotowała składniki w " + Mathf.RoundToInt(gameTimer/60) + " min. i " + Mathf.RoundToInt(gameTimer % 60) + " sek.";
         }
     }
 
