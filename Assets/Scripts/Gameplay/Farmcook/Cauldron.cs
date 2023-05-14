@@ -78,6 +78,7 @@ public class Cauldron : NetworkBehaviour
     [ServerCallback]
     void OnTriggerEnter(Collider other)
     {
+        if (currentIngredientList.Count == 0) {LevelController.singleton.EndLevel();}
         if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == this.teamID )
         {
             if (other.gameObject.GetComponent<Carrier>().carriedObject != null)

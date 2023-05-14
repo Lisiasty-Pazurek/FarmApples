@@ -225,36 +225,38 @@ public class LevelController : NetworkBehaviour
         {
             scoreboardDictionary[player.playerName] = player.GetComponent<Runner>().visitedCheckpoints[requiredScore];         
         }
-        //scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+        scoreboardDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
     }
 
 
     [ClientRpc]
     public void EndLevel()
     {
-        Debug.Log("Ending level for match: " );
+        Debug.Log("Ending level" );
         uIGameplay.ChangeUIState(2);
         pController.characterController.GetComponent<CharacterController>().enabled = false;
-        if (gameMode.gameModeName == "Farmarathon" )
-        {   
-            DisplayScoreboardPrefabs();
-        }
+        DisplayScoreboardPrefabs();
+
     }
 
     [Client]
-    public void DisplayScoreboardPrefabs()
+    public void DisplayScoreboardPrefabs(int teamID = 0)
     {
-        Debug.Log("Spawning scores " );
-
-        foreach (KeyValuePair<string,float> entry in scoreboardDictionary)
+        if (gameMode.gameModeName == "Farmarathon" )
+        {    
+            foreach (KeyValuePair<string,float> entry in scoreboardDictionary)
+            {
+                GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
+                finalScoreRowObject.GetComponent<FinalScoreRow>().playerName.text = entry.Key;
+                finalScoreRowObject.GetComponent<FinalScoreRow>().playerTime.text = entry.Value.ToString();
+                finalScoreRowObject.transform.SetParent(uIGameplay.ScoreboardTransform);
+                Debug.Log("Spawned score prefab for: " + entry);  
+            }   
+        }
+        if (gameMode.gameModeName == "Farmcook" )
         {
-            GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
-            finalScoreRowObject.GetComponent<FinalScoreRow>().playerName.text = entry.Key;
-            finalScoreRowObject.GetComponent<FinalScoreRow>().playerTime.text = entry.Value.ToString();
-            finalScoreRowObject.transform.SetParent(uIGameplay.ScoreboardTransform);
-            Debug.Log("Spawned score prefab for: " + entry);  
-        }   
-
+            uIGameplay.ScoreboardTransform.GetComponentInChildren<Text>().text = "Drużyna "+ teamID + " przygotowała składniki w " + gameTimer /60 + " minuty i " + gameTimer % 60 + " sekund.";
+        }
     }
 
 
