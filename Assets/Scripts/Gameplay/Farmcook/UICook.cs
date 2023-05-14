@@ -9,7 +9,8 @@ public class UICook : MonoBehaviour
     public static UICook instance {get; private set; }
     [SerializeField] private Transform recipeTransform;
     [SerializeField] private GameObject ingredientTemplate;
-    public UIGameplay uIGameplay;
+    public Text recipeName;
+    private UIGameplay uIGameplay;
     public Cauldron cauldron;
     public PlayerController pController;
 
@@ -44,9 +45,9 @@ public class UICook : MonoBehaviour
 
     void SpawnRecipe()
     {
-        print("invoked event on UIcook");
-        ClearIngredientList();
 
+        ClearIngredientList();
+        recipeName.text = cauldron.recipe.name;
         foreach (string item in cauldron.currentIngredientList)
         {
             SpawnIngredient(item);

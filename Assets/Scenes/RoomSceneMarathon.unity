@@ -3570,9 +3570,8 @@ MonoBehaviour:
   roomManager: {fileID: 0}
   readybutton: {fileID: 2112627364}
   startbutton: {fileID: 55634903}
-  switchRoleButton: {fileID: 1790092227}
   modelName: {fileID: 1625405672}
-  playerNameInput: {fileID: 1313617487}
+  playerNameInput: {fileID: 276260087}
   teamLocations:
   - {fileID: 485879624}
   location: {fileID: 485879624}
