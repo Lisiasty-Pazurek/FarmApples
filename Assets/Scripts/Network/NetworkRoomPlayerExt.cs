@@ -121,6 +121,7 @@ namespace MirrorBasics
                         {
                             InstantiateRoomUIPrefab();
                         } 
+                         if (uiRoom.playerNameInput !=null) {uiRoom.playerNameInput.text = playerName;}
                     }   
                 }
             }

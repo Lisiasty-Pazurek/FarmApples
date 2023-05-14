@@ -14,7 +14,7 @@ public class UIRoom : MonoBehaviour
     public Text readybutton;
     public GameObject startbutton;
     public Dropdown modelName;
-    public Text playerNameInput;
+    public InputField playerNameInput;
     
     public List<Transform> teamLocations;
     public Transform location;

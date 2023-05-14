@@ -4614,7 +4614,7 @@ MonoBehaviour:
   readybutton: {fileID: 2112627364}
   startbutton: {fileID: 55634903}
   modelName: {fileID: 0}
-  playerNameInput: {fileID: 797164123}
+  playerNameInput: {fileID: 2033986705}
   teamLocations:
   - {fileID: 485879624}
   location: {fileID: 485879624}
