@@ -61,7 +61,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7284221734329707013}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6
@@ -83,6 +83,7 @@ MonoBehaviour:
   syncInterval: 0.1
   teamID: 2
   recipe: {fileID: 0}
+  recipeName: 
   recipeList:
   - {fileID: 1542838481251380392, guid: dec52c813113ae844b522b6af0386c01, type: 3}
   - {fileID: 1542838481251380392, guid: 97ff31da6de982149a1b90ffcd096290, type: 3}
