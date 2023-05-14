@@ -39,7 +39,7 @@ public class Carrier : NetworkBehaviour
         }
         if (isServer)
         {
-            if (isCarrying) {weight = 3;}
+            if (isCarrying) {weight = 4;}
             else weight = 0;
         }
     }

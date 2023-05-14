@@ -13,13 +13,16 @@ public class PlayerStamina : NetworkBehaviour
 
     [SerializeField] private float maxStamina;
     public Carrier pCarry;
+    private PlayerController pController;
     public Transform rootTransform;
 
     [SerializeField] private Slider staminaSlider;
 
     public void Start() 
     {
+        pController = GetComponent<PlayerController>();
         if (pCarry ==null) {pCarry = this.gameObject.GetComponent<Carrier>();}
+
     }
 
     public void OnStaminaChange(float oldValue, float newValue)
@@ -33,7 +36,7 @@ public class PlayerStamina : NetworkBehaviour
     {
         if (isServer)
         {
-            ChangeStamina();
+            ChangeStaminaMod();
             playerStamina += Time.deltaTime * staminaMod;
 
             if (playerStamina >= maxStamina)
@@ -56,12 +59,19 @@ public class PlayerStamina : NetworkBehaviour
     }
 
     [Server]
-    void ChangeStamina()
+    void ChangeStaminaMod()
     {
         if (pCarry != null)
         {
-            if (pCarry.weight != 0) {staminaMod = - pCarry.weight;}
-            else staminaMod = staminaRegen;        
+            if (pCarry.weight != 0) {staminaMod = - pCarry.weight;}     
+            else if (!GetComponent<Rigidbody>().IsSleeping())
+            {
+                staminaMod = staminaRegen;  
+            }
+            else if (GetComponent<Rigidbody>().IsSleeping())
+            {
+                staminaMod = staminaRegen *2;
+            }
         }
     }
 }
