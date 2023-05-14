@@ -42,6 +42,8 @@ namespace MirrorBasics {
                 foreach (NetworkRoomPlayerExt player in roomSlots)
                 {
                     player.uiRoom = FindObjectOfType<UIRoom>();
+                    if (player.roomPlayerUI == null)
+                    {player.InstantiateRoomUIPrefab();}
                     player.roomPlayerUI.transform.SetParent(player.uiRoom.location.transform);
                 }
             }

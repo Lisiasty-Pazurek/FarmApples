@@ -201,7 +201,6 @@ public class PlayerController : NetworkBehaviour
                 if (pCarrier != null)
                 {
                     pCarrier.carrySlot = charModel.GetComponent<PlayerModel>().rootTransform;
-
                 }
 
                 Debug.Log("Changed model to: " + charModel.name);
@@ -209,7 +208,6 @@ public class PlayerController : NetworkBehaviour
             if (charModel.name != modelName)
             {
                 charModel.SetActive(false);
-                Debug.Log("Disabling not needed models");
             }
         }
     }
