@@ -8,13 +8,26 @@ namespace MirrorBasics
 {
     public class UIScore : MonoBehaviour
     {
+        public static UIScore instance {get; private set;}
         public PlayerScore player;     
+        [SerializeField] private Text playerName;
         [SerializeField] private Text playerScore;        
         [SerializeField] private Text team1Score;
         [SerializeField] private Text team2Score;
         public Transform scoreRowLocation;
 
-        [SerializeField] private List<GameObject> statusImage = new List<GameObject>();
+        [SerializeField] public List<GameObject> statusImage = new List<GameObject>();
+
+        void Start() 
+        {  
+           SetPlayerName();
+        }
+
+        public void SetPlayerName () 
+        {
+            playerName.text = NetworkClient.connection.identity.GetComponent<NetworkRoomPlayerExt>().playerName;
+        }
+
 
         public void SetPlayerScore(int score)
         {
@@ -34,6 +47,7 @@ namespace MirrorBasics
             if (status == "rolling") statusImage[0].SetActive(state);
             if (status == "apple") statusImage[1].SetActive(state);
             if (status == "stealing") statusImage[2].SetActive(state);
+            if (status == "carrying") statusImage[3].SetActive(state);
             else return;
         }
 

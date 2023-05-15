@@ -73,6 +73,13 @@ public class Carrier : NetworkBehaviour
         print("command sent for " + carriedItem);
         RpcPlayerPickPrefab(carriedObject);        
         NetworkServer.Destroy(pickupItem);   
+
+        foreach (Sprite sprite in UICook.instance.veggieImage)
+        {
+            if (sprite.name == carriedItem)
+            UIGameplay.instance.interactImage.sprite = sprite;
+        }
+        
     }
 
     [ClientRpc]
@@ -103,6 +110,7 @@ public class Carrier : NetworkBehaviour
             isCarrying = false;
 
             RpcPlayerDropPrefab();
+            UIGameplay.instance.interactImage.sprite = UICook.instance.veggieImage[0];
             if (!spawningItem) { SpawnDroppedItem();  } 
         }
     }

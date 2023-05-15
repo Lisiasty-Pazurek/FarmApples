@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace MirrorBasics{
 public class UIGameplay : MonoBehaviour
 {
-    public static UIGameplay uiGameplay;
+    public static UIGameplay instance;
     public UIScore uiScore;
     public PlayerController player; 
     public NetworkRoomPlayer lobbyPlayer;
@@ -28,8 +28,9 @@ public class UIGameplay : MonoBehaviour
 
     public void Start ()
     {
+        instance = this;
         lobbySystem = FindObjectOfType<LobbySystem>();
-        ChangeUIState(0);             
+        ChangeUIState(0);
     }
 
     public void ChangeUIState (int uiState)
@@ -84,13 +85,9 @@ public class UIGameplay : MonoBehaviour
         FindObjectOfType<LobbySystem>().gameObject.SetActive(true);
         FindObjectOfType<LobbySystem>().OpenLobbyMenu();
         NetworkClient.Disconnect();    
-
+        NetworkServer.Shutdown();
     }
 
-    public void DisplayScoreboardPrefabs()
-    {
-
-    }
 
 }
 }

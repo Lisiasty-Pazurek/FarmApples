@@ -244,6 +244,7 @@ public class LevelController : NetworkBehaviour
     {
         if (gameMode.gameModeName == "Farmarathon" )
         {    
+
             foreach (KeyValuePair<string,float> entry in scoreboardDictionary)
             {
                 GameObject finalScoreRowObject = Instantiate(FinalScoreboardRowPrefab);
