@@ -1907,7 +1907,7 @@ MonoBehaviour:
   serverIP: 194.195.240.79
   serverPort: 7777
   endpointServerPort: 8080
-  heartBeatInterval: 3
+  heartBeatInterval: 2
   connectOnAwake: 1
   authenticationKey: Secret Auth Key
   disconnectedFromRelay:
@@ -3870,7 +3870,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2057858884}
   m_HandleRect: {fileID: 2057858883}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

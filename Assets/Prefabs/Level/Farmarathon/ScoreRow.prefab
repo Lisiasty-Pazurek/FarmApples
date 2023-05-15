@@ -67,7 +67,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9dfa36bfecefc2d4580e0a0eb232ec51, type: 3}
+    m_Font: {fileID: 12800000, guid: a0e0f68565f448a489e44059f558f4ef, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -164,8 +164,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f55bc95114b89584f891150870efba94, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 297fd42ef69fa2541ad17a4b8668bfef, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.59
 --- !u!1 &7360704164557889773
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65.947, y: -52.5}
+  m_AnchoredPosition: {x: 60, y: -52.5}
   m_SizeDelta: {x: 131.893, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7360704164557889682
@@ -241,7 +241,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9dfa36bfecefc2d4580e0a0eb232ec51, type: 3}
+    m_Font: {fileID: 12800000, guid: a0e0f68565f448a489e44059f558f4ef, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -289,8 +289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 63.9, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 60, y: 0}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2247986929536738287
 CanvasRenderer:
@@ -313,14 +313,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 550d35806803aaf4f92d66d2dfbfeb41, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e2a21f9f55977d418c6e99b36b28d08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

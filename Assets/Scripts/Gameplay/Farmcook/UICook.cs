@@ -13,8 +13,9 @@ public class UICook : MonoBehaviour
     private UIGameplay uIGameplay;
     public Cauldron cauldron;
     public PlayerController pController;
-
     public List<Cauldron> cauldronList = new List<Cauldron>();
+    public List<Sprite> veggieImage = new List<Sprite>();
+    
     void Awake()
     {
         // add listeners to event here
@@ -45,7 +46,6 @@ public class UICook : MonoBehaviour
 
     void SpawnRecipe()
     {
-
         ClearIngredientList();
         recipeName.text = cauldron.recipe.name;
         foreach (string item in cauldron.currentIngredientList)
@@ -58,6 +58,13 @@ public class UICook : MonoBehaviour
     {
         GameObject ingredient = Instantiate(ingredientTemplate, recipeTransform);
         ingredient.GetComponentInChildren<Text>().text = ingredientName;
+        
+        foreach (Sprite sprite in veggieImage)
+        {
+            if (sprite.name == ingredientName)
+            ingredient.GetComponentsInChildren<Image>()[2].sprite  = sprite;
+        }
+
         ingredient.SetActive(true);
     }
 
