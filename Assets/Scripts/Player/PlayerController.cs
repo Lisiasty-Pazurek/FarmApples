@@ -27,7 +27,7 @@ public class PlayerController : NetworkBehaviour
     public bool isFalling = false;
     public float dashCooldown = 5f;
     public bool isDashing = false; 
-    public string playerName;   
+    [SyncVar] public string playerName;   
     [SyncVar] public string modelName;      
 
     [Header("References")]
@@ -201,7 +201,6 @@ public class PlayerController : NetworkBehaviour
                 if (pCarrier != null)
                 {
                     pCarrier.carrySlot = charModel.GetComponent<PlayerModel>().rootTransform;
-
                 }
 
                 Debug.Log("Changed model to: " + charModel.name);
@@ -209,7 +208,6 @@ public class PlayerController : NetworkBehaviour
             if (charModel.name != modelName)
             {
                 charModel.SetActive(false);
-                Debug.Log("Disabling not needed models");
             }
         }
     }

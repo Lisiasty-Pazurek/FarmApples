@@ -28,6 +28,6 @@ public class EndPoint : NetworkBehaviour
     [Server]
     public void ServerEndGame() 
     {
-        levelController.EndLevel();
+        levelController.EndLevel(0);
     }
 }

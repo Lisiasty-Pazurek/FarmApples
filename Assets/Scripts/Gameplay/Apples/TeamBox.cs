@@ -77,7 +77,7 @@ public class TeamBox : NetworkBehaviour
     [Server]
     public void ServerEndGame() 
     {
-        levelController.EndLevel();
+        levelController.EndLevel(teamID);
     }
 
 }

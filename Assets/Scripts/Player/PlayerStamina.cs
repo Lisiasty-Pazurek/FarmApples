@@ -4,17 +4,25 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 
-[RequireComponent (typeof(Carrier))]
+
 public class PlayerStamina : NetworkBehaviour
 {
     [SyncVar (hook =nameof(OnStaminaChange))]public float playerStamina;
+    [SerializeField]private float staminaRegen = 1;     
+    [SerializeField][SyncVar]private float staminaMod = 0;
+
+    [SerializeField] private float maxStamina;
     public Carrier pCarry;
+    private PlayerController pController;
     public Transform rootTransform;
-    public Slider staminaSlider;
+
+    [SerializeField] private Slider staminaSlider;
 
     public void Start() 
     {
+        pController = GetComponent<PlayerController>();
         if (pCarry ==null) {pCarry = this.gameObject.GetComponent<Carrier>();}
+
     }
 
     public void OnStaminaChange(float oldValue, float newValue)
@@ -22,25 +30,48 @@ public class PlayerStamina : NetworkBehaviour
         staminaSlider.value = playerStamina;        
     }
 
-    public void CarriedObjectChange(GameObject oldValue, GameObject newValue)
-    {
 
-    }
 
- 
     void Update()
     {
         if (isServer)
         {
-            if (pCarry.carriedObject != "")
+            ChangeStaminaMod();
+            playerStamina += Time.deltaTime * staminaMod;
+
+            if (playerStamina >= maxStamina)
             {
-                playerStamina -= Time.deltaTime;
+                // Invoke max stamina event
+                playerStamina = maxStamina;
             }
-            if (pCarry.carriedObject == "" && playerStamina <100)
+
+            if (playerStamina <= 0)
             {
-                playerStamina += Time.deltaTime/5;
+                // Invoke empty stamina event              
+                if (pCarry != null)
+                {
+                    pCarry.CmdDropItem();
+                }     
+                playerStamina = 0;
             }
         }
 
+    }
+
+    [Server]
+    void ChangeStaminaMod()
+    {
+        if (pCarry != null)
+        {
+            if (pCarry.weight != 0) {staminaMod = - pCarry.weight;}     
+            else if (!GetComponent<Rigidbody>().IsSleeping())
+            {
+                staminaMod = staminaRegen;  
+            }
+            else if (GetComponent<Rigidbody>().IsSleeping())
+            {
+                staminaMod = staminaRegen *2;
+            }
+        }
     }
 }

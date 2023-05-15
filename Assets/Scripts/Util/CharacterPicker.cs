@@ -10,8 +10,7 @@ public class CharacterPicker : MonoBehaviour
 
     public void Start() 
     {
-        characters.Add("Frog", (Sprite)Resources.Load("Assets/GFX/Sprite/Frog.jpg"));
-        characters.Add("ArcticFox", (Sprite)Resources.Load("Assets/GFX/Sprite/ArcticFox.jpg"));
+
     }
 
 }

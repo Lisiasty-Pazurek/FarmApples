@@ -7,7 +7,8 @@ using UnityEngine.Animations;
 
 public class Carrier : NetworkBehaviour
 {
-    [SyncVar ]public bool isCarrying = false;
+    [SyncVar] public bool isCarrying = false;
+    [SyncVar (hook=nameof(HandleWeightChange))] public float weight;
     
  //   public List<string> itemsToCarry = new List<string>(); // not used for now, gonna use it for checking other object
     public List<GameObject> carriedItems = new List<GameObject>();    
@@ -20,9 +21,7 @@ public class Carrier : NetworkBehaviour
 
     private void Start() 
     {
-        carrySlot = this.gameObject.GetComponentInChildren<PlayerModel>().rootTransform;
-
-        
+        carrySlot = this.gameObject.GetComponentInChildren<PlayerModel>().rootTransform; 
     }
 
     void Update()
@@ -38,14 +37,16 @@ public class Carrier : NetworkBehaviour
                 else return;
             }
         }
-        
-        
+        if (isServer)
+        {
+            if (isCarrying) {weight = 4;}
+            else weight = 0;
+        }
     }
 
-[ServerCallback]
+    [ServerCallback]
     private void OnTriggerEnter(Collider other) 
     {
-
         if (other.gameObject.GetComponent<Pickup>() != null && other.gameObject.GetComponent<Ingredient>() != null && !isCarrying) //&& itemsToCarry.Contains(other.gameObject.name.ToString())  <not working - why?
         {
             print("item on list");
@@ -95,16 +96,19 @@ public class Carrier : NetworkBehaviour
     }
 
     [Command (requiresAuthority = false)]
-    void CmdDropItem()
+    public void CmdDropItem()
     {
-        isCarrying = false;
+        if (carriedObject != "")
+        {
+            isCarrying = false;
 
-        RpcPlayerDropPrefab();
-        if (!spawningItem) { SpawnDroppedItem();  } 
+            RpcPlayerDropPrefab();
+            if (!spawningItem) { SpawnDroppedItem();  } 
+        }
     }
 
     [ClientRpc]
-    void RpcPlayerDropPrefab()
+    public void RpcPlayerDropPrefab()
     {
         Destroy(carrySlot.transform.GetChild(carrySlot.transform.childCount-1).gameObject);             
     }
@@ -120,6 +124,20 @@ public class Carrier : NetworkBehaviour
                 print("spawned prefab on player");
             }
         }    
+    }
+
+    [Server]
+    void HandleWeightChange(float oldValue, float newValue)
+    {
+
+    }
+
+    [ClientRpc]
+    public void RpcRemoveItem ()
+    {
+        carriedObject = ""; 
+        isCarrying = false;
+        RpcPlayerDropPrefab();
     }
 
     [Server]

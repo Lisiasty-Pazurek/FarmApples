@@ -8,28 +8,13 @@ namespace MirrorBasics
 {
     public class UIScore : MonoBehaviour
     {
-
-        public PlayerScore player;
-        public NetworkRoomPlayerExt lobbyPlayer;
-//        public TeamBox teambox;
-//        private UIGameplay uiGameplay;
-        [SerializeField] private Text playerName;
+        public PlayerScore player;     
         [SerializeField] private Text playerScore;        
         [SerializeField] private Text team1Score;
         [SerializeField] private Text team2Score;
         public Transform scoreRowLocation;
 
         [SerializeField] private List<GameObject> statusImage = new List<GameObject>();
-
-        void Start() 
-        {   
-            lobbyPlayer = NetworkClient.connection.identity.GetComponent<NetworkRoomPlayerExt>();
-        }
-
-        public void SetPlayerName () 
-        {
-            playerName.text = lobbyPlayer.playerName;
-        }
 
         public void SetPlayerScore(int score)
         {

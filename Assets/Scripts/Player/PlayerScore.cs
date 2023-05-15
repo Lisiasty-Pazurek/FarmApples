@@ -22,7 +22,6 @@ namespace MirrorBasics
         {
             uiScore = GameObject.FindObjectOfType<UIScore>();      
             uiScore.player = this;
-            uiScore.SetPlayerName();
         }
         public override void OnStartServer()
         {

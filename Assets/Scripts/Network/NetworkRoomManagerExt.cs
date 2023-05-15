@@ -42,6 +42,8 @@ namespace MirrorBasics {
                 foreach (NetworkRoomPlayerExt player in roomSlots)
                 {
                     player.uiRoom = FindObjectOfType<UIRoom>();
+                    if (player.roomPlayerUI == null)
+                    {player.InstantiateRoomUIPrefab();}
                     player.roomPlayerUI.transform.SetParent(player.uiRoom.location.transform);
                 }
             }
@@ -61,7 +63,11 @@ namespace MirrorBasics {
 
         public override void OnRoomClientEnter() 
         {
-            
+            print(NetworkClient.localPlayer.name);
+            if (NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom == null  )
+            { 
+                NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom = UIRoom.instance;
+            }
         }
 
         /// <summary>
