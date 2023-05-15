@@ -44,7 +44,7 @@ public class Carrier : NetworkBehaviour
         }
     }
 
-    [ServerCallback]
+    [Server]
     private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.GetComponent<Pickup>() != null && other.gameObject.GetComponent<Ingredient>() != null && !isCarrying) //&& itemsToCarry.Contains(other.gameObject.name.ToString())  <not working - why?
@@ -58,11 +58,27 @@ public class Carrier : NetworkBehaviour
                 {
                     if (carriedItem.name == other.gameObject.GetComponent<Ingredient>().ingredientName)
                     {
+                        
                         CmdPickupItem(carriedItem.name, other.gameObject); 
                     }
                 }
             }    
         }
+    }
+
+    [TargetRpc]
+    void SetUIIcon(string carriedItem)
+    {
+            if (carriedItem == "")
+            {
+                UIGameplay.instance.interactImage.sprite = UICook.instance.veggieImage[0];
+            }            
+            else
+            foreach (Sprite sprite in UICook.instance.veggieImage)
+            {
+                if (sprite.name == carriedItem)
+                UIGameplay.instance.interactImage.sprite = sprite;
+            }
     }
 
     [Command (requiresAuthority = false)]
@@ -72,14 +88,7 @@ public class Carrier : NetworkBehaviour
         isCarrying = true;
         print("command sent for " + carriedItem);
         RpcPlayerPickPrefab(carriedObject);        
-        NetworkServer.Destroy(pickupItem);   
-
-        foreach (Sprite sprite in UICook.instance.veggieImage)
-        {
-            if (sprite.name == carriedItem)
-            UIGameplay.instance.interactImage.sprite = sprite;
-        }
-        
+        NetworkServer.Destroy(pickupItem);       
     }
 
     [ClientRpc]
@@ -107,10 +116,10 @@ public class Carrier : NetworkBehaviour
     {
         if (carriedObject != "")
         {
+
             isCarrying = false;
 
             RpcPlayerDropPrefab();
-            UIGameplay.instance.interactImage.sprite = UICook.instance.veggieImage[0];
             if (!spawningItem) { SpawnDroppedItem();  } 
         }
     }
@@ -121,17 +130,26 @@ public class Carrier : NetworkBehaviour
         Destroy(carrySlot.transform.GetChild(carrySlot.transform.childCount-1).gameObject);             
     }
     
-    [ClientRpc]
+
+    [Server]
     public void HandleCarriedItemChange(string oldValue, string newValue)
-    {     
+    {   
+        RpcCarriedItemChange (newValue);
+        SetUIIcon(newValue);
+    
+    }
+
+    [ClientRpc]
+    private void RpcCarriedItemChange (string carrieditem)
+    {
         foreach (GameObject item in carriedItems)
         {
-            if (item.name == newValue)
+            if (item.name == carrieditem)
             {
                 Instantiate(item,carrySlot.transform) ;
                 print("spawned prefab on player");
             }
-        }    
+        }  
     }
 
     [Server]
