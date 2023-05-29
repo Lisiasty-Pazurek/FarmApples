@@ -20,7 +20,7 @@ public class PlayerInteractions : MonoBehaviour
         if (other.GetComponent<DialogueInteract>() !=null )
         {
             FindObjectOfType<UIGameplay>().interactImage.enabled = true;            
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyUp(KeyCode.F))
             {
                 other.GetComponent<DialogueInteract>().StartDialogue();
             }

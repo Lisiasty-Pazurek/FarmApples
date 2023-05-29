@@ -144,12 +144,15 @@ MonoBehaviour:
   isFalling: 0
   dashCooldown: 5
   isDashing: 0
+  playerName: 
   modelName: 
   characterAnimator: {fileID: 2686379057862360450}
   networkAnimator: {fileID: 9118952894041304543}
   uiGameplay: {fileID: 0}
   pScore: {fileID: 115187108610643062}
-  pCamera: {fileID: 0}
+  pCamera: {fileID: -6736841464767829722}
+  pStamina: {fileID: 0}
+  pCarrier: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   isReady: 0
 --- !u!114 &115187108610643062
@@ -167,7 +170,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  index: 0
   teamID: 1
   score: 0
   hasItem: 0
@@ -755,6 +757,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 923235187907297950}
   steal: {fileID: 9169749729704650599}
+  rootTransform: {fileID: 0}
+  hatTransform: {fileID: 0}
 --- !u!4 &8726617669565124953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8569067361324043285, guid: dce9c9e444374b944bbe648df744fbb4,
@@ -865,6 +869,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 6582232115737218478}
   steal: {fileID: 7778428563949677437}
+  rootTransform: {fileID: 0}
+  hatTransform: {fileID: 0}
 --- !u!4 &548117214358239763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1693816920450361188, guid: 8d863aa0b58a54345a3b739c9e0954cf,
@@ -1076,6 +1082,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 6334326891857238138}
   steal: {fileID: 2049710747652164559}
+  rootTransform: {fileID: 0}
+  hatTransform: {fileID: 0}
 --- !u!4 &95907522959716141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2012484680144267822, guid: 4be9278f227b3d142976aaeb4be66334,
@@ -1292,6 +1300,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 8479135262810430946}
   steal: {fileID: 2726694005804309271}
+  rootTransform: {fileID: 0}
+  hatTransform: {fileID: 0}
 --- !u!4 &1980954163523069651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3326781497290907523, guid: ac16983f506041947b81a28e5cca8743,
@@ -1829,6 +1839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 410047697345479537}
   steal: {fileID: 5226701307136605171}
+  rootTransform: {fileID: 0}
+  hatTransform: {fileID: 0}
 --- !u!4 &1663376363289522804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8858668344987094261, guid: b78cbd54c6fc6404eac3c4919de1ad38,
@@ -1945,6 +1957,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prize: {fileID: 7443837441440110328}
   steal: {fileID: 8767852402474626669}
+  rootTransform: {fileID: 0}
+  hatTransform: {fileID: 0}
 --- !u!4 &3234074320920499333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6647131506220806908, guid: 27e82c8a2f2dc474a8d10d84ae09e664,

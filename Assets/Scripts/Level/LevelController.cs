@@ -258,6 +258,10 @@ public class LevelController : NetworkBehaviour
         {
             uIGameplay.ScoreboardTransform.GetComponentInChildren<Text>().text = "Drużyna "+ teamID + " przygotowała składniki w " + Mathf.RoundToInt(gameTimer/60) + " min. i " + Mathf.RoundToInt(gameTimer % 60) + " sek.";
         }
+        if (gameMode.gameModeName == "Farmapples" )
+        {
+            uIGameplay.ScoreboardTransform.GetComponentInChildren<Text>().text = "Drużyna "+ teamID + " zdobyła 10 punktów w " + Mathf.RoundToInt(gameTimer/60) + " min. i " + Mathf.RoundToInt(gameTimer % 60) + " sek.";
+        }
     }
 
 

@@ -89,11 +89,17 @@ namespace MirrorBasics
             
             uiRoom = FindObjectOfType<UIRoom>();
 
+            if (NetworkRoomManagerExt.singleton.GameplayScene == "Farmaze")
+            {
+                playerModel = uiRoom.modelName.options[Random.Range(0, uiRoom.modelName.options.Count)].text;
+                Debug.Log("player model of : " + playerModel);
+            }   
             if (SceneManager.GetActiveScene().name == "RoomSceneMarathon" )
             {
                 playerModel = FindObjectOfType<CharacterPicker>().modelSprites[Random.Range(0, FindObjectOfType<CharacterPicker>().modelSprites.Count)].name;
                 Debug.Log("player model of : " + playerModel);
-            }       
+            } 
+       
             if (SceneManager.GetActiveScene().name == "RoomSceneCook" )
             {
                 playerModel = NetworkManager.singleton.playerPrefab.GetComponent<PlayerController>().characterModel[Random.Range(0, NetworkManager.singleton.playerPrefab.GetComponent<PlayerController>().characterModel.Count)].name;

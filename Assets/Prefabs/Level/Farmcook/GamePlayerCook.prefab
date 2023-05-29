@@ -321,7 +321,7 @@ MonoBehaviour:
   - {fileID: 1091709128295324, guid: 5d5740b0d57b90c498547b7efba4cb67, type: 3}
   - {fileID: 1655629922678430, guid: 998726136cfdc6741b58259171f9dd8c, type: 3}
   carrySlot: {fileID: 7257105083324108773}
-  carriedObject: empty
+  carriedObject: 
   pickupPrefab: {fileID: 6638484065982952912, guid: 31390098fae15b5429bf41bab939bcaf,
     type: 3}
   spawningItem: 0

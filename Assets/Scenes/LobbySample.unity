@@ -2051,7 +2051,7 @@ MonoBehaviour:
   roomPlayerPrefab: {fileID: -1454191670547899263, guid: f0bdb12802bdfa24486b37e1f1b174a0,
     type: 3}
   RoomScene: Assets/Scenes/RoomScene.unity
-  GameplayScene: Assets/Scenes/Apples01.unity
+  GameplayScene: Assets/Scenes/Farmapples.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
@@ -2070,7 +2070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabs:
-  - {fileID: 1480027675339556, guid: 4f16210e77336e041afaaf3f40542055, type: 3}
+  - {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe, type: 3}
   - {fileID: 1480027675339556, guid: de6217c6e387e9a47aaf72c4ec86a004, type: 3}
   - {fileID: 1480027675339556, guid: fc2d88e40d4f7a245b74f95f6e1e73ff, type: 3}
   gameplayScenes: []
@@ -4574,7 +4574,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Farmaze
       m_Image: {fileID: 0}
-    - m_Text: Apples01
+    - m_Text: Farmapples
       m_Image: {fileID: 0}
     - m_Text: Farmarathon
       m_Image: {fileID: 0}

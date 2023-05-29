@@ -75,12 +75,14 @@ public class LobbySystem : MonoBehaviour
         {
             maxPlayersSlider.maxValue = 2;
             maxPlayersSlider.value = 2;
+            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[0];
         }
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "Apples01")
+        if (mapListDropdown.options[mapListDropdown.value].text == "Farmapples")
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;
+            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[0];
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmarathon")
@@ -96,8 +98,9 @@ public class LobbySystem : MonoBehaviour
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;
-            networkManager.onlineScene = "Farmhand";
-            networkManager.RoomScene = "Farmhand";
+            networkManager.onlineScene = "RoomSceneCook";
+            networkManager.RoomScene = "RoomSceneCook";
+            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[2];
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmcook")

@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/RoomSceneCook.unity
     guid: 23faeed658655a946a444e6ca75534ee
   - enabled: 1
-    path: Assets/Scenes/Apples01.unity
+    path: Assets/Scenes/Farmapples.unity
     guid: b7ceedfa10efa0c4ebb25e80930620ba
   - enabled: 1
     path: Assets/Scenes/Farmaze.unity

@@ -240,7 +240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 20c5807d13b1cc04b86d6bdeaa7ea828, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2034,7 +2034,6 @@ MonoBehaviour:
   roomManager: {fileID: 0}
   readybutton: {fileID: 2112627364}
   startbutton: {fileID: 55634903}
-  switchRoleButton: {fileID: 1790092227}
   modelName: {fileID: 1625405669}
   playerNameInput: {fileID: 0}
   teamLocations:
