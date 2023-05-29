@@ -13,7 +13,7 @@ public class TeamBox : NetworkBehaviour
 
     public override void OnStartServer() 
     {
-        levelController = LevelController.singleton;
+        levelController =  GameObject.FindObjectOfType<LevelController>();
     }
 
     public override void OnStartLocalPlayer()
