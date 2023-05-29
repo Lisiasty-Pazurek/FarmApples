@@ -77,7 +77,7 @@ public class LobbySystem : MonoBehaviour
             maxPlayersSlider.value = 2;
         }
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "Apples01")
+        if (mapListDropdown.options[mapListDropdown.value].text == "Farmapples")
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;

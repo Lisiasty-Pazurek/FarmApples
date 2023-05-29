@@ -4574,7 +4574,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Farmaze
       m_Image: {fileID: 0}
-    - m_Text: Apples01
+    - m_Text: Farmapples
       m_Image: {fileID: 0}
     - m_Text: Farmarathon
       m_Image: {fileID: 0}

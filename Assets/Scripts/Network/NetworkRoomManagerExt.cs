@@ -81,7 +81,7 @@ namespace MirrorBasics {
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
             /// additional class for changing player objects depending on game mode seems necessary for clarity
-            if (SceneManager.GetActiveScene().name == "Apples01") 
+            if (SceneManager.GetActiveScene().name == "Farmapples") 
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
