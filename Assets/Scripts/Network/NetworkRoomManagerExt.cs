@@ -122,7 +122,7 @@ namespace MirrorBasics {
                 {
                     playerGameController.modelName = "Empty";
                     playerScore.isNavigator = true;
-                    
+                    playerGameController.enabled = false;
                 }
                 return true;
             }
