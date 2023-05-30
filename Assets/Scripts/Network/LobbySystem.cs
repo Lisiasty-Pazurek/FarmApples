@@ -102,7 +102,7 @@ public class LobbySystem : MonoBehaviour
             maxPlayersSlider.value = 20;
             networkManager.onlineScene = "RoomSceneCook";
             networkManager.RoomScene = "RoomSceneCook";
-            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[2];
+            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[3];
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmcook")

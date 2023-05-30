@@ -2042,6 +2042,7 @@ MonoBehaviour:
   - {fileID: 1480027675339556, guid: 4f16210e77336e041afaaf3f40542055, type: 3}
   - {fileID: 1480027675339556, guid: de6217c6e387e9a47aaf72c4ec86a004, type: 3}
   - {fileID: 1480027675339556, guid: fc2d88e40d4f7a245b74f95f6e1e73ff, type: 3}
+  - {fileID: 1480027675339556, guid: 1425d757b6a92d949a3de79f7f5da123, type: 3}
   - {fileID: 7284221734329707013, guid: cf05c32ebe8eebc4bad3da9e9b91b0b8, type: 3}
   - {fileID: 7284221734329707013, guid: d97c79ddf38dbe340a8d6c1f223609eb, type: 3}
   - {fileID: 6630471258299682127, guid: e3f2e4c326d3acb46b3afe99368f1fd3, type: 3}
@@ -2073,6 +2074,7 @@ MonoBehaviour:
   - {fileID: 1480027675339556, guid: 66eb3c9dd420d0a47b6ba4e17a2dbdfe, type: 3}
   - {fileID: 1480027675339556, guid: de6217c6e387e9a47aaf72c4ec86a004, type: 3}
   - {fileID: 1480027675339556, guid: fc2d88e40d4f7a245b74f95f6e1e73ff, type: 3}
+  - {fileID: 1480027675339556, guid: 1425d757b6a92d949a3de79f7f5da123, type: 3}
   gameplayScenes: []
 --- !u!1 &721349456
 GameObject:
