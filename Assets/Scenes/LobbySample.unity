@@ -2276,7 +2276,7 @@ MonoBehaviour:
   DualMode: 1
   NoDelay: 1
   Interval: 10
-  Timeout: 10000
+  Timeout: 15000
   FastResend: 2
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
@@ -4298,7 +4298,7 @@ MonoBehaviour:
   DualMode: 1
   NoDelay: 1
   Interval: 10
-  Timeout: 10000
+  Timeout: 15000
   FastResend: 2
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
@@ -5148,6 +5148,8 @@ GameObject:
   - component: {fileID: 1847829872}
   - component: {fileID: 1847829871}
   - component: {fileID: 1847829870}
+  - component: {fileID: 1847829873}
+  - component: {fileID: 1847829874}
   m_Layer: 5
   m_Name: relayConnect
   m_TagString: Untagged
@@ -5232,6 +5234,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1847829874}
+        m_TargetAssemblyTypeName: ConnectionStatus, Assembly-CSharp
+        m_MethodName: CheckStatus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1847829871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5252,7 +5266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 62be1ac0e99394446976b7467a8a084f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56d443f703b4e8d41a7cd3241ca5e92a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5270,6 +5284,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847829868}
   m_CullTransparentMesh: 1
+--- !u!95 &1847829873
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847829868}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3520b3c85109a6c4abc924342d16e5e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1847829874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847829868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33e143a54e4d95449d6a9d23ec4c129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LRMTransport: {fileID: 707881950}
+  animator: {fileID: 1847829873}
 --- !u!1 &1911282539
 GameObject:
   m_ObjectHideFlags: 0

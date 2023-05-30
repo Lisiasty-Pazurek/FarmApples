@@ -21,8 +21,8 @@ namespace MirrorBasics {
         /// </summary>
         public override void Awake()
         {
-            base.Awake();
             singleton = this;
+            base.Awake();            
         }
 
         public override void OnStartHost()

@@ -50,7 +50,7 @@ namespace LightReflectiveMirror
 
         public LRMRegions region = LRMRegions.NorthAmerica;
         private byte[] _clientSendBuffer;
-        private bool _connectedToRelay = false;
+        private bool _connectedToRelay = false ;
         private bool _isClient = false;
         private bool _isServer = false;
         private bool _directConnected = false;
