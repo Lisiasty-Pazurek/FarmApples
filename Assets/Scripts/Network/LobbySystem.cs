@@ -34,6 +34,8 @@ public class LobbySystem : MonoBehaviour
         roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
         playerNameInputField.text = "Gracz " + Random.Range(0, 999).ToString();
         Application.targetFrameRate = 60;
+        //LRMTransport.connectedToRelay.AddListener(OnConnectedToRelay);
+        //LRMTransport.disconnectedFromRelay.AddListener(OnDisconnectedFromRelay);
     }
 
     float listTimer = 0;
@@ -173,9 +175,9 @@ public class LobbySystem : MonoBehaviour
 
     }
 
-    public void CheckRelayStatus()
+    public bool CheckRelayStatus()
     {
-
+        return LRMTransport.Available();
     }
 
     public void OnConnectedToRelay()

@@ -81,6 +81,7 @@ public class Cauldron : NetworkBehaviour
 
         if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerScore>().teamID == this.teamID )
         {
+            print("hit");
             if (other.gameObject.GetComponent<Carrier>().carriedObject != null)
             {               
                 foreach (string item in currentIngredientList)
