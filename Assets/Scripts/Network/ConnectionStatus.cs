@@ -9,6 +9,7 @@ public class ConnectionStatus : MonoBehaviour
 
     void Start()
     {
+        CheckStatus();
         StartCoroutine(RelayStatus());
     }
 
