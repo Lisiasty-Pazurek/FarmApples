@@ -24,7 +24,8 @@ namespace DialogueSystem {
     [System.Serializable]
     public struct DialogueChoice {
         public string dialogueChoice;
-        public string dialogueRequirement;        
+        public string dialogueRequirement;      
+        public string dialogueReward;  
         public DialogueObject followOnDialogue;
     }
 
