@@ -39,9 +39,12 @@ namespace DialogueSystem {
                 print("dialogue ping");
                 dialogueText.text = dialogue.dialogueText;
 
-                if (dialogue.dialogueChoices.Count == 0) {
+                if (dialogue.dialogueChoices.Count == 0) 
+                {
                     yield return new WaitForSeconds (dialogue.dialogueDisplayTime);
-                } else {
+                } 
+                else 
+                {
                     dialogueOptionsContainer.SetActive (true);
                     //Open options panel
                     foreach (var option in dialogue.dialogueChoices) {
