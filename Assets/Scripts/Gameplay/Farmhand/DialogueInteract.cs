@@ -32,39 +32,43 @@ namespace DialogueSystem {
         IEnumerator DisplayDialogue (DialogueObject _dialogueObject) {
             yield return null;
             Debug.Log ("Starting Dialogue Chain");
-            spawnedButtons = new List<GameObject> ();
+            if (!dialogueCanvas.enabled)
+            {
+                spawnedButtons = new List<GameObject> ();
 
-            dialogueCanvas.enabled = true;
-            foreach (var dialogue in _dialogueObject.dialogueSegments) {
-                print("dialogue ping");
-                dialogueText.text = dialogue.dialogueText;
+                dialogueCanvas.enabled = true;
+                foreach (var dialogue in _dialogueObject.dialogueSegments) {
+                    print("dialogue ping");
+                    dialogueText.text = dialogue.dialogueText;
 
-                if (dialogue.dialogueChoices.Count == 0) 
-                {
-                    yield return new WaitForSeconds (dialogue.dialogueDisplayTime);
-                } 
-                else 
-                {
-                    dialogueOptionsContainer.SetActive (true);
-                    //Open options panel
-                    foreach (var option in dialogue.dialogueChoices) {
-                        GameObject newButton = Instantiate (dialogueOptionsButtonPrefab, dialogueOptionsParent);
-                        spawnedButtons.Add (newButton);
-                        newButton.GetComponent<UIDialogueOption> ().Setup (this, option.followOnDialogue, option.dialogueChoice);
+                    if (dialogue.dialogueChoices.Count == 0) 
+                    {
+                        yield return new WaitForSeconds (dialogue.dialogueDisplayTime);
+                    } 
+                    else 
+                    {
+                        dialogueOptionsContainer.SetActive (true);
+                        //Open options panel
+                        foreach (var option in dialogue.dialogueChoices) {
+                            GameObject newButton = Instantiate (dialogueOptionsButtonPrefab, dialogueOptionsParent);
+                            spawnedButtons.Add (newButton);
+                            newButton.GetComponent<UIDialogueOption> ().Setup (this, option.followOnDialogue, option.dialogueChoice);
+                        }
+
+                        while (!optionSelected) {
+                            yield return null;
+                        }
+                        break;
                     }
-
-                    while (!optionSelected) {
-                        yield return null;
-                    }
-                    break;
                 }
-            }
-            dialogueOptionsContainer.SetActive (false);
-            dialogueCanvas.enabled = false;
-            optionSelected = false;
+                dialogueOptionsContainer.SetActive (false);
+                dialogueCanvas.enabled = false;
+                optionSelected = false;
 
-            spawnedButtons.ForEach (x => Destroy (x));
-            Debug.Log ("Ending Dialogue Chain");
+                spawnedButtons.ForEach (x => Destroy (x));
+                Debug.Log ("Ending Dialogue Chain");
+            }
+            
         }
 
     }
