@@ -4,5 +4,5 @@ using Mirror;
 
 public class PlayerReputation : NetworkBehaviour
 {
-    public SyncList<string> reputation = new SyncList<string>();
+    public SyncDictionary<string, int> reputation = new SyncDictionary<string, int>();
 }

@@ -36,6 +36,7 @@ namespace DialogueSystem {
 
             dialogueCanvas.enabled = true;
             foreach (var dialogue in _dialogueObject.dialogueSegments) {
+                print("dialogue ping");
                 dialogueText.text = dialogue.dialogueText;
 
                 if (dialogue.dialogueChoices.Count == 0) {
