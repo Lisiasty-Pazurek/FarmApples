@@ -29,7 +29,7 @@ public class PlayerInteractions : MonoBehaviour
     private void DialogueInteract()
     {
         
-        interactableDialogue?.StartDialogue();        
+        interactableDialogue?.StartDialogue(this.GetComponent<PlayerReputation>());        
     }
 
     private void OnTriggerEnter(Collider other)     

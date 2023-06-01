@@ -13,6 +13,8 @@ namespace DialogueSystem {
         [SerializeField] GameObject dialogueOptionsButtonPrefab;
         [SerializeField] DialogueObject startDialogueObject;
         private List<GameObject> spawnedButtons;
+        public PlayerReputation activePlayer;
+
 
         bool optionSelected = false;
 
@@ -22,6 +24,13 @@ namespace DialogueSystem {
 
         public void StartDialogue (DialogueObject _dialogueObject) {
             StartCoroutine (DisplayDialogue (_dialogueObject));
+        }
+
+        public void StartDialogue (PlayerReputation playerReputation) {
+            activePlayer = playerReputation;
+            print(playerReputation + " and " + activePlayer);
+            StartCoroutine (DisplayDialogue (startDialogueObject));
+            
         }
 
         public void OptionSelected (DialogueObject selectedOption) {
@@ -49,10 +58,14 @@ namespace DialogueSystem {
                     {
                         dialogueOptionsContainer.SetActive (true);
                         //Open options panel
-                        foreach (var option in dialogue.dialogueChoices) {
-                            GameObject newButton = Instantiate (dialogueOptionsButtonPrefab, dialogueOptionsParent);
-                            spawnedButtons.Add (newButton);
-                            newButton.GetComponent<UIDialogueOption> ().Setup (this, option.followOnDialogue, option.dialogueChoice);
+                        foreach (var option in dialogue.dialogueChoices) 
+                        {
+                            if (option.dialogueRequirement == "" || activePlayer.reputation.Contains(option.dialogueRequirement))
+                            {
+                                GameObject newButton = Instantiate (dialogueOptionsButtonPrefab, dialogueOptionsParent);
+                                spawnedButtons.Add (newButton);
+                                newButton.GetComponent<UIDialogueOption> ().Setup (this, option.followOnDialogue, option.dialogueChoice);
+                            }
                         }
 
                         while (!optionSelected) {
@@ -64,6 +77,7 @@ namespace DialogueSystem {
                 dialogueOptionsContainer.SetActive (false);
                 dialogueCanvas.enabled = false;
                 optionSelected = false;
+                activePlayer = null;
 
                 spawnedButtons.ForEach (x => Destroy (x));
                 Debug.Log ("Ending Dialogue Chain");

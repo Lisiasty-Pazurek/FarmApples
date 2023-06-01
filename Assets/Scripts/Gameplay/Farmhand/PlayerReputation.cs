@@ -4,5 +4,10 @@ using Mirror;
 
 public class PlayerReputation : NetworkBehaviour
 {
-    public SyncDictionary<string, int> reputation = new SyncDictionary<string, int>();
+    public SyncList<string> reputation = new SyncList<string>();
+
+    public override void OnStartServer()
+    {
+        reputation.Add("zadanie");
+    }
 }
