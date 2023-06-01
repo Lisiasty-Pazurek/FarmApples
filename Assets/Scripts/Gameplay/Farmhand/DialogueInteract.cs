@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace DialogueSystem {
     public class DialogueInteract : MonoBehaviour {
@@ -12,11 +13,26 @@ namespace DialogueSystem {
         [SerializeField] Transform dialogueOptionsParent;
         [SerializeField] GameObject dialogueOptionsButtonPrefab;
         [SerializeField] DialogueObject startDialogueObject;
+        [SerializeField] DialogueObject alternateDialogueObject;
+        
         private List<GameObject> spawnedButtons;
+        [SerializeField] public List<string> rewardedItems;
         public PlayerReputation activePlayer;
 
 
         bool optionSelected = false;
+
+        // #### not working for followed dialogues - lets make it maunally for now
+        // public void Start() 
+        // {
+        //     foreach (DialogueSegment dialogue in startDialogueObject.dialogueSegments)
+        //     {
+        //         if (dialogue.dialogueReward != "")
+        //         {
+        //             rewardedItems.Add(dialogue.dialogueReward); 
+        //         }    
+        //     }            
+        // }
 
         public void StartDialogue () {
             StartCoroutine (DisplayDialogue (startDialogueObject));
@@ -28,14 +44,21 @@ namespace DialogueSystem {
 
         public void StartDialogue (PlayerReputation playerReputation) {
             activePlayer = playerReputation;
-            print(playerReputation + " and " + activePlayer);
+            
+            if (rewardedItems.Intersect(activePlayer.reputation).Any()) 
+            {
+                StartCoroutine (DisplayDialogue (alternateDialogueObject));
+            }
+            else 
             StartCoroutine (DisplayDialogue (startDialogueObject));
             
         }
 
         public void OptionSelected (DialogueObject selectedOption) {
             optionSelected = true;
+            
             StartDialogue (selectedOption);
+            
         }
 
         IEnumerator DisplayDialogue (DialogueObject _dialogueObject) {
@@ -46,9 +69,15 @@ namespace DialogueSystem {
                 spawnedButtons = new List<GameObject> ();
 
                 dialogueCanvas.enabled = true;
+
+
                 foreach (var dialogue in _dialogueObject.dialogueSegments) {
                     print("dialogue ping");
                     dialogueText.text = dialogue.dialogueText;
+                    if (dialogue.dialogueReward != "")
+                    {
+                        activePlayer.reputation.Add(dialogue.dialogueReward);
+                    }
 
                     if (dialogue.dialogueChoices.Count == 0) 
                     {
@@ -77,7 +106,7 @@ namespace DialogueSystem {
                 dialogueOptionsContainer.SetActive (false);
                 dialogueCanvas.enabled = false;
                 optionSelected = false;
-                activePlayer = null;
+                
 
                 spawnedButtons.ForEach (x => Destroy (x));
                 Debug.Log ("Ending Dialogue Chain");

@@ -15,28 +15,26 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "O nie, o nie, o nie! Nie zrobi\u0142em zadania domowego! "
     dialogueDisplayTime: 3
+    dialogueReward: 
     dialogueChoices: []
   - dialogueText: "Co mam robi\u0107? Pomo\u017Cesz mi? Daj przepisa\u0107."
     dialogueDisplayTime: 3
+    dialogueReward: 
     dialogueChoices:
     - dialogueChoice: "Nie ma mowy! Trzeba by\u0142o zrobi\u0107 wcze\u015Bniej.
         Ja si\u0119 napracowa\u0142em wi\u0119c ty te\u017C musisz."
       dialogueRequirement: 
-      dialogueReward: "pi\u0105tka"
       followOnDialogue: {fileID: 11400000, guid: 1013d27a6eb4a9a43be656b8aa2495b8,
         type: 2}
     - dialogueChoice: "Nie chc\u0119, b\u0119dziemy mie\u0107 przez Ciebie problem!"
       dialogueRequirement: 
-      dialogueReward: tarcza
       followOnDialogue: {fileID: 11400000, guid: 19e69602054a4ca43aee4716026e802a,
         type: 2}
     - dialogueChoice: "Dobra ale daj mi w zamian twoj\u0105 pi\u0142k\u0119."
       dialogueRequirement: 
-      dialogueReward: "pi\u0142ka"
       followOnDialogue: {fileID: 11400000, guid: 51bcf1db3404c3f42b2fd1839b32df9f,
         type: 2}
     - dialogueChoice: "Oczywi\u015Bcie! w ko\u0144cu si\u0119 przyja\u017Animy. "
-      dialogueRequirement: 
-      dialogueReward: przyjaciel
+      dialogueRequirement: zadanie
       followOnDialogue: {fileID: 11400000, guid: cd82000adc3768e4fa933bf53846ff05,
         type: 2}

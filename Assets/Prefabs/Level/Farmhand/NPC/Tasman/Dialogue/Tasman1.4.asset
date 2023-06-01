@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "Super! Jeste\u015B Wielki!"
-    dialogueDisplayTime: 0
+    dialogueDisplayTime: 2
+    dialogueReward: przyjaciel
     dialogueChoices: []

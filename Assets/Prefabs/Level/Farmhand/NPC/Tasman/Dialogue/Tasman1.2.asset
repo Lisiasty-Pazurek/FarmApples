@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "\uF0A7Ty to jeste\u015B!"
-    dialogueDisplayTime: 0
+    dialogueDisplayTime: 2
+    dialogueReward: tarczaszkolna
     dialogueChoices: []

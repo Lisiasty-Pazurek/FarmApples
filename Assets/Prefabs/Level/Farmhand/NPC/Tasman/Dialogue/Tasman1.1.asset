@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "Ju\u017C nie zd\u0105\u017C\u0119..."
-    dialogueDisplayTime: 0
+    dialogueDisplayTime: 2
+    dialogueReward: "pi\u0105tka"
     dialogueChoices: []

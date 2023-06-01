@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "Niech ci b\u0119dzie..."
-    dialogueDisplayTime: 0
+    dialogueDisplayTime: 2
+    dialogueReward: "pi\u0142ka"
     dialogueChoices: []
