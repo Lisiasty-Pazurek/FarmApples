@@ -1012,7 +1012,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 187
+    m_MaxSize: 204
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 100
+  m_DynamicPixelsPerUnit: 200
   m_PresetInfoIsWorld: 1
 --- !u!1 &1869420878929369764
 GameObject:
@@ -1689,7 +1689,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 69.6
+  m_PixelsPerUnitMultiplier: 120
 --- !u!1 &4988267695726719232
 GameObject:
   m_ObjectHideFlags: 0
