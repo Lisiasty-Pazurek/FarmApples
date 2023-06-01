@@ -74,7 +74,7 @@ namespace DialogueSystem {
                 foreach (var dialogue in _dialogueObject.dialogueSegments) {
                     print("dialogue ping");
                     dialogueText.text = dialogue.dialogueText;
-                    if (dialogue.dialogueReward != "")
+                    if (dialogue.dialogueReward != "" && !activePlayer.reputation.Contains(dialogue.dialogueReward))
                     {
                         activePlayer.reputation.Add(dialogue.dialogueReward);
                     }
