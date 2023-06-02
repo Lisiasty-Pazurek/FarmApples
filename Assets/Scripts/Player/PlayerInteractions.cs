@@ -5,7 +5,7 @@ using MirrorBasics;
 
 public class PlayerInteractions : MonoBehaviour
 {
-    public bool canInteract = false;
+    public bool canInteract = true;
     public UIGameplay uiGameplay;
 
     private DialogueInteract interactableDialogue;

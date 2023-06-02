@@ -76,7 +76,7 @@ namespace DialogueSystem {
                     dialogueText.text = dialogue.dialogueText;
                     if (dialogue.dialogueReward != "" && !activePlayer.reputation.Contains(dialogue.dialogueReward))
                     {
-                        activePlayer.reputation.Add(dialogue.dialogueReward);
+                        activePlayer.AddReputation(dialogue.dialogueReward);
                     }
 
                     if (dialogue.dialogueChoices.Count == 0) 

@@ -6,8 +6,17 @@ public class PlayerReputation : NetworkBehaviour
 {
     public SyncList<string> reputation = new SyncList<string>();
 
-    public override void OnStartServer()
+    public void Start()
     {
-        reputation.Add("zadanie");
+        AddReputation("zadanie");
+    }
+
+    [Command]
+    public void AddReputation (string item)
+    {
+        if (!reputation.Contains(item))
+        {
+            reputation.Add(item);
+        }
     }
 }

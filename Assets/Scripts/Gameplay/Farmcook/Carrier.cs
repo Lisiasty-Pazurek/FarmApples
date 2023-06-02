@@ -44,7 +44,7 @@ public class Carrier : NetworkBehaviour
         }
     }
 
-    [Server]
+    [ServerCallback]
     private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.GetComponent<Pickup>() != null && other.gameObject.GetComponent<Ingredient>() != null && !isCarrying) //&& itemsToCarry.Contains(other.gameObject.name.ToString())  <not working - why?
