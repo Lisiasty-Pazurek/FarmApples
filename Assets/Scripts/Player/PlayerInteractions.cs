@@ -7,12 +7,14 @@ public class PlayerInteractions : MonoBehaviour
 {
     public bool canInteract = true;
     public UIGameplay uiGameplay;
+    [SerializeField] private PlayerController pController;
 
     private DialogueInteract interactableDialogue;
 
     private void OnValidate() {
 
         uiGameplay = UIGameplay.instance;
+        pController = GetComponent<PlayerController>();
     }
 
     private void Update() 
