@@ -4,8 +4,9 @@ using Mirror;
 
 public class PlayerReputation : NetworkBehaviour
 {
-    public readonly SyncList<string> reputation = new SyncList<string>();
     [SerializeField] private bool reportReputationChange;
+    [SerializeField] private PlayerController pController;
+    public readonly SyncList<string> reputation = new SyncList<string>();
 
     public void Start()
     {
@@ -18,10 +19,13 @@ public class PlayerReputation : NetworkBehaviour
         if (!reputation.Contains(item))
         {
             reputation.Add(item);
+            if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().ReloadIcon(item);}            
             if (reportReputationChange)
             {
                 SendReport.instance.SetAndSendMessage(GetComponent<PlayerController>().playerName, item);
             }
         }
     }
+
+
 }

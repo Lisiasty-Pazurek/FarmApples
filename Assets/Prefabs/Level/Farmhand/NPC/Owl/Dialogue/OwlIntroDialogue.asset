@@ -12,4 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
   m_Name: OwlIntroDialogue
   m_EditorClassIdentifier: 
-  dialogueSegments: []
+  dialogueSegments:
+  - dialogueText: "Przykro mi ale ostatni nasz sprawdzian napisa\u0142e\u015B na
+      ocen\u0119 niedostateczn\u0105. B\u0119dziesz musia\u0142 go poprawi\u0107."
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialogueChoices:
+    - dialogueChoice: "Przecie\u017C si\u0119 uczy\u0142em! To niesprawiedliwe! "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "Czy mo\u017Ce mi Pani powiedzie\u0107 co zrobi\u0142em \u017Ale? "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "A jak teraz Pani powiem jakie powinny by\u0107 odpowiedzi
+        to dostan\u0119 pi\u0105tk\u0119? "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "Widocznie nie nauczy\u0142em si\u0119 wszystkiego. Przyjd\u0119
+        na popraw\u0119. "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
