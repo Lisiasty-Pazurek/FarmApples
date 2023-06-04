@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 1
   uiGameplay: {fileID: 0}
+  pController: {fileID: 114892629901890886}
 --- !u!114 &8262514577876604952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +357,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  reportReputationChange: 1
 --- !u!1 &17396797284357364
 GameObject:
   m_ObjectHideFlags: 0
