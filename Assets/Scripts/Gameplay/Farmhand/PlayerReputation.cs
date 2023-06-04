@@ -19,7 +19,7 @@ public class PlayerReputation : NetworkBehaviour
         if (!reputation.Contains(item))
         {
             reputation.Add(item);
-            if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().ReloadIcon(item);}            
+            if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().LoadIcon(item);}            
             if (reportReputationChange && item != "")
             {
                 SendReport.instance.SetAndSendMessage(GetComponent<PlayerController>().playerName, item);
@@ -27,5 +27,14 @@ public class PlayerReputation : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void RemoveReputation (string item)
+    {
+        if (reputation.Contains(item))
+        {
+            reputation.Remove(item);
+            if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().UnloadIcon(item);}    
+        }
+    }
 
 }

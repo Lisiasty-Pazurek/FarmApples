@@ -22,7 +22,7 @@ namespace DialogueSystem {
 
         bool optionSelected = false;
 
-        // #### not working for followed dialogues - lets make it maunally for now
+        // #### not working for followed dialogues - lets make it manually for now
         // public void Start() 
         // {
         //     foreach (DialogueSegment dialogue in startDialogueObject.dialogueSegments)
@@ -56,10 +56,10 @@ namespace DialogueSystem {
 
         public void OptionSelected (DialogueObject selectedOption) {
             optionSelected = true;
-            
-            StartDialogue (selectedOption);
-            
+            StartDialogue (selectedOption);  
         }
+
+
 
         IEnumerator DisplayDialogue (DialogueObject _dialogueObject) {
             yield return null;
