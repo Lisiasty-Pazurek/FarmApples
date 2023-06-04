@@ -10,6 +10,7 @@ public class PlayerReputation : NetworkBehaviour
 
     public void Start()
     {
+        pController = GetComponent<PlayerController>();
         AddReputation("zadanie");
     }
 

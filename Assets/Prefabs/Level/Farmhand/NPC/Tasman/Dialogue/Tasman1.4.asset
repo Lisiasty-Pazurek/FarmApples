@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "Super! Jeste\u015B Wielki!"
     dialogueDisplayTime: 2
-    dialogueReward: przyjaciel
+    dialogueReward: ocena serce
     dialogueChoices: []

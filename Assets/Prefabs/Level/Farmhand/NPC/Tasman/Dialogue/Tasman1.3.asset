@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "Niech ci b\u0119dzie..."
     dialogueDisplayTime: 2
-    dialogueReward: "pi\u0142ka"
+    dialogueReward: szukam misia
     dialogueChoices: []

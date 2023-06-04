@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class UIReputationSystem : MonoBehaviour
 {
-    [SerializeField] private List<Image> reputationImages = new List<Image>();
+    [SerializeField] private List<GameObject> reputationImages = new List<GameObject>();
 
     public void ReloadIcon(string playerRep)
     {
-        foreach (Image image in reputationImages)
+        foreach (GameObject image in reputationImages)
         {
             if (image.name == playerRep)
             {
-                image.enabled = true;
+                image.SetActive(true);
             }
             
         }

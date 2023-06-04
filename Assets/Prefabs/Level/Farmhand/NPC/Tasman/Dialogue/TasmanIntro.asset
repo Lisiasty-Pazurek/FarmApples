@@ -35,6 +35,6 @@ MonoBehaviour:
       followOnDialogue: {fileID: 11400000, guid: 51bcf1db3404c3f42b2fd1839b32df9f,
         type: 2}
     - dialogueChoice: "Oczywi\u015Bcie! w ko\u0144cu si\u0119 przyja\u017Animy. "
-      dialogueRequirement: zadanie
+      dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: cd82000adc3768e4fa933bf53846ff05,
         type: 2}

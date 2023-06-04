@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "\uF0A7Ty to jeste\u015B!"
     dialogueDisplayTime: 2
-    dialogueReward: tarczaszkolna
+    dialogueReward: szkolna tarcza
     dialogueChoices: []

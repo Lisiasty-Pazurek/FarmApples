@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "Ju\u017C nie zd\u0105\u017C\u0119..."
     dialogueDisplayTime: 2
-    dialogueReward: "pi\u0105tka"
+    dialogueReward: dobra ocena
     dialogueChoices: []
