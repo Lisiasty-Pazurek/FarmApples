@@ -13,18 +13,24 @@ public class PlayerReputation : NetworkBehaviour
         pController = GetComponent<PlayerController>();
     }
 
-    [Command]
+    [ClientCallback]
     public void AddReputation (string item)
+    {
+        if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().LoadIcon(item);}      
+        CmdAddReputation(item);
+    }
+
+    [Command]
+    public void CmdAddReputation(string item)
     {
         if (!reputation.Contains(item))
         {
-            reputation.Add(item);
-            if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().LoadIcon(item);}            
-            if (reportReputationChange && item != "")
-            {
-                SendReport.instance.SetAndSendMessage(GetComponent<PlayerController>().playerName, item);
-            }
-        }
+            reputation.Add(item);   
+        }     
+        if (reportReputationChange && item != "")
+        {
+            SendReport.instance.SetAndSendMessage(GetComponent<PlayerController>().playerName, item);
+        }        
     }
 
     [Command]
