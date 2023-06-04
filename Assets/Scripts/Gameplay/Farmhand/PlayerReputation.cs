@@ -11,7 +11,6 @@ public class PlayerReputation : NetworkBehaviour
     public void Start()
     {
         pController = GetComponent<PlayerController>();
-        AddReputation("zadanie");
     }
 
     [Command]
@@ -21,7 +20,7 @@ public class PlayerReputation : NetworkBehaviour
         {
             reputation.Add(item);
             if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().ReloadIcon(item);}            
-            if (reportReputationChange)
+            if (reportReputationChange && item != "")
             {
                 SendReport.instance.SetAndSendMessage(GetComponent<PlayerController>().playerName, item);
             }
