@@ -4,7 +4,7 @@ using Mirror;
 
 public class PlayerReputation : NetworkBehaviour
 {
-    public SyncList<string> reputation = new SyncList<string>();
+    public readonly SyncList<string> reputation = new SyncList<string>();
 
     public void Start()
     {

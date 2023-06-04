@@ -13,7 +13,7 @@ public class Cauldron : NetworkBehaviour
     public Recipe recipe;
     [SyncVar] public string recipeName;
     public readonly List<string> ingredientList = new List<string>();
-    public SyncList<string> currentIngredientList = new SyncList<string>();
+    public readonly SyncList<string> currentIngredientList = new SyncList<string>();
     public List<Recipe> recipeList = new List<Recipe>();
 
     public void Update() 
@@ -84,14 +84,12 @@ public class Cauldron : NetworkBehaviour
             print("hit");
             if (other.gameObject.GetComponent<Carrier>().carriedObject != null)
             {               
-                foreach (string item in currentIngredientList)
+                if (currentIngredientList.Contains(other.gameObject.GetComponent<Carrier>().carriedObject))
+
                 {
-                    if (item == other.gameObject.GetComponent<Carrier>().carriedObject)
-                    {
-                        currentIngredientList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
-                        other.gameObject.GetComponent<Carrier>().RpcRemoveItem();
-                        RpcCurrentRecipeToTeam();
-                    }
+                    currentIngredientList.Remove(other.gameObject.GetComponent<Carrier>().carriedObject);
+                    other.gameObject.GetComponent<Carrier>().RpcRemoveItem();
+                    RpcCurrentRecipeToTeam();
                 }
             }
         }
