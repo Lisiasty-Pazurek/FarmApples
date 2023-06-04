@@ -73,7 +73,7 @@ public class MailSingleton : MonoBehaviour {
 
     IEnumerator ShowInfo(string msg){
         txtInfo.text = msg;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(.2f);
         txtInfo.text = "";
     }
 }
