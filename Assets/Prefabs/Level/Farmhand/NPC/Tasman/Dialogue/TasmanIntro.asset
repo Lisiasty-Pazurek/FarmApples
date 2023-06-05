@@ -30,7 +30,7 @@ MonoBehaviour:
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: 19e69602054a4ca43aee4716026e802a,
         type: 2}
-    - dialogueChoice: "Dobra ale daj mi w zamian twoj\u0105 pi\u0142k\u0119."
+    - dialogueChoice: "Dobra ale daj mi w zamian twojego mi\u015Bka."
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: 51bcf1db3404c3f42b2fd1839b32df9f,
         type: 2}

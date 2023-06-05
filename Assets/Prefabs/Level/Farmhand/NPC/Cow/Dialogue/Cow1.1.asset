@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cow1.1
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Bardzo dzi\u0119kuje, przyjd\u017A szybko, jak tylko si\u0119
-      dowiesz."
-    dialogueDisplayTime: 4
+  - dialogueText: "Szkoda, liczy\u0142am na twoj\u0105 pomoc."
+    dialogueDisplayTime: 2
+    dialogueReward: "roz\u0142o\u017Cone d\u0142onie"
     dialogueChoices: []

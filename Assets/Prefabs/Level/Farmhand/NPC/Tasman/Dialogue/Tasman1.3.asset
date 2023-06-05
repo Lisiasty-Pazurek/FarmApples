@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tasman1.3
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Niech ci b\u0119dzie..."
-    dialogueDisplayTime: 2
+  - dialogueText: "Niech ci b\u0119dzie...znajdziesz go ko\u0142o jednego z dom\xF3w"
+    dialogueDisplayTime: 3
     dialogueReward: szukam misia
     dialogueChoices: []

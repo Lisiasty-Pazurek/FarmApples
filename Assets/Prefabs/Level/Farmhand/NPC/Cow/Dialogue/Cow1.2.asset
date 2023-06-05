@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cow1.2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "No dobrze, my\u015Bl\u0119, \u017Ce dam sobie jako\u015B rad\u0119..."
-    dialogueDisplayTime: 4
+  - dialogueText: "Oczywi\u015Bcie, nagroda na pewno ci\u0119 nie ominie."
+    dialogueDisplayTime: 3
+    dialogueReward: "z\u0142odziej nagroda"
     dialogueChoices: []

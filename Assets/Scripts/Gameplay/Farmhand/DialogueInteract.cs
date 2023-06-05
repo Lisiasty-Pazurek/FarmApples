@@ -22,17 +22,6 @@ namespace DialogueSystem {
 
         bool optionSelected = false;
 
-        // #### not working for followed dialogues - lets make it manually for now
-        // public void Start() 
-        // {
-        //     foreach (DialogueSegment dialogue in startDialogueObject.dialogueSegments)
-        //     {
-        //         if (dialogue.dialogueReward != "")
-        //         {
-        //             rewardedItems.Add(dialogue.dialogueReward); 
-        //         }    
-        //     }            
-        // }
 
         public void StartDialogue () {
             StartCoroutine (DisplayDialogue (startDialogueObject));
