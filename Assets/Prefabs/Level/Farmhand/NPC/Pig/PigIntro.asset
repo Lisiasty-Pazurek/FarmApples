@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: PigIntro
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Kaczka: Ale ona ma g\u0142upi\u0105 czapk\u0119!"
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialogueChoices: []
+  - dialogueText: "Dziobak: Ciekawe sk\u0105d j\u0105wzi\u0119\u0142a!"
+    dialogueDisplayTime: 3
+    dialogueReward: 
+    dialogueChoices:
+    - dialogueChoice: "Faktycznie, nie wiem kto by co\u015B takiego za\u0142o\u017Cy\u0142!"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: d2ee31e9af63c424294683387a8735cb,
+        type: 2}
+    - dialogueChoice: "Eee wcale nie jest taka z\u0142a, \u015Bmieszna ale mi si\u0119
+        nawet podoba"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 22f279ecd8483b74393212842a012fcb,
+        type: 2}
+    - dialogueChoice: "O, patrzcie mam tak\u0105 sam\u0105!"
+      dialogueRequirement: czapka
+      followOnDialogue: {fileID: 11400000, guid: cfe16cea04b81a84199e91ec09fc907d,
+        type: 2}
+    - dialogueChoice: To nie moja sprawa...
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 1b041f12733aa5b49b57ec1497c37461,
+        type: 2}
