@@ -38,5 +38,5 @@ MonoBehaviour:
         type: 2}
     - dialogueChoice: "Trzeba by\u0142o by\u0107 czujniejszym!"
       dialogueRequirement: 
-      followOnDialogue: {fileID: 11400000, guid: 4b2eeaa3feea8ba4485a0bde30ee6795,
+      followOnDialogue: {fileID: 11400000, guid: df99b393ed498ef41b5827e4c92b7c24,
         type: 2}

@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
-  m_Name: Raccoon1.1
+  m_Name: Raccoon1.2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "By\u0142em g\u0142odny, a te jab\u0142ka wygl\u0105da\u0142y tak
-      smacznie"
+  - dialogueText: "Prosz\u0119, nie m\xF3w nikomu, to przecie\u017Ctylko kilka jab\u0142ek."
     dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 

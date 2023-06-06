@@ -17,14 +17,15 @@ MonoBehaviour:
       mnie tu znajdzie.."
     dialogueDisplayTime: 3
     dialogueReward: 
+    dialougueCost: 
     dialogueChoices:
-    - dialogueChoice: "To ty? Jak mog\u0142e\u015B..."
+    - dialogueChoice: "To ty? Czemu to zrobi\u0142e\u015B..."
       dialogueRequirement: "szukam z\u0142odzieja"
       followOnDialogue: {fileID: 11400000, guid: 2c4987714f3afd84a965ad348faf99ac,
         type: 2}
     - dialogueChoice: "To ty? Jak mog\u0142e\u015B..."
       dialogueRequirement: "z\u0142odziej nagroda"
-      followOnDialogue: {fileID: 11400000, guid: 2c4987714f3afd84a965ad348faf99ac,
+      followOnDialogue: {fileID: 11400000, guid: 7a3c1508f025c9644b8ddc5952346ee7,
         type: 2}
     - dialogueChoice: "A ukrywasz si\u0119 przed kim\u015B?"
       dialogueRequirement: 

@@ -16,4 +16,5 @@ MonoBehaviour:
   - dialogueText: 
     dialogueDisplayTime: 0
     dialogueReward: "makija\u017C"
+    dialougueCost: "szukam makija\u017Cu"
     dialogueChoices: []

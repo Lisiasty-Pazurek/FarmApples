@@ -16,6 +16,7 @@ MonoBehaviour:
   - dialogueText: "[Widzisz siostr\u0119, ma na uszach twoje s\u0142uchawki]"
     dialogueDisplayTime: 0
     dialogueReward: 
+    dialougueCost: 
     dialogueChoices:
     - dialogueChoice: "Hej, oddawaj s\u0142uchawki.."
       dialogueRequirement: "szukam s\u0142uchawek"
@@ -28,5 +29,5 @@ MonoBehaviour:
     - dialogueChoice: "Oddaj s\u0142uchawki albo ju\u017C nigdy nie zobaczysz swojej
         palety"
       dialogueRequirement: "makija\u017C"
-      followOnDialogue: {fileID: 11400000, guid: a8a3e14b7c7d4524ab3d0c39cf3a0285,
+      followOnDialogue: {fileID: 11400000, guid: d321b2474ccf02c478a7bf4dbca13f32,
         type: 2}
