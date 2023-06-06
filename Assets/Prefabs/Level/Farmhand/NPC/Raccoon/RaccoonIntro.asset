@@ -19,7 +19,7 @@ MonoBehaviour:
     dialogueReward: 
     dialogueChoices:
     - dialogueChoice: "To ty? Jak mog\u0142e\u015B..."
-      dialogueRequirement: lornetka
+      dialogueRequirement: "szukam z\u0142odzieja"
       followOnDialogue: {fileID: 11400000, guid: 2c4987714f3afd84a965ad348faf99ac,
         type: 2}
     - dialogueChoice: "To ty? Jak mog\u0142e\u015B..."

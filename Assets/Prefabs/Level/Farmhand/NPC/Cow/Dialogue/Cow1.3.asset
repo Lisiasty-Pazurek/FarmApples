@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "Oczywi\u015Bcie, nagroda na pewno ci\u0119 nie ominie."
     dialogueDisplayTime: 3
-    dialogueReward: lornetka
+    dialogueReward: "szukam z\u0142odzieja"
     dialogueChoices: []
