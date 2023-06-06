@@ -16,4 +16,5 @@ MonoBehaviour:
   - dialogueText: "Wygl\u0105da na to, \u017Ce teraz jeste\u015B przygotowany"
     dialogueDisplayTime: 2
     dialogueReward: odrobione zadanie
+    dialougueCost: odrabiam zadanie
     dialogueChoices: []

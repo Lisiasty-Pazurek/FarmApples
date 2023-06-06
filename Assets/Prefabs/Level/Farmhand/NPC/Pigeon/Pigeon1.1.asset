@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: Pigeon1.1
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Hahaha, co to maj\u0105 by\u0107 za bazgro\u0142y?"
+    dialogueDisplayTime: 3
+    dialogueReward: 
+    dialogueChoices:
+    - dialogueChoice: "Uhhh, mo\u017Ce masz racj\u0119... [wyrzucasz rysunek]"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 03d5aff14c47c634789e4c0c1343c3ae,
+        type: 2}
+    - dialogueChoice: "Nie znasz si\u0119, jest super i jestem z niego dumny!"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 22b79152f1d934b48bd6fbc1af0e1771,
+        type: 2}
+    - dialogueChoice: "Mo\u017Ce i nie jest najpi\u0119kniejszy ale i tak na pewno
+        uda si\u0119go drogo sprzeda\u0107 i zostan\u0119 milionerem!"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: f8526eeb1eeb747459f00ca304ce45f3,
+        type: 2}
+    - dialogueChoice: "To twoje zdanie, my\u015Bl\u0119, \u017C\u0119 innym si\u0119
+        spodoba."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: de0d5bcad297f2249a993cd33c48ee62,
+        type: 2}

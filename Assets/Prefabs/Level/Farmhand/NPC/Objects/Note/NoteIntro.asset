@@ -17,8 +17,9 @@ MonoBehaviour:
       oddam jutro\"]"
     dialogueDisplayTime: 4
     dialogueReward: 
+    dialougueCost: 
     dialogueChoices:
-    - dialogueChoice: "Heej.. nie mo\u017Cna tak,pos\u0142ucha\u0142bym czego\u015B
+    - dialogueChoice: "Heej.. nie mo\u017Cna tak, pos\u0142ucha\u0142bym czego\u015B
         teraz."
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: 178af788a3b643542972652c352828ea,

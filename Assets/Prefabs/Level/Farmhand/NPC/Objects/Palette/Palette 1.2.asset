@@ -16,4 +16,5 @@ MonoBehaviour:
   - dialogueText: ...
     dialogueDisplayTime: 0
     dialogueReward: 
+    dialougueCost: 
     dialogueChoices: []

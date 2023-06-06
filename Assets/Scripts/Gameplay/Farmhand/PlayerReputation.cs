@@ -33,14 +33,25 @@ public class PlayerReputation : NetworkBehaviour
         }        
     }
 
-    [Command]
+
+
+    [ClientCallback]
     public void RemoveReputation (string item)
     {
         if (reputation.Contains(item))
         {
-            reputation.Remove(item);
+            CmdRemoveReputation(item);
             if (isLocalPlayer) {pController.uiGameplay.GetComponent<UIReputationSystem>().UnloadIcon(item);}    
         }
+    }
+
+    [Command]
+    public void CmdRemoveReputation(string item)
+    {
+        if (reputation.Contains(item))
+        {
+            reputation.Remove(item);   
+        }    
     }
 
 }

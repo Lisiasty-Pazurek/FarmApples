@@ -17,6 +17,7 @@ namespace DialogueSystem {
         public string dialogueText;
         public float dialogueDisplayTime;
         public string dialogueReward;
+        public string dialougueCost;
         public List<DialogueChoice> dialogueChoices;
 
     }

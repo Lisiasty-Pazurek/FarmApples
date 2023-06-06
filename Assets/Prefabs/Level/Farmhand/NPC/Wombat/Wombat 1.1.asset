@@ -16,4 +16,5 @@ MonoBehaviour:
   - dialogueText: "Eh, niech ci b\u0119dzie"
     dialogueDisplayTime: 0
     dialogueReward: "s\u0142uchawki"
+    dialougueCost: "szukam s\u0142uchawek"
     dialogueChoices: []

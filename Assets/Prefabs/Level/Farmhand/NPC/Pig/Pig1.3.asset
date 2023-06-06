@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "[Musz\u0119 poszuka\u0107 takiego kapelusza]"
     dialogueDisplayTime: 2
-    dialogueReward: kapelusz
+    dialogueReward: szukam kapelusza
+    dialougueCost: 
     dialogueChoices: []

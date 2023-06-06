@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Note 1.1
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Id\u0119 je odzyska\u0107."
-    dialogueDisplayTime: 2
+  - dialogueText: "Id\u0119 je odzyska\u0107... Siostra pewnie posz\u0142a wiesza\u0107
+      pranie i jest ko\u0142o drogi"
+    dialogueDisplayTime: 3
     dialogueReward: "szukam s\u0142uchawek"
+    dialougueCost: 
     dialogueChoices: []

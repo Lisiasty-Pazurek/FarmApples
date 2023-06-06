@@ -34,7 +34,7 @@ public class PlayerInteractions : MonoBehaviour
         interactableDialogue?.StartDialogue(this.GetComponent<PlayerReputation>());        
     }
 
-    private void OnTriggerEnter(Collider other)     
+    private void OnTriggerStay(Collider other)     
     { 
         if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}   
         if (GetComponent<PlayerController>().uiGameplay.interactImage != null && other.GetComponent<DialogueInteract>() != null) 
@@ -49,7 +49,10 @@ public class PlayerInteractions : MonoBehaviour
         if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}
         if (GetComponent<PlayerController>().uiGameplay.interactImage != null) 
         {GetComponent<PlayerController>().uiGameplay.interactImage.enabled = false;}
-        interactableDialogue = null;
+        if (other.GetComponent<DialogueInteract>() != null)
+        {
+            interactableDialogue = null;
+        }
     }
     
 

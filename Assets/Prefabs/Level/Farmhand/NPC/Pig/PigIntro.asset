@@ -30,8 +30,8 @@ MonoBehaviour:
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: 22f279ecd8483b74393212842a012fcb,
         type: 2}
-    - dialogueChoice: "O, patrzcie mam tak\u0105 sam\u0105!"
-      dialogueRequirement: czapka
+    - dialogueChoice: "A, te\u017C sobie takiej poszukam."
+      dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: cfe16cea04b81a84199e91ec09fc907d,
         type: 2}
     - dialogueChoice: To nie moja sprawa...

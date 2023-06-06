@@ -16,4 +16,5 @@ MonoBehaviour:
   - dialogueText: "Ha, fajny misiek, to mi si\u0119 op\u0142aci\u0142o."
     dialogueDisplayTime: 2
     dialogueReward: misiek
+    dialougueCost: szukam misia
     dialogueChoices: []

@@ -16,10 +16,11 @@ MonoBehaviour:
   - dialogueText: "To paleta mojej siostry, co by z ni\u0105 zrobi\u0107.."
     dialogueDisplayTime: 2
     dialogueReward: 
+    dialougueCost: 
     dialogueChoices:
     - dialogueChoice: "Schowam j\u0105 gdzie\u015B to mo\u017Ce mi odda szybciej
         s\u0142uchawki."
-      dialogueRequirement: szukam palety
+      dialogueRequirement: "szukam makija\u017Cu"
       followOnDialogue: {fileID: 11400000, guid: 757f6058ac3e68743a9a3b0d553ad0ae,
         type: 2}
     - dialogueChoice: A zostawie chwilowo.

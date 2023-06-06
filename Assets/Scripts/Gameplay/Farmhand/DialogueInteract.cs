@@ -67,6 +67,10 @@ namespace DialogueSystem {
                     {
                         activePlayer.AddReputation(dialogue.dialogueReward);
                     }
+                    if (dialogue.dialougueCost != "" && activePlayer.reputation.Contains(dialogue.dialogueReward))
+                    {
+                        activePlayer.RemoveReputation(dialogue.dialougueCost);
+                    }
 
                     if (dialogue.dialogueChoices.Count == 0) 
                     {
