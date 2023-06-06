@@ -21,8 +21,8 @@ namespace MirrorBasics {
         /// </summary>
         public override void Awake()
         {
-            base.Awake();
             singleton = this;
+            base.Awake();            
         }
 
         public override void OnStartHost()
@@ -63,11 +63,12 @@ namespace MirrorBasics {
 
         public override void OnRoomClientEnter() 
         {
-            print(NetworkClient.localPlayer.name);
-            if (NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom == null  )
-            { 
-                NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom = UIRoom.instance;
-            }
+            //print(NetworkClient.localPlayer.name);
+            // if (NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom == null  )
+            // { 
+            //     NetworkClient.localPlayer.GetComponent<NetworkRoomPlayerExt>().uiRoom = UIRoom.instance;
+            // }
+            base.OnRoomClientEnter();
         }
 
         /// <summary>
@@ -97,12 +98,13 @@ namespace MirrorBasics {
                 }
                 return true;
             }
-            else if (SceneManager.GetActiveScene().name == "Farmhand")
+            if (SceneManager.GetActiveScene().name == "Farmhand")
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
-                playerGameController.playerIndex = roomPlayer.GetComponent<NetworkRoomPlayer>().index;
-                playerGameController.modelName = "Sheep";
+                playerGameController.playerIndex = roomPlayer.GetComponent<NetworkRoomPlayerExt>().index+1;
+                playerGameController.playerName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
+                playerGameController.modelName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerModel;
                 playerGameController.GetComponent<PlayerInteractions>().canInteract = true;
 
                 return true;
@@ -122,7 +124,7 @@ namespace MirrorBasics {
                 {
                     playerGameController.modelName = "Empty";
                     playerScore.isNavigator = true;
-                    
+                    playerGameController.enabled = false;
                 }
                 return true;
             }

@@ -34,6 +34,8 @@ public class LobbySystem : MonoBehaviour
         roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
         playerNameInputField.text = "Gracz " + Random.Range(0, 999).ToString();
         Application.targetFrameRate = 60;
+        //LRMTransport.connectedToRelay.AddListener(OnConnectedToRelay);
+        //LRMTransport.disconnectedFromRelay.AddListener(OnDisconnectedFromRelay);
     }
 
     float listTimer = 0;
@@ -100,7 +102,7 @@ public class LobbySystem : MonoBehaviour
             maxPlayersSlider.value = 20;
             networkManager.onlineScene = "RoomSceneCook";
             networkManager.RoomScene = "RoomSceneCook";
-            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[2];
+            networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[3];
         }
 
         if (mapListDropdown.options[mapListDropdown.value].text == "Farmcook")
@@ -173,9 +175,9 @@ public class LobbySystem : MonoBehaviour
 
     }
 
-    public void CheckRelayStatus()
+    public bool CheckRelayStatus()
     {
-
+        return LRMTransport.Available();
     }
 
     public void OnConnectedToRelay()

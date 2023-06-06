@@ -5,36 +5,54 @@ using MirrorBasics;
 
 public class PlayerInteractions : MonoBehaviour
 {
-    public bool canInteract = false;
+    public bool canInteract = true;
     public UIGameplay uiGameplay;
+    [SerializeField] private PlayerController pController;
+
+    private DialogueInteract interactableDialogue;
 
     private void OnValidate() {
 
-        uiGameplay = FindObjectOfType<UIGameplay>();
-
+        uiGameplay = UIGameplay.instance;
+        pController = GetComponent<PlayerController>();
     }
 
-     void OnTriggerStay(Collider other) 
+    private void Update() 
     {
-        if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}
-        if (other.GetComponent<DialogueInteract>() !=null )
+        if (!GetComponent<PlayerController>().isLocalPlayer){return;}
+        else 
+        if (Input.GetKeyUp(KeyCode.F))
         {
-            FindObjectOfType<UIGameplay>().interactImage.enabled = true;            
-            if (Input.GetKeyUp(KeyCode.F))
-            {
-                other.GetComponent<DialogueInteract>().StartDialogue();
-            }
-        }
+            DialogueInteract();
+        }        
+        
     }
 
-    private void OnTriggerEnter(Collider other)     
+    private void DialogueInteract()
+    {
+        
+        interactableDialogue?.StartDialogue(this.GetComponent<PlayerReputation>());        
+    }
+
+    private void OnTriggerStay(Collider other)     
     { 
         if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}   
+        if (GetComponent<PlayerController>().uiGameplay.interactImage != null && other.GetComponent<DialogueInteract>() != null) 
+        {GetComponent<PlayerController>().uiGameplay.interactImage.enabled = true;}
+        if (other.GetComponent<DialogueInteract>() != null)
+        {
+            interactableDialogue = other.GetComponent<DialogueInteract>();
+        }
     }
     private void OnTriggerExit(Collider other) 
     {
         if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}
-        if (FindObjectOfType<UIGameplay>().interactImage != null) {FindObjectOfType<UIGameplay>().interactImage.enabled = false;}
+        if (GetComponent<PlayerController>().uiGameplay.interactImage != null) 
+        {GetComponent<PlayerController>().uiGameplay.interactImage.enabled = false;}
+        if (other.GetComponent<DialogueInteract>() != null)
+        {
+            interactableDialogue = null;
+        }
     }
     
 

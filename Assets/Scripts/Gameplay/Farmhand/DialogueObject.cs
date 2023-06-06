@@ -16,6 +16,8 @@ namespace DialogueSystem {
     public struct DialogueSegment {
         public string dialogueText;
         public float dialogueDisplayTime;
+        public string dialogueReward;
+        public string dialougueCost;
         public List<DialogueChoice> dialogueChoices;
 
     }
@@ -23,6 +25,7 @@ namespace DialogueSystem {
     [System.Serializable]
     public struct DialogueChoice {
         public string dialogueChoice;
+        public string dialogueRequirement;      
         public DialogueObject followOnDialogue;
     }
 
