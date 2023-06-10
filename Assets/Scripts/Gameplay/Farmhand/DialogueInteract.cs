@@ -14,6 +14,7 @@ namespace DialogueSystem {
         [SerializeField] GameObject dialogueOptionsButtonPrefab;
         [SerializeField] DialogueObject startDialogueObject;
         [SerializeField] DialogueObject alternateDialogueObject;
+        [SerializeField] List<DialogueThread> alternateDialogues;
 
         public bool dialogueStarted {private set; get;}
         
@@ -36,13 +37,19 @@ namespace DialogueSystem {
         public void StartDialogue (PlayerReputation playerReputation) {
             activePlayer = playerReputation;
             
-            if (rewardedItems.Intersect(activePlayer.reputation).Any()) 
+            if (alternateDialogues.Count() > 0)
             {
-                StartCoroutine (DisplayDialogue (alternateDialogueObject));
+                foreach (DialogueThread thread in alternateDialogues)
+                {
+                    if (thread.requirementsList.Intersect(activePlayer.reputation).Any()) 
+                    {
+                        StartCoroutine (DisplayDialogue (thread.triggeredDialogue));
+                    }                
+                }
             }
+
             else 
             StartCoroutine (DisplayDialogue (startDialogueObject));
-            
         }
 
         public void OptionSelected (DialogueObject selectedOption) {
@@ -109,5 +116,12 @@ namespace DialogueSystem {
             
         }
 
+    }
+
+    [System.Serializable]
+    public struct DialogueThread 
+    {
+        public List<string> requirementsList;
+        public DialogueObject triggeredDialogue;
     }
 }
