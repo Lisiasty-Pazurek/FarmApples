@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
   m_Name: DialogueObject
   m_EditorClassIdentifier: 
-  dialogueSegments: []
+  dialogueSegments:
+  - dialogueText: "Prosz\u0119 przywitajcie naszego nowego koleg\u0119. "
+    dialogueDisplayTime: 3
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []
+  - dialogueText: "Rok szkolny si\u0119 ju\u017C zacz\u0105\u0142, wi\u0119kszo\u015B\u0107
+      miejsc jest zaj\u0119ta wi\u0119c wybierz sobie gdzie chcia\u0142by\u015B siedzie\u0107."
+    dialogueDisplayTime: 3
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []
