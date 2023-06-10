@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Farmhand.unity
     guid: fadd8748e9a3e71468b714233e906621
   - enabled: 1
+    path: Assets/Scenes/Farmhand2.unity
+    guid: 3041bef8568d86042be96200d1ceeb8e
+  - enabled: 1
     path: Assets/Scenes/Empty.unity
     guid: daabd934996ab7544bd003a8135dda75
   m_configObjects:

@@ -231,7 +231,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2315,8 +2315,8 @@ RectTransform:
   m_Father: {fileID: 604548090}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3065,7 +3065,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Farmaze
+  m_Text: Farmhand2
 --- !u!222 &1027904171
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3469,7 +3469,7 @@ MonoBehaviour:
   m_MinValue: 1
   m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3770,7 +3770,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2057858884}
   m_HandleRect: {fileID: 2057858883}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4472,13 +4472,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Farmaze
+    - m_Text: Farmhand2
+      m_Image: {fileID: 0}
+    - m_Text: Farmhand
       m_Image: {fileID: 0}
     - m_Text: Farmapples
       m_Image: {fileID: 0}
     - m_Text: Farmarathon
-      m_Image: {fileID: 0}
-    - m_Text: Farmhand
       m_Image: {fileID: 0}
     - m_Text: Farmcook
       m_Image: {fileID: 0}
@@ -5551,7 +5551,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Maksymalna liczba graczy: 8'
+  m_Text: 'Maksymalna liczba graczy: 20'
 --- !u!222 &1994461337
 CanvasRenderer:
   m_ObjectHideFlags: 0

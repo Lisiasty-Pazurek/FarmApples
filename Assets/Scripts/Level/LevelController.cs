@@ -254,11 +254,11 @@ public class LevelController : NetworkBehaviour
                 Debug.Log("Spawned score prefab for: " + entry);  
             }   
         }
-        if (gameMode.gameModeName == "Farmcook" )
+        if (gameMode.gameModeName.Contains("Farmcook"))
         {
             uIGameplay.ScoreboardTransform.GetComponentInChildren<Text>().text = "Drużyna "+ teamID + " przygotowała składniki w " + Mathf.RoundToInt(gameTimer/60) + " min. i " + Mathf.RoundToInt(gameTimer % 60) + " sek.";
         }
-        if (gameMode.gameModeName == "Farmapples" )
+        if (gameMode.gameModeName.Contains("Farmapples"))
         {
             uIGameplay.ScoreboardTransform.GetComponentInChildren<Text>().text = "Drużyna "+ teamID + " zdobyła 10 punktów w " + Mathf.RoundToInt(gameTimer/60) + " min. i " + Mathf.RoundToInt(gameTimer % 60) + " sek.";
         }

@@ -82,7 +82,7 @@ namespace MirrorBasics {
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
             /// additional class for changing player objects depending on game mode seems necessary for clarity
-            if (SceneManager.GetActiveScene().name == "Farmapples") 
+            if (SceneManager.GetActiveScene().name.Contains("Farmapples")) 
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
@@ -98,7 +98,7 @@ namespace MirrorBasics {
                 }
                 return true;
             }
-            if (SceneManager.GetActiveScene().name == "Farmhand")
+            if (SceneManager.GetActiveScene().name.Contains("Farmhand"))
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
@@ -110,7 +110,7 @@ namespace MirrorBasics {
                 return true;
             }
 
-            else if (SceneManager.GetActiveScene().name == "Farmaze")
+            else if (SceneManager.GetActiveScene().name.Contains("Farmaze"))
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
@@ -129,7 +129,7 @@ namespace MirrorBasics {
                 return true;
             }
 
-            else if (SceneManager.GetActiveScene().name == "Farmarathon")
+            else if (SceneManager.GetActiveScene().name.Contains("Farmarathon"))
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
@@ -138,7 +138,7 @@ namespace MirrorBasics {
                 return true;
             }
 
-            if (SceneManager.GetActiveScene().name == "Farmcook") 
+            if (SceneManager.GetActiveScene().name.Contains("Farmcook")) 
             {
                 PlayerScore playerScore = gamePlayer.GetComponent<PlayerScore>();
                 PlayerController playerGameController = gamePlayer.GetComponent<PlayerController>();
