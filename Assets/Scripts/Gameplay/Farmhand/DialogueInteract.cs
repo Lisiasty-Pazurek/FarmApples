@@ -24,7 +24,7 @@ namespace DialogueSystem {
 
 
         bool optionSelected = false;
-
+         [SerializeField] bool alternateDialogue;
 
         public void StartDialogue () {
             StartCoroutine (DisplayDialogue (startDialogueObject));
@@ -36,20 +36,32 @@ namespace DialogueSystem {
 
         public void StartDialogue (PlayerReputation playerReputation) {
             activePlayer = playerReputation;
-            
+            bool alternateDialogue = false;
+            print("dialogue started");
             if (alternateDialogues.Count() > 0)
             {
+                
                 foreach (DialogueThread thread in alternateDialogues)
                 {
                     if (thread.requirementsList.Intersect(activePlayer.reputation).Any()) 
                     {
                         StartCoroutine (DisplayDialogue (thread.triggeredDialogue));
-                    }                
+                        alternateDialogue = true;
+                    }
                 }
             }
+            if (!alternateDialogue || alternateDialogues.Count == 0)
+            {
+                print ("not alternate dialogue");
+                StartCoroutine (DisplayDialogue (startDialogueObject));
+            }
 
-            else 
-            StartCoroutine (DisplayDialogue (startDialogueObject));
+            //  legacy method
+            if  (alternateDialogues == null && rewardedItems.Intersect(activePlayer.reputation).Any()) 
+            {
+                StartCoroutine (DisplayDialogue (alternateDialogueObject));
+            }
+
         }
 
         public void OptionSelected (DialogueObject selectedOption) {

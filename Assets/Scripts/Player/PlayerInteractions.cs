@@ -51,10 +51,8 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (!other.GetComponent<DialogueInteract>().dialogueStarted)
             {
-                other.GetComponent<DialogueInteract>().StartDialogue(this.GetComponent<PlayerReputation>());
+                DialogueInteract();
             }
-            
-
         }
     }
 
