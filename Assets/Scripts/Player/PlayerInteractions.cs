@@ -45,6 +45,19 @@ public class PlayerInteractions : MonoBehaviour
             interactableDialogue = other.GetComponent<DialogueInteract>();
         }
     }
+    private void OnTriggerEnter(Collider other)     
+    { 
+        if (other.GetComponent<DialogueInteract>() != null )
+        {
+            if (!other.GetComponent<DialogueInteract>().dialogueStarted)
+            {
+                other.GetComponent<DialogueInteract>().StartDialogue(this.GetComponent<PlayerReputation>());
+            }
+            
+
+        }
+    }
+
     private void OnTriggerExit(Collider other) 
     {
         if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}

@@ -15,7 +15,7 @@ namespace DialogueSystem {
         [SerializeField] DialogueObject startDialogueObject;
         [SerializeField] DialogueObject alternateDialogueObject;
 
-        bool dialogueStarted;
+        public bool dialogueStarted {private set; get;}
         
         private List<GameObject> spawnedButtons;
         [SerializeField] public List<string> rewardedItems;
