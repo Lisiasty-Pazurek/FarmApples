@@ -38,6 +38,6 @@ MonoBehaviour:
         s\u0142ucham."
       dialogueRequirement: 
       followOnDialogue: {fileID: 0}
-    - dialogueChoice: "o\tTo nieprawda! Nie gada\u0142em, to niesprawiedliwe!"
+    - dialogueChoice: "To nieprawda! Nie gada\u0142em, to niesprawiedliwe!"
       dialogueRequirement: 
       followOnDialogue: {fileID: 0}
