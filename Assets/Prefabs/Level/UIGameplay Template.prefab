@@ -2090,7 +2090,7 @@ GameObject:
   - component: {fileID: 4428756344033335871}
   - component: {fileID: 4428756344033335868}
   m_Layer: 0
-  m_Name: --- UI Gameplay (1)
+  m_Name: UIGameplay Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

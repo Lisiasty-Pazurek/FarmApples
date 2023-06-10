@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6263028126468434938}
   - component: {fileID: 9010120229165265700}
   m_Layer: 0
-  m_Name: prizeSpawn
+  m_Name: PrizeSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
