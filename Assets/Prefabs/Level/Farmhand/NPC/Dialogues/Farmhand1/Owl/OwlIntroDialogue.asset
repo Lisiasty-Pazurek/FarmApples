@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: OwlIntroDialogue
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Przykro mi ale ostatni nasz sprawdzian napisa\u0142e\u015B na
+      ocen\u0119 niedostateczn\u0105. B\u0119dziesz musia\u0142 go poprawi\u0107."
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialogueChoices:
+    - dialogueChoice: "Przecie\u017C si\u0119 uczy\u0142em! To niesprawiedliwe! "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 32f707b8171d4354191c2e5172075b48,
+        type: 2}
+    - dialogueChoice: "Czy mo\u017Ce mi Pani powiedzie\u0107 co zrobi\u0142em \u017Ale? "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: bfb8bc226b0f1ca4c87e103f75fc6c46,
+        type: 2}
+    - dialogueChoice: "A jak teraz Pani powiem jakie powinny by\u0107 odpowiedzi
+        to dostan\u0119 pi\u0105tk\u0119? "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: b1dcb4f9241376549ab0be3e40f1bbcd,
+        type: 2}
+    - dialogueChoice: "Widocznie nie nauczy\u0142em si\u0119 wszystkiego. Przyjd\u0119
+        na popraw\u0119. "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: a87d530daafbc51429d1e3277b52e1cb,
+        type: 2}
