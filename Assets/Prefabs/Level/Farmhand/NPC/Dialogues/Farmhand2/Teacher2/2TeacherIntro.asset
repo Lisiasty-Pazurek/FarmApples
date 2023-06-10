@@ -30,14 +30,18 @@ MonoBehaviour:
     - dialogueChoice: "Prosz\u0119 Pani, ja nie rozmawia\u0142em, to musia\u0142
         by\u0107 kto\u015B inny"
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: a6caa4045ea9d15449776849af980a5b,
+        type: 2}
     - dialogueChoice: "To na pewno nie ja, to ten co siedzi za mn\u0105!"
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 615a99c1f941a834e8a65746111c123c,
+        type: 2}
     - dialogueChoice: "Nie zgadzam si\u0119 z Pani\u0105. Ca\u0142y czas uwa\u017Cnie
         s\u0142ucham."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 1b1dd701c5623ff44a2b945508f21742,
+        type: 2}
     - dialogueChoice: "To nieprawda! Nie gada\u0142em, to niesprawiedliwe!"
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: b7a01d4a8ef098a4dbee0d9196a957da,
+        type: 2}
