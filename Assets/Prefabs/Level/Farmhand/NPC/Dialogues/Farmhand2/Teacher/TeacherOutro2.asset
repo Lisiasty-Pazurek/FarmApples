@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TeacherOutro2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Cze\u015Bc, fajnie, \u017Ce siedzimy obok!"
+  - dialogueText: "Ju\u017C znalaz\u0142em fajniejsze miejsce."
     dialogueDisplayTime: 2
     dialogueReward: 
     dialougueCost: 
