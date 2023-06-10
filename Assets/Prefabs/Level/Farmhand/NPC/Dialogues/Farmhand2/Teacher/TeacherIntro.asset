@@ -33,14 +33,18 @@ MonoBehaviour:
     - dialogueChoice: "Je\u015Bli jeste\u015B dobry z matmy, to mo\u017Cesz siedzie\u0107
         ko\u0142o mnie."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: fb6e60c321a581342bca35ee19aa2af7,
+        type: 2}
     - dialogueChoice: "Odejd\u017A, chc\u0119 mie\u0107 \u0142awk\u0119 tylko dla
         siebie."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 5fb815fe56a2ed244a93b618867dbf48,
+        type: 2}
     - dialogueChoice: "Chod\u017A do mnie, pomog\u0119 Ci."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 20b20aed4e6ca7f42a3c271fb2ec9811,
+        type: 2}
     - dialogueChoice: "Siadaj obok jak chcesz, oboj\u0119tne."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 4aecd3af9e56cab48ab2edfd4b5b011b,
+        type: 2}
