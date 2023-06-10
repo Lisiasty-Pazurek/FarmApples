@@ -10,7 +10,7 @@ public class SendReport : MonoBehaviour
     public static SendReport instance;
     string From = "game@aemaze.studio";
     string Name = "Aemaze";
-    string To = "game.log@aemaze.studio";
+    public string To = "game.log@aemaze.studio";
     public string Subject = "Game Log";
     public string Message = "Game report log";
     
@@ -34,8 +34,8 @@ public class SendReport : MonoBehaviour
 
     public void SetAndSendMessage (string playerName, string playerReputation)
     {
-        Subject = "Raport: Gracz dokonał wyboru w trybie Farmhand "; 
-        Message = playerName + " wybrał opcję " + playerReputation; 
+        Subject = "Raport: " + playerName + " wybrał opcję " + playerReputation ; 
+        Message = playerName + " wybrał opcję " + playerReputation + " o godzinie: " + System.DateTime.Now; 
         SendPlainMail();
     }
 }

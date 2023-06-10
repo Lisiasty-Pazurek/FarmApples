@@ -41,6 +41,7 @@ public class PlayerInteractions : MonoBehaviour
         {GetComponent<PlayerController>().uiGameplay.interactImage.enabled = true;}
         if (other.GetComponent<DialogueInteract>() != null)
         {
+            other.GetComponent<DialogueInteract>().dialogueCanvas.enabled = true;
             interactableDialogue = other.GetComponent<DialogueInteract>();
         }
     }
@@ -51,6 +52,7 @@ public class PlayerInteractions : MonoBehaviour
         {GetComponent<PlayerController>().uiGameplay.interactImage.enabled = false;}
         if (other.GetComponent<DialogueInteract>() != null)
         {
+            other.GetComponent<DialogueInteract>().dialogueCanvas.enabled = false;
             interactableDialogue = null;
         }
     }

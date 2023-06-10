@@ -7,13 +7,15 @@ using System.Linq;
 namespace DialogueSystem {
     public class DialogueInteract : MonoBehaviour {
 
-        [SerializeField] Canvas dialogueCanvas;
+        [SerializeField] public Canvas dialogueCanvas;
         [SerializeField] Text dialogueText;
         [SerializeField] GameObject dialogueOptionsContainer;
         [SerializeField] Transform dialogueOptionsParent;
         [SerializeField] GameObject dialogueOptionsButtonPrefab;
         [SerializeField] DialogueObject startDialogueObject;
         [SerializeField] DialogueObject alternateDialogueObject;
+
+        bool dialogueStarted;
         
         private List<GameObject> spawnedButtons;
         [SerializeField] public List<string> rewardedItems;
@@ -53,10 +55,10 @@ namespace DialogueSystem {
         IEnumerator DisplayDialogue (DialogueObject _dialogueObject) {
             yield return null;
             Debug.Log ("Starting Dialogue Chain");
-            if (!dialogueCanvas.enabled)
+            if (!dialogueStarted)
             {
                 spawnedButtons = new List<GameObject> ();
-
+                dialogueStarted = true;
                 dialogueCanvas.enabled = true;
 
 
@@ -99,7 +101,7 @@ namespace DialogueSystem {
                 dialogueOptionsContainer.SetActive (false);
                 dialogueCanvas.enabled = false;
                 optionSelected = false;
-                
+                dialogueStarted = false;
 
                 spawnedButtons.ForEach (x => Destroy (x));
                 Debug.Log ("Ending Dialogue Chain");
