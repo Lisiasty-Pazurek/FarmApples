@@ -15,6 +15,6 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "Prosz\u0119 tak nie m\xF3wi\u0107, daj kole\u017Cance szanse"
     dialogueDisplayTime: 3
-    dialogueReward: "wyci\u0105gnieta d\u0142o\u0144"
+    dialogueReward: "wyci\u0105gni\u0119ta d\u0142o\u0144"
     dialougueCost: 
     dialogueChoices: []

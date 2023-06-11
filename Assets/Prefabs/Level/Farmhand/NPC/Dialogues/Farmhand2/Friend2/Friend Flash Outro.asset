@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Friend Flash Outro
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: 'Kolega: Dzisiaj wn ocy nie poczytam..'
+  - dialogueText: 'Kolega: Dzisiaj w nocy nie poczytam..'
     dialogueDisplayTime: 2
     dialogueReward: 
     dialougueCost: 
