@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Teacher1.3
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Dzi\u0119ki! "
+  - dialogueText: "Kolega: Dzi\u0119ki! "
     dialogueDisplayTime: 2
     dialogueReward: "\u0142awka z jab\u0142kiem"
     dialougueCost: 

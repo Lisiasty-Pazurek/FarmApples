@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Teacher1.1
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Jestem najlepszy, dzi\u0119ki! "
+  - dialogueText: "Kolega: Jestem najlepszy, dzi\u0119ki! "
     dialogueDisplayTime: 2
     dialogueReward: 2+2=4
     dialougueCost: 
