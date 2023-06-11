@@ -17,16 +17,4 @@ MonoBehaviour:
     dialogueDisplayTime: 3
     dialogueReward: 
     dialougueCost: 
-    dialogueChoices:
-    - dialogueChoice: "Wiem, \u017Ce masz urodziny ale ja to w sumie zapomnia\u0142em
-        o prezencie."
-      dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
-    - dialogueChoice: "Przynios\u0142em ci prezent, Wrzystkiego najlepszego z okazji
-        urodzin!"
-      dialogueRequirement: prezent
-      followOnDialogue: {fileID: 0}
-    - dialogueChoice: "Przynios\u0142em ci prezent, ode mnie i siostry! Wrzystkiego
-        najlepszego z okazji urodzin!"
-      dialogueRequirement: prezent od siostry
-      followOnDialogue: {fileID: 0}
+    dialogueChoices: []

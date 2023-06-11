@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
   m_Name: Mother 1.1
   m_EditorClassIdentifier: 
-  dialogueSegments: []
+  dialogueSegments:
+  - dialogueText: " Dzi\u0119kuj\u0119, za prezent i \u017Ce o mnie pami\u0119ta\u0142e\u015B"
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []

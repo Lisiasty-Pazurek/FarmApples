@@ -13,6 +13,7 @@ public class NPCAnimation : MonoBehaviour
     void Start()
     {
         currentIndex = 0;
+        animator.speed = .6f;
         StartCoroutine(SetAnimation());
     }
 
