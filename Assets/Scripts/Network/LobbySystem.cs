@@ -80,23 +80,23 @@ public class LobbySystem : MonoBehaviour
             networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[0];
         }
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "Farmapples")
+        if (mapListDropdown.options[mapListDropdown.value].text.Contains("Farmapples"))
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;
             networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[0];
         }
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "Farmarathon")
+        if (mapListDropdown.options[mapListDropdown.value].text.Contains("Farmarathon"))
         {
-            maxPlayersSlider.maxValue = 24;
-            maxPlayersSlider.value = 24;
+            maxPlayersSlider.maxValue = 20;
+            maxPlayersSlider.value = 20;
             networkManager.onlineScene = "RoomSceneMarathon";
             networkManager.RoomScene = "RoomSceneMarathon";
             networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[1];
         }  
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "Farmhand")
+        if (mapListDropdown.options[mapListDropdown.value].text.Contains("Farmhand"))
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;
@@ -105,7 +105,7 @@ public class LobbySystem : MonoBehaviour
             networkManager.playerPrefab = GetComponentInParent<GameModeSystem>().playerPrefabs[3];
         }
 
-        if (mapListDropdown.options[mapListDropdown.value].text == "Farmcook")
+        if (mapListDropdown.options[mapListDropdown.value].text.Contains("Farmcook"))
         {
             maxPlayersSlider.maxValue = 20;
             maxPlayersSlider.value = 20;
@@ -119,6 +119,7 @@ public class LobbySystem : MonoBehaviour
 
     public void CreateRoom()
     {
+        RoomSet();
         if(roomNameInputField.text.Length < 1) roomNameInputField.text = "Gra " + Random.Range(0, 999).ToString();
 
         LRMTransport.serverName = roomNameInputField.text;

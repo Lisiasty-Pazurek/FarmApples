@@ -89,7 +89,7 @@ namespace MirrorBasics
             
             uiRoom = FindObjectOfType<UIRoom>();
 
-            if (NetworkRoomManagerExt.singleton.GameplayScene == "Farmaze")
+            if (SceneManager.GetActiveScene().name == "Farmaze")
             {
                 playerModel = uiRoom.modelName.options[Random.Range(0, uiRoom.modelName.options.Count)].text;
                 Debug.Log("player model of : " + playerModel);

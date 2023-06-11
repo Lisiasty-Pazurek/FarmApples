@@ -7,13 +7,16 @@ using System.Linq;
 namespace DialogueSystem {
     public class DialogueInteract : MonoBehaviour {
 
-        [SerializeField] Canvas dialogueCanvas;
+        [SerializeField] public Canvas dialogueCanvas;
         [SerializeField] Text dialogueText;
         [SerializeField] GameObject dialogueOptionsContainer;
         [SerializeField] Transform dialogueOptionsParent;
         [SerializeField] GameObject dialogueOptionsButtonPrefab;
         [SerializeField] DialogueObject startDialogueObject;
         [SerializeField] DialogueObject alternateDialogueObject;
+        [SerializeField] List<DialogueThread> alternateDialogues;
+
+        public bool dialogueStarted {private set; get;}
         
         private List<GameObject> spawnedButtons;
         [SerializeField] public List<string> rewardedItems;
@@ -21,7 +24,7 @@ namespace DialogueSystem {
 
 
         bool optionSelected = false;
-
+         [SerializeField] bool alternateDialogue;
 
         public void StartDialogue () {
             StartCoroutine (DisplayDialogue (startDialogueObject));
@@ -33,14 +36,32 @@ namespace DialogueSystem {
 
         public void StartDialogue (PlayerReputation playerReputation) {
             activePlayer = playerReputation;
-            
-            if (rewardedItems.Intersect(activePlayer.reputation).Any()) 
+            bool alternateDialogue = false;
+            print("dialogue started");
+            if (alternateDialogues.Count() > 0)
+            {
+                
+                foreach (DialogueThread thread in alternateDialogues)
+                {
+                    if (thread.requirementsList.Intersect(activePlayer.reputation).Any()) 
+                    {
+                        StartCoroutine (DisplayDialogue (thread.triggeredDialogue));
+                        alternateDialogue = true;
+                    }
+                }
+            }
+            if (!alternateDialogue || alternateDialogues.Count == 0)
+            {
+                print ("not alternate dialogue");
+                StartCoroutine (DisplayDialogue (startDialogueObject));
+            }
+
+            //  legacy method
+            if  (alternateDialogues == null && rewardedItems.Intersect(activePlayer.reputation).Any()) 
             {
                 StartCoroutine (DisplayDialogue (alternateDialogueObject));
             }
-            else 
-            StartCoroutine (DisplayDialogue (startDialogueObject));
-            
+
         }
 
         public void OptionSelected (DialogueObject selectedOption) {
@@ -53,10 +74,10 @@ namespace DialogueSystem {
         IEnumerator DisplayDialogue (DialogueObject _dialogueObject) {
             yield return null;
             Debug.Log ("Starting Dialogue Chain");
-            if (!dialogueCanvas.enabled)
+            if (!dialogueStarted)
             {
                 spawnedButtons = new List<GameObject> ();
-
+                dialogueStarted = true;
                 dialogueCanvas.enabled = true;
 
 
@@ -99,7 +120,7 @@ namespace DialogueSystem {
                 dialogueOptionsContainer.SetActive (false);
                 dialogueCanvas.enabled = false;
                 optionSelected = false;
-                
+                dialogueStarted = false;
 
                 spawnedButtons.ForEach (x => Destroy (x));
                 Debug.Log ("Ending Dialogue Chain");
@@ -107,5 +128,12 @@ namespace DialogueSystem {
             
         }
 
+    }
+
+    [System.Serializable]
+    public struct DialogueThread 
+    {
+        public List<string> requirementsList;
+        public DialogueObject triggeredDialogue;
     }
 }

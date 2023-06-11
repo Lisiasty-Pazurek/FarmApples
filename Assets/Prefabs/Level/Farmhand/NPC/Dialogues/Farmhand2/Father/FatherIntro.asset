@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: FatherIntro
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Opis: Kolega zaprosi\u0142 ci\u0119 do siebie na nocowanie, musisz
+      zapyta\u0107 rodzic\xF3 czy mo\u017Cesz i\u015B\u0107."
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []
+  - dialogueText: "Czy mog\u0119 dzisiaj nocowa\u0107 u kolegi?"
+    dialogueDisplayTime: 2
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []
+  - dialogueText: "Tata: Nie synku, dzisiaj przychodzi do nas babcia i chia\u0142aby
+      si\u0119 z Tob\u0105 zobaczy\u0107."
+    dialogueDisplayTime: 2
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: "No dobrze zostan\u0119 w domu."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: bf4dfda1b5139d046ae8d46935fed1fa,
+        type: 2}
+    - dialogueChoice: 'OK... '
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: ba5f68b2be544734b82a0a5deea3458c,
+        type: 2}
+    - dialogueChoice: 'To niesprawiedliwe! '
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: dc08614ff32a8ea4db0d6a0840106c2d,
+        type: 2}
+    - dialogueChoice: "No dobrze, ale nast\u0119pnym razem p\xF3jd\u0119."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 537b375ecda7ef947a8d2fe3855e7251,
+        type: 2}

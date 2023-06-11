@@ -41,9 +41,21 @@ public class PlayerInteractions : MonoBehaviour
         {GetComponent<PlayerController>().uiGameplay.interactImage.enabled = true;}
         if (other.GetComponent<DialogueInteract>() != null)
         {
+            other.GetComponent<DialogueInteract>().dialogueCanvas.enabled = true;
             interactableDialogue = other.GetComponent<DialogueInteract>();
         }
     }
+    private void OnTriggerEnter(Collider other)     
+    { 
+        if (other.GetComponent<DialogueInteract>() != null )
+        {
+            if (!other.GetComponent<DialogueInteract>().dialogueStarted)
+            {
+                DialogueInteract();
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other) 
     {
         if (!this.gameObject.GetComponent<PlayerController>().isLocalPlayer || !canInteract) {return;}
@@ -51,6 +63,7 @@ public class PlayerInteractions : MonoBehaviour
         {GetComponent<PlayerController>().uiGameplay.interactImage.enabled = false;}
         if (other.GetComponent<DialogueInteract>() != null)
         {
+            other.GetComponent<DialogueInteract>().dialogueCanvas.enabled = false;
             interactableDialogue = null;
         }
     }
