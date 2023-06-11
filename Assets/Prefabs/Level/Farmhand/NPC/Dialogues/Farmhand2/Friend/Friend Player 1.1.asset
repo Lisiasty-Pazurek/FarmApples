@@ -15,6 +15,6 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "Hej! My\u015Bla\u0142em, \u017Ce si\u0119 przyja\u017Animy! "
     dialogueDisplayTime: 3
-    dialogueReward: przekreslony przyjaciel
+    dialogueReward: "przekre\u015Blony przyjaciel"
     dialougueCost: 
     dialogueChoices: []
