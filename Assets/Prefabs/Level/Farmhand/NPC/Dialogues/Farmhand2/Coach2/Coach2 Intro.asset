@@ -13,8 +13,31 @@ MonoBehaviour:
   m_Name: Coach2 Intro
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: Coach2 intro
-    dialogueDisplayTime: 0
+  - dialogueText: "Cze\u015B\u0107! Idziesz z nami zagra\u0107 w nog\u0119?"
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []
+  - dialogueText: "Kolega: Chcia\u0142bym ale nigdy wcze\u015Bniej nie gra\u0142em,
+      nie znam zasad."
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: "Chod\u017A poka\u017C\u0119 Ci co i jak "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 583cf5e562560b74b99cf5d0d7a80871,
+        type: 2}
+    - dialogueChoice: "Ok, poka\u017C\u0119 Ci p\xF3\u017Aniej, ale najpierw p\xF3jdziemy
+        na lody i Ty stawiasz. "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: cfc664570afb2774392cc7a093d74897,
+        type: 2}
+    - dialogueChoice: "Serio? Jeste\u015B jaki\u015B dziwny!"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 04f0c9210b42f3840aee43f641eaab50,
+        type: 2}
+    - dialogueChoice: "To niewa\u017Cne, chod\u017Amy pogra\u0107 w badmintona."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 99d95523a39db6e45a2814008a6a6fb6,
+        type: 2}
