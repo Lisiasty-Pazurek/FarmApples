@@ -27,14 +27,18 @@ MonoBehaviour:
     dialogueChoices:
     - dialogueChoice: "Czasami tak jest. Jutro b\u0119dzie lepiej."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 61ac3b437ae46324885e70e6d732c790,
+        type: 2}
     - dialogueChoice: Zawsze jestem najgorszy! Rezygnuje!
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 6f285c2c085009147b58eee165134e9b,
+        type: 2}
     - dialogueChoice: "Zrobi\u0142em to specjalnie, \u017Ceby dosta\u0107 od kolegi
         lizaka."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 164a894805320f6468895d9164b63af1,
+        type: 2}
     - dialogueChoice: "Nic, tak wysz\u0142o.\t"
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 6bd800341383a944caef9bde083cabdf,
+        type: 2}
