@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Friend Flash Intro
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Opis: Po\u017Cyczy\u0142e\u015B od kolegi latarka, ale niestety
+  - dialogueText: "Opis: Po\u017Cyczy\u0142e\u015B od kolegi latark\u0119, ale niestety
       gdy j\u0105 u\u017Cywa\u0142e\u015B, przesta\u0142a dzia\u0142a\u0107. "
     dialogueDisplayTime: 3
     dialogueReward: 
@@ -26,13 +26,17 @@ MonoBehaviour:
     dialogueChoices:
     - dialogueChoice: "Przepraszam, nagle zgas\u0142a, nie wiem co si\u0119 sta\u0142o."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 32e713e72aae9a74b8a4eff900103370,
+        type: 2}
     - dialogueChoice: "To nie ja, od pocz\u0105tku nie dzia\u0142a\u0142a."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 20bbfbfee67a4bd4a862a7babe8633ed,
+        type: 2}
     - dialogueChoice: "Sam j\u0105 zepsu\u0142e\u015B i zwalasz na mnie! "
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: efeb6de5608f89a46b7ee123f65e44a4,
+        type: 2}
     - dialogueChoice: "Nie wiem, pozw\xF3l, \u017Ce spr\xF3buj\u0119 j\u0105 naprawi\u0107."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: a0c890f6a060833418b542359269dc04,
+        type: 2}

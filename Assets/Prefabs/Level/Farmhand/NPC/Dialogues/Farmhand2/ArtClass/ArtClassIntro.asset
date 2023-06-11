@@ -27,14 +27,18 @@ MonoBehaviour:
     dialogueChoices:
     - dialogueChoice: "O nie! Ja si\u0119 wypisuje."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: fe6a44df3fd318f42bc21da61c125eba,
+        type: 2}
     - dialogueChoice: "B\u0119d\u0119 j\u0105 ignorowa\u0107, \u017Ceby nie popsu\u0142a
         mi humoru."
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 420392d53482e0e488b0e56753a14ca4,
+        type: 2}
     - dialogueChoice: "To \u015Bwietna okazja, \u017Ceby jej podokucza\u0107!"
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 18b22839ec2e4524abee23d8fa597cde,
+        type: 2}
     - dialogueChoice: "Trudno, wa\u017Cne, \u017Ce zaj\u0119cia s\u0105 super!"
       dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+      followOnDialogue: {fileID: 11400000, guid: 3bc5fb609c12c9145b2b98541d5f7877,
+        type: 2}
