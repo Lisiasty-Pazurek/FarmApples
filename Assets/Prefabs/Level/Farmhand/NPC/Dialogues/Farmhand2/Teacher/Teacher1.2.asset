@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Teacher1.2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: 'Ale powitanie! '
+  - dialogueText: 'Kolega: Ale powitanie! '
     dialogueDisplayTime: 2
     dialogueReward: "\u0142awka"
     dialougueCost: 

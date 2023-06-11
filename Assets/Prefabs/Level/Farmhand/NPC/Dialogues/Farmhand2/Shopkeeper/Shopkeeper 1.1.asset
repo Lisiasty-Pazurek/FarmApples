@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "Sprzedawca: W porzadku, baw si\u0119 dobrze!"
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []

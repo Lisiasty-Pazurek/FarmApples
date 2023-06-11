@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TeacherOutro2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Ju\u017C znalaz\u0142em fajniejsze miejsce."
-    dialogueDisplayTime: 2
+  - dialogueText: "Kolega: Ju\u017C znalaz\u0142em fajniejsze miejsce."
+    dialogueDisplayTime: 3
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []

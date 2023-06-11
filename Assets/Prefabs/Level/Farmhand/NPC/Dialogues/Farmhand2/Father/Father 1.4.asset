@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Father 1.4
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Mo\u017Ce jak babcia p\xF3jdzie to b\u0119d\u0119 m\xF3g\u0142
-      i\u015B\u0107?"
+  - dialogueText: "Tata: Mo\u017Cemy si\u0119 tak um\xF3wi\u0107."
     dialogueDisplayTime: 2
     dialogueReward: "dom z ksi\u0119\u017Cycem"
     dialougueCost: 

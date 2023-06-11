@@ -23,7 +23,15 @@ MonoBehaviour:
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: f3653cbb3e4eba74c8f8510ba8abd304,
         type: 2}
-    - dialogueChoice: "A ty nie przygotowa\u0142a\u015B jakiego\u015B?"
+    - dialogueChoice: "Na pewno jaki\u015B przygotowa\u0142a\u015B, prawda?"
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: b780bbc3abee0b347aa415a23e40643e,
+        type: 2}
+    - dialogueChoice: Niestety nic nie mam.
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 2403ef1fd81c47e478852329223e9d97,
+        type: 2}
+    - dialogueChoice: "Udam, \u017Ce zapomnia\u0142em. "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: e4ea8f1340871b04e84872fc17f8224f,
         type: 2}

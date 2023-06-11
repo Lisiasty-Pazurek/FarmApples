@@ -15,12 +15,12 @@ MonoBehaviour:
   dialogueSegments:
   - dialogueText: "Opis: Do Twojej klasy przychodzi nowy ucze\u0144 i nie wie, gdzie
       ma usi\u0105\u015B\u0107"
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []
-  - dialogueText: "Sowa: Prosz\u0119 przywitajcie naszego nowego koleg\u0119. "
-    dialogueDisplayTime: 3
+  - dialogueText: "Nauczyciel: Prosz\u0119 przywitajcie naszego nowego koleg\u0119. "
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []

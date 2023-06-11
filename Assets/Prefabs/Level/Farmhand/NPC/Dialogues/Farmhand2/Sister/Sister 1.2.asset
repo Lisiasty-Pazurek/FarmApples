@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Sister 1.2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Siostra: Tak jest u mnie w pokoju, we\u017A go zanie\u015B p\xF3\u017Aniej."
+  - dialogueText: 'Siostra: Tak, jest u mnie w pokoju.'
     dialogueDisplayTime: 2
-    dialogueReward: prezent od siostry
+    dialogueReward: szukam prezentu
     dialougueCost: 
     dialogueChoices: []

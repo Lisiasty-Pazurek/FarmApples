@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TeacherOutro1
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Cze\u015B\u0107, fajnie, \u017Ce siedzimy obok!"
-    dialogueDisplayTime: 2
+  - dialogueText: "Kolega: Cze\u015B\u0107, fajnie, \u017Ce siedzimy obok siebie!"
+    dialogueDisplayTime: 3
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []

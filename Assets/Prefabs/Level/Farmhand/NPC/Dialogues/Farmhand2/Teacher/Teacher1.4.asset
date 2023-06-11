@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Teacher1.4
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: 'Chyba poszukam gdzie indziej. '
+  - dialogueText: 'Kolega: Chyba poszukam gdzie indziej. '
     dialogueDisplayTime: 2
     dialogueReward: ramiona
     dialougueCost: 

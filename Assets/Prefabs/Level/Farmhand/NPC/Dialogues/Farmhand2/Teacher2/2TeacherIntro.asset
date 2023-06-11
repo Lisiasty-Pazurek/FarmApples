@@ -23,7 +23,7 @@ MonoBehaviour:
       w trakcie lekcji. Obawiam si\u0119, \u017Ce niczego w ten spos\xF3b si\u0119
       nie nauczysz. Chc\u0119, \u017Ceby\u015B przesta\u0142 rozmawia\u0107 i skupi\u0142
       si\u0119 na zaj\u0119ciach."
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices:

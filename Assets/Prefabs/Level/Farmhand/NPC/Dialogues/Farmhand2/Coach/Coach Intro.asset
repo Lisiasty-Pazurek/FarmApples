@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: Coach Intro
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Opis: Podczas zaj\u0119\u0107 na basenie okazuje si\u0119, \u017Ce
+      p\u0142ywasz najwolniej z ca\u0142ej grupy. "
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []
+  - dialogueText: "Trener: Cze\u015B\u0107 widz\u0119, \u017Ce co\u015B Ci dzisiaj
+      nie posz\u0142o. Co si\u0119 sta\u0142o? "
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: "Czasami tak jest. Jutro b\u0119dzie lepiej."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 61ac3b437ae46324885e70e6d732c790,
+        type: 2}
+    - dialogueChoice: Zawsze jestem najgorszy! Rezygnuje!
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 6f285c2c085009147b58eee165134e9b,
+        type: 2}
+    - dialogueChoice: "Zrobi\u0142em to specjalnie, \u017Ceby dosta\u0107 od kolegi
+        lizaka."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 164a894805320f6468895d9164b63af1,
+        type: 2}
+    - dialogueChoice: "Nic, tak wysz\u0142o.\t"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: 6bd800341383a944caef9bde083cabdf,
+        type: 2}

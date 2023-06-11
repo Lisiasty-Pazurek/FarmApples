@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "Opis: Kolega zaprosi\u0142 ci\u0119 do siebie na nocowanie, musisz
-      zapyta\u0107 rodzic\xF3 czy mo\u017Cesz i\u015B\u0107."
+      zapyta\u0107 rodzic\xF3w czy mo\u017Cesz i\u015B\u0107."
     dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []
   - dialogueText: "Czy mog\u0119 dzisiaj nocowa\u0107 u kolegi?"
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []
   - dialogueText: "Tata: Nie synku, dzisiaj przychodzi do nas babcia i chia\u0142aby
       si\u0119 z Tob\u0105 zobaczy\u0107."
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices:
-    - dialogueChoice: "No dobrze zostan\u0119 w domu."
+    - dialogueChoice: OK. [zostaje w domu]
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: bf4dfda1b5139d046ae8d46935fed1fa,
         type: 2}
-    - dialogueChoice: 'OK... '
+    - dialogueChoice: "No dobrze.. [zostaje w domu obra\u017Cony]"
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: ba5f68b2be544734b82a0a5deea3458c,
         type: 2}
