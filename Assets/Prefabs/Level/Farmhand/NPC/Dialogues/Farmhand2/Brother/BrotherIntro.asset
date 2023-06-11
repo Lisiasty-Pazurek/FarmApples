@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: BrotherIntro
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Opis: Chcesz pogra\u0107 na gitarze, ale Tw\xF3j brat si\u0119
+      uczy i potrzebuje ciszy. "
+    dialogueDisplayTime: 2
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []
+  - dialogueText: "Brat: Hej, czy m\xF3g\u0142y\u015B teraz nie gra\u0107? Pr\xF3buje
+      si\u0119 uczy\u0107!"
+    dialogueDisplayTime: 2
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: "To kiedy w takim razie mam \u0107wiczy\u0107?"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "Dobrze, ale p\xF3jde pogra\u0107 "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: 
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: 
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
