@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "Brat: Jeszcze chwilka skupienia, to wa\u017Cny sprawdzian."
-    dialogueDisplayTime: 0
+    dialogueDisplayTime: 2
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []

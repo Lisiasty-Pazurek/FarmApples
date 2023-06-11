@@ -30,11 +30,11 @@ MonoBehaviour:
     dialogueReward: 
     dialougueCost: 
     dialogueChoices:
-    - dialogueChoice: "No dobrze zostan\u0119 w domu. "
+    - dialogueChoice: OK. [zostaje w domu]
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: bf4dfda1b5139d046ae8d46935fed1fa,
         type: 2}
-    - dialogueChoice: 'OK... '
+    - dialogueChoice: "No dobrze.. [zostaje w domu obra\u017Cony]"
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: ba5f68b2be544734b82a0a5deea3458c,
         type: 2}

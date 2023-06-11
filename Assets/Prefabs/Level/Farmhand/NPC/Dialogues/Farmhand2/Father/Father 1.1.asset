@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Father 1.1
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Zostaj\u0119 w domu"
+  - dialogueText: "Ciesz\u0119 si\u0119, \u017Ce rozumiesz."
     dialogueDisplayTime: 2
     dialogueReward: dom
     dialougueCost: 

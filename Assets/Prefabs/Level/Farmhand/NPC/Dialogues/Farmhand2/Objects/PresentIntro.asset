@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
   m_Name: PresentIntro
   m_EditorClassIdentifier: 
-  dialogueSegments: []
+  dialogueSegments:
+  - dialogueText: "Opis: To chyba prezent, kt\xF3ry przygotowa\u0142a siostra"
+    dialogueDisplayTime: 4
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: "Nie b\u0119d\u0119 go rusza\u0142."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 11400000, guid: ffa1d7aee606c0f4aa24f44022439def,
+        type: 2}
+    - dialogueChoice: "O, zaraz zanios\u0119 naszej Mamie!"
+      dialogueRequirement: szukam prezentu
+      followOnDialogue: {fileID: 11400000, guid: 5e5d9047c15d5034698d9fc3ada6677d,
+        type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SiostraOutro2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Jak zwykle zapomnia\u0142e\u015B, ale spokojnie, damy razem."
+  - dialogueText: "Jak zwykle zapomnia\u0142e\u015B, dobrze, \u017Ce ja przygotowa\u0142am."
     dialogueDisplayTime: 2
     dialogueReward: 
     dialougueCost: 

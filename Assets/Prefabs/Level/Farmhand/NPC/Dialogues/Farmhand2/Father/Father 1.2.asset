@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Father 1.2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Opis: Obra\u017Cony zostaj\u0119 w domu"
-    dialogueDisplayTime: 2
+  - dialogueText: "Tata: B\u0119dziesz m\xF3g\u0142 i\u015B\u0107 do kolegi innym
+      razem"
+    dialogueDisplayTime: 3
     dialogueReward: dom z wykrzyknikiem
     dialougueCost: 
     dialogueChoices: []
