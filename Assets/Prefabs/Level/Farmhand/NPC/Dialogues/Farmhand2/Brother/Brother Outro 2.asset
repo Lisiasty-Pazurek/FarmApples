@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
   m_Name: Brother Outro 2
   m_EditorClassIdentifier: 
-  dialogueSegments: []
+  dialogueSegments:
+  - dialogueText: "Brat: Nie mog\u0119 si\u0119 skupi\u0107 w tym ha\u0142asie!"
+    dialogueDisplayTime: 2
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []

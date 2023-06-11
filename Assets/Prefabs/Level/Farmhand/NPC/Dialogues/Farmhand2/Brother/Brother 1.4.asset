@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
   m_Name: Brother 1.4
   m_EditorClassIdentifier: 
-  dialogueSegments: []
+  dialogueSegments:
+  - dialogueText: "Brat: Dzi\u0119ki, przyda mi si\u0119 chwila spokoju. "
+    dialogueDisplayTime: 2
+    dialogueReward: "gitara le\u017Cy"
+    dialougueCost: 
+    dialogueChoices: []
