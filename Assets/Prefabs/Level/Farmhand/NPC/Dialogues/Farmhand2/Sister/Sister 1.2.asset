@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sister 1.2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Powiemy, \u017Ce to te\u017C ode mnie"
+  - dialogueText: "Siostra: Tak jest u mnie w pokoju, we\u017A go zanie\u015B p\xF3\u017Aniej."
     dialogueDisplayTime: 2
     dialogueReward: prezent od siostry
     dialougueCost: 
