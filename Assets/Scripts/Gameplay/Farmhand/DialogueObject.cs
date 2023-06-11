@@ -27,8 +27,7 @@ namespace DialogueSystem {
         public string dialogueChoice;
         public string dialogueRequirement;      
         public DialogueObject followOnDialogue;
-
-        public DialogueSegment followOnSegment;
+        //public int followOnSegment;
     }
 
 }

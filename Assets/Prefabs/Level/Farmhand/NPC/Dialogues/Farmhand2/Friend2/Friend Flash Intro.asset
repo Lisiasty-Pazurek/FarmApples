@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
+  m_Name: Friend Flash Intro
+  m_EditorClassIdentifier: 
+  dialogueSegments:
+  - dialogueText: "Opis: Po\u017Cyczy\u0142e\u015B od kolegi latarka, ale niestety
+      gdy j\u0105 u\u017Cywa\u0142e\u015B, przesta\u0142a dzia\u0142a\u0107. "
+    dialogueDisplayTime: 3
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices: []
+  - dialogueText: "Kolega: Hej. Dlaczego moja latarka nie dzia\u0142a? "
+    dialogueDisplayTime: 3
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: "Przepraszam, nagle zgas\u0142a, nie wiem co si\u0119 sta\u0142o."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "To nie ja, od pocz\u0105tku nie dzia\u0142a\u0142a."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "Sam j\u0105 zepsu\u0142e\u015B i zwalasz na mnie! "
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "Nie wiem, pozw\xF3l, \u017Ce spr\xF3buj\u0119 j\u0105 naprawi\u0107."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}

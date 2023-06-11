@@ -12,4 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b0edc0fc8f2b0459a3e7ed28cbfdd9, type: 3}
   m_Name: ArtClassIntro
   m_EditorClassIdentifier: 
-  dialogueSegments: []
+  dialogueSegments:
+  - dialogueText: "Na zaj\u0119cia, na kt\xF3re chodzisz, zapisuje si\u0119 nielubiana
+      przez Ciebie osoba. "
+    dialogueDisplayTime: 5
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: Dalej
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+  - dialogueText: "Nauczyciel: Od dzi\u015B na nasze zaj\u0119cia plastyczne przychodzi\u0107
+      b\u0119dzie Kasia. "
+    dialogueDisplayTime: 3
+    dialogueReward: 
+    dialougueCost: 
+    dialogueChoices:
+    - dialogueChoice: "O nie! Ja si\u0119 wypisuje."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "B\u0119d\u0119 j\u0105 ignorowa\u0107, \u017Ceby nie popsu\u0142a
+        mi humoru."
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "To \u015Bwietna okazja, \u017Ceby jej podokucza\u0107!"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
+    - dialogueChoice: "Trudno, wa\u017Cne, \u017Ce zaj\u0119cia s\u0105 super!"
+      dialogueRequirement: 
+      followOnDialogue: {fileID: 0}
