@@ -20,13 +20,13 @@ MonoBehaviour:
     dialougueCost: 
     dialogueChoices: []
   - dialogueText: "Czy mog\u0119 dzisiaj nocowa\u0107 u kolegi?"
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []
   - dialogueText: "Tata: Nie synku, dzisiaj przychodzi do nas babcia i chia\u0142aby
       si\u0119 z Tob\u0105 zobaczy\u0107."
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 
     dialogueChoices:

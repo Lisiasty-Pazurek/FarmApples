@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FatherOutro2
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Tata: Ja ci dam tak ucieka\u0107!"
+  - dialogueText: "Tata: Nie spodziewa\u0142em si\u0119 takiego zachowania."
     dialogueDisplayTime: 2
     dialogueReward: 
     dialougueCost: 

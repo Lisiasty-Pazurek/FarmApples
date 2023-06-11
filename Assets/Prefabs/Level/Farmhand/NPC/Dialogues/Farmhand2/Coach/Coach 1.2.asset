@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSegments:
   - dialogueText: "Mia\u0142e\u015B tylko najgorszy czas, to nie znaczy, \u017Ce
-      jeste\u015B najgorszy! ["
+      jeste\u015B najgorszy!"
     dialogueDisplayTime: 4
     dialogueReward: "zakaz p\u0142ywania"
     dialougueCost: 

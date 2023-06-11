@@ -22,7 +22,7 @@ MonoBehaviour:
       dialogueRequirement: 
       followOnDialogue: {fileID: 11400000, guid: ce14e2f6d594e0a45bd737a9478d232e,
         type: 2}
-    - dialogueChoice: Tak, szukam prezentu dla mojem Mamy..
+    - dialogueChoice: Tak, szukam prezentu dla mojej Mamy..
       dialogueRequirement: szukam prezentu
       followOnDialogue: {fileID: 11400000, guid: 35de1d63e7796fb439059b5b53f0c94e,
         type: 2}

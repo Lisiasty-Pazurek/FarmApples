@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coach 1.3
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Zrobi\u0142em to specjalnie, \u017Ceby dosta\u0107 od kolegi lizaka."
+  - dialogueText: "Nie podobaj\u0105 mi si\u0119 takie uk\u0142ady."
     dialogueDisplayTime: 3
     dialogueReward: lizak wodny
     dialougueCost: 

@@ -18,10 +18,7 @@ MonoBehaviour:
     dialogueDisplayTime: 5
     dialogueReward: 
     dialougueCost: 
-    dialogueChoices:
-    - dialogueChoice: Dalej
-      dialogueRequirement: 
-      followOnDialogue: {fileID: 0}
+    dialogueChoices: []
   - dialogueText: "Nauczyciel: Od dzi\u015B na nasze zaj\u0119cia plastyczne przychodzi\u0107
       b\u0119dzie Kasia. "
     dialogueDisplayTime: 3
