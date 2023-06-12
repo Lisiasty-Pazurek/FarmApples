@@ -19,8 +19,8 @@ MonoBehaviour:
     dialogueReward: 
     dialougueCost: 
     dialogueChoices: []
-  - dialogueText: "Trener: Cze\u015B\u0107 widz\u0119, \u017Ce co\u015B Ci dzisiaj
-      nie posz\u0142o. Co si\u0119 sta\u0142o? "
+  - dialogueText: "Trener: Widz\u0119, \u017Ce co\u015B Ci dzisiaj nie posz\u0142o.
+      Co si\u0119 sta\u0142o? "
     dialogueDisplayTime: 4
     dialogueReward: 
     dialougueCost: 

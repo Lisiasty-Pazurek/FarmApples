@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Artclass Outro
   m_EditorClassIdentifier: 
   dialogueSegments:
-  - dialogueText: "Usmiechasz si\u0119 na my\u015Bl o namalowaniu czego\u015B nowego."
+  - dialogueText: "U\u015Bmiechasz si\u0119 na my\u015Bl o namalowaniu czego\u015B
+      nowego."
     dialogueDisplayTime: 2
     dialogueReward: 
     dialougueCost: 
